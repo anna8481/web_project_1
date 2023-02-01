@@ -4,6 +4,7 @@ const port = 5000;
 app.listen(port, () => {
   console.log(`app listening on port ${port}`);
 });
+console.log("21:41");
 
 // mongoose 받아오기
 const mongoose = require("mongoose");
