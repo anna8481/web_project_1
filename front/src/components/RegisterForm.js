@@ -68,7 +68,7 @@ function RegisterForm() {
     }
 
     const handleSubmit = (e) => {
-        console.log(inputs)
+
         e.preventDefault();
 
         if (validateForm(inputs) === false) {
