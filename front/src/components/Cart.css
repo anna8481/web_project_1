@@ -4,9 +4,32 @@
     justify-content: space-between
 }
 
+
+.total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+
 .order-summary {
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+
+}
+
+.order-header {
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
+}
+
+.order-info {
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
 }
 
 .info h2 {
@@ -14,6 +37,7 @@
 }
 
 .cart-product-header {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -41,12 +65,16 @@
 
 .cart-quantity-no {
     border: solid;
-    padding: 0.1rem 0.5rem
+    padding: 0.1rem 0.5rem;
+    border-color: #dbdbdb;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
 }
 
 .productImg {
-    height: 5rem;
-    width: 5rem;
+    height: 8rem;
+    width: 6rem;
 
 }
 
@@ -58,10 +86,14 @@
 }
 
 .calculator {
-
     display: flex;
     flex-direction: row;
-    justify-content: flex-start
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.calculator p {
+    margin: 0 0.5rem;
 }
 
 .cart-product-info {
@@ -69,6 +101,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    padding: 1rem;
 }
 
 .tile-ancestor {
@@ -78,28 +112,28 @@
 
 
 .product-tile {
+    flex-grow: 1;
     border-radius: 6px;
     box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
     padding: 1rem;
     margin: 1rem;
-    flex-grow: 3;
 }
 
 
 .order-tile {
+    flex-grow: 1;
     border-radius: 6px;
     box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
     padding: 1rem;
     margin: 1rem;
     background-color: #f0f5f7;
     box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
-    flex-grow: 1;
     /* align-items: center; */
-    justify-content: center;
+    justify-content: space-between;
     display: flex;
 }
 
 .content {
     justify-content: center;
-    margin-right: 2rem;
+    margin: 0 6rem;
 }

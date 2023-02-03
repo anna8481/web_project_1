@@ -14,7 +14,39 @@ import {
 
 
 
+function CardProductContainer({ imageKey, productName, price }) {
+    return <>
+        <div className="cart-product-container">
+            <div>
+                <div className="cart-product-checkbox">
+                    <MDBCheckbox name='flexCheck' value='' id='productChecked' label='' defaultChecked />
+                    <MDBIcon far icon="trash-alt" />
+                </div>
+                <div className="cart-product-info">
+                    <img className="productImg" src={imageKey} />
+                    <div className="content">
+                        <div className="info">   <p>{productName}</p> </div>
+                        <div className="cart-quantity">
+                            <MDBIcon fas icon="minus-circle" />
+                            <div className="cart-quantity-no">1</div>
+                            <MDBIcon fas icon="plus-circle" />
+                        </div>
+                    </div>
+                    <div className="calculator">
+                        <p className="unitPrice">{price}</p>
+                        <MDBIcon fas icon="times" />
+                        <p className="quantity">1</p>
+                        <MDBIcon fas icon="equals" />
+                        <p className="productPrice">{price}</p> </div>
+                </div>
+            </div>
+        </div>
+    </>
+}
+
+
 function Cart() {
+
     return (
         <div className="container">
             <MDBBreadcrumb className="cart" >
@@ -37,44 +69,23 @@ function Cart() {
                             <p>선택삭제</p>
                         </label>
                     </div>
-                    <div className="cart-product-container">
-                        <div>
-                            <div className="cart-product-checkbox">
-                                <MDBCheckbox name='flexCheck' value='' id='productChecked' label='' defaultChecked />
-                                {/* <img className="productImg" src='https://media.istockphoto.com/id/1303307183/photo/stack-of-various-denim-jeans-trousers-on-stone-wooden-rustic-background-fashion-design.jpg?b=1&s=170667a&w=0&k=20&c=OplzswTue8JmnZNQ6CAxdUps7QT3wFXGb62GLT5yRk4='> </img> */}
-                                <MDBIcon far icon="trash-alt" />
-                            </div>
-                            <div className="cart-product-info">
-                                <div className="content">
-                                    <div className="info">   <p>여성 청바지</p> </div>
-                                    <div className="cart-quantity">
-                                        <MDBIcon fas icon="minus-circle" />
-                                        <div className="cart-quantity-no">1</div>
-                                        <MDBIcon fas icon="plus-circle" />
-                                    </div>
-                                </div>
-                                <div className="calculator">
-                                    <p className="unitPrice">29000</p>
-                                    <p className="quantity">x 1</p>
-                                    <p className="productPrice">29000</p> </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    <CardProductContainer imageKey={"https://media.istockphoto.com/id/1303307183/photo/stack-of-various-denim-jeans-trousers-on-stone-wooden-rustic-background-fashion-design.jpg?b=1&s=170667a&w=0&k=20&c=OplzswTue8JmnZNQ6CAxdUps7QT3wFXGb62GLT5yRk4="} productName={"여성청바지"} price={"29000"}></CardProductContainer>
                 </div>
                 <div className="order-tile">
-                    <div className="order-summary d-inline-flex p-2" >
+                    <div className="order-summary " >
                         <div className="order-header"><h3>결제정보</h3></div>
-                        <div>
+                        <div className="order-info" >
                             <div className="info">   <p>상품수</p> <p id="productsCount">2개</p></div>
                             <div className="info">   <p>상품금액</p> <p id="productPrice">29000원</p></div>
                             <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">58000원</p></div>
                             <div className="info"><p>배송비</p> <p id="deliveryFee">3000원</p> </div>
                         </div>
-                        <div className="info" ><h2>총 결제금액</h2> <p id="Total">61000원</p> </div>
+                        <div className="total" ><h2>총 결제금액</h2> <h2 id="Total">61000원</h2> </div>
+
                         <Link to="/order" >
-                            <div class="purchase"><MDBBtn>구매하기</MDBBtn></div>
-                        </Link>
+                            <div className="d-grid gap-2">
+                                <MDBBtn>구매하기</MDBBtn>
+                            </div></Link>
                     </div>
                 </div>
             </div>
