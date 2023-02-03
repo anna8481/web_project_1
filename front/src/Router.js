@@ -5,9 +5,10 @@ import RegisterForm from './components/RegisterForm'
 import MyAccountForm from './components/MyAccountForm'
 import AccountSection from './components/AccountSection'
 import CategoryAdd from './components/CategoryAdd';
-
-
+import Cart from './components/Cart'
+import Order from './components/Order'
 import Slider from './components/Slider'
+
 import {
   Routes,
   BrowserRouter,
@@ -30,6 +31,7 @@ const Router = () => {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/account/security" element={<MyAccountForm />} />
         <Route path="/category/add" element={<CategoryAdd />} />
+        <Route path="/order" element={<OrderPage />} />
         {/* <Route path="/product/list" element={<ProductList />} /> */}
       </Routes>
     </BrowserRouter>
@@ -42,15 +44,25 @@ const Router = () => {
 function CartPage() {
   return (
     <div>
-      <Navbar></Navbar>
       <section className='section'>
         <h2>Cart Page</h2>
         <div>
+          <Cart />
           <Link to="/">Back to home</Link>
         </div>
       </section>
     </div>
   );
+}
+
+function OrderPage() {
+  return (
+    <>
+      <section>
+        <Order />
+      </section>
+    </>
+  )
 }
 
 
