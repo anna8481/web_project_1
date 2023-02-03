@@ -39,23 +39,18 @@ function RegisterForm() {
 
     const validateForm = ({ userName, email, password, passwordConfirm }) => {
         if (userName.length < 2) {
-            setFormError("이름은 2글자 이상이어야합니다.");
-            return false;
+            return "이름은 2글자 이상이어야합니다."
         }
 
         if (emailCheck(email) === false) {
-            setFormError("이메일 형식이 올바르지 않습니다.");
-            return false;
+            return "이메일 형식이 올바르지 않습니다."
         }
         if (password.length < 4) {
-            setFormError("비밀번호는 4글자 이상이어야합니다.");
-            return false;
+            return "비밀번호는 4글자 이상이어야합니다."
         }
         if (password !== passwordConfirm) {
-            setFormError("비밀번호가 일치하지 않습니다.");
-            return false;
+            return "비밀번호가 일치하지 않습니다."
         }
-        setFormError("");
         return true;
     };
 
@@ -70,9 +65,9 @@ function RegisterForm() {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-
-        if (validateForm(inputs) === false) {
-            alert(formError);
+        const validated = validateForm(inputs)
+        if (typeof validated === "string") {
+            alert(validated);
             return;
         }
 
