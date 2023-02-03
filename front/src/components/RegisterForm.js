@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
+import * as Api from "../api";
 import './RegisterForm.css'
 
 import {
@@ -39,30 +39,30 @@ function RegisterForm() {
 
     const validateForm = ({ userName, email, password, passwordConfirm }) => {
         if (userName.length < 2) {
-            setFormError("이름은 2글자 이상이어야합니다.");
-            return false;
+            return "이름은 2글자 이상이어야합니다."
         }
 
         if (emailCheck(email) === false) {
-            setFormError("이메일 형식이 올바르지 않습니다.");
-            return false;
+            return "이메일 형식이 올바르지 않습니다."
         }
         if (password.length < 4) {
-            setFormError("비밀번호는 4글자 이상이어야합니다.");
-            return false;
+            return "비밀번호는 4글자 이상이어야합니다."
         }
         if (password !== passwordConfirm) {
-            setFormError("비밀번호가 일치하지 않습니다.");
-            return false;
+            return "비밀번호가 일치하지 않습니다."
         }
-        setFormError("");
         return true;
     };
 
     async function registerUser(formdata) {
 
+<<<<<<< HEAD
         // const newData = await axios.post("/user", formdata);
         // console.log(newData);
+=======
+        const newData = await Api.post("register", formdata);
+        console.log(newData);
+>>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
         alert("회원가입이 완료되었습니다!");
         navigate('/login');
     }
@@ -70,9 +70,9 @@ function RegisterForm() {
     const handleSubmit = (e) => {
         console.log(inputs)
         e.preventDefault();
-
-        if (validateForm(inputs) === false) {
-            alert(formError);
+        const validated = validateForm(inputs)
+        if (typeof validated === "string") {
+            alert(validated);
             return;
         }
 

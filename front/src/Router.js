@@ -4,6 +4,9 @@ import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import MyAccountForm from './components/MyAccountForm'
 import AccountSection from './components/AccountSection'
+import CategoryAdd from './components/CategoryAdd';
+
+
 import Slider from './components/Slider'
 import Cart from './components/Cart'
 import Order from './components/Order'
@@ -20,58 +23,30 @@ import {
 const Router = () => {
   return (
     <BrowserRouter>
+      <Navbar></Navbar>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<Slider />} />
+        <Route path="/account" element={<AccountSection />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
         <Route path="/cart" element={<CartPage />} />
+<<<<<<< HEAD
         <Route path="/account/security" element={<AccountSecurityPage />} />
         <Route path="/order" element={<OrderPage />} />
         <Route path="/jeans" element={<JeansPage />} />
         <Route path="/tshirts" element={<TshirtsPage />} />
         <Route path="/jackets" element={<JacketsPage />} />
+=======
+        <Route path="/account/security" element={<MyAccountForm />} />
+        <Route path="/category/add" element={<CategoryAdd />} />
+        {/* <Route path="/product/list" element={<ProductList />} /> */}
+>>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
       </Routes>
     </BrowserRouter>
   );
 }
 
 
-function HomePage() {
-  return (
-    <div>
-      <Navbar></Navbar>
-      <section className='section'>
-        <Slider />
-      </section>
-    </div>
-  );
-}
-
-
-function LoginPage() {
-  return (
-    <div>
-      {/* header part */}
-      <Navbar></Navbar>
-      {/* body part */}
-      <section className="section">
-        <LoginForm /></section>
-    </div >
-
-  );
-}
-
-
-function RegisterPage() {
-  return (
-    <div>
-      <Navbar></Navbar>
-      <section className="section">
-        <RegisterForm /></section>
-    </div>
-  );
-}
 
 
 function CartPage() {
@@ -101,6 +76,7 @@ function OrderPage() {
 }
 
 
+<<<<<<< HEAD
 function AccountPage() {
   return (
     <>
@@ -161,4 +137,6 @@ function JacketsPage() {
 //   );
 // }
 
+=======
+>>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
 export default Router;

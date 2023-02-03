@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Form, Button } from 'react-bootstrap';
+=======
+
+>>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
 import React, { useState } from 'react';
 import {
     MDBContainer,
@@ -9,6 +13,7 @@ import {
 }
     from 'mdb-react-ui-kit';
 import './LoginForm.css'
+import * as Api from "../api";
 
 function LoginForm() {
     const [inputs, setInputs] = useState({
@@ -26,8 +31,25 @@ function LoginForm() {
 
     const handleLogin = (e) => {
         e.preventDefault();
+<<<<<<< HEAD
         console.log(inputs)
         // 로그인 API 호출
+=======
+        const { email, password } = inputs;
+
+        try {
+            const response = await Api.post("login", {
+                email,
+                password,
+            });
+
+            localStorage.setItem('token', response.data.token);
+            navigate('/');
+            console.log(response)
+        } catch (err) {
+            alert("이메일 또는 비밀번호가 일치하지 않습니다.")
+        }
+>>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
     };
 
     return (<>

@@ -19,7 +19,6 @@ function MyCard({ title, content, address, }) {
     return (
         <a href={address}>
             <MDBCard className='h-100'>
-
                 <MDBCardBody>
                     <MDBIcon fas icon="user-cog" />
                     <MDBCardTitle>{title}</MDBCardTitle>
@@ -34,12 +33,8 @@ function MyCard({ title, content, address, }) {
 
 
 
-
 const AccountSection = () => {
-
     return (<section className="section">
-
-
         <div className="container">
             <h1>계정관리</h1>
         </div>
