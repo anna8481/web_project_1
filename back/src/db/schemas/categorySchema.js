@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const CategorySchema = new Schema(
+const CategorySchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -10,11 +10,11 @@ const CategorySchema = new Schema(
       type: String,
       required: true,
     },
-    themeClass: {
+    imageKey: {
       type: String,
       required: true,
     },
-    imageKey: {
+    themeClass: {
       type: String,
       required: true,
     },
@@ -25,4 +25,4 @@ const CategorySchema = new Schema(
   }
 );
 
-export { CategorySchema };
+module.exports = mongoose.model("categorys", CategorySchema);
