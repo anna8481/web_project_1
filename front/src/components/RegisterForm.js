@@ -6,9 +6,7 @@ import "./RegisterForm.css";
 import {
   MDBContainer,
   MDBInput,
-  MDBCheckbox,
   MDBBtn,
-  MDBIcon,
 } from "mdb-react-ui-kit";
 
 function RegisterForm() {

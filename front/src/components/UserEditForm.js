@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button } from 'react-bootstrap';
-import axios from "axios";
 import * as Api from "../api";
 import DaumPostcode from 'react-daum-postcode';
 
@@ -38,7 +37,7 @@ function UserEditForm({ user, setUser }) {
             });
 
         // // 유저 정보는 response의 data임.
-        const updatedUser = res.data;
+        // const updatedUser = res.data;
         // // 해당 유저 정보로 user을 세팅함.
         // setUser(updatedUser);
     };

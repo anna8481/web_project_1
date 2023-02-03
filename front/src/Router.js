@@ -5,6 +5,7 @@ import RegisterForm from './components/RegisterForm'
 import MyAccountForm from './components/MyAccountForm'
 import AccountSection from './components/AccountSection'
 import Slider from './components/Slider'
+import CategoryAdd from './components/CategoryAdd';
 import Cart from './components/Cart'
 import Order from './components/Order'
 import {
@@ -20,80 +21,24 @@ import {
 const Router = () => {
   return (
     <BrowserRouter>
+      <Navbar>      </Navbar>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/account" element={<AccountPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/cart" element={<CartPage />} />
-<<<<<<< HEAD
-        <Route path="/account/security" element={<AccountSecurityPage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/jeans" element={<JeansPage />} />
+        <Route path="/" element={<Slider />} />
+        <Route path="/account" element={<AccountSection />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/account/security" element={<MyAccountForm />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/category/add" element={<CategoryAdd />} />
+        {/* <Route path="/jeans" element={<JeansPage />} />
         <Route path="/tshirts" element={<TshirtsPage />} />
-        <Route path="/jackets" element={<JacketsPage />} />
-=======
-        <Route path="/account/security" element={<AccountSecurityPage />} />
->>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
+        <Route path="/jackets" element={<JacketsPage />} /> */}
       </Routes>
+
     </BrowserRouter>
   );
 }
 
 
-function HomePage() {
-  return (
-    <div>
-      <Navbar></Navbar>
-      <section className='section'>
-        <Slider />
-      </section>
-    </div>
-  );
-}
-
-
-function LoginPage() {
-  return (
-    <div>
-      {/* header part */}
-      <Navbar></Navbar>
-      {/* body part */}
-      <section className="section">
-        <LoginForm /></section>
-    </div >
-
-  );
-}
-
-
-function RegisterPage() {
-  return (
-    <div>
-      <Navbar></Navbar>
-      <section className="section">
-        <RegisterForm /></section>
-    </div>
-  );
-}
-
-
-function CartPage() {
-  return (
-    <div>
-      <Navbar></Navbar>
-      <section className='section'>
-        <h2>Cart Page</h2>
-        <Cart/>
-        <div>
-          <Link to="/">Back to home</Link>
-        </div>
-      </section>
-    </div>
-  );
-}
-
-
-=======
->>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
 export default Router;

@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Form, Button } from 'react-bootstrap';
-=======
-
->>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import {
     MDBContainer,
     MDBInput,
@@ -16,6 +12,7 @@ import './LoginForm.css'
 import * as Api from "../api";
 
 function LoginForm() {
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({
         email: '',
         password: ''
@@ -29,12 +26,8 @@ function LoginForm() {
         });
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-<<<<<<< HEAD
-        console.log(inputs)
-        // 로그인 API 호출
-=======
         const { email, password } = inputs;
 
         try {
@@ -49,7 +42,6 @@ function LoginForm() {
         } catch (err) {
             alert("이메일 또는 비밀번호가 일치하지 않습니다.")
         }
->>>>>>> 4b7e48f3db5e4bd425b16ce14ac66bd27a8dfefa
     };
 
     return (<>
