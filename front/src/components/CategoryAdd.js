@@ -75,9 +75,9 @@ function CategoryAdd() {
                     <Form.Control type="text" name='description' placeholder="센세이셔널한 봄, 여름 코디" autoComplete="on" onChange={handleChange}/>
                 </Form.Group>
 
-                <Form.Group controlId="titleInput">
+                <Form.Group controlId="themeClassInput">
                     <Form.Label>카테고리 테마</Form.Label>
-                    <Form.Control as="select" style={{ color: 'black', backgroundColor: 'white' }} name="themeClass" onChange={handleChange}>
+                    <Form.Control as="select" className={"notification "+inputs.themeClass} name="themeClass" onChange={handleChange}>
                         <option value="">테마를 선택해 주세요.</option>
 
                         <option

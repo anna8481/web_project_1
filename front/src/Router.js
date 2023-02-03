@@ -6,6 +6,7 @@ import MyAccountForm from './components/MyAccountForm'
 import AccountSection from './components/AccountSection'
 import Slider from './components/Slider'
 import CategoryAdd from './components/CategoryAdd';
+import ProductAdd from './components/ProductAdd';
 import Cart from './components/Cart'
 import Order from './components/Order'
 import {
@@ -31,6 +32,7 @@ const Router = () => {
         <Route path="/account/security" element={<MyAccountForm />} />
         <Route path="/order" element={<Order />} />
         <Route path="/category/add" element={<CategoryAdd />} />
+        <Route path="/product/add" element={<ProductAdd />} />
         {/* <Route path="/jeans" element={<JeansPage />} />
         <Route path="/tshirts" element={<TshirtsPage />} />
         <Route path="/jackets" element={<JacketsPage />} /> */}
