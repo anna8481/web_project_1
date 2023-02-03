@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const userRouter = require("./routes/userRouter");
 const categoryRouter = require("./routes/categoryRouter");
+const productRouter = require("./routes/productRouter");
 //const { errorLogger, errorHandler } = require("./middlewares");
 
 app.use(cors()); //CORS 방지
@@ -17,6 +18,7 @@ app.use(express.json()); // Content-Type: application/json 형태의 데이터�
 // api 라우팅
 app.use("/api", userRouter);
 app.use("/api", categoryRouter);
+app.use("/api", productRouter);
 
 // 미들웨어 (에러를 error.log 파일에 기록 및, 에러를 프론트엔드에 전달)
 //app.use(errorLogger);

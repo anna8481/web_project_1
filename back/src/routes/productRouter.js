@@ -137,4 +137,4 @@ productRouter.delete(
   }
 );
 
-export { productRouter };
+module.exports = productRouter;
