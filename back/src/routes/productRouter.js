@@ -1,4 +1,5 @@
-import { Router } from "express";
+/* 코드 작성 중
+const { Router } = "express";
 const loginRequired = require("../middlewares");
 
 const { productService } = require("../services/productService");
@@ -138,3 +139,4 @@ productRouter.delete(
 );
 
 module.exports = productRouter;
+ */
