@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendPortNumber = "5001";
+const backendPortNumber = "5000";
 const serverUrl =
     "http://" + window.location.hostname + ":" + backendPortNumber + "/api/";
 
@@ -13,7 +13,7 @@ async function get(endpoint) {
     return axios.get(serverUrl + endpoint, {
         // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
         headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
     });
 }
@@ -28,7 +28,7 @@ async function post(endpoint, data) {
     return axios.post(serverUrl + endpoint, bodyData, {
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
     });
 }
@@ -43,7 +43,7 @@ async function put(endpoint, data) {
     return axios.put(serverUrl + endpoint, bodyData, {
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
     });
 }
@@ -54,7 +54,7 @@ async function del(endpoint, params = "") {
     console.log(`DELETE 요청 ${serverUrl + endpoint + "/" + params}`);
     return axios.delete(serverUrl + endpoint + "/" + params, {
         headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
     });
 }

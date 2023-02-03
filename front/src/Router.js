@@ -4,6 +4,8 @@ import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import MyAccountForm from './components/MyAccountForm'
 import AccountSection from './components/AccountSection'
+import CategoryAdd from './components/CategoryAdd';
+
 import Slider from './components/Slider'
 import {
   Routes,
@@ -25,6 +27,7 @@ const Router = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/account/security" element={<AccountSecurityPage />} />
+        <Route path="/category/add" element={<CategoryAddPage />} />
       </Routes>
     </BrowserRouter>
   );
@@ -101,6 +104,15 @@ function AccountSecurityPage() {
     </>
   );
 
+}
+
+function CategoryAddPage() {
+  return (
+    <>
+      <Navbar />
+      <CategoryAdd />
+    </>
+  )
 }
 
 
