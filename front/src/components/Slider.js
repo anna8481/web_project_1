@@ -37,7 +37,7 @@ function Slider() {
                     <img className="d-block w-100 "
 
                         src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMzBfNTUg%2FMDAxNjE3MDc4MzIzMTY1.rxEHaBzy-JiI8YY_UJkzm6L7yJlnPc0jDYTBwCisVFkg.64hDgwxt0A1ktm7ZKducPM3IJ_Q1zwwn_DdnWaM0GAQg.JPEG.loveu1013%2F160265417966069300_407793257.jpg&type=sc960_832"
-                        alt="Third slide"
+                        alt="Third slid"
                     />
                 </Carousel.Item>
             </Carousel>
