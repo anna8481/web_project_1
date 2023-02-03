@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
+import * as Api from "../api";
 import './RegisterForm.css'
 
 import {
@@ -61,7 +61,7 @@ function RegisterForm() {
 
     async function registerUser(formdata) {
 
-        const newData = await axios.post("http://localhost:5000/api/register", formdata);
+        const newData = await Api.post("register", formdata);
         console.log(newData);
         alert("회원가입이 완료되었습니다!");
         navigate('/login');

@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import {
@@ -10,6 +10,7 @@ import {
 }
     from 'mdb-react-ui-kit';
 import './LoginForm.css'
+import * as Api from "../api";
 
 function LoginForm() {
     const navigate = useNavigate();
@@ -31,10 +32,10 @@ function LoginForm() {
         const { email, password } = inputs;
 
         try {
-            const response = await axios.post(
-                'http://localhost:5000/api/login',
-                { email, password },
-            );
+            const response = await Api.post("login", {
+                email,
+                password,
+            });
 
             localStorage.setItem('token', response.data.token);
             navigate('/');
@@ -42,7 +43,7 @@ function LoginForm() {
         } catch (err) {
             alert("이메일 또는 비밀번호가 일치하지 않습니다.")
         }
-      };
+    };
 
     return (<>
 
