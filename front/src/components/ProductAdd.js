@@ -32,7 +32,6 @@ function ProductAdd() {
     useEffect(() => {
         if (categories.length > 1) {
             setIsLoad(true);
-            // console.log(Option({categories,themes}))
         }
     }, [categories])
 

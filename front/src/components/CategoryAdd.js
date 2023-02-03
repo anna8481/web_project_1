@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import * as Api from "../api";
+import axios from 'axios'
 import './RegisterForm.css'
 import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 
@@ -9,15 +10,14 @@ function CategoryAdd() {
     const [fileName, setFileName] = useState("");
 
     const handleFileName = (e) => {
-        setFileName(e.target.value);
-        console.log(e.target.files)
+        setFileName(e.target.files[0])
     }
     
     const [inputs, setInputs] = useState({
         title: '',
         description: '',
         themeClass: '',
-        imageKey: '0203테스트'
+        imageKey: ''
     });
 
     const handleChange = e => {
@@ -27,8 +27,8 @@ function CategoryAdd() {
             [name]: value
         });
     };
-    const validationForm = ({title, description, themeClass, imageKey}) => {
-        if(title !== '' && description !== '' && themeClass !=='' && imageKey !=='')
+    const validationForm = ({title, description, themeClass}) => {
+        if(title !== '' && description !== '' && themeClass !=='' && fileName !=='')
             return true;
         return false;
     }
@@ -39,11 +39,25 @@ function CategoryAdd() {
         .then(res => {
             alert("category 등록이 완료되었습니다.");
             console.log(res)
+            Api.get("categorylist").then(res => console.log(res.data))
         })
         .catch(err => {
             alert("이미 있는 category 이름입니다.")
         })
 
+    }
+
+    // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
+    async function addPicture(imgdata) {
+    
+            await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
+            .then(res=>{
+                setInputs({
+                    ...inputs,
+                    "imageKey":res.data.public_id
+                })
+                console.log("이미지 업로드 완료: ",res.data.public_id)
+            })
     }
 
     const handleSubmit = (e) => {
@@ -56,8 +70,14 @@ function CategoryAdd() {
             return;
         }
         
+        const imgdata = new FormData();
+        imgdata.append("file", fileName);
+        imgdata.append("upload_preset", "cn0wxtm");
+        addPicture(imgdata)
+
         const formdata = inputs
-        // addCategory(formdata)
+        addCategory(formdata)
+
         e.target.reset();
     }
 
