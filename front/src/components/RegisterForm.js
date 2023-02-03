@@ -61,14 +61,14 @@ function RegisterForm() {
 
     async function registerUser(formdata) {
 
-        const newData = await axios.post("http://localhost:5000/api/register", formdata);
-        console.log(newData);
+        // const newData = await axios.post("/user", formdata);
+        // console.log(newData);
         alert("회원가입이 완료되었습니다!");
         navigate('/login');
     }
 
     const handleSubmit = (e) => {
-
+        console.log(inputs)
         e.preventDefault();
 
         if (validateForm(inputs) === false) {

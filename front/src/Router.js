@@ -5,6 +5,8 @@ import RegisterForm from './components/RegisterForm'
 import MyAccountForm from './components/MyAccountForm'
 import AccountSection from './components/AccountSection'
 import Slider from './components/Slider'
+import Cart from './components/Cart'
+import Order from './components/Order'
 import {
   Routes,
   BrowserRouter,
@@ -25,6 +27,10 @@ const Router = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/account/security" element={<AccountSecurityPage />} />
+        <Route path="/order" element={<OrderPage />} />
+        <Route path="/jeans" element={<JeansPage />} />
+        <Route path="/tshirts" element={<TshirtsPage />} />
+        <Route path="/jackets" element={<JacketsPage />} />
       </Routes>
     </BrowserRouter>
   );
@@ -74,12 +80,24 @@ function CartPage() {
       <Navbar></Navbar>
       <section className='section'>
         <h2>Cart Page</h2>
+        <Cart/>
         <div>
           <Link to="/">Back to home</Link>
         </div>
       </section>
     </div>
   );
+}
+
+function OrderPage() {
+  return (
+    <>
+      <Navbar />
+      <section>
+        <Order />
+      </section>
+    </>
+  )
 }
 
 
@@ -101,6 +119,33 @@ function AccountSecurityPage() {
     </>
   );
 
+}
+
+function JeansPage() {
+  return (
+    <>
+      <Navbar/>
+      <h2>청파지 파는곳이다</h2>
+    </>
+  )
+}
+
+function TshirtsPage() {
+  return (
+    <>
+      <Navbar/>
+      <h2>티셔츠 파는곳이다</h2>
+    </>
+  )
+}
+
+function JacketsPage() {
+  return (
+    <>
+      <Navbar/>
+      <h2>자켓 파는곳이다</h2>
+    </>
+  )
 }
 
 

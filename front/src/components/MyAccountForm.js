@@ -85,10 +85,9 @@ function MyAccountForm() {
                                         <MDBInput wrapperClass='mb-4 w-100' label='' id='formUserAddress' type='address' size="lg" disabled={disabled} onChange={e => setAddress(e.target.value)} value={address} />
                                         <p className="mb-1">전화번호</p>
                                         <MDBInput wrapperClass='mb-4 w-100' label='' id='formUserPhoneNumber' type='address' size="lg" disabled={disabled} onChange={e => setPhoneNumber(e.target.value)} value={phoneNumber} />
-                                        {!disabled &&
-                                            <MDBBtn size='lg' type="submit" disabled={disabled}  >
-                                                수정하기
-                                            </MDBBtn>}
+                                        <MDBBtn size='lg' type="submit">
+                                            저장하기
+                                        </MDBBtn>
 
                                     </MDBCardBody>
                                 </MDBCard>
