@@ -7,37 +7,18 @@ const productRouter = Router();
 
 productRouter.post("/product", loginRequired, async (req, res, next) => {
   try {
-    // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-    if (is.emptyObject(req.body)) {
-      throw new Error(
-        "headers의 Content-Type을 application/json으로 설정해주세요"
-      );
-    }
-
     // req (request) 에서 데이터 가져오기
-    const title = req.body.title;
-    const categoryId = req.body.categoryId;
+    const { productName, categoryId, productInfo, imageKey, price } = req.body;
+
     const sellerId = req.currentUserId;
-    const manufacturer = req.body.manufacturer;
-    const shortDescription = req.body.shortDescription;
-    const detailDescription = req.body.detailDescription;
-    const imageKey = req.body.imageKey;
-    const inventory = req.body.inventory;
-    const price = req.body.price;
-    const searchKeywords = req.body.searchKeywords;
 
     // 위 데이터를 제품 db에 추가하기
     const newProduct = await productService.addProduct({
-      title,
+      productName,
       categoryId,
-      sellerId,
-      manufacturer,
-      shortDescription,
-      detailDescription,
+      productInfo,
       imageKey,
-      inventory,
       price,
-      searchKeywords,
     });
 
     res.status(201).json(newProduct);
