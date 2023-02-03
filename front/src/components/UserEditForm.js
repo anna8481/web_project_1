@@ -13,15 +13,12 @@ import {
     MDBCol,
     MDBRow,
     MDBInput,
-    MDBSwitch,
-    MDBCheckbox,
-    MDBIcon
 }
     from 'mdb-react-ui-kit';
 
 function UserEditForm({ user, setUser }) {
     console.log(user);
-    console.log(user._id);
+    // console.log(user._id);
     const [disabled, setDisabled] = useState(false);
     const [userName, setUserName] = useState(user.userName);
     const [password, setPassword] = useState(user.password);
