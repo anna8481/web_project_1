@@ -75,16 +75,16 @@ function Cart() {
                     <div className="order-summary " >
                         <div className="order-header"><h3>결제정보</h3></div>
                         <div className="order-info" >
-                            <div className="info">   <p>상품수</p> <p id="productsCount">2개</p></div>
-                            <div className="info">   <p>상품금액</p> <p id="productPrice">29000원</p></div>
-                            <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">58000원</p></div>
-                            <div className="info"><p>배송비</p> <p id="deliveryFee">3000원</p> </div>
+                            <div className="info">   <p>상품수</p> <p id="productsCount">1개</p></div>
+                            <div className="info">   <p>상품금액</p> <p id="productPrice">29,000원</p></div>
+                            <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">29,000원</p></div>
+                            <div className="info"><p>배송비</p> <p id="deliveryFee">3,000원</p> </div>
                         </div>
-                        <div className="total" ><h2>총 결제금액</h2> <h2 id="Total">61000원</h2> </div>
+                        <div className="total" ><h2>총 결제금액</h2> <h2 id="Total">32,000원</h2> </div>
 
                         <Link to="/order" >
-                            <div className="d-grid gap-2">
-                                <MDBBtn>구매하기</MDBBtn>
+                            <div className="d-grid gap-2" >
+                                <MDBBtn size="lg" >구매하기</MDBBtn>
                             </div></Link>
                     </div>
                 </div>
