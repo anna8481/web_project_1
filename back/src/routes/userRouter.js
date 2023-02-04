@@ -81,7 +81,7 @@ userRouter.patch(
     try {
       // params로부터 _id를 가져옴(mongo db에서 자동 생성해주는 _id)
       const { userId } = req.params;
-
+      console.log(req.body)
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const { userName, password, address, phoneNumber, role } = req.body;
 
