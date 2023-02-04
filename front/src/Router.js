@@ -19,6 +19,7 @@ import {
   // useLocation,
   // Redirect,
 } from 'react-router-dom';
+import AccountSignout from './components/AccountSignout';
 
 
 const Router = () => {
@@ -28,6 +29,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Slider />} />
         <Route path="/account" element={<AccountSection />} />
+        <Route path="/account/signout" element={<AccountSignout />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
