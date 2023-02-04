@@ -9,6 +9,8 @@ import CategoryAdd from './components/CategoryAdd';
 import ProductAdd from './components/ProductAdd';
 import Cart from './components/Cart'
 import Order from './components/Order'
+import Admin from './components/Admin'
+
 import {
   Routes,
   BrowserRouter,
@@ -26,6 +28,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Slider />} />
         <Route path="/account" element={<AccountSection />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/cart" element={<Cart />} />
