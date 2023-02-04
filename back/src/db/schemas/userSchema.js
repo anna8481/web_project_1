@@ -24,10 +24,10 @@ const UserSchema = new mongoose.Schema(
           postalCode: String,
           address1: String,
           address2: String,
+        },
+        {
+          _id: false,
         }
-        //        {
-        //          _id: false,
-        //        }
       ),
       required: false,
     },
