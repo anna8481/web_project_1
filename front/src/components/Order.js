@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import './Order.css';
 import Postcode from './Postcode'
@@ -92,10 +93,10 @@ function Order() {
             <div className="container">
                 <MDBBreadcrumb>
                     <MDBBreadcrumbItem>
-                        <a href='/cart'>장바구니</a>
+                        <Link to='/cart'>장바구니</Link>
                     </MDBBreadcrumbItem>
                     <MDBBreadcrumbItem>
-                        <a href="/order">주문결제</a>
+                        <Link to="/order">주문결제</Link>
                     </MDBBreadcrumbItem>
                     <MDBBreadcrumbItem active>주문완료</MDBBreadcrumbItem>
                 </MDBBreadcrumb>
