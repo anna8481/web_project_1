@@ -45,6 +45,14 @@ function Order() {
     }, []);
 
 
+    const handleInputChange = e => {
+        console.log(e.target.value);
+        const { name, value } = e.target;
+        setFormData(prev => (
+            { ...prev, [name]: value }));
+    };
+
+
     const handleAddressChange = (e) => {
         console.log(e.target.value);
         const { name, value } = e.target;
@@ -56,6 +64,27 @@ function Order() {
             }
         })
     }
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // "users/유저id" 엔드포인트로 patch 요청함.
+        const updatedUser = {
+            username: formData.userName,
+            phoneNumber: formData.phoneNumber || "",
+            address: {
+                address1: formData.address1 || "",
+                address2: formData.address2 || "",
+                postalCode: formData.postalCode || ""
+            },
+            // currentPassword: currentPassword,
+
+        };
+        console.log(updatedUser);
+        alert('수정이 완료되었습니다!')
+
+    };
 
 
     return (
@@ -78,13 +107,13 @@ function Order() {
                                 <label>이름</label>
                             </div>
                             <div>
-                                <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={formData.userName} />
+                                <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={formData.userName} onChange={handleInputChange} />
                             </div>
                             <div>
                                 <label>연락처</label>
                             </div>
                             <div>
-                                <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={formData.phoneNumber} />
+                                <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} />
                             </div>
                             <div>
                                 <label>주소</label>
@@ -150,7 +179,7 @@ function Order() {
                                 <div>
                                     <h2>총 결제금액</h2>
                                 </div>
-                                <MDBBtn>결제하기</MDBBtn>
+                                <MDBBtn onClick={handleSubmit}>결제하기</MDBBtn>
                             </div>
                         </div>
                     </div>

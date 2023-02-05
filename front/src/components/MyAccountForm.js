@@ -55,28 +55,28 @@ function MyAccountForm() {
                 console.log(error)
             }
         };
-
         fetchData();
     }, []);
 
 
-
     const handleInputChange = e => {
         console.log(e.target.value);
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData(prev => (
+            { ...prev, [name]: value }));
     };
 
 
     const handleAddressChange = (e) => {
         console.log(e.target.value);
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             address: {
-                ...formData.address,
+                ...prev.address,
                 [name]: value
             }
-        })
+        }))
     }
 
     const [postPopup, setPostPopup] = useState(false);
