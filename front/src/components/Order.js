@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import './Order.css';
-import Post from "./Post";
-
+import Postcode from './Postcode'
+import * as Api from "../api";
 import {
     MDBBtn,
     // MDBContainer,
@@ -13,6 +13,51 @@ import {
     from 'mdb-react-ui-kit';
 
 function Order() {
+    const [postPopup, setPostPopup] = useState(false);
+    const [formData, setFormData] = useState(
+        {
+            userName: "",
+            address: {
+                address1: "",
+                address2: "",
+                postalCode: ""
+            },
+            phoneNumber: "",
+            _id: ""
+        }
+    );
+
+    const handleComplete = (e) => {
+        e.preventDefault();
+        setPostPopup(!postPopup);
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await Api.get('user');
+                setFormData({ ...res.data });
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchData();
+    }, []);
+
+
+    const handleAddressChange = (e) => {
+        console.log(e.target.value);
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            address: {
+                ...formData.address,
+                [name]: value
+            }
+        })
+    }
+
+
     return (
         <>
             <div className="container">
@@ -33,22 +78,25 @@ function Order() {
                                 <label>이름</label>
                             </div>
                             <div>
-                                <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' autoComplete='on' />
+                                <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={formData.userName} />
                             </div>
                             <div>
                                 <label>연락처</label>
                             </div>
                             <div>
-                                <input className="input" type="text" placeholder='-없이 입력해 주세요.' autoComplete='on' />
+                                <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={formData.phoneNumber} />
                             </div>
                             <div>
                                 <label>주소</label>
                             </div>
                             <div>
-                                <Post />
-                                <input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' autoComplete='on' />
-                                <input className="input" type="text" placeholder='우편번호' autoComplete='on' /><br />
-                                <input className="input" type="text" placeholder='상세주소를 입력해주세요.' autoComplete='on' />
+                                {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
+                                <div className="postcode">
+                                    <div className="postcode-input"><input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address.postalCode} /></div>
+                                    <div className="postcode-button" ><div type="button" className="input" onClick={handleComplete}  >주소찾기</div></div>
+                                </div>
+                                <input className="input" type="text" placeholder='주소' value={formData.address.address1} onChange={handleAddressChange} /><br />
+                                <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={formData.address.address2} />
                             </div>
                             <div>
                                 <label>요청사항</label>

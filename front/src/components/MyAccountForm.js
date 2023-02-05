@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 import {
     MDBBtn,
     MDBContainer,
@@ -20,7 +19,6 @@ import {
 }
     from 'mdb-react-ui-kit';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form } from 'react-bootstrap';
 import * as Api from "../api";
 import Postcode from './Postcode'
 
@@ -48,22 +46,17 @@ function MyAccountForm() {
     }
 
 
-
-    const init = async () => {
-        const jwt = localStorage.getItem('token')
-        await axios.get('http://localhost:5001/api/user', {
-            headers: {
-                Authorization: `Bearer ${jwt}`
-            }
-        }).then(res => {
-            console.log(res.data)
-            setFormData({ ...res.data });
-
-        }).catch(error => console.log(error))
-    };
-
     useEffect(() => {
-        init();
+        const fetchData = async () => {
+            try {
+                const res = await Api.get('user');
+                setFormData({ ...res.data });
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
+        fetchData();
     }, []);
 
 
