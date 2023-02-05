@@ -58,6 +58,10 @@ ul {
     margin: 0
 }
 
-a:hover {
+.logout:hover {
     cursor: pointer;
+}
+
+.logout {
+    color: #485fc7
 }

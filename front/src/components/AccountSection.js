@@ -1,36 +1,13 @@
 import React from 'react';
 import "./AccountSection.css"
-
-
+import { ROUTE } from '../route'
 import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-    MDBRow,
     MDBCol,
-    MDBCardImage,
-    MDBIcon
-
+    MDBRow
 } from 'mdb-react-ui-kit';
 
 
-function MyCard({ title, content, address, }) {
-    return (
-        <a href={address}>
-            <MDBCard className='h-100'>
-                <MDBCardBody>
-                    <MDBIcon fas icon="user-cog" />
-                    <MDBCardTitle>{title}</MDBCardTitle>
-                    <MDBCardText>
-                        {content}
-                    </MDBCardText>
-                </MDBCardBody>
-            </MDBCard>
-        </a>
-    )
-}
-
+import MyCard from './MyCard';
 
 
 const AccountSection = () => {
@@ -41,23 +18,21 @@ const AccountSection = () => {
         <div className="container">
             <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
                 <MDBCol>
-                    <a className="accountCard" href="/account/orders">
-                        <MyCard title='주문조회' content='지난 주문을 확인할 수 있습니다.'></MyCard></a>
+                    <MyCard to={ROUTE.ACCOUNT_ORDERS.link} title='주문조회' content='지난 주문을 확인할 수 있습니다.'></MyCard>
                 </MDBCol>
                 <MDBCol>
-                    <a className="accountCard" href="/account/security"><MyCard title='회원정보 관리' content='회원 정보를 확인, 수정할 수 있습니다. '></MyCard></a>
+                    <MyCard to={ROUTE.MYACCOUNT.link} title='회원정보 관리' content='회원 정보를 확인, 수정할 수 있습니다. '></MyCard>
                 </MDBCol>
                 <MDBCol>
-                    <a className="accountCard" href="/product/add">
-                        <MyCard title='제품 판매' content='제품 정보를 등록하여, 판매할 수 있습니다. '></MyCard></a>
+
+                    <MyCard to={ROUTE.PRODUCT_ADD.link} title='제품 판매' content='제품 정보를 등록하여, 판매할 수 있습니다. '></MyCard>
                 </MDBCol>
                 <MDBCol>
-                    <a className="accountCard" href="/account/signout">
-                        <MyCard title='회원 탈퇴' content='모든 정보를 안전하게 삭제한 후 탈퇴할 수 있습니다.'></MyCard></a>
+                    <MyCard to={ROUTE.ACCOUNT_SIGNOUT.link} title='회원 탈퇴' content='모든 정보를 안전하게 삭제한 후 탈퇴할 수 있습니다.'></MyCard>
                 </MDBCol>
             </MDBRow>
         </div>
-    </section>
+    </section >
     )
 }
 

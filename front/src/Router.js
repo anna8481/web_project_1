@@ -1,51 +1,26 @@
 import React from 'react';
 import Navbar from './components/Navbar'
-import LoginForm from './components/LoginForm'
-import RegisterForm from './components/RegisterForm'
-import MyAccountForm from './components/MyAccountForm'
-import AccountSection from './components/AccountSection'
-import Slider from './components/Slider'
-import CategoryAdd from './components/CategoryAdd';
-import ProductAdd from './components/ProductAdd';
-import Cart from './components/Cart'
-import Order from './components/Order'
-import Admin from './components/Admin'
+
+import { ROUTE_ARR } from './route'
 
 import {
   Routes,
   BrowserRouter,
   Route,
-  Link,
-  // useLocation,
-  // Redirect,
 } from 'react-router-dom';
-import AccountSignout from './components/AccountSignout';
 
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Navbar>      </Navbar>
+      <Navbar></Navbar>
       <Routes>
-        <Route path="/" element={<Slider />} />
-        <Route path="/account" element={<AccountSection />} />
-        <Route path="/account/signout" element={<AccountSignout />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/account/security" element={<MyAccountForm />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/category/add" element={<CategoryAdd />} />
-        <Route path="/product/add" element={<ProductAdd />} />
-        {/* <Route path="/jeans" element={<JeansPage />} />
-        <Route path="/tshirts" element={<TshirtsPage />} />
-        <Route path="/jackets" element={<JacketsPage />} /> */}
+        {ROUTE_ARR.map((route, index) => {
+          return <Route path={route.path} element={<route.element />} key={index} />
+        })}
       </Routes>
-
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
-
 
 export default Router;

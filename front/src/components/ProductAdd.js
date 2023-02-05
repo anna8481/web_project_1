@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import * as Api from "../api";
-import './RegisterForm.css'
-import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
+import './ProductAdd.css'
+import { Form, Button, Container, InputGroup, FormControl } from 'react-bootstrap';
 
 
 function ProductAdd() {
-    const [categories, setCategories] = useState("") 
+    const [categories, setCategories] = useState("")
     const [isLoad, setIsLoad] = useState(false);
     const [theme, setTheme] = useState("");
 
@@ -16,7 +16,7 @@ function ProductAdd() {
         await Api.get('categorylist').then(
             res => {
                 setCategories((current) => {
-                    const newCategories = res.data.map((item,index) => {
+                    const newCategories = res.data.map((item, index) => {
                         return <option key={index} value={item.title} className={"notification " + item.themeClass}>{item.title}</option>
                     })
                     return newCategories
