@@ -5,14 +5,20 @@
 
 
 .order-summary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    justify-content: flex-start;
     width: 100%;
     padding: 1rem;
 
+
 }
 
+.order-title {
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
 
 .delivery-tile {
     flex-grow: 2;
@@ -53,4 +59,17 @@
 .postcode-input {
     flex: 4;
     margin-right: 0.5rem;
+}
+
+
+.delivery-fee {
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.product-info {
+    font-size: 1.2rem;
+
 }

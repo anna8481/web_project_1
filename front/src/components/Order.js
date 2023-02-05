@@ -56,13 +56,13 @@ function Order() {
     const handleAddressChange = (e) => {
         console.log(e.target.value);
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData(prev => ({
+            ...prev,
             address: {
-                ...formData.address,
+                ...prev.address,
                 [name]: value
             }
-        })
+        }))
     }
 
 
@@ -167,21 +167,20 @@ function Order() {
                         </div>
                     </div>
                     <div className='order-tile'>
-                        <div>
-                            <div className="order-summary">
-                                <h3>결제정보</h3>
+                        <div className="order-summary">
+                            <h3 className="order-title">결제정보</h3>
 
-                                <div>
-                                    <p>주문상품</p>
-                                    <p>상품총액</p>
-                                    <p>배송비</p>
-                                </div>
-                                <div>
-                                    <h2>총 결제금액</h2>
-                                </div>
-                                <MDBBtn onClick={handleSubmit}>결제하기</MDBBtn>
+                            <div>
+                                <p className="product-info">주문상품</p>
+                                <p className="product-info">상품총액</p>
+                                <p className="delivery-fee">배송비</p>
                             </div>
+                            <div>
+                                <h2>총 결제금액</h2>
+                            </div>
+                            <MDBBtn onClick={handleSubmit} size="lg">결제하기</MDBBtn>
                         </div>
+
                     </div>
                 </div>
             </div>

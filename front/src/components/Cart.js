@@ -51,10 +51,10 @@ function Cart() {
         <div className="container">
             <MDBBreadcrumb className="cart" >
                 <MDBBreadcrumbItem>
-                    <a href='/cart'>장바구니</a>
+                    <Link to='/cart'>장바구니</Link>
                 </MDBBreadcrumbItem>
                 <MDBBreadcrumbItem>
-                    <a href="/order">주문결제</a>
+                    <Link to='/order'>주문결제</Link>
                 </MDBBreadcrumbItem >
                 <MDBBreadcrumbItem active>주문완료</MDBBreadcrumbItem>
             </MDBBreadcrumb >

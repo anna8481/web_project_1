@@ -68,7 +68,7 @@ function MyAccountForm() {
 
 
     const handleAddressChange = (e) => {
-        console.log(e.target.value);
+        console.log(e.target);
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -150,21 +150,21 @@ function MyAccountForm() {
                                                 disabled={disabled} onChange={handleInputChange} value={formData.userName} />
                                         </div>
                                         <p className="mb-1">비밀번호</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name="password" type='password' size="lg" disabled />
+                                        <MDBInput wrapperClass='mb-4 w-100' label='' name="password" type='text' size="lg" disabled />
                                         <p className="mb-1">비밀번호 확인</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='password' type='password' size="lg" disabled />
+                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='password' type='text' size="lg" disabled />
                                         <p className="mb-1">주소</p>
 
                                         <MDBInputGroup className='mb-3'>
-                                            <input className='form-control' label="우편번호" name='postalCode' type='address' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
+                                            <input className='form-control' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
                                             <MDBBtn onClick={handleComplete} disabled={disabled}  >우편번호 찾기</MDBBtn>
                                         </MDBInputGroup>
 
                                         {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
 
-                                        <MDBInput wrapperClass='mb-4 w-100' label='주소' name='address1' type='address' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
+                                        <MDBInput wrapperClass='mb-4 w-100' label='주소' name='address1' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
 
-                                        <MDBInput wrapperClass='mb-4 w-100' label='상세주소' name='address2' type='address' size="lg" disabled={disabled} onChange={handleAddressChange}
+                                        <MDBInput wrapperClass='mb-4 w-100' label='상세주소' name='address2' type='text' size="lg" disabled={disabled} onChange={handleAddressChange}
                                             value={formData.address?.address2}
                                         />
 
