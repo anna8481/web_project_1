@@ -1,0 +1,163 @@
+.cart {
+    border-bottom: #dbdbdb solid 1px
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+
+.total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+}
+
+.order-header {
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
+}
+
+.order-info {
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.info h2 {
+    font-size: 1.5rem;
+}
+
+.info p {
+    margin: 0.1rem 0;
+}
+
+.cart-product-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: #555 solid 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.cart-product-header p {
+    margin: 0 0.5rem;
+}
+
+.delete-all {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.cart-img-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.product-name {
+    margin-left: 1rem;
+    margin-bottom: 0;
+}
+
+.product-name p {
+    margin-bottom: 0;
+}
+
+
+.cart-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-quantity-no {
+    border: solid;
+    padding: 0.1rem 0.5rem;
+    border-color: #dbdbdb;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
+}
+
+.productImg {
+    height: 8rem;
+    width: 6rem;
+
+}
+
+.cart-product-checkbox {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.calculator p {
+    margin: 0 1rem;
+}
+
+.cart-product-info {
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+
+.tile-ancestor {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.product-tile {
+    border-bottom: solid 1px;
+}
+
+
+
+.content {
+    justify-content: center;
+    margin: 0 6rem;
+}
+
+
+.purchase {
+    display: flex;
+    justify-content: center;
+}
+
+.purchase-button {
+
+    background-color: #fff;
+    border: 1px solid black;
+    line-height: 3.5;
+    width: 50%;
+    justify-content: center;
+
+}
