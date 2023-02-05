@@ -1,0 +1,38 @@
+.delivery-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.order-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+
+}
+
+
+.delivery-tile {
+    flex-grow: 2;
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
+    padding: 1rem;
+    margin: 1rem;
+
+}
+
+
+.order-tile {
+    flex-grow: 1;
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #f0f5f7;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
+    /* align-items: center; */
+    justify-content: space-between;
+    display: flex;
+}
