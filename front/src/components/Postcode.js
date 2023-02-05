@@ -3,7 +3,6 @@ import DaumPostcode from "react-daum-postcode";
 import './Postcode.css'
 
 
-
 const Postcode = ({ formData, setFormData }) => {
 
     const handleAddress = (data) => {
@@ -31,13 +30,28 @@ const Postcode = ({ formData, setFormData }) => {
             }
         });
 
-
-
     }
+
+
+    const postCodeStyle = {
+
+        display: "block",
+        position: "absolute",
+        align: "center",
+        // margin: "3rem",
+        top: "20%",
+        width: "50%",
+        height: "60%",
+        // padding: "7px",
+        zIndex: 100,
+    };
+
+
 
     return (
         <div >
             <DaumPostcode
+                style={postCodeStyle}
                 className="postmodal"
                 autoClose
                 onComplete={handleAddress} />

@@ -2,7 +2,6 @@ import React from 'react';
 import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import './Order.css';
 import Post from "./Post";
-import PopupPostCode from "./PopupPostCode";
 
 import {
     MDBBtn,
