@@ -103,7 +103,25 @@ function Order() {
                 <div className="tile">
                     <div className='delivery-tile'>
                         <div className="delivery-info">
-                            <h3>배송지 정보</h3>
+                            <h3>Order info</h3>
+                            <div>
+                                <label>이름</label>
+                            </div>
+                            <div>
+                                <input className="input" type="text" name="userName" value={formData.userName} onChange={handleInputChange} />
+                            </div>
+                            <div>
+                                <label>연락처</label>
+                            </div>
+                            <div>
+                                <input className="input" type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='delivery-tile'>
+                        <div className="delivery-info">
+                            <h3>Shipping info</h3>
                             <div>
                                 <label>이름</label>
                             </div>
@@ -167,23 +185,24 @@ function Order() {
                             </div>
                         </div>
                     </div>
-                    <div className='order-tile'>
-                        <div className="order-summary">
-                            <h3 className="order-title">결제정보</h3>
+                </div>
 
-                            <div>
-                                <p className="product-info">주문상품</p>
-                                <p className="product-info">상품총액</p>
-                                <p className="delivery-fee">배송비</p>
-                            </div>
-                            <div>
-                                <h2>총 결제금액</h2>
-                            </div>
-                            <MDBBtn onClick={handleSubmit} size="lg">결제하기</MDBBtn>
+                <div className="order-tile">
+                    <div className="order-summary " >
+                        <div className="order-header"><h3>결제정보</h3></div>
+                        <div className="order-info" >
+                            <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">29,000원</p></div>
+                            <div className="info"><p>배송비</p> <p id="deliveryFee">3,000원</p> </div>
                         </div>
+                        <div className="total" ><h2>총 결제금액</h2> <h2 id="Total">32,000원</h2> </div>
 
+                        <Link to="/order" >
+                            <div className="purchase" >
+                                <button className="purchase-button" >구매하기</button>
+                            </div></Link>
                     </div>
                 </div>
+
             </div>
         </>
     )

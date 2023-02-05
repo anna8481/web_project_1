@@ -9,6 +9,7 @@ import ProductAdd from './components/ProductAdd';
 import ProductList from './components/ProductList';
 import Cart from './components/Cart'
 import Order from './components/Order'
+import OrderComplete from './components/OrderComplete'
 import Admin from './components/Admin'
 
 export const ROUTE = {
@@ -71,6 +72,11 @@ export const ROUTE = {
         path: "/order",
         link: "/order",
         element: Order,
+    },
+    ORDER_COMPLETE: {
+        path: "/order/complete",
+        link: "/order/complete",
+        element: OrderComplete,
     },
     CATEGORY_ADD: {
         path: "/category/add",

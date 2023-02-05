@@ -20,9 +20,8 @@ export default function Navbar() {
         <div className="container">
             <nav className="navigation">
                 <div className="navigation-brand">
-                    <Link to={ROUTE.HOME.link} >  <img src="images/elice-rabbit.png" alt="Elice logo" width="30" height="30" /></Link>
                     <Link to={ROUTE.HOME.link} >
-                        <div className="brand-name" >Shopping Mall</div></Link>
+                        <div className="brand-name" >Moteam</div></Link>
 
                 </div>
                 <div
