@@ -36,18 +36,17 @@ function ProductAdd() {
     }, [categories])
 
 
-    const [fileName, setFileName] = useState("");
+    const [fileData, setFileData] = useState("");
 
-    const handleFileName = (e) => {
-        setFileName(e.target.value);
-        console.log(e.target.files)
+    const handlefileData = (e) => {
+        setFileData(e.target.files[0])
     }
-
+    
     const [inputs, setInputs] = useState({
         productName: "",
         categoryId: "",
         productInfo: "",
-        imageKey: "0204 테스트",
+        imageKey: "",
         price: ""
     });
 
@@ -58,15 +57,16 @@ function ProductAdd() {
             [name]: value
         });
     };
-    const validationForm = ({ productName, categoryId, productInfo, imageKey, price }) => {
-        if (productName !== "" && categoryId !== "" && productInfo !== "" && imageKey !== "" && price !== "")
+
+    const validationForm = ({ productName, categoryId, productInfo, price }) => {
+        if (productName !== "" && categoryId !== "" && productInfo !== "" && fileData !== "" && price !== "")
             return true;
         return false;
     }
 
     async function addProduct(formdata) {
 
-        const newData = await Api.post("product/add", formdata)
+        const newData = await Api.post("product", formdata)
             .then(res => {
                 alert("제품 등록이 완료되었습니다.");
                 console.log(res)
@@ -75,6 +75,25 @@ function ProductAdd() {
                 alert("이미 있는 제품 이름입니다.")
             })
 
+    }
+
+    // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
+    async function addPicture(imgdata) {
+        
+        try {
+            const res = await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
+            setInputs((current) => {
+                const newInputs = 
+                    {
+                    ...current,
+                    "imageKey":res.data.public_id
+                }
+                return newInputs;
+            })
+            console.log("이미지 업로드 완료: ",res.data.public_id)
+        } catch(err) {
+            console.log("이미지 업로드 에러 발생",err)
+        }
     }
 
     const handleSubmit = (e) => {
@@ -86,10 +105,15 @@ function ProductAdd() {
             return;
         }
 
+        const imgdata = new FormData();
+        imgdata.append("file", fileData);
+        imgdata.append("upload_preset", "cn0wxtm");
+        addPicture(imgdata)
+
         const formdata = inputs
         alert("제품 등록이 완료되었습니다.");
-        // addProduct(formdata)
-        // e.target.reset();
+        addProduct(formdata)
+        e.target.reset();
     }
 
     return (
@@ -131,7 +155,7 @@ function ProductAdd() {
                             type="file"
                             name="image-file"
                             accept=".png, .jpeg, .jpg"
-                            onChange={handleFileName}
+                            onChange={handlefileData}
                         />
 
                     </InputGroup>

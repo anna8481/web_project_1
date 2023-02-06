@@ -7,10 +7,10 @@ import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'reac
 
 
 function CategoryAdd() {
-    const [fileName, setFileName] = useState("");
+    const [fileData, setFileData] = useState("");
 
-    const handleFileName = (e) => {
-        setFileName(e.target.files[0])
+    const handlefileData = (e) => {
+        setFileData(e.target.files[0])
     }
     
     const [inputs, setInputs] = useState({
@@ -27,37 +27,44 @@ function CategoryAdd() {
             [name]: value
         });
     };
+
     const validationForm = ({title, description, themeClass}) => {
-        if(title !== '' && description !== '' && themeClass !=='' && fileName !=='')
+        if(title !== '' && description !== '' && themeClass !=='' && fileData !=='')
             return true;
         return false;
     }
 
     async function addCategory(formdata) {
 
-        const newData = await Api.post("category", formdata)
-        .then(res => {
+        try {
+            const newData = await Api.post("category", formdata)
             alert("category 등록이 완료되었습니다.");
-            console.log(res)
-            Api.get("categorylist").then(res => console.log(res.data))
-        })
-        .catch(err => {
+            console.log(newData)
+            const categoryList = await Api.get("categorylist")
+            console.log(categoryList)
+        } catch(err) {
             alert("이미 있는 category 이름입니다.")
-        })
+        }
 
     }
 
     // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
     async function addPicture(imgdata) {
-    
-            await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
-            .then(res=>{
-                setInputs({
-                    ...inputs,
+        
+        try {
+            const res = await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
+            setInputs((current) => {
+                const newInputs = 
+                    {
+                    ...current,
                     "imageKey":res.data.public_id
-                })
-                console.log("이미지 업로드 완료: ",res.data.public_id)
+                }
+                return newInputs;
             })
+            console.log("이미지 업로드 완료: ",res.data.public_id)
+        } catch(err) {
+            console.log("이미지 업로드 에러 발생",err)
+        }
     }
 
     const handleSubmit = (e) => {
@@ -71,7 +78,7 @@ function CategoryAdd() {
         }
         
         const imgdata = new FormData();
-        imgdata.append("file", fileName);
+        imgdata.append("file", fileData);
         imgdata.append("upload_preset", "cn0wxtm");
         addPicture(imgdata)
 
@@ -197,7 +204,7 @@ function CategoryAdd() {
                             type="file"
                             name="image-file"
                             accept=".png, .jpeg, .jpg"
-                            onChange={handleFileName}
+                            onChange={handlefileData}
                         />
                         
                     </InputGroup>
