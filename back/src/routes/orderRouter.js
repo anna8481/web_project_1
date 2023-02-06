@@ -88,20 +88,20 @@ orderRouter.patch(
 );
 
 //확인중
-// orderRouter.delete(
-//     "/orders/:orderId",
-//     loginRequired,
-//     async function (req, res, next) {
-//       try {
-//         const orderId = req.params.orderId;
-//         const deleteResult = await orderService.deleteOrderData(orderId);
+orderRouter.delete(
+  "/orders/:orderId",
+  loginRequired,
+  async function (req, res, next) {
+    try {
+      const orderId = req.params.orderId;
+      const deleteResult = await orderService.deleteOrderData(orderId);
   
-//         res.status(200).json(deleteResult);
-//       } catch (error) {
-//         next(error);
-//       }
-//     }
-//   );
+      res.status(200).json(deleteResult);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 
 module.exports = orderRouter;

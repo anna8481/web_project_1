@@ -31,6 +31,11 @@ class OrderModel {
     const orders = await Order.find({});
     return orders;
   }
+
+  async deleteById(orderId) {
+    const result = await Order.deleteOne({ _id: orderId });
+    return result;
+  }
 }
 
 
