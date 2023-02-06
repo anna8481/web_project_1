@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../api";
-import "./RegisterForm.css";
+import * as Api from "../../utills/api";
+import "./Register.css";
 
 import {
   MDBContainer,
@@ -9,7 +9,7 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 
-function RegisterForm() {
+function Register() {
   const navigate = useNavigate();
   // State 정의
   const [inputs, setInputs] = useState({
@@ -118,4 +118,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default Register;
