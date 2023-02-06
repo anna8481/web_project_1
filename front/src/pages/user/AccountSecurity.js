@@ -126,58 +126,57 @@ function AccountSecurity() {
 
     return (
         <>
-            <div className="container">
-                <MDBContainer fluid>
+            <div className="container-center">
+                <div className='section'>
                     <div className="edit-button">
-                        <MDBBtn className="mb-1 size=sm" color='secondary' size="lg"
+                        <button className="user-button"
                             onClick={(e) => {
                                 setDisabled((current) => !current)
                                 console.log(disabled)
-                            }}>수정하기</MDBBtn>
+                            }}>수정하기</button>
                     </div>
-                    <form >
-                        <MDBRow className='d-flex justify-content-center align-items-center h-100'>
-                            <MDBCol col='12'>
+                    <form className="user-form" >
+                        <div>
+                            <label>이름</label>
+                        </div>
 
-                                <MDBCard className='bg-white my-5 mx-auto' style={{ borderRadius: '1rem', maxWidth: '60%' }}>
-                                    <MDBCardBody className='p-5 w-100 d-flex flex-column'>
+                        <input className="input" label='' name="userName" type='text'
+                            disabled={disabled} onChange={handleInputChange} value={formData.userName} />
+                        <div>
+                            <label>비밀번호</label>
+                        </div>
+                        <input className="input" label='' name="password" type='text' disabled />
+                        <div>
+                            <label>비밀번호 확인</label>
+                        </div>
+                        <input className="input" label='' name='password' type='text' disabled />
+                        <div>
+                            <label>주소</label>
+                        </div>
+                        <div className="postcode">
+                            <input className='input' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
+                            <button className='input' onClick={handleComplete} disabled={disabled}  >우편번호 찾기</button>
+                        </div>
+                        {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
 
-                                        <p className="mb-1">이름</p>
-                                        <div className="user-input">
-                                            <MDBInput wrapperClass='mb-4 w-100' label='' name="userName" type='text' size="lg"
-                                                disabled={disabled} onChange={handleInputChange} value={formData.userName} />
-                                        </div>
-                                        <p className="mb-1">비밀번호</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name="password" type='text' size="lg" disabled />
-                                        <p className="mb-1">비밀번호 확인</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='password' type='text' size="lg" disabled />
-                                        <p className="mb-1">주소</p>
+                        <input className="input" label='주소' name='address1' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
 
-                                        <MDBInputGroup className='mb-3'>
-                                            <input className='form-control' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
-                                            <MDBBtn onClick={handleComplete} disabled={disabled}  >우편번호 찾기</MDBBtn>
-                                        </MDBInputGroup>
+                        <input className="input" label='상세주소' name='address2' type='text' size="lg" disabled={disabled} onChange={handleAddressChange}
+                            value={formData.address?.address2}
+                        />
 
-                                        {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
-
-                                        <MDBInput wrapperClass='mb-4 w-100' label='주소' name='address1' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
-
-                                        <MDBInput wrapperClass='mb-4 w-100' label='상세주소' name='address2' type='text' size="lg" disabled={disabled} onChange={handleAddressChange}
-                                            value={formData.address?.address2}
-                                        />
-
-                                        <p className="mb-1">전화번호</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
-                                        {!disabled &&
-                                            <MDBBtn size='lg' type="submit" disabled={disabled} onClick={toggleShow}  >
-                                                수정하기
-                                            </MDBBtn>}
-                                    </MDBCardBody>
-                                </MDBCard>
-                            </MDBCol>
-                        </MDBRow>
+                        <div>
+                            <label>주소</label>
+                        </div>
+                        <input className="input" label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
+                        {!disabled &&
+                            <button className="user-button" type="submit" disabled={disabled} onClick={toggleShow}  >
+                                수정하기
+                            </button>}
                     </form>
-                </MDBContainer>
+
+                </div>
+
                 <MDBModal show={popup} tabIndex='-1' >
                     <MDBModalDialog>
                         <MDBModalContent>

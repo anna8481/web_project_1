@@ -56,14 +56,10 @@ button {
   font-family: 'Merriweather', 'Noto Serif KR', serif;
 }
 
-a:hover {
-  cursor: pointer;
-}
 
 input {
   width: 100%
 }
-
 
 .user-form {
   display: flex;
@@ -87,4 +83,30 @@ input {
 
 button {
   cursor: pointer;
+}
+
+.postcode {
+  display: flex;
+}
+
+.postcode-button {
+  flex: 1;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-right: 0.5rem;
+  border: 1px solid black;
+  line-height: 3.5;
+  border-radius: 0;
+  height: 45px;
+  margin-bottom: 1rem;
+}
+
+.postcode-input {
+  flex: 4;
+  margin-right: 0.5rem;
+  border: 1px solid black;
+  line-height: 3.5;
+  border-radius: 0;
+  height: 45px;
+  margin-bottom: 1rem;
 }

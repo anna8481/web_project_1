@@ -128,8 +128,8 @@ function Order() {
                                 <div>
                                     {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
                                     <div className="postcode">
-                                        <div className="postcode-input"><input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} /></div>
-                                        <div className="postcode-button" ><div type="button" className="input" onClick={handleComplete}  >주소찾기</div></div>
+                                        <input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} />
+                                        <div type="button" className="input" onClick={handleComplete}> 주소찾기</div>
                                     </div>
                                     <input className="input" type="text" placeholder='주소' value={formData.address.address1} onChange={handleAddressChange} /><br />
                                     <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={formData.address.address2} />
