@@ -1,17 +1,14 @@
-/* 코드 작성 중
-const { Router } = "express";
-const loginRequired = require("../middlewares");
-
+const express = require("express");
+const productRouter = express.Router();
+const { loginRequired } = require("../middlewares/loginRequired");
 const { productService } = require("../services/productService");
-
-const productRouter = Router();
 
 productRouter.post("/product", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const { productName, categoryId, productInfo, imageKey, price } = req.body;
 
-    const sellerId = req.currentUserId;
+    //  const sellerId = req.currentUserId;
 
     // 위 데이터를 제품 db에 추가하기
     const newProduct = await productService.addProduct({
@@ -139,4 +136,3 @@ productRouter.delete(
 );
 
 module.exports = productRouter;
- */
