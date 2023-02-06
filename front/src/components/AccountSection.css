@@ -1,0 +1,19 @@
+.card-container {
+    display: flex;
+    max-width: 90%;
+    flex-direction: row;
+
+}
+
+
+.edit-button {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 80%;
+}
+
+
+.accountCard {
+    text-decoration: none;
+    color: black;
+}

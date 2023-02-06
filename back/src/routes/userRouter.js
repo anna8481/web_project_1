@@ -4,6 +4,7 @@ const userRouter = express.Router();
 // const { adminOnly, loginRequired } = require("../middlewares");
 const { userService } = require("../services/userService");
 const { loginRequired } = require("../middlewares/loginRequired");
+
 userRouter.post("/register", async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
@@ -52,7 +53,7 @@ userRouter.get("/user", loginRequired, async function (req, res, next) {
 
 //-----------------------------------------------------
 // 사용자 관련
-// 정보 수정, 삭제 관련 재확인시 현재 비밀번호 요청
+/* // 정보 수정, 삭제 관련 재확인시 현재 비밀번호 요청
 userRouter.post(
   "/user/password/check",
   loginRequired,
@@ -70,7 +71,7 @@ userRouter.post(
       next(error);
     }
   }
-);
+); */
 
 // 사용자 정보 수정
 userRouter.patch(
@@ -80,9 +81,9 @@ userRouter.patch(
     try {
       // params로부터 _id를 가져옴(mongo db에서 자동 생성해주는 _id)
       const { userId } = req.params;
-
+      console.log(req.body)
       // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const { userName, password, address, phoneNumber } = req.body;
+      const { userName, password, address, phoneNumber, role } = req.body;
 
       // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
       const currentPassword = req.body.currentPassword;
@@ -101,6 +102,7 @@ userRouter.patch(
         ...(password && { password }),
         ...(address && { address }),
         ...(phoneNumber && { phoneNumber }),
+        ...(role && { role }),
       };
 
       // 사용자 정보를 업데이트함.
@@ -115,7 +117,25 @@ userRouter.patch(
     }
   }
 );
+//삭제 전 현재 비밀번호 확인
+userRouter.post(
+  "/user/password/check",
+  loginRequired,
+  async function (req, res, next) {
+    try {
+      // req (request) 에서 데이터 가져오기
+      const userId = req.currentUserId;
+      const password = req.body.password;
 
+      // 비밀번호가 알맞는지 여부를 체크함
+      const checkResult = await userService.checkUserPassword(userId, password);
+
+      res.status(200).json(checkResult);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 //사용자 삭제
 userRouter.delete(
   "/users/:userId",
@@ -123,7 +143,7 @@ userRouter.delete(
   async function (req, res, next) {
     try {
       // params로부터 id를 가져옴
-      const userId = req.params.userId;
+      const { userId } = req.params;
 
       const deleteResult = await userService.deleteUserData(userId);
 
