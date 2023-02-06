@@ -100,9 +100,11 @@ function AccountSecurity() {
             currentPassword: currentPassword,
 
         };
+
+
         const newData = await Api.patch(`users/${formData._id}`, updatedUser);
         console.log(newData);
-        alert('수정이 완료되었습니다!')
+        alert(formData.address.postalCode);
 
     };
 
@@ -166,7 +168,7 @@ function AccountSecurity() {
                         />
 
                         <div>
-                            <label>주소</label>
+                            <label>전화번호</label>
                         </div>
                         <input className="input" label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
                         {!disabled &&
