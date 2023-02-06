@@ -14,14 +14,14 @@ class CategoryModel {
     return category;
   }
 
-  async create(categoryInfo) {
-    const createdNewCategory = await Category.create(categoryInfo);
-    return createdNewCategory;
-  }
-
   async findAll() {
     const categorys = await Category.find({});
     return categorys;
+  }
+
+  async create(categoryInfo) {
+    const createdNewCategory = await Category.create(categoryInfo);
+    return createdNewCategory;
   }
 
   async update({ categoryId, update }) {

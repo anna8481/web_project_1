@@ -1,14 +1,14 @@
 const express = require("express");
 const productRouter = express.Router();
+const { adminOnly } = require("../middlewares/adminOnly");
 const { loginRequired } = require("../middlewares/loginRequired");
 const { productService } = require("../services/productService");
 
-productRouter.post("/product", loginRequired, async (req, res, next) => {
+//관리자)상품 등록
+productRouter.post("/product", adminOnly, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const { productName, categoryId, productInfo, imageKey, price } = req.body;
-
-    //  const sellerId = req.currentUserId;
 
     // 위 데이터를 제품 db에 추가하기
     const newProduct = await productService.addProduct({
@@ -25,6 +25,8 @@ productRouter.post("/product", loginRequired, async (req, res, next) => {
   }
 });
 
+//🔽 예시 사이트에서 어떤 기능을 위한 api인지 찾지 못했지만, product list 확인을 위해 주석 처리하지 않았습니다.
+// 사용자)전체 상품 보기
 productRouter.get(
   "/productlist",
   loginRequired,
@@ -40,10 +42,12 @@ productRouter.get(
   }
 );
 
+//전체) 카테고리 클릭->관련 상품 출력
 productRouter.get(
+  //categoryTitle : categorys 내 title(예시 : 바지, 치마..)
   "/productlist/category/:categoryTitle",
   async function (req, res, next) {
-    let categoryTitle = req.params.categoryTitle;
+    const { categoryTitle } = req.params;
 
     try {
       // 전체 제품 목록을 얻음
@@ -58,6 +62,7 @@ productRouter.get(
   }
 );
 
+// 전체) product 상세 보기
 productRouter.get("/products/:productId", async function (req, res, next) {
   try {
     const productId = req.params.productId;
@@ -69,42 +74,26 @@ productRouter.get("/products/:productId", async function (req, res, next) {
   }
 });
 
+//관리자) 상품 수정
 productRouter.patch(
   "/products/:productId",
-  loginRequired,
+  adminOnly,
   async function (req, res, next) {
     try {
-      // application/json 설정을 프론트에서 안 하면, body가 비어 있게 됨.
-      if (is.emptyObject(req.body)) {
-        throw new Error(
-          "headers의 Content-Type을 application/json으로 설정해주세요"
-        );
-      }
-
       // req (request) 에서 데이터 가져오기
       const productId = req.params.productId;
-      const title = req.body.title;
-      const shortDescription = req.body.shortDescription;
-      const detailDescription = req.body.detailDescription;
-      const imageKey = req.body.imageKey;
-      const inventory = req.body.inventory;
-      const price = req.body.price;
-      const searchKeywords = req.body.searchKeywords;
-      const isRecommended = req.body.isRecommended;
-      const discountPercent = req.body.discountPercent;
+
+      const { productName, categoryId, productInfo, imageKey, price } =
+        req.body;
 
       // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
       // 보내주었다면, 업데이트용 객체에 삽입함.
       const toUpdate = {
-        ...(title && { title }),
-        ...(shortDescription && { shortDescription }),
-        ...(detailDescription && { detailDescription }),
+        ...(productName && { productName }),
+        ...(categoryId && { categoryId }),
+        ...(productInfo && { productInfo }),
         ...(imageKey && { imageKey }),
-        ...(inventory && { inventory }),
         ...(price && { price }),
-        ...(searchKeywords && { searchKeywords }),
-        ...(isRecommended && { isRecommended }),
-        ...(discountPercent && { discountPercent }),
       };
 
       // 제품 정보를 업데이트함.
@@ -120,9 +109,10 @@ productRouter.patch(
   }
 );
 
+//관리자) 상품 삭제
 productRouter.delete(
   "/products/:productId",
-  loginRequired,
+  adminOnly,
   async function (req, res, next) {
     try {
       const productId = req.params.productId;
