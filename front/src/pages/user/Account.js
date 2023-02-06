@@ -1,16 +1,16 @@
 import React from 'react';
-import "./AccountSection.css"
-import { ROUTE } from '../route'
+import "./Account.css"
+import { ROUTE } from '../../utills/route'
 import {
     MDBCol,
     MDBRow
 } from 'mdb-react-ui-kit';
 
 
-import MyCard from './MyCard';
+import MyCard from '../../components/MyCard';
 
 
-const AccountSection = () => {
+const Account = () => {
     return (<section className="section">
         <div className="container">
             <h1>계정관리</h1>
@@ -37,5 +37,5 @@ const AccountSection = () => {
 }
 
 
-export default AccountSection;
+export default Account;
 

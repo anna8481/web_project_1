@@ -19,10 +19,10 @@ import {
 }
     from 'mdb-react-ui-kit';
 import "bootstrap/dist/css/bootstrap.min.css";
-import * as Api from "../api";
-import Postcode from './Postcode'
+import * as Api from "../../utills/api";
+import Postcode from '../../utills/Postcode'
 
-function MyAccountForm() {
+function AccountSecurity() {
     const [disabled, setDisabled] = useState(true);
     const [formData, setFormData] = useState(
         {
@@ -205,4 +205,4 @@ function MyAccountForm() {
 
 
 
-export default MyAccountForm;
+export default AccountSecurity;

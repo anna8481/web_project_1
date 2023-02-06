@@ -1,16 +1,16 @@
-import LoginForm from './components/LoginForm'
-import RegisterForm from './components/RegisterForm'
-import MyAccountForm from './components/MyAccountForm'
-import AccountSignout from './components/AccountSignout';
-import AccountSection from './components/AccountSection'
-import Slider from './components/Slider'
-import CategoryAdd from './components/CategoryAdd';
-import ProductAdd from './components/ProductAdd';
-import ProductList from './components/ProductList';
-import Cart from './components/Cart'
-import Order from './components/Order'
-import OrderComplete from './components/OrderComplete'
-import Admin from './components/Admin'
+import Login from '../pages/user/Login'
+import Register from '../pages/user/Register'
+import AccountSercurity from '../pages/user/AccountSecurity'
+import AccountDelete from '../pages/user/AccountDelete'
+import Account from '../pages/user/Account'
+import Slider from '../components/Slider'
+import CategoryAdd from '../pages/category/CategoryAdd'
+import ProductAdd from '../pages/product/ProductAdd'
+import ProductList from '../pages/product/ProductList';
+import Cart from '../pages/cart/Cart'
+import Order from '../pages/cart/Order'
+import OrderComplete from '../pages/cart/OrderComplete'
+import Admin from '../pages/admin/Admin'
 
 export const ROUTE = {
     HOME: {
@@ -21,32 +21,32 @@ export const ROUTE = {
     LOGIN: {
         path: "/login",
         link: "/login",
-        element: LoginForm,
+        element: Login,
     },
     REGISTER: {
         path: "/register",
         link: "/register",
-        element: RegisterForm,
+        element: Register,
     },
     ACCOUNT: {
         path: "/account",
         link: "/account",
-        element: AccountSection,
+        element: Account,
     },
     ACCOUNT_SIGNOUT: {
         path: "/account/signout",
         link: "/account/signout",
-        element: AccountSignout,
+        element: AccountDelete,
     },
     ACCOUNT_ORDERS: {
         path: "/account/orders",
         link: "/account/orders",
-        element: AccountSection,
+        element: Account,
     },
     MYACCOUNT: {
         path: "/account/security",
         link: "/account/security",
-        element: MyAccountForm,
+        element: AccountSercurity,
     },
     ADMIN: {
         path: "/admin",

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import './Order.css';
-import Postcode from './Postcode'
-import * as Api from "../api";
+import Postcode from '../../utills/Postcode'
+import * as Api from "../../utills/api";
 import {
     MDBBtn,
     // MDBContainer,
@@ -140,7 +140,7 @@ function Order() {
                             <div>
                                 {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
                                 <div className="postcode">
-                                    <div className="postcode-input"><input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address.postalCode} /></div>
+                                    <div className="postcode-input"><input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} /></div>
                                     <div className="postcode-button" ><div type="button" className="input" onClick={handleComplete}  >주소찾기</div></div>
                                 </div>
                                 <input className="input" type="text" placeholder='주소' value={formData.address.address1} onChange={handleAddressChange} /><br />

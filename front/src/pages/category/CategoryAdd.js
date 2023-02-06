@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import * as Api from "../api";
+import * as Api from "../../utills/api";
 import axios from 'axios'
-import './RegisterForm.css'
+
 import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import * as Api from "../api";
+import * as Api from "../../utills/api";
 import './ProductAdd.css'
 import { Form, Button, Container, InputGroup, FormControl } from 'react-bootstrap';
 

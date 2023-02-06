@@ -1,7 +1,7 @@
 import "./navbar.css"
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom'
-import { ROUTE } from '../route'
+import { ROUTE } from '../utills/route'
 
 
 
