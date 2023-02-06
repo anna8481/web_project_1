@@ -4,7 +4,7 @@ import axios from 'axios'
 import * as Api from "../../utills/api";
 import './ProductAdd.css'
 import { Form, Button, Container, InputGroup, FormControl } from 'react-bootstrap';
-
+import Header from '../../components/Header'
 
 function ProductAdd() {
     const [categories, setCategories] = useState("")
@@ -41,7 +41,7 @@ function ProductAdd() {
     const handlefileData = (e) => {
         setFileData(e.target.files[0])
     }
-    
+
     const initialInputs = {
         productName: "",
         categoryId: "",
@@ -74,7 +74,7 @@ function ProductAdd() {
                 console.log(res)
             })
             .catch(err => {
-                alert("이미 있는 제품 이름입니다.",err)
+                alert("이미 있는 제품 이름입니다.", err)
             })
 
     }
@@ -86,12 +86,12 @@ function ProductAdd() {
             console.log(res.data.public_id)
             return res.data.public_id;
 
-        } catch(err) {
-            console.log("이미지 업로드 에러 발생",err)
+        } catch (err) {
+            console.log("이미지 업로드 에러 발생", err)
         }
     }
 
-    const handleSubmit =  async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const validated = validationForm(inputs)
@@ -108,13 +108,13 @@ function ProductAdd() {
         console.log(public_id);
 
         let formdata = inputs;
-        formdata = {...inputs, "imageKey": public_id};
+        formdata = { ...inputs, "imageKey": public_id };
         console.log(formdata)
 
         await addProduct(formdata)
 
         e.target.reset();
-        
+
         setInputs(() => {
             return initialInputs
         })
@@ -123,7 +123,7 @@ function ProductAdd() {
     return (
         <Container className="register-category-form-container">
             <Form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
-                <h5 className="text-primary">제품 판매</h5>
+                <Header title="제품 판매"></Header>
                 <Form.Group controlId="productNameInput">
                     <Form.Label>제품 이름</Form.Label>
                     <Form.Control type="text" placeholder="제품 이름을 입력하세요" autoComplete="on" name="productName" onChange=

@@ -2,7 +2,7 @@ import { Form, Button, Container, Modal } from 'react-bootstrap';
 import { useState } from 'react'
 import * as Api from "../../utills/api";
 import { useNavigate } from 'react-router-dom'
-
+import Header from '../../components/Header'
 function AccountDelete() {
     const navigate = useNavigate();
     const [password, setPassword] = useState("")
@@ -16,7 +16,7 @@ function AccountDelete() {
         e.preventDefault();
 
         const formdata = { password }
-        
+
         try {
             const res = await Api.post('user/password/check', formdata)
             Api.delete('users', res.data._id)
@@ -34,8 +34,8 @@ function AccountDelete() {
         setPassword("");
     }
 
-    return (<>
-        <h2>계정삭제</h2>
+    return (<>   <div className="section">
+        <Header title="계정 삭제"></Header>
         <div className="container">
             <Container className="password-form-container">
                 <Form className="password-form" id="passwordForm" onSubmit={handleSubmit}>
@@ -66,7 +66,7 @@ function AccountDelete() {
                 </Form>
             </Container>
         </div>
-
+    </div>
     </>
     )
 }
