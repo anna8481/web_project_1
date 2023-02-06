@@ -9,10 +9,10 @@ class ProductModel {
     return product;
   }
 
-  // async findById(productId) {
-  //   const product = await Product.findOne({ _id: productId });
-  //   return product;
-  // }
+  async findById(productId) {
+    const product = await Product.findOne({ _id: productId });
+    return product;
+  }
 
   async findOneByCategoryId(categoryId) {
     const product = await Product.findOne({ categoryId });
@@ -24,27 +24,27 @@ class ProductModel {
     return products;
   }
 
-  // async create(productInfo) {
-  //   const createdNewProduct = await Product.create(productInfo);
-  //   return createdNewProduct;
-  // }
-
   async findAll() {
-    const products = await Product.find({});
+    const products = await Product.find({}).populate("categoryId");
     return products;
   }
 
-  // async update({ productId, update }) {
-  //   const filter = { _id: productId };
-  //   const option = { returnOriginal: false };
+  async create(productInfo) {
+    const createdNewProduct = await Product.create(productInfo);
+    return createdNewProduct;
+  }
 
-  //   const updatedProduct = await Product.findOneAndUpdate(
-  //     filter,
-  //     update,
-  //     option
-  //   );
-  //   return updatedProduct;
-  // }
+  async update({ productId, update }) {
+    const filter = { _id: productId };
+    const option = { returnOriginal: false };
+
+    const updatedProduct = await Product.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedProduct;
+  }
 
   async deleteById(productId) {
     const result = await Product.deleteOne({ _id: productId });

@@ -51,26 +51,6 @@ userRouter.get("/user", loginRequired, async function (req, res, next) {
 
 //-----------------------------------------------------
 // 사용자 관련
-/* // 정보 수정, 삭제 관련 재확인시 현재 비밀번호 요청
-userRouter.post(
-  "/user/password/check",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      // req (request) 에서 데이터 가져오기
-      const userId = req.currentUserId;
-      const password = req.body.password;
-
-      // 비밀번호 일치 여부 체크
-      const checkResult = await userService.checkUserPassword(userId, password);
-
-      res.status(200).json(checkResult);
-    } catch (error) {
-      next(error);
-    }
-  }
-); */
-
 // 사용자 정보 수정
 userRouter.patch(
   "/users/:userId",
