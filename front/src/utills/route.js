@@ -11,6 +11,7 @@ import Cart from '../pages/cart/Cart'
 import Order from '../pages/cart/Order'
 import OrderComplete from '../pages/cart/OrderComplete'
 import Admin from '../pages/admin/Admin'
+import CategoryManage from '../pages/category/CategoryManage'
 
 export const ROUTE = {
     HOME: {
@@ -83,6 +84,11 @@ export const ROUTE = {
         link: "/category/add",
         element: CategoryAdd,
     },
+    CATEGORY_MANAGE: {
+        path: "/category/manage",
+        link: "/category/manage",
+        element: CategoryManage,
+    },
     PRODUCT_ADD: {
         path: "/product/add",
         link: "/product/add",
@@ -93,7 +99,7 @@ export const ROUTE = {
         link: "/product/list",
         element: ProductList,
     },
-
+    
 };
 
 

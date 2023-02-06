@@ -15,9 +15,10 @@ function ProductAdd() {
     const init = async () => {
         await Api.get('categorylist').then(
             res => {
+                console.log(res.data)
                 setCategories((current) => {
                     const newCategories = res.data.map((item, index) => {
-                        return <option key={index} value={item.title} className={"notification " + item.themeClass}>{item.title}</option>
+                        return <option key={index} value={item._id} className={"notification " + item.themeClass}>{item.title}</option>
                     })
                     return newCategories
                 })
@@ -42,13 +43,15 @@ function ProductAdd() {
         setFileData(e.target.files[0])
     }
     
-    const [inputs, setInputs] = useState({
+    const initialInputs = {
         productName: "",
         categoryId: "",
         productInfo: "",
         imageKey: "",
         price: ""
-    });
+    }
+
+    const [inputs, setInputs] = useState(initialInputs);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -72,7 +75,7 @@ function ProductAdd() {
                 console.log(res)
             })
             .catch(err => {
-                alert("이미 있는 제품 이름입니다.")
+                alert("이미 있는 제품 이름입니다.",err)
             })
 
     }
@@ -82,21 +85,14 @@ function ProductAdd() {
         
         try {
             const res = await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
-            setInputs((current) => {
-                const newInputs = 
-                    {
-                    ...current,
-                    "imageKey":res.data.public_id
-                }
-                return newInputs;
-            })
-            console.log("이미지 업로드 완료: ",res.data.public_id)
+            console.log(res.data.public_id)
+            return res.data.public_id;
         } catch(err) {
             console.log("이미지 업로드 에러 발생",err)
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
 
         const validated = validationForm(inputs)
@@ -108,12 +104,19 @@ function ProductAdd() {
         const imgdata = new FormData();
         imgdata.append("file", fileData);
         imgdata.append("upload_preset", "cn0wxtm");
-        addPicture(imgdata)
-
-        const formdata = inputs
+        const public_id = addPicture(imgdata)
+        console.log(public_id)
+        let formdata = inputs
+        
+        formdata = {...inputs, "imageKey": public_id};
         alert("제품 등록이 완료되었습니다.");
         addProduct(formdata)
+
         e.target.reset();
+        
+        setInputs(() => {
+            return initialInputs
+        })
     }
 
     return (
