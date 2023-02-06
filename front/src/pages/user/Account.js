@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "./Account.css"
 import { ROUTE } from '../../utills/route'
 import {
@@ -16,21 +17,36 @@ const Account = () => {
             <h1>계정관리</h1>
         </div>
         <div className="container">
-            <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
-                <MDBCol>
-                    <MyCard to={ROUTE.ACCOUNT_ORDERS.link} title='주문조회' content='지난 주문을 확인할 수 있습니다.'></MyCard>
-                </MDBCol>
-                <MDBCol>
-                    <MyCard to={ROUTE.MYACCOUNT.link} title='회원정보 관리' content='회원 정보를 확인, 수정할 수 있습니다. '></MyCard>
-                </MDBCol>
-                <MDBCol>
 
-                    <MyCard to={ROUTE.PRODUCT_ADD.link} title='제품 판매' content='제품 정보를 등록하여, 판매할 수 있습니다. '></MyCard>
-                </MDBCol>
-                <MDBCol>
-                    <MyCard to={ROUTE.ACCOUNT_SIGNOUT.link} title='회원 탈퇴' content='모든 정보를 안전하게 삭제한 후 탈퇴할 수 있습니다.'></MyCard>
-                </MDBCol>
-            </MDBRow>
+            <Link to={ROUTE.ACCOUNT_ORDERS.link}>
+                <div className="account_button_container" >
+                    <button className="account_button" ><p className="main-name">Order History</p>
+                        <p className="sub-name">주문조회</p></button>
+                </div>
+            </Link>
+
+            <Link to={ROUTE.MYACCOUNT.link}>
+                <div className="account_button_container" >
+                    <button className="account_button" ><p className="main-name">My Account</p>
+                        <p className="sub-name">회원정보 관리</p></button>
+                </div>
+            </Link>
+
+            <Link to={ROUTE.PRODUCT_ADD.link}>
+                <div className="account_button_container" >
+                    <button className="account_button" ><p className="main-name">Add Product</p>
+                        <p className="sub-name">제품 판매</p></button>
+                </div>
+            </Link>
+
+            <Link to={ROUTE.ACCOUNT_SIGNOUT.link}>
+                <div className="account_button_container" >
+                    <button className="account_button" ><p className="main-name">Delete Account</p>
+                        <p className="sub-name">회원 탈퇴</p></button>
+                </div>
+            </Link>
+
+
         </div>
     </section >
     )
