@@ -1,65 +1,63 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
 import * as Api from "../../utills/api";
 import axios from 'axios'
-import { Form, Button, Container, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 import './CategoryManage.css'
+import { DeleteCategory } from './DeleteCategory';
+import { ModifyCategory } from './ModifyCategory';
 
-const ModalDelete = () => {
-    //Modal 사용을 위한 State
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    return (
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>계정 삭제</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>회원정보 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    아니오
-                </Button>
-                <Button variant="primary" type="submit" onClick={handleClose}>
-                    예
-                </Button>
-            </Modal.Footer>
-        </Modal>
-    )
-}
 function CategoryManage() {
     const [categories, setCategories] = useState("")
     const [isLoad, setIsLoad] = useState(false);
     const [theme, setTheme] = useState("");
+    const [category, setCategory] = useState(undefined);
+
+    // Delete Modal State
+    const [DM, setDM] = useState(false);
+    const DMShow = () => setDM(true);
+    const DMClose = () => setDM(false);
+
+    // Modification Modal State
+    const [MM, setMM] = useState(false);
+    const MMShow = () => setMM(true);
+    const MMClose = () => setMM(false);
 
     // Pageload시 category를 불러옴
     const init = async () => {
         await Api.get('categorylist').then(
             res => {
-                
                 setCategories((current) => {
                     const newCategories = res.data.map((item, index) => {
                         return <div>
                             <div className="message media category-item" id={item._id}>
                                 <div className="media-left">
                                     <figure className="image">
-                                        <img src="https://res.cloudinary.com/moteam/image/upload/v1675663591/fgt7gorax8hrc0izzqar.jpg" alt="" />
+                                        <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt="" />
                                     </figure>
                                 </div>
                                 <div className="media-content">
                                     <div>
                                         <p className="title">{item.title}</p>
                                         <p className="description">{item.description}</p>
-                                        <Button size='sm' className="">수정</Button>
+                                        <Button size='sm' className="" onClick={e => {
+                                            setCategory(() => {
+                                                const newCategory = res.data.find(item => item._id === e.target.parentNode.parentNode.parentNode.id)
+                                                return newCategory
+                                            })
+                                            MMShow();
+                                        }}>수정</Button>
                                         {'    '}
                                         <Button size='sm' className="" onClick={e => {
-                                            console.log(e.target.parentNode.parentNode.parentNode.id)
+                                            setCategory(() => {
+                                                const newCategory = res.data.find(item => item._id === e.target.parentNode.parentNode.parentNode.id)
+                                                return newCategory
+                                            })
+                                            DMShow();
                                         }}>삭제</Button>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     })
                     return newCategories
@@ -77,14 +75,15 @@ function CategoryManage() {
             setIsLoad(true);
         }
     }, [categories])
-    
-    const [DM, setDM] = useState(false);
+
+
 
     return (<>
         <h2>카테고리 관리</h2>
         <div>
             {isLoad && categories}
-            <ModalDelete/>
+            {DM && <DeleteCategory close={DMClose} categoryId={category._id} />}
+            {MM && <ModifyCategory close={MMClose} category={category} />}
         </div>
     </>);
 }
