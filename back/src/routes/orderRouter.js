@@ -3,14 +3,11 @@ const orderRouter = express.Router();
 const { loginRequired } = require("../middlewares/loginRequired");
 const { orderService } = require("../services/orderService");
 
-
+// 사용자) 장바구니 상품 주문
 orderRouter.post("/order", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const totalPrice = req.body.totalPrice;
-    const address = req.body.address;
-    const request = req.body.request;
+    const { userId, totalPrice, address, request } = req.body;
 
     // 위 데이터를 제품 db에 추가
     const newOrder = await orderService.addOrder({
@@ -26,8 +23,7 @@ orderRouter.post("/order", loginRequired, async (req, res, next) => {
   }
 });
 
-
-// 특정 사용자(현재 로그인한 사용자)의 주문 조회
+// 사용자) 주문 조회
 orderRouter.get(
   "/orderlist/user",
   loginRequired,
@@ -66,9 +62,7 @@ orderRouter.patch(
     try {
       // req (request) 에서 데이터 가져오기
       const orderId = req.params.orderId;
-      const address = req.body.address;
-      const request = req.body.request;
-      const status = req.body.status;
+      const { address, request, status } = req.body;
 
       // 없던 값이였으면 update
       const toUpdate = {
@@ -95,13 +89,12 @@ orderRouter.patch(
 //       try {
 //         const orderId = req.params.orderId;
 //         const deleteResult = await orderService.deleteOrderData(orderId);
-  
+
 //         res.status(200).json(deleteResult);
 //       } catch (error) {
 //         next(error);
 //       }
 //     }
 //   );
-
 
 module.exports = orderRouter;
