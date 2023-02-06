@@ -39,9 +39,8 @@ function CategoryAdd() {
         try {
             const newData = await Api.post("category", formdata)
             alert("category 등록이 완료되었습니다.");
-            console.log(newData)
-            const categoryList = await Api.get("categorylist")
-            console.log(categoryList)
+            console.log(newData.data)
+            
         } catch(err) {
             alert("이미 있는 category 이름입니다.")
         }
@@ -50,26 +49,19 @@ function CategoryAdd() {
 
     // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
     async function addPicture(imgdata) {
-        
         try {
             const res = await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
-            setInputs((current) => {
-                const newInputs = 
-                    {
-                    ...current,
-                    "imageKey":res.data.public_id
-                }
-                return newInputs;
-            })
-            console.log("이미지 업로드 완료: ",res.data.public_id)
+            console.log(res.data.public_id)
+            return res.data.public_id;
+
         } catch(err) {
             console.log("이미지 업로드 에러 발생",err)
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs)
+        // console.log(inputs)
         
         const validated = validationForm(inputs)
         if(!validated) {
@@ -80,10 +72,11 @@ function CategoryAdd() {
         const imgdata = new FormData();
         imgdata.append("file", fileData);
         imgdata.append("upload_preset", "cn0wxtm");
-        addPicture(imgdata)
+        const public_id = await addPicture(imgdata)
 
-        const formdata = inputs
-        addCategory(formdata)
+        let formdata = inputs
+        formdata = {...inputs, "imageKey":public_id}
+        await addCategory(formdata)
 
         e.target.reset();
     }

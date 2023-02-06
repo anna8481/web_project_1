@@ -15,7 +15,6 @@ function ProductAdd() {
     const init = async () => {
         await Api.get('categorylist').then(
             res => {
-                console.log(res.data)
                 setCategories((current) => {
                     const newCategories = res.data.map((item, index) => {
                         return <option key={index} value={item._id} className={"notification " + item.themeClass}>{item.title}</option>
@@ -82,17 +81,17 @@ function ProductAdd() {
 
     // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
     async function addPicture(imgdata) {
-        
         try {
             const res = await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
             console.log(res.data.public_id)
             return res.data.public_id;
+
         } catch(err) {
             console.log("이미지 업로드 에러 발생",err)
         }
     }
 
-    const handleSubmit =  (e) => {
+    const handleSubmit =  async (e) => {
         e.preventDefault();
 
         const validated = validationForm(inputs)
@@ -104,13 +103,15 @@ function ProductAdd() {
         const imgdata = new FormData();
         imgdata.append("file", fileData);
         imgdata.append("upload_preset", "cn0wxtm");
-        const public_id = addPicture(imgdata)
-        console.log(public_id)
-        let formdata = inputs
-        
+
+        const public_id = await addPicture(imgdata);
+        console.log(public_id);
+
+        let formdata = inputs;
         formdata = {...inputs, "imageKey": public_id};
-        alert("제품 등록이 완료되었습니다.");
-        addProduct(formdata)
+        console.log(formdata)
+
+        await addProduct(formdata)
 
         e.target.reset();
         
