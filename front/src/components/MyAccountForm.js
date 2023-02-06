@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 import {
     MDBBtn,
     MDBContainer,
@@ -16,21 +15,27 @@ import {
     MDBModalTitle,
     MDBModalBody,
     MDBModalFooter,
+    MDBInputGroup
 }
     from 'mdb-react-ui-kit';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form } from 'react-bootstrap';
 import * as Api from "../api";
-// import Postcode from './Postcode'
+import Postcode from './Postcode'
 
 function MyAccountForm() {
     const [disabled, setDisabled] = useState(true);
-    const [user, setUser] = useState('');
-    // const [userName, setUserName] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [confirmPassword, setConfirmPassword] = useState('');
-    // const [address, setAddress] = useState('');
-    // const [phoneNumber, setPhoneNumber] = useState('');
+    const [formData, setFormData] = useState(
+        {
+            userName: "",
+            address: {
+                address1: "",
+                address2: "",
+                postalCode: ""
+            },
+            phoneNumber: "",
+            _id: ""
+        }
+    );
     const [currentPassword, setCurrentPassword] = useState('');
 
     const [popup, setPopup] = useState(false);
@@ -41,50 +46,63 @@ function MyAccountForm() {
     }
 
 
-    const init = async () => {
-        const jwt = localStorage.getItem('token')
-        await axios.get('http://localhost:5001/api/user', {
-            headers: {
-                Authorization: `Bearer ${jwt}`
-            }
-        }).then(res => {
-            console.log(res.data)
-            setUser(res.data)
-            // setUserName(res.data.userName)
-            // setPassword(res.data.password)
-            // setConfirmPassword(res.data.password)
-            // setAddress(res.data.address)
-            // setPhoneNumber(res.data.phoneNumber)
-        }).catch(error => console.log(error))
-    };
-
     useEffect(() => {
-        init();
+        const fetchData = async () => {
+            try {
+                const res = await Api.get('user');
+                setFormData({ ...res.data });
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        fetchData();
     }, []);
 
 
-    const handleChange = (e) => {
+    const handleInputChange = e => {
+        console.log(e.target.value);
         const { name, value } = e.target;
-        console.log({ name, value });
-        setUser({
-            ...user,
-            [name]: value,
-        });
+        setFormData(prev => (
+            { ...prev, [name]: value }));
     };
+
+
+    const handleAddressChange = (e) => {
+        console.log(e.target);
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            address: {
+                ...prev.address,
+                [name]: value
+            }
+        }))
+    }
+
+    const [postPopup, setPostPopup] = useState(false);
+    const handleComplete = (e) => {
+        e.preventDefault();
+        setPostPopup(!postPopup);
+    }
+
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const validated = validateForm(user);
-        // if (typeof validated === "string") {
-        //     alert(validated);
-        //     return;
-        // }
+
         // "users/유저id" 엔드포인트로 patch 요청함.
-        const newData = await Api.patch(`users/${user._id}`, {
-            ...user,
-            "currentPassword": currentPassword,
-        });
+        const updatedUser = {
+            username: formData.userName,
+            phoneNumber: formData.phoneNumber || "",
+            address: {
+                address1: formData.address1 || "",
+                address2: formData.address2 || "",
+                postalCode: formData.postalCode || ""
+            },
+            currentPassword: currentPassword,
+
+        };
+        const newData = await Api.patch(`users/${formData._id}`, updatedUser);
         console.log(newData);
         alert('수정이 완료되었습니다!')
 
@@ -119,7 +137,7 @@ function MyAccountForm() {
                                 console.log(disabled)
                             }}>수정하기</MDBBtn>
                     </div>
-                    <Form >
+                    <form >
                         <MDBRow className='d-flex justify-content-center align-items-center h-100'>
                             <MDBCol col='12'>
 
@@ -129,16 +147,29 @@ function MyAccountForm() {
                                         <p className="mb-1">이름</p>
                                         <div className="user-input">
                                             <MDBInput wrapperClass='mb-4 w-100' label='' name="userName" type='text' size="lg"
-                                                disabled={disabled} onChange={handleChange} value={user.userName} />
+                                                disabled={disabled} onChange={handleInputChange} value={formData.userName} />
                                         </div>
                                         <p className="mb-1">비밀번호</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name="password" type='password' size="lg" disabled={disabled} onChange={handleChange} />
+                                        <MDBInput wrapperClass='mb-4 w-100' label='' name="password" type='text' size="lg" disabled />
                                         <p className="mb-1">비밀번호 확인</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='password' type='password' size="lg" disabled={disabled} onChange={handleChange} />
+                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='password' type='text' size="lg" disabled />
                                         <p className="mb-1">주소</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='address' type='address' size="lg" disabled={disabled} onChange={handleChange} value={user.address} />
+
+                                        <MDBInputGroup className='mb-3'>
+                                            <input className='form-control' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
+                                            <MDBBtn onClick={handleComplete} disabled={disabled}  >우편번호 찾기</MDBBtn>
+                                        </MDBInputGroup>
+
+                                        {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
+
+                                        <MDBInput wrapperClass='mb-4 w-100' label='주소' name='address1' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
+
+                                        <MDBInput wrapperClass='mb-4 w-100' label='상세주소' name='address2' type='text' size="lg" disabled={disabled} onChange={handleAddressChange}
+                                            value={formData.address?.address2}
+                                        />
+
                                         <p className="mb-1">전화번호</p>
-                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleChange} value={user.phoneNumber} />
+                                        <MDBInput wrapperClass='mb-4 w-100' label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
                                         {!disabled &&
                                             <MDBBtn size='lg' type="submit" disabled={disabled} onClick={toggleShow}  >
                                                 수정하기
@@ -147,9 +178,8 @@ function MyAccountForm() {
                                 </MDBCard>
                             </MDBCol>
                         </MDBRow>
-                    </Form>
+                    </form>
                 </MDBContainer>
-
                 <MDBModal show={popup} tabIndex='-1' >
                     <MDBModalDialog>
                         <MDBModalContent>
@@ -167,17 +197,12 @@ function MyAccountForm() {
                         </MDBModalContent>
                     </MDBModalDialog>
                 </MDBModal>
-
             </div >
-
-
         </>
-
-
-
     );
-
 }
+
+
 
 
 export default MyAccountForm;

@@ -22,8 +22,7 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    padding: 1rem;
-
+    padding: 0;
 }
 
 .order-header {
@@ -34,10 +33,15 @@
 .order-info {
     border-bottom: #555 solid 1px;
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .info h2 {
     font-size: 1.5rem;
+}
+
+.info p {
+    margin: 0.1rem 0;
 }
 
 .cart-product-header {
@@ -52,9 +56,7 @@
 
 .cart-product-header p {
     margin: 0 0.5rem;
-
 }
-
 
 .delete-all {
     display: flex;
@@ -62,9 +64,24 @@
 
 }
 
-.cart-quantity {
+.cart-img-name {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.product-name {
+    margin-left: 1rem;
+    margin-bottom: 0;
+}
+
+.product-name p {
+    margin-bottom: 0;
+}
+
+
+.cart-quantity {
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -88,7 +105,7 @@
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .calculator {
@@ -107,39 +124,40 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 1rem;
 }
 
 .tile-ancestor {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 
 .product-tile {
-    flex-grow: 1;
-    border-radius: 6px;
-    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
-    padding: 1rem;
-    margin: 1rem;
+    border-bottom: solid 1px;
 }
 
 
-.order-tile {
-    flex-grow: 1;
-    border-radius: 6px;
-    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
-    padding: 1rem;
-    margin: 1rem;
-    background-color: #f0f5f7;
-    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%);
-    /* align-items: center; */
-    justify-content: space-between;
-    display: flex;
-}
 
 .content {
     justify-content: center;
     margin: 0 6rem;
+}
+
+
+.purchase {
+    display: flex;
+    justify-content: center;
+}
+
+.purchase-button {
+
+    background-color: #fff;
+    border: 1px solid black;
+    line-height: 3.5;
+    width: 50%;
+    justify-content: center;
+
 }
