@@ -93,12 +93,11 @@ function AccountSecurity() {
             username: formData.userName,
             phoneNumber: formData.phoneNumber || "",
             address: {
-                address1: formData.address1 || "",
-                address2: formData.address2 || "",
-                postalCode: formData.postalCode || ""
+                address1: formData.address.address1 || "",
+                address2: formData.address.address2 || "",
+                postalCode: formData.address.postalCode || ""
             },
             currentPassword: currentPassword,
-
         };
 
 
