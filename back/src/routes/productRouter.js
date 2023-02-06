@@ -1,10 +1,8 @@
-/* 코드 작성 중
-const { Router } = "express";
-const loginRequired = require("../middlewares");
+const express = require("express");
+const productRouter = express.Router();
+const { loginRequired } = require("../middlewares/loginRequired");
 
 const { productService } = require("../services/productService");
-
-const productRouter = Router();
 
 productRouter.post("/product", loginRequired, async (req, res, next) => {
   try {
@@ -139,4 +137,3 @@ productRouter.delete(
 );
 
 module.exports = productRouter;
- */
