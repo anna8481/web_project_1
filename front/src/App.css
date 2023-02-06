@@ -70,6 +70,15 @@ input {
   padding: 0;
 }
 
+.account-form {
+  display: flex;
+  flex-direction: column;
+  flex-direction: flex-end;
+  width: 350px;
+  margin: 0;
+  padding: 0;
+}
+
 
 .user-button {
   width: 350px;
@@ -77,7 +86,14 @@ input {
   border: 1px solid black;
   line-height: 3.5;
   padding: 0;
-  cursor: pointer;
+  flex-direction: flex-end;
+  margin: auto;
+}
+
+.edit-button {
+
+  margin-bottom: 3rem;
+  flex-direction: flex-end;
 
 }
 
@@ -85,25 +101,30 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  border: 1px solid #999;
+  color: #999
+}
+
 .postcode {
   display: flex;
 }
 
+
 .postcode-button {
-  flex: 1;
-  flex-wrap: wrap;
-  text-align: center;
-  margin-right: 0.5rem;
+  /* flex: 1; */
+  width: 30%;
   border: 1px solid black;
   line-height: 3.5;
   border-radius: 0;
   height: 45px;
   margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
 .postcode-input {
-  flex: 4;
-  margin-right: 0.5rem;
+  width: 70%;
   border: 1px solid black;
   line-height: 3.5;
   border-radius: 0;

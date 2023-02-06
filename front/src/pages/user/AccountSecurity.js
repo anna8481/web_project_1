@@ -135,7 +135,7 @@ function AccountSecurity() {
                                 console.log(disabled)
                             }}>수정하기</button>
                     </div>
-                    <form className="user-form" >
+                    <form className="account-form" >
                         <div>
                             <label>이름</label>
                         </div>
@@ -155,7 +155,7 @@ function AccountSecurity() {
                         </div>
                         <div className="postcode">
                             <input className='input' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
-                            <button className='input' onClick={handleComplete} disabled={disabled}  >우편번호 찾기</button>
+                            <button className='postcode-button' onClick={handleComplete} disabled={disabled}  >우편번호 찾기</button>
                         </div>
                         {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
 
