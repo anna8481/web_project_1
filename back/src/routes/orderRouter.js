@@ -81,7 +81,6 @@ orderRouter.patch(
   }
 );
 
-//확인중
 orderRouter.delete(
   "/orders/:orderId",
   loginRequired,
