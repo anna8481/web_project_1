@@ -2,13 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Api from "../../utills/api";
 import "./Register.css";
-
-import {
-  MDBContainer,
-  MDBInput,
-  MDBBtn,
-} from "mdb-react-ui-kit";
-
 function Register() {
   const navigate = useNavigate();
   // State 정의
@@ -18,7 +11,7 @@ function Register() {
     password: "",
     passwordConfirm: "",
   });
-  const [formError, setFormError] = useState("");
+  // const [formError, setFormError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;

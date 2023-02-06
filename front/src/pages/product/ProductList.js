@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import * as Api from "../../utills/api";
-
-
+import Product from '../../components/Product'
+import Header from '../../components/Header'
 
 function ProductList() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const categoryTitle = "바지"
     const [products, setProducts] = useState(null);
 
@@ -22,27 +22,13 @@ function ProductList() {
     }, []);
 
 
-    function MyList({ data, onChangeMode }) {
-        const lis = data.map((item) => (
-            <li key={item._id}>
-                {item.productName}
-            </li >
-        ));
-        console.log(lis)
-        return <ul>{lis}</ul>;
-    }
-
     return (<>
 
         <div className='section'>
-            <div className="container-center" >
-                <input className='input'></input>
-                {Array.isArray(products) && <MyList data={products} ></MyList>}
-
-                <input type="checkbox" id="toggle" />
-                <label for="toggle" class="toggleSwitch">
-                    <span class="toggleButton"></span>
-                </label>
+            <Header title={categoryTitle}></Header>
+            <div className="product-container" >
+                {Array.isArray(products) && products.map(item => (<Product key={item._id} title={item.productName} price={item.price} img='https://www.urbanic30.com/shopimages/urbanic30/0120010000702.jpg?1669629508'> productInfo ={item.productInfo}
+                </Product>))}
             </div>
         </div>
     </>

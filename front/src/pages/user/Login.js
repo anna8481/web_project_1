@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import {
-    MDBContainer,
-    MDBInput,
-    MDBBtn,
-}
-    from 'mdb-react-ui-kit';
 import './Login.css'
 import * as Api from "../../utills/api";
 
