@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import {
     MDBBtn,
     MDBContainer,
@@ -18,7 +17,6 @@ import {
     MDBInputGroup
 }
     from 'mdb-react-ui-kit';
-import "bootstrap/dist/css/bootstrap.min.css";
 import * as Api from "../../utills/api";
 import Postcode from '../../utills/Postcode'
 

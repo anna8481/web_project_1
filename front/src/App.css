@@ -1,19 +1,21 @@
 .section {
-  max-width: 90%;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
   padding: 1rem;
+  max-width: 90%;
 }
 
 .container {
-  /* max-width: 90%;
-  margin-top: 50px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1rem; */
+  margin-bottom: 2rem;
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
+}
+
+.container-center {
+  display: flex;
   justify-content: center;
   margin-bottom: 2rem;
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
 }
 
 
@@ -41,4 +43,48 @@ ul {
   padding: 1rem;
   border-bottom: #ddd 1px solid;
 
+}
+
+body,
+input,
+button {
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
+}
+
+
+.a {
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+input {
+  width: 100%
+}
+
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.user-button {
+  width: 350px;
+  background-color: #fff;
+  border: 1px solid black;
+  line-height: 3.5;
+  padding: 0;
+  cursor: pointer;
+
+}
+
+button {
+  cursor: pointer;
 }

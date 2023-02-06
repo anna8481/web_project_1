@@ -73,48 +73,53 @@ function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <MDBContainer className="register-form p-3 my-5 d-flex flex-column ">
-        <p>회원가입</p>
-        <MDBInput
-          wrapperClass="item mb-4"
-          value={inputs.userName}
-          label="이름"
-          name="userName"
-          type="text"
-          onChange={handleChange}
-        />
+    <div className='section'>
+      <div className="container-center" >
+        <div className="tile">
+          <form onSubmit={handleSubmit} className="user-form">
+            <p>회원가입</p>
+            <input
+              className="input"
+              value={inputs.userName}
+              label="이름"
+              name="userName"
+              type="text"
+              onChange={handleChange}
+            />
 
-        <MDBInput
-          wrapperClass="item mb-4"
-          value={inputs.email}
-          label="Email"
-          name="email"
-          type="email"
-          onChange={handleChange}
-        />
+            <input
+              className="input"
+              value={inputs.email}
+              label="Email"
+              name="email"
+              type="email"
+              onChange={handleChange}
+            />
 
-        <MDBInput
-          wrapperClass="item mb-4"
-          value={inputs.password}
-          label="비밀번호"
-          name="password"
-          type="password"
-          onChange={handleChange}
-        />
+            <input
+              className="input"
+              value={inputs.password}
+              label="비밀번호"
+              name="password"
+              type="password"
+              onChange={handleChange}
+            />
 
-        <MDBInput
-          wrapperClass="item mb-4"
-          value={inputs.passwordConfirm}
-          label="비밀번호확인"
-          name="passwordConfirm"
-          type="password"
-          onChange={handleChange}
-        />
+            <input
+              className="input"
+              value={inputs.passwordConfirm}
+              label="비밀번호확인"
+              name="passwordConfirm"
+              type="password"
+              onChange={handleChange}
+            />
 
-        <MDBBtn className="item mb-4">회원가입</MDBBtn>
-      </MDBContainer>
-    </form>
+            <button className="user-button">회원가입</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
 

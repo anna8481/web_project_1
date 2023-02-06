@@ -2,20 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Account.css"
 import { ROUTE } from '../../utills/route'
-import {
-    MDBCol,
-    MDBRow
-} from 'mdb-react-ui-kit';
-
-
-import MyCard from '../../components/MyCard';
+import Header from '../../components/Header'
 
 
 const Account = () => {
     return (<section className="section">
-        <div className="container">
-            <h1>계정관리</h1>
-        </div>
+        <Header title="Account"></Header>
         <div className="container">
 
             <Link to={ROUTE.ACCOUNT_ORDERS.link}>

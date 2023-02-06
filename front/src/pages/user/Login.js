@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {
     MDBContainer,
     MDBInput,
-    MDBCheckbox,
     MDBBtn,
-    MDBIcon
 }
     from 'mdb-react-ui-kit';
 import './Login.css'
@@ -46,16 +44,18 @@ function Login() {
 
     return (<>
 
-
-        <form onSubmit={handleLogin}>
-            <MDBContainer className="login-form p-3 my-7 d-flex flex-column w-50" >
-                <p>로그인</p>
-                <MDBInput wrapperClass='mb-4 w-50 ' value={inputs.email} label='Email' name='email' type='email' onChange={handleChange} />
-                <MDBInput wrapperClass='mb-4 w-50' value={inputs.password} label='Password' name='password' type='password' onChange={handleChange} />
-                <MDBBtn className="mb-4 w-50">로그인</MDBBtn>
-            </MDBContainer>
-        </form>
-
+        <div className='section'>
+            <div className="container-center" >
+                {/* <div className="user-tile"> */}
+                <form onSubmit={handleLogin} className="user-form">
+                    <p >로그인</p>
+                    <input className="input" value={inputs.email} label='Email' name='email' type='email' onChange={handleChange} />
+                    <input className="input" value={inputs.password} label='Password' name='password' type='password' onChange={handleChange} />
+                    <button className="user-button">로그인</button>
+                </form>
+                {/* </div> */}
+            </div>
+        </div>
     </>
     );
 }

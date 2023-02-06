@@ -2,6 +2,7 @@ import React from 'react';
 import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
 import './Cart.css';
+import Header from '../../components/Header'
 
 import {
     MDBBtn,
@@ -16,12 +17,9 @@ import {
 
 function CardProductContainer({ imageKey, productName, price }) {
     return <>
+
         <div className="cart-product-container">
             <div>
-                <div className="cart-product-checkbox">
-                    <MDBCheckbox name='flexCheck' value='' id='productChecked' label='' defaultChecked />
-                    <MDBIcon fas icon="times" />
-                </div>
                 <div className="cart-product-info">
                     <div className="cart-img-name">
                         <img className="productImg" src={imageKey} />
@@ -36,6 +34,7 @@ function CardProductContainer({ imageKey, productName, price }) {
                     {/* </div> */}
                     <div className="calculator">
                         <p className="productPrice">{price}</p> </div>
+                    <div> x </div>
                 </div>
             </div>
         </div>
@@ -46,19 +45,11 @@ function CardProductContainer({ imageKey, productName, price }) {
 function Cart() {
 
     return (
-        <div className="container">
-            <MDBBreadcrumb className="cart" >
-                <MDBBreadcrumbItem>
-                    <Link to='/cart'>장바구니</Link>
-                </MDBBreadcrumbItem>
-                <MDBBreadcrumbItem>
-                    <Link to='/order'>주문결제</Link>
-                </MDBBreadcrumbItem >
-                <MDBBreadcrumbItem active>주문완료</MDBBreadcrumbItem>
-            </MDBBreadcrumb >
+        <div className="section">
+            <Header title="Cart"></Header>
             <div className="tile-ancestor">
                 <div className="product-tile ">
-                    <div className="cart-product-header">
+                    {/* <div className="cart-product-header">
                         <MDBCheckbox name='flexCheck' value='' id='flexCheckChecked' label='전체선택' defaultChecked />
                         <label className="seperator">
                             <p>|</p>
@@ -66,7 +57,7 @@ function Cart() {
                         <label className="delete-part">
                             <p>선택삭제</p>
                         </label>
-                    </div>
+                    </div> */}
                     <CardProductContainer imageKey={"https://www.urbanic30.com/shopimages/urbanic30/0120010000712.jpg?1669683424ç"} productName={"Blue Jeans"} price={"29000"}></CardProductContainer>
                 </div>
                 <div className="order-tile">
