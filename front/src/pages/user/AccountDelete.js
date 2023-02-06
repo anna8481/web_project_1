@@ -7,6 +7,7 @@ function AccountDelete() {
     const navigate = useNavigate();
     const [password, setPassword] = useState("")
 
+    //Modal 사용을 위한 State
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,20 +16,20 @@ function AccountDelete() {
         e.preventDefault();
 
         const formdata = { password }
+        
+        try {
+            const res = await Api.post('user/password/check', formdata)
+            Api.delete('users', res.data._id)
 
-        await Api.post('user/password/check', formdata)
-            .then(res => {
-                Api.delete('users', res.data._id)
-            })
-            .then(res => {
-                localStorage.removeItem("token");
-                alert("계정정보가 안전하게 삭제되었습니다.")
-                navigate('/');
-            }).catch(err => {
-                alert("비밀번호를 다시 확인해주세요");
-                handleClose();
+            localStorage.removeItem("token");
+            alert("계정정보가 안전하게 삭제되었습니다.")
+            navigate('/');
 
-            })
+            return;
+        } catch (err) {
+            alert("비밀번호를 다시 확인해주세요");
+            handleClose();
+        }
 
         setPassword("");
     }

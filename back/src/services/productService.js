@@ -32,7 +32,8 @@ class ProductService {
   }
 
   async getProductsByCategoryTitle(categoryTitle) {
-    const category = await this.categoryModel.findByTitle(categoryTitle);
+    //카테고리에서 타이틀로 찾아서 그 데이터 다 갖고오고
+    const category = await this.categoryModel.findByTitle(categoryTitle); //그 category의 _id값을 가지고 내용 찾기
     const products = await this.productModel.findAllByCategoryId(category._id);
 
     return products;
@@ -47,6 +48,20 @@ class ProductService {
     }
 
     return product;
+  }
+
+  async setProduct(productId, toUpdate) {
+    const updatedProduct = await this.productModel.update({
+      productId,
+      update: toUpdate,
+    });
+
+    return updatedProduct;
+  }
+
+  async deleteProductData(productId) {
+    const deleteProduct = await this.productModel.deleteById(productId);
+    return deleteProduct;
   }
 }
 
