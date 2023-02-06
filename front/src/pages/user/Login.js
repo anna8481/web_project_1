@@ -8,10 +8,10 @@ import {
     MDBIcon
 }
     from 'mdb-react-ui-kit';
-import './LoginForm.css'
-import * as Api from "../api";
+import './Login.css'
+import * as Api from "../../utills/api";
 
-function LoginForm() {
+function Login() {
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({
         email: '',
@@ -60,4 +60,4 @@ function LoginForm() {
     );
 }
 
-export default LoginForm;
+export default Login;

@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Admin.css"
 import { Link } from 'react-router-dom';
-import { ROUTE } from '../route'
+import { ROUTE } from '../../utills/route'
 
 
 import {

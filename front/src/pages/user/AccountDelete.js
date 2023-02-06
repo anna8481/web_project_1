@@ -1,9 +1,9 @@
 import { Form, Button, Container, Modal } from 'react-bootstrap';
 import { useState } from 'react'
-import * as Api from "../api";
+import * as Api from "../../utills/api";
 import { useNavigate } from 'react-router-dom'
 
-function AccountSignout() {
+function AccountDelete() {
     const navigate = useNavigate();
     const [password, setPassword] = useState("")
 
@@ -70,4 +70,4 @@ function AccountSignout() {
     )
 }
 
-export default AccountSignout;
+export default AccountDelete;
