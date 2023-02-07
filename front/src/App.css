@@ -59,7 +59,7 @@ input {
 .user-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 400px;
   margin: 0;
   padding: 0;
