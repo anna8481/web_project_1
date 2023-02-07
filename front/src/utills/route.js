@@ -7,6 +7,7 @@ import Slider from '../components/Slider'
 import CategoryAdd from '../pages/category/CategoryAdd'
 import ProductAdd from '../pages/product/ProductAdd'
 import ProductList from '../pages/product/ProductList';
+import ProductDetail from '../pages/product/ProductDetail';
 import Cart from '../pages/cart/Cart'
 import Order from '../pages/cart/Order'
 import OrderComplete from '../pages/cart/OrderComplete'
@@ -99,7 +100,11 @@ export const ROUTE = {
         link: "/product/list",
         element: ProductList,
     },
-    
+    PRODUCT_DETAIL: {
+        path: "/product/detail",
+        link: "/product/detail",
+        element: ProductDetail,
+    },
 };
 
 

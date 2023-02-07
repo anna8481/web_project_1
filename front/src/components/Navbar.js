@@ -10,6 +10,7 @@ export default function Navbar() {
     const logout = (e) => {
         //저장했던 JWT 토큰을 삭제함.
         localStorage.removeItem("token");
+        localStorage.removeItem("isAdmin");
         console.log(localStorage)
         navigate("/");
     };
@@ -27,6 +28,10 @@ export default function Navbar() {
                 <div
                     className="navigation-menu">
                     <ul>
+                        {localStorage.getItem("isAdmin") &&
+                            <li>
+                                <Link to={ROUTE.ADMIN.link} >페이지관리</Link>
+                            </li>}
                         {localStorage.getItem("token") &&
                             <li>
                                 <Link to={ROUTE.ACCOUNT.link} >계정관리</Link>

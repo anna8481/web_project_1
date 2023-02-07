@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
     MDBBtn,
-    MDBContainer,
-    MDBCard,
-    MDBCardBody,
-    MDBCol,
-    MDBRow,
     MDBInput,
     MDBModal,
     MDBModalDialog,
@@ -14,7 +9,6 @@ import {
     MDBModalTitle,
     MDBModalBody,
     MDBModalFooter,
-    MDBInputGroup
 }
     from 'mdb-react-ui-kit';
 import * as Api from "../../utills/api";
@@ -93,12 +87,11 @@ function AccountSecurity() {
             username: formData.userName,
             phoneNumber: formData.phoneNumber || "",
             address: {
-                address1: formData.address1 || "",
-                address2: formData.address2 || "",
-                postalCode: formData.postalCode || ""
+                address1: formData.address.address1 || "",
+                address2: formData.address.address2 || "",
+                postalCode: formData.address.postalCode || ""
             },
             currentPassword: currentPassword,
-
         };
 
 
@@ -130,14 +123,14 @@ function AccountSecurity() {
         <>
             <div className="container-center">
                 <div className='section'>
-                    <div className="edit-button">
-                        <button className="user-button"
-                            onClick={(e) => {
-                                setDisabled((current) => !current)
-                                console.log(disabled)
-                            }}>수정하기</button>
-                    </div>
-                    <form className="account-form" >
+                    {/* <div className="edit-button"> */}
+                    <button className="edit-button"
+                        onClick={(e) => {
+                            setDisabled((current) => !current)
+                            console.log(disabled)
+                        }}>수정하기</button>
+                    {/* </div> */}
+                    <form className="user-form" >
                         <div>
                             <label>이름</label>
                         </div>
@@ -156,7 +149,7 @@ function AccountSecurity() {
                             <label>주소</label>
                         </div>
                         <div className="postcode">
-                            <input className='input' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
+                            <input className='postcode-input' label="우편번호" name='postalCode' type='text' disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
                             <button className='postcode-button' onClick={handleComplete} disabled={disabled}  >우편번호 찾기</button>
                         </div>
                         {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
@@ -176,7 +169,6 @@ function AccountSecurity() {
                                 수정하기
                             </button>}
                     </form>
-
                 </div>
 
                 <MDBModal show={popup} tabIndex='-1' >

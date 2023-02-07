@@ -9,7 +9,6 @@ const Account = () => {
     return (<section className="section">
         <Header title="Account"></Header>
         <div className="container">
-
             <Link to={ROUTE.ACCOUNT_ORDERS.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Order History</p>

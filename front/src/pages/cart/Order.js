@@ -68,8 +68,8 @@ function Order() {
             username: formData.userName,
             phoneNumber: formData.phoneNumber || "",
             address: {
-                address1: formData.address1 || "",
-                address2: formData.address2 || "",
+                address1: formData.address.address1 || "",
+                address2: formData.address.address2 || "",
                 postalCode: formData.postalCode || ""
             },
             // currentPassword: currentPassword,
@@ -128,8 +128,8 @@ function Order() {
                                 <div>
                                     {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
                                     <div className="postcode">
-                                        <input className="input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} />
-                                        <div type="button" className="input" onClick={handleComplete}> 주소찾기</div>
+                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} />
+                                        <div type="button" className="postcode-button" onClick={handleComplete}> 주소찾기</div>
                                     </div>
                                     <input className="input" type="text" placeholder='주소' value={formData.address.address1} onChange={handleAddressChange} /><br />
                                     <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={formData.address.address2} />
