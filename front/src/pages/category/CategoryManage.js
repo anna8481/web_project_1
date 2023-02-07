@@ -28,8 +28,8 @@ function CategoryManage() {
             res => {
                 setCategories((current) => {
                     const newCategories = res.data.map((item, index) => {
-                        return <div>
-                            <div className="message media category-item" id={item._id}>
+                        return (
+                            <div className="message media category-item"  key={index}>
                                 <div className="media-left">
                                     <figure className="image">
                                         <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt="" />
@@ -39,9 +39,9 @@ function CategoryManage() {
                                     <div>
                                         <p className="title">{item.title}</p>
                                         <p className="description">{item.description}</p>
-                                        <Button size='sm' className="" onClick={e => {
+                                        <Button size='sm' id={item._id} onClick={e => {
                                             setCategory(() => {
-                                                const newCategory = res.data.find(item => item._id === e.target.parentNode.parentNode.parentNode.id)
+                                                const newCategory = res.data.find(item => item._id === e.target.id)
                                                 return newCategory
                                             })
                                             MMShow();
@@ -49,7 +49,7 @@ function CategoryManage() {
                                         {'    '}
                                         <Button size='sm' className="" onClick={e => {
                                             setCategory(() => {
-                                                const newCategory = res.data.find(item => item._id === e.target.parentNode.parentNode.parentNode.id)
+                                                const newCategory = res.data.find(item => item._id === e.target.id)
                                                 return newCategory
                                             })
                                             DMShow();
@@ -58,7 +58,7 @@ function CategoryManage() {
                                 </div>
                             </div>
 
-                        </div>
+                        )
                     })
                     return newCategories
                 })
