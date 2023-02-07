@@ -130,7 +130,7 @@ function AccountSecurity() {
                                 console.log(disabled)
                             }}>수정하기</button>
                     </div>
-                    <form className="account-form" >
+                    <form className="user-form" >
                         <div>
                             <label>이름</label>
                         </div>

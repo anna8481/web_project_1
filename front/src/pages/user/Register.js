@@ -111,7 +111,6 @@ function Register() {
             type="password"
             onChange={handleChange}
           />
-
           <button className="user-button">회원가입</button>
 
         </form>

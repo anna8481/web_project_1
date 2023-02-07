@@ -65,15 +65,6 @@ input {
   padding: 0;
 }
 
-.account-form {
-  display: flex;
-  flex-direction: column;
-  flex-direction: flex-start;
-  width: 400px;
-  margin: 0;
-  padding: 0;
-}
-
 .user-button {
   width: 400px;
   background-color: #fff;
@@ -100,6 +91,7 @@ button:hover {
 
 .postcode {
   display: flex;
+  width: 100%;
 }
 
 .postcode-button {
@@ -109,7 +101,6 @@ button:hover {
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
-  width: 100%;
   text-align: center;
 }
 
