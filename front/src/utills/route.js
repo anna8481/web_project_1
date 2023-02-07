@@ -15,6 +15,8 @@ import OrderComplete from '../pages/cart/OrderComplete'
 import Admin from '../pages/admin/Admin'
 import CategoryManage from '../pages/category/CategoryManage'
 import OrderHistory from '../pages/user/OrderHistory'
+import OrderManage from '../pages/admin/OrderManage'
+import UserManage from '../pages/admin/UserManage'
 
 export const ROUTE = {
     HOME: {
@@ -60,12 +62,12 @@ export const ROUTE = {
     ADMIN_ORDERS: {
         path: "/admin/orders",
         link: "/admin/orders",
-        element: Admin,
+        element: OrderManage,
     },
     ADMIN_USERS: {
         path: "/admin/users",
         link: "/admin/users",
-        element: Admin,
+        element: UserManage,
     },
     CART: {
         path: "/cart",
