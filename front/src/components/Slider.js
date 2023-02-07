@@ -25,7 +25,7 @@ function Slider() {
     };
 
     return (
-        <div className='main-slider' style={{display: 'block', width: 1000, padding: 100}}>
+        <div className='main-slider' style={{ display: 'block', width: 1000, padding: 100 }}>
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 {Array.isArray(category) && category.map(item => (
                     <Carousel.Item interval={1500}>
@@ -33,9 +33,9 @@ function Slider() {
                             <div>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
-                                <img 
-                                src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
-                                alt= "카테고리 이미지" />
+                                <img className="slider-img"
+                                    src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                                    alt="카테고리 이미지" />
                             </div>
                         </Link>
                     </Carousel.Item>

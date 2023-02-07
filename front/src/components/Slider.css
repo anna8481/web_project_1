@@ -7,16 +7,10 @@
 
 .slider-img {
     height: 100;
-}
-
-img {
     margin: auto;
     border-radius: 15px;
-    /* width: 900;
-    height: 500; */
-
-
 }
+
 
 /* .carousel {
     width: 900px;

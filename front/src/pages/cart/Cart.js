@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
 
 
-function CardProductContainer({ img, productName, price }) {
+function CardProductContainer({ img, productName, price, handleDelete }) {
 
     return <>
 
@@ -22,7 +22,7 @@ function CardProductContainer({ img, productName, price }) {
                 </div>
                 <div className="calculator">
                     <p className="productPrice">{price}</p> </div>
-                <MDBIcon fas icon="times" onClick={(e) => console.log(e.target)} />
+                <MDBIcon fas icon="times" onClick={handleDelete} />
             </div>
         </div>
     </>
@@ -31,50 +31,58 @@ function CardProductContainer({ img, productName, price }) {
 
 function Cart() {
     const navigate = useNavigate();
-    const [cart, setCart] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
-    // useEffect(
-    //     () => {
-    //         setCart(JSON.parse(localStorage.getItem('cart')));
-    //         let _subtotal = cart.reduce((accumulator, object) => accumulator + object.price, 0);
-    //         setSubtotal(_subtotal)
-    //         setIsLoggedIn(() => localStorage.getItem("token")?.length === 0 ? true : false)
 
-    //     }, [igLoggedIn, cart])
+    const handleRemoveFromCart = (index) => {
+        const updatedCart = [...cart];
+        updatedCart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        setCart(updatedCart);
+    };
 
 
     const handleOrder = () => {
         localStorage.getItem("token") ? navigate('/order') : navigate('/login')
     }
-
+    //cart.length === 0
+    //? <p>"장바구니가 비어있습니다."  </p>
     return (<>
         <div className="section">
             <Header title="Cart" ></Header>
         </div >
+
+        {/*
+1. {Array.isArray(cart)  cart 가 undefined가 아니고
+2.  장바구니.leng !==0 일때 렌더
+3. 장바구니.leng ===0 일때는 이거
+*/ }
+
         <div className="section" style={{ marginTop: "0" }}>
             <div className="product-tile ">
-                {cart.length === 0
-                    ? <p>"장바구니가 비어있습니다."  </p>
-                    : cart.map(item =>
-                        (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price}></CardProductContainer>)
-                    )}
+                {cart.length !== 0 ?
+                    cart.map(item =>
+                        (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price} handleDelete={handleRemoveFromCart}></CardProductContainer>)
+                    ) : <p>"장바구니가 비어있습니다."  </p>}
             </div>
-            <div className="payment-tile">
-                <div className="payment-summary " >
-                    <div className="payment-header"><h3>결제정보</h3></div>
-                    <div className="payment-info" >
-                        <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subtotal}</p></div>
-                        <div className="info"><p>배송비</p> <p id="deliveryFee">3,000</p> </div>
-                    </div>
-                    <div className="payment-total" ><h2>총 결제금액</h2> <h2 id="Total">{subtotal + 3000}</h2> </div>
+            {/* {Array.isArray(cart) && */}
+            {cart.length !== 0 &&
+                <div className="payment-tile">
+                    <div className="payment-summary " >
+                        <div className="payment-header"><h3>결제정보</h3></div>
+                        <div className="payment-info" >
+                            <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subtotal}</p></div>
+                            <div className="info"><p>배송비</p> <p id="deliveryFee">3,000</p> </div>
+                        </div>
+                        <div className="payment-total" ><h2>총 결제금액</h2> <h2 id="Total">{subtotal + 3000}</h2> </div>
 
 
-                    <div className="purchase" >
-                        <button className="purchase-button" onClick={handleOrder}>구매하기</button>
+                        <div className="purchase" >
+                            <button className="purchase-button" onClick={handleOrder}>구매하기</button>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>}
         </div>
     </>
     )
