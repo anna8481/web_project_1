@@ -98,8 +98,8 @@ export const ROUTE = {
         element: ProductAdd,
     },
     PRODUCT_LIST: {
-        path: "/product/list",
-        link: "/product/list",
+        path: "/product/list/:category",
+        link: "/product/list/:category",
         element: ProductList,
     },
     PRODUCT_DETAIL: {

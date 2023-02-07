@@ -9,9 +9,9 @@ import { ROUTE } from '../utills/route'
 function Product({ title, price, img, productInfo, itemId }) {
 
     const params = useParams();
-    console.log("userid", itemId)
-    console.log("title", title)
-    console.log("price", price)
+    // console.log("userid", itemId)
+    // console.log("title", title)
+    // console.log("price", price)
 
     return (
         <div className='item-card'  >
