@@ -13,15 +13,22 @@ function OrderManage() {
     const DMClose = () => setDM(false);
 
     const init = async () => {
-        const res = await Api.get('admin/orders')
+        const res = await Api.get('orderlist/user')
         console.log(res.data)
         setOrderList(() => {
             const userOrders = res.data.map((item,index) => {
                 return (
                     <tr key={index} >
                         <th>{item.createdAt.split("T")[0]}</th>
-                        <th>주문 상품</th>
-                        <th>{item.status}</th>
+                        <th>주문 정보</th>
+                        <th>{item.totalPrice}</th>
+                        <th>
+                            <select id={item._id} defaultValue={item.status} onChange={handleStatusChange}>
+                                <option value="상품 준비중">상품 준비중</option>
+                                <option value="상품 배송중">상품 배송중</option>
+                                <option value="배송완료">배송완료</option>
+                            </select>
+                        </th>
                         <th><button id={item._id} onClick={handleOrderCancel}>취소</button></th>
                     </tr>)
             })
@@ -43,13 +50,17 @@ function OrderManage() {
         console.log(orderId)
         DMShow();
     }
+
+    const handleStatusChange = (e) => {
+        console.log("Patch Status", e.target.value, e.target.id)
+    }
     return (<>
         <Header title="전체 주문 관리"></Header>
         <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>날짜</th>
-                    <th>주문 상품</th>
+                    <th>주문 정보</th>
                     <th>주문 총액</th>
                     <th>배송 상태 관리</th>
                     <th>취소</th>
