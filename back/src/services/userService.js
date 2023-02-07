@@ -103,6 +103,22 @@ class UserService {
     return user;
   }
 
+  // 관리자) 사용자 정보 가져오기
+  async getAllUsersAdmin() {
+    const userslist = await this.userModel.findAll();
+    return userslist;
+  }
+
+  // 관리자) 특정 사용자 정보 수정
+  async updateUserAdmin(userId, toUpdate) {
+    let user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new Error("해당 id의 사용자를 찾을 수 없습니다.");
+    }
+    user = await this.userModel.update({ userId, update: toUpdate });
+    return user;
+  }
+
   // 사용자 정보 수정, 현재 비밀번호가 있어야 수정 가능.
   async setUser(userInfoRequired, toUpdate) {
     // 객체 destructuring
