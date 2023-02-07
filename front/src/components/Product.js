@@ -7,21 +7,7 @@ import { ROUTE } from '../utills/route'
 
 
 function Product({ title, price, img, productInfo, itemId }) {
-    // const [selectedProduct, setSelectedProduct] = useState(null);
-    // const handleClick = () => {
-    //     setSelectedProduct({ key, title, price, img, productInfo });
-    // };
-    // if (selectedProduct) {
-    //     return (
-    //         <ProductDetail
-    //             key={selectedProduct.key}
-    //             title={selectedProduct.title}
-    //             img={selectedProduct.img}
-    //             description={selectedProduct.productInfo}
-    //             price={selectedProduct.price}
-    //         />
-    //     );
-    // }
+
     const params = useParams();
     console.log("userid", itemId)
     console.log("title", title)
@@ -29,7 +15,7 @@ function Product({ title, price, img, productInfo, itemId }) {
 
     return (
         <div className='item-card'  >
-            <Link to={`/ROUTE.PRODUCT_DETAIL.link/${itemId}`}>
+            <Link to={`/product/detail/${itemId}`}>
                 <img src={img} className="item-image" ></img>
                 <div className="item-title">{title}</div>
                 <div className="item-price">{price}</div>
@@ -38,7 +24,5 @@ function Product({ title, price, img, productInfo, itemId }) {
     )
 }
 
-
-//style={{ width: '100%' }}
 
 export default Product
