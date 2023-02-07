@@ -29,6 +29,9 @@ function Login() {
             });
 
             localStorage.setItem('token', response.data.token);
+            if(response.data.isAdmin) {
+                localStorage.setItem('isAdmin', "admin");
+            }
             navigate('/');
             console.log(response)
         } catch (err) {
