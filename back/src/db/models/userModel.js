@@ -3,6 +3,11 @@ const { UserSchema } = require("../schemas/userSchema");
 
 const User = model("users", UserSchema);
 class UserModel {
+  async findAll() {
+    const user = await User.find();
+    return user;
+  }
+
   async findByEmail(email) {
     const user = await User.findOne({ email: email });
     return user;

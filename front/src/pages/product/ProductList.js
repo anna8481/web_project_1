@@ -14,8 +14,6 @@ function ProductList() {
     const init = async () => {
         const res = await Api.get(`productlist/category/${categoryTitle}`);
         const data = await res.data;
-        console.log(data)
-        data.map(item => console.log(item.productName));
         setProducts(data);
     };
     useEffect(() => {
@@ -28,6 +26,7 @@ function ProductList() {
             <div className="product-container" >
                 {Array.isArray(products) && products.map(item => (
                     <Product
+                        key={item._id}
                         itemId={item._id}
                         title={item.productName}
                         price={item.price}
