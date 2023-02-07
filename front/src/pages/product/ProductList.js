@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-
-// import { useNavigate } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import * as Api from "../../utills/api";
 import Product from '../../components/Product'
 import Header from '../../components/Header'
 
 function ProductList() {
-    // const navigate = useNavigate();
-    const categoryTitle = "바지"
-    const [products, setProducts] = useState(null);
+
+    const { category } = useParams()
+    const [products, setProducts] = useState(undefined);
 
     ///api/productlist/category/:categoryTitle
     const init = async () => {
-        const res = await Api.get(`productlist/category/${categoryTitle}`);
+        const res = await Api.get(`productlist/category/${category}`);
         const data = await res.data;
         setProducts(data);
     };
@@ -22,7 +21,7 @@ function ProductList() {
 
     return (<>
         <div className='section'>
-            <Header title={categoryTitle}></Header>
+            <Header title={category}></Header>
             <div className="product-container" >
                 {Array.isArray(products) && products.map(item => (
                     <Product

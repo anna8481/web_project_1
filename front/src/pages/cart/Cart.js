@@ -1,17 +1,8 @@
 import React from 'react';
-import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 import Header from '../../components/Header'
-
-import {
-    MDBBtn,
-    MDBContainer,
-    MDBCard,
-    MDBCheckbox,
-    MDBIcon,
-}
-    from 'mdb-react-ui-kit';
+import { MDBIcon, } from 'mdb-react-ui-kit';
 
 
 
@@ -44,13 +35,30 @@ function CardProductContainer({ imageKey, productName, price }) {
 
 function Cart() {
 
+    const cart = localStorage.cart;
+    console.log("cart", cart);
+
     return (
         <div className="section">
             <Header title="Cart"></Header>
             <div className="container">
                 <div className="product-tile ">
 
-                    <CardProductContainer imageKey={"https://www.urbanic30.com/shopimages/urbanic30/0120010000712.jpg?1669683424ç"} productName={"Blue Jeans"} price={"29000"}></CardProductContainer>
+                    {/* 
+                {Array.isArray(products) && products.map(item => (
+                    <Product
+                        key={item._id}
+                        itemId={item._id}
+                        title={item.productName}
+                        price={item.price}
+                        img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                        productInfo={item.productInfo}>
+                    </Product>))} */}
+                    {/* {cart.map(item =>
+                        (<CardProductContainer imageKey={"https://www.urbanic30.com/shopimages/urbanic30/0120010000712.jpg?1669683424ç"} productName={"Blue Jeans"} price={"29000"}></CardProductContainer>)
+                    )} */}
+
+
                 </div>
                 <div className="order-tile">
                     <div className="order-summary " >

@@ -26,7 +26,7 @@ function ProductDetail() {
         const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
         localStorage.setItem('cart', JSON.stringify([...currentCart, item]));
         navigate('/cart', { state: { item } });
-        console.log(localStorage);
+        // console.log(localStorage);
     };
 
 

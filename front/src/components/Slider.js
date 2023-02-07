@@ -17,15 +17,15 @@ import * as Api from "../utills/api";
 // const card = document.querySelector(`#category-${_id}`);
 // card.addEventListener("click", navigate(`/product/list/?categort=${title}`));
 
-import Product from './Product';
-function Slider() {
-    const [category, setCategory] = useState({});
 
-    const init = async() => {
+function Slider() {
+    const [category, setCategory] = useState(undefined);
+
+    const init = async () => {
         const res = await Api.get("categorylist");
         const data = await res.data;
         console.log(data)
-        data.map(item => console.log(item.productName));
+        data.map(item => console.log(item.title));
         setCategory(data);
     };
     useEffect(() => {
@@ -42,18 +42,16 @@ function Slider() {
         <div className='main-slider'>
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 <Carousel.Item>
-                    <Link to={`/product/list/${category.title}`} >
-                        {Array.isArray(category) && category.map(item => (
+                    {Array.isArray(category) && category.map(item => (
+                        <Link to={`/product/list/${category.title}`} >
                             <div>
-                            <h3>{item.title}</h3>
-                            <p>{item.description}</p>
-                            <img src="" />
-                            <Product 
-                                img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}>
-                            </Product> 
+                                <h3>{item.title}</h3>
+                                <p>{item.description}</p>
+                                <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} />
                             </div>
-                        ))}
-                    </Link>
+                        </Link>
+                    ))}
+
                 </Carousel.Item>
             </Carousel>
         </div>
