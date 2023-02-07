@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useParams } from 'react';
 import { useNavigate } from 'react-router-dom'
 import * as Api from "../../utills/api";
 import Header from '../../components/Header'
 
-function ProductDetail({ key, title, price, img, productInfo }) {
+function ProductDetail({ userId, title, price, img, productInfo }) {
 
+    const { id } = useParams();
+    console.log("params", id)
     return (<>
 
         <div className='section'>
             <Header title={title}></Header>
-            <div className="container">
+            <div className="container" key={userId}>
                 <div className="product-detail-img"><img src></img></div>
                 <div className="product-detail-img"></div>
 

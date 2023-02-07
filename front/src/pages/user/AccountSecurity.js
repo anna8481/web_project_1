@@ -97,7 +97,6 @@ function AccountSecurity() {
 
         const newData = await Api.patch(`users/${formData._id}`, updatedUser);
         console.log(newData);
-        alert(formData.address.postalCode);
 
     };
 

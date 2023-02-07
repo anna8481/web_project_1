@@ -1,3 +1,4 @@
+
 import Login from '../pages/user/Login'
 import Register from '../pages/user/Register'
 import AccountSercurity from '../pages/user/AccountSecurity'
@@ -101,8 +102,8 @@ export const ROUTE = {
         element: ProductList,
     },
     PRODUCT_DETAIL: {
-        path: "/product/detail",
-        link: "/product/detail",
+        path: "/product/detail/:id",
+        link: "/product/detail/:id",
         element: ProductDetail,
     },
 };
