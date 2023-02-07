@@ -68,6 +68,18 @@ function Order() {
         e.preventDefault();
         // "order" 엔드포인트로 post 요청함.
 
+        const order = {
+            userId: formData._id,
+            phoneNumber: formData.phoneNumber || "",
+            address: {
+                address1: formData.address.address1 || "",
+                address2: formData.address.address2 || "",
+                postalCode: formData.address.postalCode || ""
+            },
+            currentPassword: currentPassword,
+        };
+
+
         try {
             const response = await Api.post("order", {
                 ...formData,
