@@ -123,13 +123,13 @@ function AccountSecurity() {
         <>
             <div className="container-center">
                 <div className='section'>
-                    <div className="edit-button">
-                        <button className="user-button"
-                            onClick={(e) => {
-                                setDisabled((current) => !current)
-                                console.log(disabled)
-                            }}>수정하기</button>
-                    </div>
+                    {/* <div className="edit-button"> */}
+                    <button className="edit-button"
+                        onClick={(e) => {
+                            setDisabled((current) => !current)
+                            console.log(disabled)
+                        }}>수정하기</button>
+                    {/* </div> */}
                     <form className="user-form" >
                         <div>
                             <label>이름</label>
@@ -169,7 +169,6 @@ function AccountSecurity() {
                                 수정하기
                             </button>}
                     </form>
-
                 </div>
 
                 <MDBModal show={popup} tabIndex='-1' >

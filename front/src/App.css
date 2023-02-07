@@ -9,6 +9,9 @@
 .container {
   margin-bottom: 2rem;
   font-family: 'Merriweather', 'Noto Serif KR', serif;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .container-center {
@@ -77,7 +80,12 @@ input {
 
 .edit-button {
   margin-bottom: 3rem;
-  flex-direction: flex-end;
+  display: flex;
+  /* flex-direction: flex-end; */
+  background-color: #fff;
+  border: 1px solid black;
+
+
 }
 
 button {
@@ -94,6 +102,16 @@ button:hover {
   width: 100%;
 }
 
+.postcode-input {
+  flex: 3;
+  border: 1px solid black;
+  line-height: 3.5;
+  border-radius: 0;
+  height: 55px;
+  margin-bottom: 1rem;
+}
+
+
 .postcode-button {
   flex: 1;
   border: 1px solid black;
@@ -104,14 +122,6 @@ button:hover {
   text-align: center;
 }
 
-.postcode-input {
-  flex: 3;
-  border: 1px solid black;
-  line-height: 3.5;
-  border-radius: 0;
-  height: 55px;
-  margin-bottom: 1rem;
-}
 
 
 /* 
