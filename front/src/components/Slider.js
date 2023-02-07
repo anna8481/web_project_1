@@ -43,7 +43,7 @@ function Slider() {
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 <Carousel.Item>
                     {Array.isArray(category) && category.map(item => (
-                        <Link to={`/product/list/${category.title}`} >
+                        <Link to={`/product/list/${item.title}`} >
                             <div>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
