@@ -2,7 +2,9 @@ const express = require("express");
 const userRouter = express.Router();
 const { userService } = require("../services/userService");
 const { loginRequired } = require("../middlewares/loginRequired");
+const { adminOnly } = require("../middlewares/adminOnly");
 
+//회원가입
 userRouter.post("/register", async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
@@ -21,6 +23,7 @@ userRouter.post("/register", async (req, res, next) => {
   }
 });
 
+//로그인
 userRouter.post("/login", async function (req, res, next) {
   try {
     // req (request) 에서 데이터 가져오기
@@ -37,7 +40,53 @@ userRouter.post("/login", async function (req, res, next) {
   }
 });
 
-//특정 사용자 불러오기
+//-----------------------------------------------------
+// 관리자
+
+//관리자) 전체 사용자 불러오기
+userRouter.get("/admin/users", adminOnly, async (req, res, next) => {
+  try {
+    const getAllUsersAdmin = await userService.getAllUsersAdmin();
+
+    res.status(200).json(getAllUsersAdmin);
+  } catch (error) {
+    next(error);
+  }
+});
+// 관리자) 사용자 정보 수정(role 포함)
+userRouter.patch("/admin/users/:userId", adminOnly, async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const { userName, address, phoneNumber, role } = req.body;
+
+    const toUpdate = {
+      ...(userName && { userName }),
+      ...(address && { address }),
+      ...(phoneNumber && { phoneNumber }),
+      ...(role && { role }),
+    };
+    const upDateUserAdmin = await userService.updateUserAdmin(userId, toUpdate);
+    res.status(200).json(upDateUserAdmin);
+  } catch (error) {
+    next(error);
+  }
+});
+//관리자) 사용자 정보 삭제
+userRouter.delete("/users/admin/:userId", adminOnly, async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    const deleteResult = await userService.deleteUserData(userId);
+
+    res.status(200).json(deleteResult);
+  } catch (error) {
+    next(error);
+  }
+});
+//-----------------------------------------------------
+// 사용자
+
+// 사용자) 로그인한 사용자 정보 불러오기
 userRouter.get("/user", loginRequired, async function (req, res, next) {
   try {
     const userId = req.currentUserId;
@@ -49,8 +98,6 @@ userRouter.get("/user", loginRequired, async function (req, res, next) {
   }
 });
 
-//-----------------------------------------------------
-// 사용자 관련
 // 사용자 정보 수정
 userRouter.patch(
   "/users/:userId",
@@ -59,9 +106,9 @@ userRouter.patch(
     try {
       // params로부터 _id를 가져옴(mongo db에서 자동 생성해주는 _id)
       const { userId } = req.params;
-      console.log(req.body);
+
       // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const { userName, password, address, phoneNumber, role } = req.body;
+      const { userName, password, address, phoneNumber } = req.body;
 
       // body data로부터, 확인용으로 사용할 현재 비밀번호를 추출함.
       const currentPassword = req.body.currentPassword;
@@ -80,7 +127,6 @@ userRouter.patch(
         ...(password && { password }),
         ...(address && { address }),
         ...(phoneNumber && { phoneNumber }),
-        ...(role && { role }),
       };
 
       // 사용자 정보를 업데이트함.
