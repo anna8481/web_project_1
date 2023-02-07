@@ -13,6 +13,7 @@ import Order from '../pages/cart/Order'
 import OrderComplete from '../pages/cart/OrderComplete'
 import Admin from '../pages/admin/Admin'
 import CategoryManage from '../pages/category/CategoryManage'
+import OrderHistory from '../pages/user/OrderHistory'
 
 export const ROUTE = {
     HOME: {
@@ -43,7 +44,7 @@ export const ROUTE = {
     ACCOUNT_ORDERS: {
         path: "/account/orders",
         link: "/account/orders",
-        element: Account,
+        element: OrderHistory,
     },
     MYACCOUNT: {
         path: "/account/security",
