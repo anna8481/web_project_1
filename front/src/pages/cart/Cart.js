@@ -45,7 +45,7 @@ function Cart() {
 
 
     const handleOrder = () => {
-        // igLoggedIn ? navigate('/order') : navigate('/login')
+        localStorage.getItem("token") ? navigate('/order') : navigate('/login')
     }
 
     return (<>
