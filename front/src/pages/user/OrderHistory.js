@@ -5,18 +5,25 @@ import Header from '../../components/Header'
 import { DeleteOrder } from "./DeleteOrder";
 
 function OrderHistory() {
+    const [orders, setOrders] = useState(undefined);
     const [orderList, setOrderList] = useState(undefined);
     const [orderId, setOrderId] = useState(undefined);
+
     // Delete Modal State
+
     const [DM, setDM] = useState(false);
     const DMShow = () => setDM(true);
     const DMClose = () => setDM(false);
 
     const init = async () => {
         const res = await Api.get('orderlist/user')
+        setOrders(() => res.data)
+        orderMap(res.data)
+    }
 
+    const orderMap = (orders) => {
         setOrderList(() => {
-            const userOrders = res.data.map((item,index) => {
+            const userOrders = orders.map((item,index) => {
                 return (
                     <tr key={index} >
                         <th>{item.createdAt.split("T")[0]}</th>
@@ -33,6 +40,12 @@ function OrderHistory() {
     useEffect(() => {
         init();
     }, []);
+
+    useEffect(() => {
+        if(Array.isArray(orders) && Array.isArray(orderList))
+            orderMap(orders)
+       
+    },[orders])
 
     const handleOrderCancel = (e) => {
         e.preventDefault();
@@ -57,7 +70,7 @@ function OrderHistory() {
             <tbody>
                 {Array.isArray(orderList) && orderList}
             </tbody>
-           {DM && <DeleteOrder close={DMClose} orderId={orderId}/>}
+           {DM && <DeleteOrder orders={orders} setOrders={setOrders} close={DMClose} orderId={orderId}/>}
         </Table>
 
     </>)

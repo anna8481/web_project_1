@@ -16,7 +16,7 @@ function UserManage() {
 
     const userMap = (user) => {
         setUserList(() => {
-            const users = user.map((item, index) => {
+            const newUserList = user.map((item, index) => {
                 return (
                     <tr key={item._id} >
                         <th>{item.createdAt.split("T")[0]}</th>
@@ -32,7 +32,7 @@ function UserManage() {
                     </tr>)
             })
 
-            return users;
+            return newUserList  ;
         })
     }
     const init = async () => {
@@ -44,6 +44,16 @@ function UserManage() {
     useEffect(() => {
         init();
     }, []);
+
+    useEffect(() => {
+        if(Array.isArray(users) && Array.isArray(userList))
+        {
+            if(typeof userMap === "function")
+            userMap(users)
+        else
+            console.log(typeof userMap)
+        }
+    },[users])
 
     const handleUserDelete = (e) => {
         e.preventDefault();
@@ -72,7 +82,7 @@ function UserManage() {
             <tbody>
                 {Array.isArray(userList) && userList}
             </tbody>
-            {DM && <DeleteUser users={users} setUsers={setUsers} close={DMClose} userId={userId} />}
+            {DM && <DeleteUser users={users} setUsers={setUsers} userMap={userMap} close={DMClose} userId={userId} />}
         </Table>
 
     </>)
