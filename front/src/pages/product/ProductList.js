@@ -11,7 +11,7 @@ function ProductList() {
 
     ///api/productlist/category/:categoryTitle
     const init = async () => {
-        const res = await Api.get(`productlist/category/${categoryTitle}`);
+        const res = await Api.get(`product/list/category/${categoryTitle}`);
         const data = await res.data;
         console.log(data)
         data.map(item => console.log(item.productName));

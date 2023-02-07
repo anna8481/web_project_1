@@ -40,14 +40,13 @@ function Login() {
 
         <div className='section'>
             <div className="container-center" >
-                {/* <div className="user-tile"> */}
+                <p >로그인</p>
                 <form onSubmit={handleLogin} className="user-form">
-                    <p >로그인</p>
-                    <input className="input" value={inputs.email} label='Email' name='email' type='email' onChange={handleChange} />
-                    <input className="input" value={inputs.password} label='Password' name='password' type='password' onChange={handleChange} />
+                    <input className="input" value={inputs.email} label='Email' name='email' type='email' placeholder='email' onChange={handleChange} />
+                    <input className="input" value={inputs.password} label='Password' name='password' type='password' placeholder='password' onChange={handleChange} />
                     <button className="user-button">로그인</button>
                 </form>
-                {/* </div> */}
+
             </div>
         </div>
     </>

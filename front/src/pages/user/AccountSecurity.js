@@ -149,7 +149,7 @@ function AccountSecurity() {
                             <label>주소</label>
                         </div>
                         <div className="postcode">
-                            <input className='input' label="우편번호" name='postalCode' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
+                            <input className='postcode-input' label="우편번호" name='postalCode' type='text' disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
                             <button className='postcode-button' onClick={handleComplete} disabled={disabled}  >우편번호 찾기</button>
                         </div>
                         {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}

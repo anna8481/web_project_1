@@ -121,58 +121,61 @@ function ProductAdd() {
     }
 
     return (
-        <Container className="register-category-form-container">
-            <Form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
-                <Header title="제품 판매"></Header>
-                <Form.Group controlId="productNameInput">
-                    <Form.Label>제품 이름</Form.Label>
-                    <Form.Control type="text" placeholder="제품 이름을 입력하세요" autoComplete="on" name="productName" onChange=
-                        {handleChange} />
-                </Form.Group>
+        <div className="section">
+            <Header title="계정 삭제"></Header>
+            <div className="container">
+                <Form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
 
-                <Form.Group controlId="categoryIdInput">
-                    <Form.Label>카테고리</Form.Label>
-                    <Form.Control as="select" name="categoryId" className={theme}
-                        onChange={e => {
-                            handleChange(e)
-                            setTheme(() => {
-                                return categories.find(item => item.props.value === e.target.value).props.className
-                            })
-                        }
+                    <Form.Group controlId="productNameInput">
+                        <Form.Label>제품 이름</Form.Label>
+                        <Form.Control type="text" placeholder="제품 이름을 입력하세요" autoComplete="on" name="productName" onChange=
+                            {handleChange} />
+                    </Form.Group>
 
-                        }>
-                        <option value="">카테고리를 선택하세요</option>
-                        {isLoad && categories}
-                    </Form.Control>
-                </Form.Group>
+                    <Form.Group controlId="categoryIdInput">
+                        <Form.Label>카테고리</Form.Label>
+                        <Form.Control as="select" name="categoryId" className={theme}
+                            onChange={e => {
+                                handleChange(e)
+                                setTheme(() => {
+                                    return categories.find(item => item.props.value === e.target.value).props.className
+                                })
+                            }
 
-                <Form.Group controlId="productInfonInput">
-                    <Form.Label>제품 설명</Form.Label>
-                    <Form.Control rows={5} as="textarea" name='productInfo' autoComplete="on" onChange={handleChange} />
-                </Form.Group>
+                            }>
+                            <option value="">카테고리를 선택하세요</option>
+                            {isLoad && categories}
+                        </Form.Control>
+                    </Form.Group>
 
-                <Form.Group controlId="imageInput">
-                    <Form.Label>이미지 사진</Form.Label>
-                    <InputGroup className="mb-3">
-                        <FormControl
+                    <Form.Group controlId="productInfonInput">
+                        <Form.Label>제품 설명</Form.Label>
+                        <Form.Control rows={5} as="textarea" name='productInfo' autoComplete="on" onChange={handleChange} />
+                    </Form.Group>
 
-                            type="file"
-                            name="image-file"
-                            accept=".png, .jpeg, .jpg"
-                            onChange={handlefileData}
-                        />
+                    <Form.Group controlId="imageInput">
+                        <Form.Label>이미지 사진</Form.Label>
+                        <InputGroup className="mb-3">
+                            <FormControl
 
-                    </InputGroup>
-                </Form.Group>
+                                type="file"
+                                name="image-file"
+                                accept=".png, .jpeg, .jpg"
+                                onChange={handlefileData}
+                            />
 
-                <Form.Group controlId="price">
-                    <Form.Label>가격</Form.Label>
-                    <Form.Control type="number" placeholder="0" autoComplete="on" name="price" onChange={handleChange} />
-                </Form.Group>
+                        </InputGroup>
+                    </Form.Group>
 
-                <Button type="submit" className="button is-primary is-fullwidth" id="addCategoryButton">제품 추가하기</Button>
-            </Form>
-        </Container>
+                    <Form.Group controlId="price">
+                        <Form.Label>가격</Form.Label>
+                        <Form.Control type="number" placeholder="0" autoComplete="on" name="price" onChange={handleChange} />
+                    </Form.Group>
+
+                    <Button type="submit" className="button is-primary is-fullwidth" id="addCategoryButton">제품 추가하기</Button>
+                </Form>
+            </div>
+        </div>
     );
 }
 

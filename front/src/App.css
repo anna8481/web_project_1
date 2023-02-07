@@ -13,14 +13,26 @@
 
 .container-center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-bottom: 2rem;
   font-family: 'Merriweather', 'Noto Serif KR', serif;
 }
 
-
 .Navbar {
   display: flex;
+}
+
+
+body,
+input,
+button {
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
+}
+
+.a {
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
 }
 
 a,
@@ -29,43 +41,26 @@ ul {
   margin: 0
 }
 
-.title {
-  color: #000;
-  font-weight: 600;
-  font-size: 2rem;
-}
-
-.account-header {
-  max-width: 90%;
-  margin-top: 50px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1rem;
-  border-bottom: #ddd 1px solid;
-
-}
-
-body,
-input,
-button {
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
-}
-
-
-.a {
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
-}
-
-
 input {
-  width: 100%
+  width: 100%;
 }
+
+
+.input {
+  border: 1px solid black;
+  line-height: 3.5;
+  border-radius: 0;
+  height: 55px;
+  margin-bottom: 1rem;
+}
+
+
 
 .user-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 350px;
+  width: 400px;
   margin: 0;
   padding: 0;
 }
@@ -73,15 +68,14 @@ input {
 .account-form {
   display: flex;
   flex-direction: column;
-  flex-direction: flex-end;
-  width: 350px;
+  flex-direction: flex-start;
+  width: 400px;
   margin: 0;
   padding: 0;
 }
 
-
 .user-button {
-  width: 350px;
+  width: 400px;
   background-color: #fff;
   border: 1px solid black;
   line-height: 3.5;
@@ -91,10 +85,8 @@ input {
 }
 
 .edit-button {
-
   margin-bottom: 3rem;
   flex-direction: flex-end;
-
 }
 
 button {
@@ -110,24 +102,33 @@ button:hover {
   display: flex;
 }
 
-
 .postcode-button {
-  /* flex: 1; */
-  width: 30%;
+  flex: 1;
   border: 1px solid black;
   line-height: 3.5;
   border-radius: 0;
-  height: 45px;
+  height: 55px;
   margin-bottom: 1rem;
   width: 100%;
   text-align: center;
 }
 
 .postcode-input {
-  width: 70%;
+  flex: 3;
   border: 1px solid black;
   line-height: 3.5;
   border-radius: 0;
-  height: 45px;
+  height: 55px;
   margin-bottom: 1rem;
 }
+
+
+/* 
+.account-header {
+  max-width: 90%;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem;
+  border-bottom: #ddd 1px solid;
+} */

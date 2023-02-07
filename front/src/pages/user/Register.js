@@ -75,6 +75,7 @@ function Register() {
               className="input"
               value={inputs.userName}
               label="이름"
+              placeholder='Name'
               name="userName"
               type="text"
               onChange={handleChange}
@@ -85,6 +86,7 @@ function Register() {
               value={inputs.email}
               label="Email"
               name="email"
+              placeholder='Email'
               type="email"
               onChange={handleChange}
             />
@@ -93,6 +95,7 @@ function Register() {
               className="input"
               value={inputs.password}
               label="비밀번호"
+              placeholder='Password'
               name="password"
               type="password"
               onChange={handleChange}
@@ -102,6 +105,7 @@ function Register() {
               className="input"
               value={inputs.passwordConfirm}
               label="비밀번호확인"
+              placeholder='Password Check'
               name="passwordConfirm"
               type="password"
               onChange={handleChange}
