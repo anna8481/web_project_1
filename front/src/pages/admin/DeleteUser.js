@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Api from "../../utills/api";
 import { Button, Modal } from 'react-bootstrap';
 
-export function DeleteUser({ close, userId }) {
+export function DeleteUser({users, setUsers, close, userId }) {
 
     const handleClose = () => {
         close();
@@ -11,6 +11,13 @@ export function DeleteUser({ close, userId }) {
         try {
             const res = await Api.delete('users', userId);
             alert("회원정보가 삭제되었습니다.");
+            
+            // window.location.replace("/admin/users");    
+            setUsers(() => {
+                const newUser = users.filter(item => item._id !== userId)
+                return newUser;
+            })
+            
             close();
         }
         catch (err) {
@@ -18,6 +25,8 @@ export function DeleteUser({ close, userId }) {
             close();
         }
     };
+
+    
 
     return (
         <Modal show onHide={handleClose}>
