@@ -22,7 +22,8 @@ function CardProductContainer({ img, productName, price, handleDelete }) {
                 </div>
                 <div className="calculator">
                     <p className="productPrice">{price}</p> </div>
-                <MDBIcon fas icon="times" onClick={handleDelete} />
+                <span className="delete-button">
+                    <MDBIcon fas icon="times" onClick={handleDelete} /></span>
             </div>
         </div>
     </>
@@ -33,6 +34,7 @@ function Cart() {
     const navigate = useNavigate();
     const [subtotal, setSubtotal] = useState(0);
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+
 
 
     const handleRemoveFromCart = (index) => {
@@ -46,6 +48,12 @@ function Cart() {
     const handleOrder = () => {
         localStorage.getItem("token") ? navigate('/order') : navigate('/login')
     }
+
+    useEffect(() => {
+        const sum = cart.reduce((accum, curr) => accum + curr.price, 0)
+        setSubtotal(sum);
+    }, [subtotal])
+
     //cart.length === 0
     //? <p>"장바구니가 비어있습니다."  </p>
     return (<>

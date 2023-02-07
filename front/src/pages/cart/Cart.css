@@ -180,3 +180,7 @@
     width: 50%;
 
 }
+
+.delete-button :hover {
+    cursor: pointer;
+}
