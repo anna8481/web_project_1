@@ -34,7 +34,7 @@ function CardProductContainer({ imageKey, productName, price }) {
                     {/* </div> */}
                     <div className="calculator">
                         <p className="productPrice">{price}</p> </div>
-                    <div> x </div>
+                    <MDBIcon fas icon="times" />
                 </div>
             </div>
         </div>
