@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import './Order.css';
 import Postcode from '../../utills/Postcode'
@@ -7,7 +7,10 @@ import * as Api from "../../utills/api";
 import Header from '../../components/Header'
 
 function Order() {
+    const navigate = useNavigate();
     const [postPopup, setPostPopup] = useState(false);
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const subTotal = cart.reduce((accum, curr) => accum + curr.price, 0);
     const [formData, setFormData] = useState(
         {
             userName: "",
@@ -21,11 +24,6 @@ function Order() {
         }
     );
 
-    const handleComplete = (e) => {
-        e.preventDefault();
-        setPostPopup(!postPopup);
-    }
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -37,6 +35,12 @@ function Order() {
         };
         fetchData();
     }, []);
+
+    const handleComplete = (e) => {
+        e.preventDefault();
+        setPostPopup(!postPopup);
+    }
+
 
 
     const handleInputChange = e => {
@@ -62,23 +66,22 @@ function Order() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // "order" 엔드포인트로 post 요청함.
 
-        // "users/유저id" 엔드포인트로 patch 요청함.
-        const updatedUser = {
-            username: formData.userName,
-            phoneNumber: formData.phoneNumber || "",
-            address: {
-                address1: formData.address.address1 || "",
-                address2: formData.address.address2 || "",
-                postalCode: formData.postalCode || ""
-            },
-            // currentPassword: currentPassword,
+        try {
+            const response = await Api.post("order", {
+                ...formData,
+                totalPrice: subTotal + 3000
+            });
 
-        };
-        console.log(updatedUser);
-        alert('수정이 완료되었습니다!')
+            navigate('/order/complete');
 
+        } catch (err) {
+            alert("배송 정보를 모두 입력해 주세요.")
+        }
     };
+
+
 
 
     return (
@@ -179,15 +182,15 @@ function Order() {
                         <div className="order-summary " >
                             <div className="order-header"><p>결제정보</p></div>
                             <div className="order-info" >
-                                <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">29,000원</p></div>
-                                <div className="info"><p>배송비</p> <p id="deliveryFee">3,000원</p> </div>
+                                <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subTotal}</p></div>
+                                <div className="info"><p>배송비</p> <p id="deliveryFee">3000</p> </div>
                             </div>
-                            <div className="order-total" ><h2>총 결제금액</h2> <h2>32,000원</h2> </div>
+                            <div className="order-total" ><h2>총 결제금액</h2> <h2>{subTotal + 3000}</h2> </div>
 
-                            <Link to="/order" >
-                                <div className="purchase" >
-                                    <button className="purchase-button" >구매하기</button>
-                                </div></Link>
+
+                            <div className="purchase" >
+                                <button className="purchase-button" onClick={handleSubmit} >구매하기</button>
+                            </div>
                         </div>
                     </div>
                 </div>
