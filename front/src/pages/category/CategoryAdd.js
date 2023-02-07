@@ -50,7 +50,7 @@ function CategoryAdd() {
     // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
     async function addPicture(imgdata) {
         try {
-            const res = await axios.post('https://api.cloudinary.com/v1_1/moteam/image/upload', imgdata)
+            const res = await axios.post(process.env.REACT_APP_FILE_UPLOAD_URL, imgdata)
             console.log(res.data.public_id)
             return res.data.public_id;
 
@@ -71,7 +71,7 @@ function CategoryAdd() {
         
         const imgdata = new FormData();
         imgdata.append("file", fileData);
-        imgdata.append("upload_preset", "cn0wxtm");
+        imgdata.append("upload_preset", process.env.REACT_APP_FILE_UPLOAD_PRESET);
         const public_id = await addPicture(imgdata)
 
         let formdata = inputs
