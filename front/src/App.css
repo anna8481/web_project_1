@@ -4,6 +4,7 @@
   margin-left: auto;
   padding: 1rem;
   max-width: 90%;
+  color: black;
 }
 
 .container {
@@ -27,6 +28,14 @@
   display: flex;
 }
 
+.Header {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  padding: 1.5rem 0;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 .tile {
   display: flex;
   flex-direction: row;
@@ -38,6 +47,7 @@ body,
 input,
 button {
   font-family: 'Merriweather', 'Noto Serif KR', serif;
+  color: black;
 }
 
 .a {
@@ -47,7 +57,8 @@ button {
 a,
 ul {
   text-decoration: none;
-  margin: 0
+  margin: 0;
+  color: black;
 }
 
 input {

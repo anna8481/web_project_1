@@ -4,14 +4,12 @@ import { useNavigate, Link } from 'react-router-dom'
 import { ROUTE } from '../utills/route'
 
 
-
 export default function Navbar() {
     const navigate = useNavigate();
     const logout = (e) => {
         //저장했던 JWT 토큰을 삭제함.
         localStorage.removeItem("token");
         localStorage.removeItem("isAdmin");
-        console.log(localStorage)
         navigate("/");
     };
 

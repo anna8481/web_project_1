@@ -1,7 +1,3 @@
-.cart {
-    border-bottom: #dbdbdb solid 1px
-}
-
 .info {
     display: flex;
     flex-direction: row;
@@ -9,15 +5,15 @@
 }
 
 
-.total {
-    display: flex;
-    flex-direction: row;
+.payment-tile {
     justify-content: space-between;
-    margin: 1rem 0;
+    display: flex;
+    margin: 3rem 0 0 0;
+    width: 100%
 }
 
 
-.order-summary {
+.payment-summary {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,16 +21,28 @@
     padding: 0;
 }
 
-.order-header {
+.payment-header {
     border-bottom: #555 solid 1px;
     margin-bottom: 1rem;
 }
 
-.order-info {
+.payment-info {
     border-bottom: #555 solid 1px;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
+    padding-right: 5rem;
 }
+
+
+.payment-total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3rem 0;
+    padding-right: 5rem;
+}
+
+
 
 .info h2 {
     font-size: 1.5rem;
@@ -51,6 +59,8 @@
     justify-content: center;
     width: 100%;
     padding: 0;
+    padding-right: 1rem;
+    border-bottom: solid 1px;
 }
 
 
@@ -131,13 +141,13 @@
 }
 
 .cart-product-info {
-    font-size: 1.4rem;
+    font-size: 1rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
+    margin: 1rem 0;
 }
 
 .tile-ancestor {
@@ -147,12 +157,8 @@
 
 
 .product-tile {
-    border-bottom: solid 1px;
-    margin: 1rem 1rem;
-    display: flex;
+    display: block;
     justify-content: space-between;
-
-
 }
 
 
@@ -163,8 +169,8 @@
 
 
 .purchase {
-    display: flex;
-    justify-content: center;
+    display: block;
+    text-align: center;
 }
 
 .purchase-button {
@@ -172,5 +178,5 @@
     border: 1px solid black;
     line-height: 3.5;
     width: 50%;
-    justify-content: center;
+
 }

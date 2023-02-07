@@ -1,32 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Cart.css';
 import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
 
 
+function CardProductContainer({ img, productName, price }) {
 
-function CardProductContainer({ imageKey, productName, price }) {
     return <>
 
         <div className="cart-product-container">
-            <div>
-                <div className="cart-product-info">
-                    <div className="cart-img-name">
-                        <img className="productImg" src={imageKey} />
-                        {/* <div className="content"> */}
-                        <div className="product-name">   <p>{productName}</p> </div>
-                    </div>
-                    <div className="cart-quantity">
-                        <MDBIcon fas icon="minus-circle" />
-                        <div className="cart-quantity-no">1</div>
-                        <MDBIcon fas icon="plus-circle" />
-                    </div>
-                    {/* </div> */}
-                    <div className="calculator">
-                        <p className="productPrice">{price}</p> </div>
-                    <MDBIcon fas icon="times" />
+            <div className="cart-product-info">
+                <div className="cart-img-name">
+                    <img className="productImg" src={img} alt={productName} />
+                    <div className="product-name">   <p>{productName}</p> </div>
                 </div>
+                <div className="cart-quantity">
+                    <MDBIcon fas icon="minus-circle" />
+                    <div className="cart-quantity-no">1</div>
+                    <MDBIcon fas icon="plus-circle" />
+                </div>
+                <div className="calculator">
+                    <p className="productPrice">{price}</p> </div>
+                <MDBIcon fas icon="times" onClick={(e) => console.log(e.target)} />
             </div>
         </div>
     </>
@@ -34,49 +30,53 @@ function CardProductContainer({ imageKey, productName, price }) {
 
 
 function Cart() {
+    const navigate = useNavigate();
+    const [cart, setCart] = useState([]);
+    const [subtotal, setSubtotal] = useState(0);
 
-    const cart = localStorage.cart;
-    console.log("cart", cart);
+    // useEffect(
+    //     () => {
+    //         setCart(JSON.parse(localStorage.getItem('cart')));
+    //         let _subtotal = cart.reduce((accumulator, object) => accumulator + object.price, 0);
+    //         setSubtotal(_subtotal)
+    //         setIsLoggedIn(() => localStorage.getItem("token")?.length === 0 ? true : false)
 
-    return (
+    //     }, [igLoggedIn, cart])
+
+
+    const handleOrder = () => {
+        // igLoggedIn ? navigate('/order') : navigate('/login')
+    }
+
+    return (<>
         <div className="section">
-            <Header title="Cart"></Header>
-            <div className="container">
-                <div className="product-tile ">
+            <Header title="Cart" ></Header>
+        </div >
+        <div className="section" style={{ marginTop: "0" }}>
+            <div className="product-tile ">
+                {cart.length === 0
+                    ? <p>"장바구니가 비어있습니다."  </p>
+                    : cart.map(item =>
+                        (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price}></CardProductContainer>)
+                    )}
+            </div>
+            <div className="payment-tile">
+                <div className="payment-summary " >
+                    <div className="payment-header"><h3>결제정보</h3></div>
+                    <div className="payment-info" >
+                        <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subtotal}</p></div>
+                        <div className="info"><p>배송비</p> <p id="deliveryFee">3,000</p> </div>
+                    </div>
+                    <div className="payment-total" ><h2>총 결제금액</h2> <h2 id="Total">{subtotal + 3000}</h2> </div>
 
-                    {/* 
-                {Array.isArray(products) && products.map(item => (
-                    <Product
-                        key={item._id}
-                        itemId={item._id}
-                        title={item.productName}
-                        price={item.price}
-                        img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
-                        productInfo={item.productInfo}>
-                    </Product>))} */}
-                    {/* {cart.map(item =>
-                        (<CardProductContainer imageKey={"https://www.urbanic30.com/shopimages/urbanic30/0120010000712.jpg?1669683424ç"} productName={"Blue Jeans"} price={"29000"}></CardProductContainer>)
-                    )} */}
 
-
-                </div>
-                <div className="order-tile">
-                    <div className="order-summary " >
-                        <div className="order-header"><h3>결제정보</h3></div>
-                        <div className="order-info" >
-                            <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">29,000원</p></div>
-                            <div className="info"><p>배송비</p> <p id="deliveryFee">3,000원</p> </div>
-                        </div>
-                        <div className="total" ><h2>총 결제금액</h2> <h2 id="Total">32,000원</h2> </div>
-
-                        <Link to="/order" >
-                            <div className="purchase" >
-                                <button className="purchase-button" >구매하기</button>
-                            </div></Link>
+                    <div className="purchase" >
+                        <button className="purchase-button" onClick={handleOrder}>구매하기</button>
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
+    </>
     )
 }
 

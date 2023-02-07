@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import * as Api from "../../utills/api";
 import Header from '../../components/Header'
 import './ProductDetail.css'
@@ -24,9 +24,22 @@ function ProductDetail() {
 
     const handleAddToCart = () => {
         const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+        console.log("currentCart:", currentCart);
+        const existingProductIndex = currentCart.findIndex(
+            (cart) => cart._id === item._id
+        );
+
+        if (existingProductIndex !== -1) {
+            // 이미 존재하면 alert, 카트로 가기
+            alert("장바구니에 이미 상품이 존재합니다.");
+            navigate('/cart');
+            return;
+        }
+
         localStorage.setItem('cart', JSON.stringify([...currentCart, item]));
+        alert("장바구니에 상품을 추가했습니다.");
         navigate('/cart', { state: { item } });
-        // console.log(localStorage);
+
     };
 
 
@@ -38,7 +51,7 @@ function ProductDetail() {
             <Header ></Header>
             <div className="container-center">
                 <div className="tile" >
-                    <img className="product-detail-img" src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}></img>
+                    <img className="product-detail-img" src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt={item.productName}></img>
                     <div className="product-detail-description">
                         <div className="product-detail-name" >
                             {item.productName}

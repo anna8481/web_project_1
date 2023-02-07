@@ -182,7 +182,7 @@ function Order() {
                                 <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">29,000원</p></div>
                                 <div className="info"><p>배송비</p> <p id="deliveryFee">3,000원</p> </div>
                             </div>
-                            <div className="total" ><h2>총 결제금액</h2> <h2 id="Total">32,000원</h2> </div>
+                            <div className="order-total" ><h2>총 결제금액</h2> <h2>32,000원</h2> </div>
 
                             <Link to="/order" >
                                 <div className="purchase" >

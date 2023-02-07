@@ -29,7 +29,7 @@ function Login() {
             });
 
             localStorage.setItem('token', response.data.token);
-            if(response.data.isAdmin) {
+            if (response.data.isAdmin) {
                 localStorage.setItem('isAdmin', "admin");
             }
             navigate('/');
