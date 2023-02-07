@@ -2,21 +2,7 @@ import { Carousel } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
 import { Link } from 'react-router-dom';
-// import { getImageUrl } from '/';
 import * as Api from "../utills/api";
-
-// async function addImageCards() {
-//     const categorys = await Api.get("categorylist");
-
-//     for (const category of categorys) {
-//         const {_id, title, description, imageKey } = category;
-//         const imageUrl = await getImageUrl(imageKey);
-//     }
-// }
-
-// const card = document.querySelector(`#category-${_id}`);
-// card.addEventListener("click", navigate(`/product/list/?categort=${title}`));
-
 
 function Slider() {
     const [category, setCategory] = useState(undefined);
@@ -39,26 +25,23 @@ function Slider() {
     };
 
     return (
-        <div className='main-slider'>
+        <div className='main-slider' style={{display: 'block', width: 1000, padding: 100}}>
             <Carousel activeIndex={index} onSelect={handleSelect}>
-                <Carousel.Item>
-                    {Array.isArray(category) && category.map(item => (
+                {Array.isArray(category) && category.map(item => (
+                    <Carousel.Item interval={1500}>
                         <Link to={`/product/list/${item.title}`} >
                             <div>
                                 <h3>{item.title}</h3>
                                 <p>{item.description}</p>
-                                <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} />
+                                <img 
+                                src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                                alt= "카테고리 이미지" />
                             </div>
                         </Link>
-                    ))}
-
-                </Carousel.Item>
+                    </Carousel.Item>
+                ))}
             </Carousel>
         </div>
     );
 }
-
 export default Slider;
-
-
-

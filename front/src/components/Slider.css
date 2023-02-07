@@ -1,8 +1,32 @@
 .main-slider {
     width: 60%;
     height: 100;
+    /* box-sizing: content-box;
+    text-align: center; */
 }
 
 .slider-img {
     height: 100;
 }
+
+img {
+    margin: auto;
+    border-radius: 15px;
+    /* width: 900;
+    height: 500; */
+
+
+}
+
+/* .carousel {
+    width: 900px;
+    height: 500px;
+    margin: auto;
+} */
+
+/* @media (max-width: 900px) {
+    .carousel {
+      width:auto;
+      height:auto;
+    }
+} */

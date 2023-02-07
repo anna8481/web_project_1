@@ -1,62 +1,158 @@
-아래의 템플릿을 참고하여 README.md를 작성하세요.
 
-<hr />
+##  📌 쇼핑몰 웹서비스
 
-# (서비스 명)
-- 서비스 명을 위 괄호 부분에 작성하세요.
-- 서비스의 한 줄 소개를 작성하세요.
+- 개발 기간 : 2023.01.30 ~ 2023.02.11
+- 주제 : 물건을 주문, 판매 및 배송할 수 있는 쇼핑몰 웹사이트 개발 프로젝트
+- api 문서 : 
+- 테스트 페이지 : 
+   
+ <br> 
+
+## 👪 팀원
+|  포지션|이름  |
+|--|--|
+|Back-End| 박글해 |
+|Back-End| 심다예 |
+|Back-End| 진다원 |
+|Front-End| 신희태 |
+|Front-End| 이승은 |
+|Front-End| 임나연 |
 
 
-## 서비스 구성 안내
+ <br>  
 
-## 1. 서비스 소개
+## 🔧 기술 스택
 
-- 기술 스택 (Bulma css, node, mongodb 등)
-- 웹서비스에 대한 자세한 개요 등
+### Front-End
+
+<div>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/BootStrap-7952B3?style=flat-square&logo=BootStrap&logoColor=white"/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+</div>
+
+<br />
+
+### Back-End
+
+<div>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/mongoDB-47A248?style=flat-square&logo=mongoDB&logoColor=white"/>
+</div>
+
+<br> 
+
+### 🌈 상세기능
+
+1. **User**
+    - 관리자
+	    - 회원 관리, 권한 지정, 회원 삭제
+    - 사용자
+        - 회원 가입, 정보 수정, 삭제
+	- 유효성 검사 
+		- 로그인 :  아이디 비밀번호 일치여부, 존재하는 이메일 확인여부
+		- 회원가입 : 중복 이메일 확인
+<br> 
+
+2. **PRODUCT**
+    - 관리자
+        - 카테고리 조회, 수정, 삭제
+        - 상품 추가, 수정, 삭제
+    - 유효성 검사 
+		- 상품, 카테고리 : 이름 중복확인
+<br> 
+
+3.  **CART** 
+	- 장바구니 추가, 수정, 삭제(전체, 부분)
+    - 장바구니 가격 조회
+<br>
+    
+4.  **ORDER** 
+    - 관리자
+	    - 주문 상태 변경, 삭제
+    - 사용자
+        - 주문 확인, 수정, 삭제
+    - 유효성 검사 
+		- 주문자 확인
+<br> 
+
+## ✨ 디자인
 
 
-## 2. 서비스 주요 기능 설명
 
-**웹서비스의 유용성, 편의성 및 시각화의 실용성에 대한 설명**
-  - 주요 기능 (주된 활용성) 및 서브 기능 소개
-  - 프로젝트만의 차별점, 기대 효과
+<br>
+---
 
-## 3. 서비스 구성도
-  - 서비스 구조도 그림 (사용한 기술 스택)
-  - 와이어프레임 링크 (예상 웹 화면 UI) e.g) figma 사용
-  - API 명세를 문서화한 링크
 
-## 4. 프로젝트 팀원 역할 분담
-| 이름 | 담당 업무 |
-| ------ | ------ |
-| 멤버1 | 팀장/프론트엔드 개발 |
-| 멤버2 | 백엔드 개발 |
 
-**멤버별 responsibility**
+## 🔍 테스트 방법
 
-1. 멤버 1: 팀장/프론트엔드 담당
+1. 해당 프로젝트를 clone 합니다.
+```
+git clone git@kdt-gitlab.elice.io:ai_track/class_06/web_project/team03/moteam.git
+```
 
-- 기획 단계: 구체적인 설계와 지표에 따른 프로젝트 제안서 작성
-- 개발 단계: 팀원간의 일정 등 조율 + 프론트 or 백엔드 개발
-- 수정 단계: 기획, 스크럼 진행, 코치님 피드백 반영해서 수정, 발표 준비
+2. 프로젝트 실행에 필요한 패키지를 설치합니다.
+```
+-- npm 사용 시 --
 
-2. 멤버 2: 백엔드 담당
+cd front
+npm install
 
-- 기획 단계: 큰 주제에서 문제 해결 아이디어 도출, 와이어프레임 작성
-- 개발 단계: 와이어프레임을 기반으로 API 완성
-- 수정 단계: 피드백 반영해서 백엔드 설계 수정
+cd back
+npm install
+```
+```
+-- yarn 사용 시 --
 
-## 5. 실행 방법
-- 백엔드 (예시):
-  ```bash
-  1. mongodb 실행
-  2. yarn start (혹은 npm start)
-  ```
+cd front
+yarn
 
-## 6. 버전
-  - 프로젝트의 버전 기입 (예: 1.0.0)
+cd back
+yarn
+```
 
-## 7. FAQ
-  - 자주 받는 질문 정리
-  - 예시) 이 서비스는 어떻게 실행하면 되나요?
-    - git clone을 하신 후 아래 커맨드를 입력하시면 됩니다. ~~~
+3. 몽고디비 설치 후 연결합니다.
+```
+-- 몽고디비 아틀라스 사용 시 --
+
+1. 몽고디비 아틀라스 클라우드 데이터베이스 생성
+2. back 디렉토리의 .env 파일 편집
+3. MONGODB_URL 변수에 DB URL을 삽입
+4. ex) MONGODB_URL="mongodb+srv://<DB명>:<비밀번호>@<db명>.m5knbpd.mongodb.net/?retryWrites=true&w=majority"
+```
+
+```
+-- 로컬에서 몽고디비 사용 시 --
+
+1. 몽고디비 설치
+2. back 디렉토리의 .env 파일 편집
+3. MONGODB_URL 변수에 mongodb://localhost:27017/ 삽입
+```
+
+4. 프론트엔드 서버와 백엔드 서버를 실행합니다.
+```
+-- npm 사용 시 --
+
+cd front
+npm start
+
+cd back
+npm start
+```
+
+```
+-- yarn 사용 시 --
+
+cd front
+yarn start
+
+cd back
+yarn start
+```
+5. 마음껏 테스트 해보세요!
