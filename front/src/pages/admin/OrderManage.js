@@ -2,9 +2,9 @@ import * as Api from "../../utills/api";
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, InputGroup, FormControl, Row, Col, Table } from 'react-bootstrap';
 import Header from '../../components/Header'
-import { DeleteOrder } from "./DeleteOrder";
+import {DeleteOrder} from "../user/DeleteOrder";
 
-function OrderHistory() {
+function OrderManage() {
     const [orderList, setOrderList] = useState(undefined);
     const [orderId, setOrderId] = useState(undefined);
     // Delete Modal State
@@ -13,8 +13,8 @@ function OrderHistory() {
     const DMClose = () => setDM(false);
 
     const init = async () => {
-        const res = await Api.get('orderlist/user')
-
+        const res = await Api.get('admin/orders')
+        console.log(res.data)
         setOrderList(() => {
             const userOrders = res.data.map((item,index) => {
                 return (
@@ -44,14 +44,15 @@ function OrderHistory() {
         DMShow();
     }
     return (<>
-        <Header title="주문 조회"></Header>
+        <Header title="전체 주문 관리"></Header>
         <Table striped bordered hover>
             <thead>
                 <tr>
                     <th>날짜</th>
                     <th>주문 상품</th>
-                    <th>배송</th>
-                    <th>주문 취소</th>
+                    <th>주문 총액</th>
+                    <th>배송 상태 관리</th>
+                    <th>취소</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,4 +65,4 @@ function OrderHistory() {
 
 }
 
-export default OrderHistory
+export default OrderManage;

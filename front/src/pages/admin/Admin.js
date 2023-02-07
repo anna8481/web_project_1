@@ -10,14 +10,14 @@ const Admin = () => {
         <Header title="Admin"></Header>
         <div className="container">
 
-            <Link to={ROUTE.ACCOUNT_ORDERS.link}>
+            <Link to={ROUTE.ADMIN_ORDERS.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Order Manage</p>
                         <p className="sub-name">주문 관리</p></button>
                 </div>
             </Link>
 
-            <Link to={ROUTE.MYACCOUNT.link}>
+            <Link to={ROUTE.ADMIN_USERS.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">User Manage</p>
                         <p className="sub-name">회원 관리</p></button>
