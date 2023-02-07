@@ -3,7 +3,7 @@ const orderRouter = express.Router();
 const { loginRequired } = require("../middlewares/loginRequired");
 const { orderService } = require("../services/orderService");
 
-// 사용자)주문하기
+// 사용자) 주문하기
 orderRouter.post("/order", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
@@ -23,7 +23,7 @@ orderRouter.post("/order", loginRequired, async (req, res, next) => {
   }
 });
 
-// 특정 사용자(현재 로그인한 사용자)의 주문 조회
+// (현재 로그인 상태)사용자) 주문 조회
 orderRouter.get(
   "/orderlist/user",
   loginRequired,
@@ -40,6 +40,7 @@ orderRouter.get(
   }
 );
 
+// 사용자) 특정 주문 건 조회
 orderRouter.get(
   "/orders/:orderId",
   loginRequired,
@@ -55,6 +56,7 @@ orderRouter.get(
   }
 );
 
+//사용자) 특정 주문 건 수정
 orderRouter.patch(
   "/orders/:orderId",
   loginRequired,
@@ -81,7 +83,7 @@ orderRouter.patch(
   }
 );
 
-//확인중
+//사용자) 특정 주문건 삭제
 orderRouter.delete(
   "/orders/:orderId",
   loginRequired,
