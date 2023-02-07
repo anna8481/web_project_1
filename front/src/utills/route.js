@@ -1,3 +1,4 @@
+
 import Login from '../pages/user/Login'
 import Register from '../pages/user/Register'
 import AccountSercurity from '../pages/user/AccountSecurity'
@@ -13,6 +14,7 @@ import Order from '../pages/cart/Order'
 import OrderComplete from '../pages/cart/OrderComplete'
 import Admin from '../pages/admin/Admin'
 import CategoryManage from '../pages/category/CategoryManage'
+import OrderHistory from '../pages/user/OrderHistory'
 
 export const ROUTE = {
     HOME: {
@@ -43,7 +45,7 @@ export const ROUTE = {
     ACCOUNT_ORDERS: {
         path: "/account/orders",
         link: "/account/orders",
-        element: Account,
+        element: OrderHistory,
     },
     MYACCOUNT: {
         path: "/account/security",
@@ -101,8 +103,8 @@ export const ROUTE = {
         element: ProductList,
     },
     PRODUCT_DETAIL: {
-        path: "/product/detail",
-        link: "/product/detail",
+        path: "/product/detail/:id",
+        link: "/product/detail/:id",
         element: ProductDetail,
     },
 };

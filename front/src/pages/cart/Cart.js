@@ -47,17 +47,9 @@ function Cart() {
     return (
         <div className="section">
             <Header title="Cart"></Header>
-            <div className="tile-ancestor">
+            <div className="container">
                 <div className="product-tile ">
-                    {/* <div className="cart-product-header">
-                        <MDBCheckbox name='flexCheck' value='' id='flexCheckChecked' label='전체선택' defaultChecked />
-                        <label className="seperator">
-                            <p>|</p>
-                        </label>
-                        <label className="delete-part">
-                            <p>선택삭제</p>
-                        </label>
-                    </div> */}
+
                     <CardProductContainer imageKey={"https://www.urbanic30.com/shopimages/urbanic30/0120010000712.jpg?1669683424ç"} productName={"Blue Jeans"} price={"29000"}></CardProductContainer>
                 </div>
                 <div className="order-tile">

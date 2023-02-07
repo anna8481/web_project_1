@@ -122,7 +122,7 @@ function ProductAdd() {
 
     return (
         <div className="section">
-            <Header title="계정 삭제"></Header>
+            <Header title="제품 등록"></Header>
             <div className="container">
                 <Form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
 

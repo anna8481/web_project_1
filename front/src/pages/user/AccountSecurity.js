@@ -97,7 +97,6 @@ function AccountSecurity() {
 
         const newData = await Api.patch(`users/${formData._id}`, updatedUser);
         console.log(newData);
-        alert(formData.address.postalCode);
 
     };
 
@@ -150,7 +149,7 @@ function AccountSecurity() {
                         </div>
                         <div className="postcode">
                             <input className='postcode-input' label="우편번호" name='postalCode' type='text' disabled={disabled} onChange={handleAddressChange} value={formData.address?.postalCode} />
-                            <button className='postcode-button' onClick={handleComplete} disabled={disabled}  >우편번호 찾기</button>
+                            <button className='postcode-button' onClick={handleComplete} disabled={disabled}  >우편번호</button>
                         </div>
                         {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
 

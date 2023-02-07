@@ -131,8 +131,8 @@ function Order() {
                                         <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} />
                                         <div type="button" className="postcode-button" onClick={handleComplete}> 주소찾기</div>
                                     </div>
-                                    <input className="input" type="text" placeholder='주소' value={formData.address.address1} onChange={handleAddressChange} /><br />
-                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={formData.address.address2} />
+                                    <input className="input" type="text" placeholder='주소' value={formData.address?.address1} onChange={handleAddressChange} /><br />
+                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={formData.address?.address2} />
                                 </div>
                                 <div>
                                     <label>요청사항</label>
