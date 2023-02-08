@@ -87,9 +87,9 @@ function Order() {
             productId: cart[0]._id || "",
             totalPrice: subTotal + 3000,
             address: {
-                address1: shippingInfo.address.address1 || "",
-                address2: shippingInfo.address.address2 || "",
-                postalCode: shippingInfo.address.postalCode || "",
+                address1: shippingInfo.address?.address1 || "",
+                address2: shippingInfo.address?.address2 || "",
+                postalCode: shippingInfo.address?.postalCode || "",
                 receiverName: shippingInfo.userName || "",
                 receiverPhoneNumber: shippingInfo.phoneNumber || "",
             },
