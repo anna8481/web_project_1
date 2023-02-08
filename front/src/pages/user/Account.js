@@ -30,12 +30,12 @@ const Account = () => {
                 </div>
             </Link> */}
 
-            <Link to={ROUTE.ACCOUNT_SIGNOUT.link}>
+            {/* <Link to={ROUTE.ACCOUNT_SIGNOUT.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Delete Account</p>
                         <p className="sub-name">회원 탈퇴</p></button>
                 </div>
-            </Link>
+            </Link> */}
 
 
         </div>

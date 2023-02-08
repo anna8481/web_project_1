@@ -3,25 +3,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Cart.css';
 import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
-
+import { ROUTE } from '../../utills/route'
 
 function CardProductContainer({ img, productName, price, handleDelete }) {
-
+    const currencySymbol = 'KRW';
     return <>
 
         <div className="cart-product-container">
             <div className="cart-product-info">
                 <div className="cart-img-name">
                     <img className="productImg" src={img} alt={productName} />
-                    <div className="product-name">   <p>{productName}</p> </div>
+                    <div className="product-name">   {productName} </div>
                 </div>
                 <div className="cart-quantity">
                     <MDBIcon fas icon="minus-circle" />
                     <div className="cart-quantity-no">1</div>
                     <MDBIcon fas icon="plus-circle" />
                 </div>
-                <div className="calculator">
-                    <p className="productPrice">{price}</p> </div>
+                <div className="product-price">{price.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })} </div>
                 <span className="delete-button">
                     <MDBIcon fas icon="times" onClick={handleDelete} /></span>
             </div>
@@ -59,8 +58,8 @@ function Cart() {
     //cart.length === 0
     //? <p>"장바구니가 비어있습니다."  </p>
     return (<>
-        <div className="section">
-            <Header title="Cart" ></Header>
+        <div className="section"  >
+            <Header title="Cart" style={{ marginBottom: "0" }}></Header>
         </div >
 
         {/*
@@ -91,6 +90,9 @@ function Cart() {
                         <div className="purchase" >
                             <button className="purchase-button" onClick={handleOrder}>구매하기</button>
                         </div>
+                        <p style={{ textAlign: 'center', marginTop: "1rem", textDecoration: "underline", display: "inline" }}>
+                            <Link to={ROUTE.HOME.link}>Back home
+                            </Link> </p>
                     </div>
                 </div>}
         </div>

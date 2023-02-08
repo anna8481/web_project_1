@@ -30,7 +30,7 @@
     border-bottom: #555 solid 1px;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    padding-right: 5rem;
+    padding-right: 10rem;
 }
 
 
@@ -39,7 +39,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 3rem 0;
-    padding-right: 5rem;
+    padding-right: 10rem;
 }
 
 
@@ -54,7 +54,7 @@
 
 
 .cart-product-container {
-    display: flex;
+
     flex-direction: column;
     justify-content: center;
     width: 100%;
@@ -79,66 +79,14 @@
     margin: 0 0.5rem;
 }
 
-.delete-all {
-    display: flex;
-    flex-direction: row;
-
-}
 
 .cart-img-name {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 60%;
 }
 
-.product-name {
-    margin-left: 1rem;
-    margin-bottom: 0;
-}
-
-.product-name p {
-    margin-bottom: 0;
-}
-
-
-.cart-quantity {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cart-quantity-no {
-    border: solid;
-    padding: 0.1rem 0.5rem;
-    border-color: #dbdbdb;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin: 0 0.3rem;
-}
-
-.productImg {
-    height: 8rem;
-    width: 6rem;
-}
-
-/* .cart-product-checkbox {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
-
-
-.calculator {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 2rem;
-}
-
-.calculator p {
-    margin: 0 1rem;
-}
 
 .cart-product-info {
     font-size: 1rem;
@@ -149,6 +97,61 @@
     width: 100%;
     margin: 1rem 0;
 }
+
+
+.cart-quantity {
+    display: inline;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-quantity-no {
+    display: inline;
+    border: solid;
+    padding: 0.1rem 0.5rem;
+    border-color: #dbdbdb;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin: 0 0.3rem;
+}
+
+
+
+.product-name {
+    margin-left: 1rem;
+    margin-bottom: 0;
+    display: flex;
+    width: 60%;
+}
+
+.product-price {
+    margin-left: 12rem;
+    margin-bottom: 0;
+}
+
+
+.productImg {
+    height: 8rem;
+    width: 6rem;
+}
+
+.delete-button {
+    margin-right: 2rem;
+}
+
+.delete-all {
+    display: flex;
+    flex-direction: row;
+
+}
+
+/* .cart-product-checkbox {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} */
+
 
 .tile-ancestor {
     display: flex;

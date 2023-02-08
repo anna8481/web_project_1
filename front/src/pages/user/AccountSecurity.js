@@ -13,6 +13,8 @@ import {
     from 'mdb-react-ui-kit';
 import * as Api from "../../utills/api";
 import Postcode from '../../utills/Postcode'
+import { Link } from 'react-router-dom';
+import { ROUTE } from '../../utills/route'
 
 function AccountSecurity() {
     const [disabled, setDisabled] = useState(true);
@@ -172,10 +174,15 @@ function AccountSecurity() {
                             <label>전화번호</label>
                         </div>
                         <input className="input" label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
+
+
                         {!disabled &&
                             <button className="user-button" type="submit" disabled={disabled} onClick={toggleShow}  >
                                 수정하기
                             </button>}
+
+                        <Link to={ROUTE.ACCOUNT_SIGNOUT.link} style={{ marginTop: "1rem" }}>
+                            <p style={{ display: "inline", color: "#999", textAlign: "left" }}>회원 탈퇴</p> </Link>
                     </form>
                 </div>
 
@@ -196,6 +203,7 @@ function AccountSecurity() {
                         </MDBModalContent>
                     </MDBModalDialog>
                 </MDBModal>
+
             </div >
         </>
     );
