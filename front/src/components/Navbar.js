@@ -16,7 +16,7 @@ export default function Navbar() {
 
 
     return (
-        <div className="section">
+        <div className="nav-section">
             <nav className="navigation">
                 <div className="navigation-brand">
                     <Link to={ROUTE.HOME.link} >

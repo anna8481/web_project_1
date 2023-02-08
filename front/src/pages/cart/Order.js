@@ -11,7 +11,6 @@ function Order() {
     const navigate = useNavigate();
     const [postPopup, setPostPopup] = useState(false);
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    console.log(cart);
     const subTotal = cart.reduce((accum, curr) => accum + curr.price, 0) || 0;
     const [formData, setFormData] = useState(
         {

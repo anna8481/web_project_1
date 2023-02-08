@@ -1,3 +1,12 @@
+.nav-section {
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1rem;
+    max-width: 90%;
+    color: black;
+}
+
 .navigation {
     height: 60px;
     width: 100%;
