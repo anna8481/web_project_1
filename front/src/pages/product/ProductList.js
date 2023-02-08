@@ -5,7 +5,7 @@ import Product from '../../components/Product'
 import Header from '../../components/Header'
 
 function ProductList() {
-
+    const currencySymbol = "KRW"
     const { category } = useParams()
     const [products, setProducts] = useState(undefined);
 
@@ -28,7 +28,7 @@ function ProductList() {
                         key={item._id}
                         itemId={item._id}
                         title={item.productName}
-                        price={item.price}
+                        price={item.price.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}
                         img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
                         productInfo={item.productInfo}>
                     </Product>))}

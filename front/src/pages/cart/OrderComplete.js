@@ -26,6 +26,8 @@ function OrderComplete() {
                             <button className="purchase-button" >Order History</button>
                         </div>
                     </Link>
+
+                    <Link to={ROUTE.HOME.link}> <p style={{ textAlign: 'center', marginTop: "1rem", textDecoration: "underline" }}>Back home</p> </Link>
                 </div>
             </div>
 
