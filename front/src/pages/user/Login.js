@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
 import * as Api from "../../utills/api";
+import { ROUTE, ROUTE_ARR } from '../../utills/route';
 
 function Login() {
     const navigate = useNavigate();
@@ -31,12 +32,17 @@ function Login() {
             console.log("fromRegister?", location.pathname)
 
             localStorage.setItem('token', response.data.token);
+
             if (response.data.isAdmin) {
                 localStorage.setItem('isAdmin', "admin");
             }
 
-            navigate('/');
-            // navigate(-1 || '/');
+            if (location.state?.redirectUrl) {
+                navigate(location.state.redirectUrl)
+            }
+            else {
+                navigate(ROUTE.HOME.link);
+            }
 
 
             console.log(response)

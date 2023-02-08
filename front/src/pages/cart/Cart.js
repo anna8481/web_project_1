@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Cart.css';
 import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
@@ -34,6 +34,7 @@ function Cart() {
     const currencySymbol = 'KRW';
     const shippingCost = 3000;
     const navigate = useNavigate();
+    const location = useLocation();
     const [subtotal, setSubtotal] = useState(0);
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
@@ -41,7 +42,7 @@ function Cart() {
     const [selectAll, setSelectAll] = useState(false);
 
     const handleOrder = () => {
-        localStorage.getItem("token") ? navigate('/order') : navigate('/login')
+        localStorage.getItem("token") ? navigate('/order') : navigate('/login', { state: { redirectUrl: location.pathname + location.search + location.hash } })
     }
 
     //체크 박스 전체 선택
