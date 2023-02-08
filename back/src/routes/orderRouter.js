@@ -67,12 +67,10 @@ orderRouter.patch(
       const address = req.body;
 
       // 없던 값이였으면 update
-      const toUpdate = {
-        ...(address && { address }),
-      };
+      // const toUpdate = { ...(address && { address }) };
 
       // 제품 정보 업데이트
-      const updatedOrder = await orderService.setOrder(orderId, toUpdate);
+      const updatedOrder = await orderService.setOrder(orderId, address);
 
       res.status(200).json(updatedOrder);
     } catch (error) {
@@ -120,16 +118,13 @@ orderRouter.patch(
     try {
       // req (request) 에서 데이터 가져오기
       const orderId = req.params.orderId;
-      const { address, status } = req.body;
+      const { status } = req.body;
 
       // 없던 값이였으면 update
-      const toUpdate = {
-        ...(address && { address }),
-        ...(status && { status }),
-      };
+      //const toUpdate = { ...(status && { status })};
 
       // 제품 정보 업데이트
-      const updatedOrder = await orderService.setOrder(orderId, toUpdate);
+      const updatedOrder = await orderService.setOrder(orderId, status);
 
       res.status(200).json(updatedOrder);
     } catch (error) {
