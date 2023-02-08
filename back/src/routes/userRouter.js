@@ -72,7 +72,7 @@ userRouter.patch("/admin/users/:userId", adminOnly, async (req, res, next) => {
   }
 });
 //관리자) 사용자 정보 삭제
-userRouter.delete("/users/admin/:userId", adminOnly, async (req, res, next) => {
+userRouter.delete("/admin/users/:userId", adminOnly, async (req, res, next) => {
   try {
     const { userId } = req.params;
 
