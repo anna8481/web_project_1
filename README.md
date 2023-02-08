@@ -2,7 +2,7 @@
 
 - 개발 기간 : 2023.01.30 ~ 2023.02.11
 - 주제 : 물건을 주문, 판매 및 배송할 수 있는 쇼핑몰 웹사이트 개발 프로젝트
-- api 문서 : [바로 가기]](https://documenter.getpostman.com/view/24978701/2s935rJhDb)
+- api 문서 : [바로 가기](https://documenter.getpostman.com/view/24978701/2s935rJhDb)
 - 테스트 페이지 : 
    
  <br> 
