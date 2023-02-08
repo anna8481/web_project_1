@@ -5,7 +5,9 @@ const Order = model("orders", OrderSchema);
 
 class OrderModel {
   async findById(orderId) {
-    const order = await Order.findOne({ _id: orderId });
+    const order = await Order.findOne({ _id: orderId }).populate(
+      "productId.productInfo"
+    );
     return order;
   }
 
@@ -37,7 +39,6 @@ class OrderModel {
     return result;
   }
 }
-
 
 module.exports = OrderModel;
 
