@@ -6,6 +6,8 @@ import * as Api from "../../utills/api";
 import Header from '../../components/Header'
 
 function Order() {
+    const currencySymbol = 'KRW';
+    const shippingCost = 3000;
     const navigate = useNavigate();
     const [postPopup, setPostPopup] = useState(false);
     const cart = JSON.parse(localStorage.getItem('cart'));
@@ -210,10 +212,10 @@ function Order() {
                         <div className="order-summary " >
                             <div className="order-header"><p>결제정보</p></div>
                             <div className="order-info" >
-                                <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subTotal}</p></div>
-                                <div className="info"><p>배송비</p> <p id="deliveryFee">3000</p> </div>
+                                <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subTotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
+                                <div className="info"><p>배송비</p> <p id="deliveryFee">{shippingCost.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
                             </div>
-                            <div className="order-total" ><h2>총 결제금액</h2> <h2>{subTotal + 3000}</h2> </div>
+                            <div className="order-total" ><h2>총 결제금액</h2> <h2>{(subTotal + shippingCost).toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</h2> </div>
 
 
                             <div className="purchase" >
