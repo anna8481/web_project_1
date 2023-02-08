@@ -95,13 +95,11 @@ input {
 }
 
 .edit-button {
-  margin-bottom: 3rem;
-  /* display: flex; */
-  /* flex-direction: flex-end; */
   background-color: #fff;
   border: 1px solid black;
-
-
+  display: inline;
+  margin-right: "1rem";
+  text-align: center;
 }
 
 button {

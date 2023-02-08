@@ -1,8 +1,8 @@
 import * as Api from "../../utills/api";
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, InputGroup, FormControl, Row, Col, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Header from '../../components/Header'
-import {DeleteOrder} from "../user/DeleteOrder";
+import { DeleteOrder } from "../user/DeleteOrder";
 
 function OrderManage() {
     const [orderList, setOrderList] = useState(undefined);
@@ -16,7 +16,7 @@ function OrderManage() {
         const res = await Api.get('admin/orderslist/all')
         console.log(res.data)
         setOrderList(() => {
-            const userOrders = res.data.map((item,index) => {
+            const userOrders = res.data.map((item, index) => {
                 return (
                     <tr key={index} >
                         <th>{item.createdAt.split("T")[0]}</th>
@@ -29,10 +29,10 @@ function OrderManage() {
                                 <option value="배송완료">배송완료</option>
                             </select>
                         </th>
-                        <th><button id={item._id} onClick={handleOrderCancel}>취소</button></th>
+                        <th><button className="edit-button" id={item._id} onClick={handleOrderCancel}>취소</button></th>
                     </tr>)
             })
-            
+
             return userOrders;
         })
     }
@@ -43,7 +43,7 @@ function OrderManage() {
 
     const handleOrderCancel = (e) => {
         e.preventDefault();
-        
+
         setOrderId(() => {
             return e.target.id
         })
@@ -55,23 +55,24 @@ function OrderManage() {
         console.log("Patch Status", e.target.value, e.target.id)
     }
     return (<>
-        <Header title="전체 주문 관리"></Header>
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>날짜</th>
-                    <th>주문 정보</th>
-                    <th>주문 총액</th>
-                    <th>배송 상태 관리</th>
-                    <th>취소</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Array.isArray(orderList) && orderList}
-            </tbody>
-           {DM && <DeleteOrder close={DMClose} orderId={orderId}/>}
-        </Table>
-
+        <div className="section">
+            <Header title="전체 주문 관리"></Header>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>주문 정보</th>
+                        <th>주문 총액</th>
+                        <th>배송 상태 관리</th>
+                        <th>취소</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.isArray(orderList) && orderList}
+                </tbody>
+                {DM && <DeleteOrder close={DMClose} orderId={orderId} />}
+            </Table>
+        </div>
     </>)
 
 }

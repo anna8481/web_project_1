@@ -1,6 +1,6 @@
 import * as Api from "../../utills/api";
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, InputGroup, FormControl, Row, Col, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Header from '../../components/Header'
 import { DeleteUser } from "./DeleteUser";
 
@@ -28,11 +28,11 @@ function UserManage() {
                                 <option value="basic-user">회원</option>
                             </select>
                         </th>
-                        <th><button id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
+                        <th><button className="edit-button" id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
                     </tr>)
             })
 
-            return newUserList  ;
+            return newUserList;
         })
     }
     const init = async () => {
@@ -46,14 +46,13 @@ function UserManage() {
     }, []);
 
     useEffect(() => {
-        if(Array.isArray(users) && Array.isArray(userList))
-        {
-            if(typeof userMap === "function")
-            userMap(users)
-        else
-            console.log(typeof userMap)
+        if (Array.isArray(users) && Array.isArray(userList)) {
+            if (typeof userMap === "function")
+                userMap(users)
+            else
+                console.log(typeof userMap)
         }
-    },[users])
+    }, [users])
 
     const handleUserDelete = (e) => {
         e.preventDefault();
@@ -68,22 +67,24 @@ function UserManage() {
         console.log("Patch Role", e.target.id, e.target.value)
     }
     return (<>
-        <Header title="회원 관리"></Header>
-        <Table striped hover>
-            <thead>
-                <tr>
-                    <th>가입 날짜</th>
-                    <th>이메일</th>
-                    <th>이름</th>
-                    <th>권한</th>
-                    <th>관리</th>
-                </tr>
-            </thead>
-            <tbody>
-                {Array.isArray(userList) && userList}
-            </tbody>
-            {DM && <DeleteUser users={users} setUsers={setUsers} userMap={userMap} close={DMClose} userId={userId} />}
-        </Table>
+        <div className="section">
+            <Header title="회원 관리"></Header>
+            <Table striped hover>
+                <thead>
+                    <tr>
+                        <th>가입 날짜</th>
+                        <th>이메일</th>
+                        <th>이름</th>
+                        <th>권한</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Array.isArray(userList) && userList}
+                </tbody>
+                {DM && <DeleteUser users={users} setUsers={setUsers} userMap={userMap} close={DMClose} userId={userId} />}
+            </Table>
+        </div>
 
     </>)
 
