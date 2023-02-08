@@ -31,7 +31,14 @@ class OrderService {
 
     return updatedOrder;
   }
+  async setOrderAdmin(orderId, toUpdate) {
+    const updatedOrder = await this.orderModel.updateAdmin({
+      orderId,
+      update: toUpdate,
+    });
 
+    return updatedOrder;
+  }
   async getOrderData(orderId) {
     const order = await this.orderModel.findById(orderId);
 
@@ -44,6 +51,16 @@ class OrderService {
 
   async deleteOrderData(orderId) {
     const { deletedCount } = await this.orderModel.deleteById(orderId);
+
+    // 삭제에 실패한 경우, 에러 메시지 반환
+    if (deletedCount === 0) {
+      throw new Error(`${orderId} 주문의 삭제에 실패하였습니다`);
+    }
+
+    return { result: "success" };
+  }
+  async deleteOrderDataAdmin(orderId) {
+    const { deletedCount } = await this.orderModel.deleteByIdAdmin(orderId);
 
     // 삭제에 실패한 경우, 에러 메시지 반환
     if (deletedCount === 0) {
