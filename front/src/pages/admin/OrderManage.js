@@ -13,7 +13,7 @@ function OrderManage() {
     const DMClose = () => setDM(false);
 
     const init = async () => {
-        const res = await Api.get('orderlist/user')
+        const res = await Api.get('admin/orderslist/all')
         console.log(res.data)
         setOrderList(() => {
             const userOrders = res.data.map((item,index) => {
