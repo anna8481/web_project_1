@@ -70,10 +70,11 @@ function Order() {
 
     const handleCheckboxChange = event => {
         setUseUserInfo(event.target.checked);
+
         if (event.target.checked) {
             setShippingInfo({ ...formData });
         } else {
-            setShippingInfo({});
+            // setShippingInfo({});
         }
     };
 
@@ -85,7 +86,7 @@ function Order() {
         const order = {
             userId: shippingInfo._id,
             productId: cart[0]._id || "",
-            totalPrice: subTotal + 3000,
+            totalPrice: subTotal + shippingCost,
             address: {
                 address1: shippingInfo.address?.address1 || "",
                 address2: shippingInfo.address?.address2 || "",
@@ -161,11 +162,11 @@ function Order() {
                                 <div>
                                     {postPopup && <Postcode setFormData={setShippingInfo} formData={shippingInfo} ></Postcode>}
                                     <div className="postcode">
-                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={shippingInfo.address?.postalCode} disabled={useUserInfo} />
+                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} name="postalCode" value={shippingInfo.address.postalCode} disabled={useUserInfo} />
                                         <div type="button" className="postcode-button" onClick={handleComplete}> 주소찾기</div>
                                     </div>
-                                    <input className="input" type="text" placeholder='주소' value={shippingInfo.address?.address1} onChange={handleAddressChange} disabled={useUserInfo} /><br />
-                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={shippingInfo.address?.address2} disabled={useUserInfo} />
+                                    <input className="input" type="text" placeholder='주소' name="address1" value={shippingInfo.address?.address1} onChange={handleAddressChange} disabled={useUserInfo} /><br />
+                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' name="address2" onChange={handleAddressChange} value={shippingInfo.address?.address2} disabled={useUserInfo} />
                                 </div>
                                 <div>
                                     <label>요청사항</label>

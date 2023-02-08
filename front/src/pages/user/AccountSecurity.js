@@ -164,16 +164,16 @@ function AccountSecurity() {
                         </div>
                         {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
 
-                        <input className="input" label='주소' name='address1' type='text' size="lg" disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
+                        <input className="input" label='주소' name='address1' type='text' disabled={disabled} onChange={handleAddressChange} value={formData.address?.address1} />
 
-                        <input className="input" label='상세주소' name='address2' type='text' size="lg" disabled={disabled} onChange={handleAddressChange}
+                        <input className="input" label='상세주소' name='address2' type='text' disabled={disabled} onChange={handleAddressChange}
                             value={formData.address?.address2}
                         />
 
                         <div>
                             <label>전화번호</label>
                         </div>
-                        <input className="input" label='' name='phoneNumber' type='tel' size="lg" disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
+                        <input className="input" label='' name='phoneNumber' type='tel' disabled={disabled} onChange={handleInputChange} value={formData.phoneNumber} />
 
 
                         {!disabled &&

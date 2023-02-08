@@ -5,12 +5,13 @@ import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
 import { ROUTE } from '../../utills/route'
 
-function CardProductContainer({ img, productName, price, handleDelete }) {
+function CardProductContainer({ img, productName, price, handleDelete, checked, onChange }) {
     const currencySymbol = 'KRW';
     return <>
 
         <div className="cart-product-container">
             <div className="cart-product-info">
+                <input type="checkbox" checked={checked} onChange={onChange} className="cart-checkbout" style={{ width: "15px" }}></input>
                 <div className="cart-img-name">
                     <img className="productImg" src={img} alt={productName} />
                     <div className="product-name">   {productName} </div>
@@ -36,8 +37,36 @@ function Cart() {
     const [subtotal, setSubtotal] = useState(0);
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
 
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectAll, setSelectAll] = useState(false);
 
+    const handleOrder = () => {
+        localStorage.getItem("token") ? navigate('/order') : navigate('/login')
+    }
 
+    //체크 박스 전체 선택
+    const handleSelectAll = () => {
+        setSelectAll(!selectAll);
+        setSelectedItems(selectAll ? [] : cart.map(item => item._id));
+    };
+
+    // 체크박스 선택
+    const handleItemSelection = (itemId) => {
+        if (selectedItems.includes(itemId)) {
+            setSelectedItems(selectedItems.filter(_id => _id !== itemId));
+        } else {
+            setSelectedItems([...selectedItems, itemId]);
+        }
+    };
+
+    // 선택 삭제
+    const handleDelete = () => {
+        setCart(cart.filter(item => !selectedItems.includes(item._id)));
+        setSelectedItems([]);
+        setSelectAll(false);
+    };
+
+    // x 버튼 클릭 시 해당 상품 카트에서 삭제 
     const handleRemoveFromCart = (index) => {
         const updatedCart = [...cart];
         updatedCart.splice(index, 1);
@@ -46,17 +75,12 @@ function Cart() {
     };
 
 
-    const handleOrder = () => {
-        localStorage.getItem("token") ? navigate('/order') : navigate('/login')
-    }
-
     useEffect(() => {
         const sum = cart.reduce((accum, curr) => accum + curr.price, 0)
         setSubtotal(sum);
     }, [subtotal])
 
-    //cart.length === 0
-    //? <p>"장바구니가 비어있습니다."  </p>
+
     return (<>
         <div className="section"  >
             <Header title="Cart" style={{ marginBottom: "0" }}></Header>
@@ -69,10 +93,14 @@ function Cart() {
 */ }
 
         <div className="section" style={{ marginTop: "0" }}>
+            <p className='cart-product-header'>
+                <input type="checkbox" onChange={handleSelectAll} checked={selectAll} className="cart-checkbout" style={{ width: "15px" }}></input>
+                <div style={{ display: "inline", marginLeft: "1rem" }}>전체선택</div>
+                <div style={{ display: "inline", marginLeft: "1rem", cursor: "pointer" }} onClick={handleDelete}>선택삭제</div></p>
             <div className="product-tile ">
                 {cart.length !== 0 ?
                     cart.map(item =>
-                        (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price} handleDelete={handleRemoveFromCart}></CardProductContainer>)
+                        (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price} handleDelete={handleRemoveFromCart} checked={selectedItems.includes(item._id)} onChange={() => handleItemSelection(item._id)} ></CardProductContainer>)
                     ) : <p>장바구니가 비어있습니다.</p>}
             </div>
             {/* {Array.isArray(cart) && */}
