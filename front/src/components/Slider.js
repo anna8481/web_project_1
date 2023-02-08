@@ -10,8 +10,6 @@ function Slider() {
     const init = async () => {
         const res = await Api.get("categorylist");
         const data = await res.data;
-        console.log(data)
-        data.map(item => console.log(item.title));
         setCategory(data);
     };
     useEffect(() => {
