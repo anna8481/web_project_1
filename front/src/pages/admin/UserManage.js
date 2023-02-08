@@ -1,71 +1,77 @@
 import * as Api from "../../utills/api";
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, InputGroup, FormControl, Row, Col, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Header from '../../components/Header'
 import { DeleteUser } from "./DeleteUser";
+import Pagination from "react-js-pagination"
+import './UserManage.css'
 
 function UserManage() {
-
-    const [users, setUsers] = useState(undefined)
-    const [userList, setUserList] = useState(undefined);
+    const [users, setUsers] = useState(undefined);
     const [userId, setUserId] = useState(undefined);
-    // Delete Modal State
-    const [DM, setDM] = useState(false);
-    const DMShow = () => setDM(true);
-    const DMClose = () => setDM(false);
+    const [render, setRender] = useState(true);
+    const [total, setTotal] = useState(undefined);
+    const [page, setPage] = useState(1);
 
-    const userMap = (user) => {
-        setUserList(() => {
-            const newUserList = user.map((item, index) => {
-                return (
-                    <tr key={item._id} >
-                        <th>{item.createdAt.split("T")[0]}</th>
-                        <th>{item.email}</th>
-                        <th>{item.userName}</th>
-                        <th>
-                            <select defaultValue={item.role} name={item._id} onChange={handleRoleChange}>
-                                <option value="admin">관리자</option>
-                                <option value="basic-user">회원</option>
-                            </select>
-                        </th>
-                        <th><button id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
-                    </tr>)
-            })
 
-            return newUserList  ;
+    // Page 당 10개의 데이터를 불러옴
+    const perPage = 10;
+
+    // Modal State
+    const [mode, setMode] = useState(undefined);
+    const modeOff = () => { setMode(undefined) };
+
+    const userMap = (users) => {
+        const newUserList = users.map((item, index) => {
+            return (
+                <tr key={index} >
+                    <th>{item.createdAt.split("T")[0]}</th>
+                    <th>{item.email}</th>
+                    <th>{item.userName}</th>
+                    <th>
+                        <select defaultValue={item.role} name={item._id} onChange={handleRoleChange}>
+                            <option value="admin">관리자</option>
+                            <option value="basic-user">회원</option>
+                        </select>
+                    </th>
+                    <th><button id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
+                </tr>)
         })
+
+        return newUserList;
     }
+
+    const handlePageChange = (currentPage) => {
+        
+        if(page===currentPage)
+            return;
+        setPage(currentPage)
+        setRender(true);
+    };
+
     const init = async () => {
-        const res = await Api.get('admin/users')
-        setUsers(() => res.data)
-        userMap(res.data)
+        const res = await Api.get(`admin/users?page=${page}&perPage=${perPage}`)
+        console.log(res)
+        setUsers(() => res.data.users)
+        setTotal(() => res.data.total)
     }
 
     useEffect(() => {
-        init();
-    }, []);
-
-    useEffect(() => {
-        if(Array.isArray(users) && Array.isArray(userList))
-        {
-            if(typeof userMap === "function")
-            userMap(users)
-        else
-            console.log(typeof userMap)
+        if (render) {
+            init();
+            setRender(false);
         }
-    },[users])
+    }, [mode, render, page]);
 
     const handleUserDelete = (e) => {
         e.preventDefault();
 
-        setUserId(() => {
-            return e.target.id
-        })
-        DMShow();
+        setUserId(() => e.target.id)
+        setMode("DELETE")
     }
 
     const handleRoleChange = async (e) => {
-        const formdata = {"role": e.target.value};
+        const formdata = { "role": e.target.value };
         await Api.patch(`admin/users/${e.target.name}`, formdata)
     }
     return (<>
@@ -81,10 +87,25 @@ function UserManage() {
                 </tr>
             </thead>
             <tbody>
-                {Array.isArray(userList) && userList}
+                {typeof users === 'object' && userMap(users)}
             </tbody>
-            {DM && <DeleteUser users={users} setUsers={setUsers} userMap={userMap} close={DMClose} userId={userId} />}
         </Table>
+
+        {mode === "DELETE" && <DeleteUser setRender={setRender} modeOff={modeOff} userId={userId} />}
+        
+            <Pagination
+                itemClass="page-item"
+                activePage={page}
+                itemsCountPerPage={perPage}
+                totalItemsCount={total}
+                pageRangeDisplayed={5}
+                prevPageText={"‹"}
+                nextPageText={"›"}
+                onChange={handlePageChange}
+                hideFirstLastPages
+            />
+        
+
 
     </>)
 

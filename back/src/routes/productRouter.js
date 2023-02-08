@@ -8,7 +8,7 @@ const { productService } = require("../services/productService");
 productRouter.post("/product", adminOnly, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-    const { productName, categoryId, productInfo, imageKey, price } = req.body;
+    const { productName, categoryId, productInfo, imageKey, price, quantity } = req.body;
 
     // 위 데이터를 제품 db에 추가하기
     const newProduct = await productService.addProduct({
@@ -16,6 +16,7 @@ productRouter.post("/product", adminOnly, async (req, res, next) => {
       categoryId,
       productInfo,
       imageKey,
+      quantity,
       price,
     });
 
@@ -83,7 +84,7 @@ productRouter.patch(
       // req (request) 에서 데이터 가져오기
       const productId = req.params.productId;
 
-      const { productName, categoryId, productInfo, imageKey, price } =
+      const { productName, categoryId, productInfo, imageKey, price, quantity } =
         req.body;
 
       // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
@@ -92,6 +93,7 @@ productRouter.patch(
         ...(productName && { productName }),
         ...(categoryId && { categoryId }),
         ...(productInfo && { productInfo }),
+        ...(quantity && { quantity }),
         ...(imageKey && { imageKey }),
         ...(price && { price }),
       };
