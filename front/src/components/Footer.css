@@ -20,3 +20,10 @@ div.top {
 div ul.rightSns li {
     float: left;
 }
+div.a ul.left li a button {
+    border-radius: 5px;
+    margin-left: 10px;
+}
+div.a ul.left li a button:hover {
+    background-color: gainsboro;
+}
