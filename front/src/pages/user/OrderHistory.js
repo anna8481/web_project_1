@@ -23,16 +23,16 @@ function OrderHistory() {
 
     const orderMap = (orders) => {
         setOrderList(() => {
-            const userOrders = orders.map((item,index) => {
+            const userOrders = orders.map((item, index) => {
                 return (
                     <tr key={index} >
                         <th>{item.createdAt.split("T")[0]}</th>
                         <th>주문 상품</th>
                         <th>{item.status}</th>
-                        <th><button id={item._id} onClick={handleOrderCancel}>취소</button></th>
+                        <th><button className="edit-button" id={item._id} onClick={handleOrderCancel}>취소</button></th>
                     </tr>)
             })
-            
+
             return userOrders;
         })
     }
@@ -42,21 +42,21 @@ function OrderHistory() {
     }, []);
 
     useEffect(() => {
-        if(Array.isArray(orders) && Array.isArray(orderList))
+        if (Array.isArray(orders) && Array.isArray(orderList))
             orderMap(orders)
-       
-    },[orders])
+
+    }, [orders])
 
     const handleOrderCancel = (e) => {
         e.preventDefault();
-        
+
         setOrderId(() => {
             return e.target.id
         })
         console.log(orderId)
         DMShow();
     }
-    return (<>
+    return (<>    <div className="section">
         <Header title="주문 조회"></Header>
         <Table striped bordered hover>
             <thead>
@@ -70,9 +70,9 @@ function OrderHistory() {
             <tbody>
                 {Array.isArray(orderList) && orderList}
             </tbody>
-           {DM && <DeleteOrder orders={orders} setOrders={setOrders} close={DMClose} orderId={orderId}/>}
+            {DM && <DeleteOrder orders={orders} setOrders={setOrders} close={DMClose} orderId={orderId} />}
         </Table>
-
+    </div>
     </>)
 
 }

@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'reac
 import './CategoryManage.css'
 import { DeleteCategory } from './DeleteCategory';
 import { ModifyCategory } from './ModifyCategory';
+import Header from '../../components/Header'
 
 function CategoryManage() {
     const [categories, setCategories] = useState("")
@@ -29,7 +30,7 @@ function CategoryManage() {
                 setCategories((current) => {
                     const newCategories = res.data.map((item, index) => {
                         return (
-                            <div className="message media category-item"  key={index}>
+                            <div className="message media category-item" key={index}>
                                 <div className="media-left">
                                     <figure className="image">
                                         <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt="" />
@@ -39,21 +40,21 @@ function CategoryManage() {
                                     <div>
                                         <p className="title">{item.title}</p>
                                         <p className="description">{item.description}</p>
-                                        <Button size='sm' id={item._id} onClick={e => {
+                                        <button className="edit-button" id={item._id} onClick={e => {
                                             setCategory(() => {
                                                 const newCategory = res.data.find(item => item._id === e.target.id)
                                                 return newCategory
                                             })
                                             MMShow();
-                                        }}>수정</Button>
+                                        }}>수정</button>
                                         {'    '}
-                                        <Button size='sm' className="" onClick={e => {
+                                        <button className="edit-button" style={{ marginRight: "2rem" }} onClick={e => {
                                             setCategory(() => {
                                                 const newCategory = res.data.find(item => item._id === e.target.id)
                                                 return newCategory
                                             })
                                             DMShow();
-                                        }}>삭제</Button>
+                                        }}>삭제</button>
                                     </div>
                                 </div>
                             </div>
@@ -79,11 +80,13 @@ function CategoryManage() {
 
 
     return (<>
-        <h2>카테고리 관리</h2>
-        <div>
-            {isLoad && categories}
-            {DM && <DeleteCategory close={DMClose} categoryId={category._id} />}
-            {MM && <ModifyCategory close={MMClose} category={category} />}
+        <div className="section">
+            <Header title="카테고리 관리"></Header>
+            <div>
+                {isLoad && categories}
+                {DM && <DeleteCategory close={DMClose} categoryId={category._id} />}
+                {MM && <ModifyCategory close={MMClose} category={category} />}
+            </div>
         </div>
     </>);
 }

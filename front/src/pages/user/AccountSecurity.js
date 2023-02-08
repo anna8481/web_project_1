@@ -122,13 +122,13 @@ function AccountSecurity() {
         <>
             <div className="container-center">
                 <div className='section'>
-                    {/* <div className="edit-button"> */}
+
                     <button className="edit-button"
                         onClick={(e) => {
                             setDisabled((current) => !current)
                             console.log(disabled)
                         }}>수정하기</button>
-                    {/* </div> */}
+                    <div style={{ marginBottom: "3rem" }}></div>
                     <form className="user-form" >
                         <div>
                             <label>이름</label>
