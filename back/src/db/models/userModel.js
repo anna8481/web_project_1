@@ -3,8 +3,16 @@ const { UserSchema } = require("../schemas/userSchema");
 
 const User = model("users", UserSchema);
 class UserModel {
-  async findAll() {
-    const user = await User.find();
+  async findCountDocument() {
+    const countDocument = await User.countDocuments({});
+    return countDocument;
+  }
+
+  async findAllPagination(page, perPage) {
+    const user = await User.find({})
+      .sort({ createdAt: -1 })
+      .skip(perPage * (page - 1))
+      .limit(perPage);
     return user;
   }
 
