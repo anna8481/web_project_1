@@ -23,12 +23,12 @@ const Account = () => {
                 </div>
             </Link>
 
-            <Link to={ROUTE.PRODUCT_ADD.link}>
+            {/* <Link to={ROUTE.PRODUCT_ADD.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Add Product</p>
                         <p className="sub-name">제품 판매</p></button>
                 </div>
-            </Link>
+            </Link> */}
 
             <Link to={ROUTE.ACCOUNT_SIGNOUT.link}>
                 <div className="account_button_container" >
