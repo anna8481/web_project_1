@@ -103,12 +103,20 @@ class UserService {
     return user;
   }
 
-  // 관리자) 사용자 정보 가져오기
-  async getAllUsersAdmin() {
-    const userslist = await this.userModel.findAll();
-    return userslist;
+  //관리자) 사용자 정보 page 전체 카운트 가져오기-pagination
+  async getCountDocument() {
+    const totalPage = await this.userModel.findCountDocument();
+    return totalPage;
+  }
+  // 관리자) 사용자 정보 가져오기-pagination
+  async getAllUsersPagination(page, perPage) {
+    const users = await this.userModel.findAllPagination(page, perPage);
+    return users;
   }
 
+  //async getAllUsersAdmin(page, perPage, total, users) {
+  //  const userlist=
+  //}
   // 관리자) 특정 사용자 정보 수정
   async updateUserAdmin(userId, toUpdate) {
     let user = await this.userModel.findById(userId);
