@@ -11,8 +11,8 @@ function CardProductContainer({ img, productName, price, handleDelete, checked, 
 
         <div className="cart-product-container">
             <div className="cart-product-info">
-                <input type="checkbox" checked={checked} onChange={onChange} className="cart-checkbout" style={{ width: "15px" }}></input>
                 <div className="cart-img-name">
+                    <input type="checkbox" checked={checked} onChange={onChange} className="cart-checkbout" style={{ width: "15px", marginRight: "1rem" }}></input>
                     <img className="productImg" src={img} alt={productName} />
                     <div className="product-name">   {productName} </div>
                 </div>
@@ -61,7 +61,9 @@ function Cart() {
 
     // 선택 삭제
     const handleDelete = () => {
-        setCart(cart.filter(item => !selectedItems.includes(item._id)));
+        const updatedCart = cart.filter(item => !selectedItems.includes(item._id));
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        setCart(updatedCart);
         setSelectedItems([]);
         setSelectAll(false);
     };
