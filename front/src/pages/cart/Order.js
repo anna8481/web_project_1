@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 import './Order.css';
 import Postcode from '../../utills/Postcode'
 import * as Api from "../../utills/api";
@@ -23,6 +22,10 @@ function Order() {
             _id: ""
         }
     );
+    const [shippingInfo, setShippingInfo] = useState({});
+    const [useUserInfo, setUseUserInfo] = useState(false);
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,7 +49,7 @@ function Order() {
     const handleInputChange = e => {
         console.log(e.target.value);
         const { name, value } = e.target;
-        setFormData(prev => (
+        setShippingInfo(prev => (
             { ...prev, [name]: value }));
     };
 
@@ -54,7 +57,7 @@ function Order() {
     const handleAddressChange = (e) => {
         console.log(e.target.value);
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setShippingInfo(prev => ({
             ...prev,
             address: {
                 ...prev.address,
@@ -63,27 +66,36 @@ function Order() {
         }))
     }
 
+    const handleCheckboxChange = event => {
+        setUseUserInfo(event.target.checked);
+        if (event.target.checked) {
+            setShippingInfo({ ...formData });
+        } else {
+            setShippingInfo({});
+        }
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // "order" 엔드포인트로 post 요청함.
 
         const order = {
-            userId: formData._id,
-            phoneNumber: formData.phoneNumber || "",
+            userId: shippingInfo._id,
+            productId: cart[0]._id || "",
+            totalPrice: subTotal + 3000,
             address: {
-                address1: formData.address.address1 || "",
-                address2: formData.address.address2 || "",
-                postalCode: formData.address.postalCode || ""
+                address1: shippingInfo.address.address1 || "",
+                address2: shippingInfo.address.address2 || "",
+                postalCode: shippingInfo.address.postalCode || "",
+                receiverName: shippingInfo.userName || "",
+                receiverPhoneNumber: shippingInfo.phoneNumber || "",
             },
-            currentPassword: currentPassword,
         };
-
 
         try {
             const response = await Api.post("order", {
-                ...formData,
-                totalPrice: subTotal + 3000
+                order,
             });
 
             navigate('/order/complete');
@@ -124,30 +136,34 @@ function Order() {
 
                         <div className='delivery-tile'>
                             <div className="delivery-info">
-                                <p>Shipping</p>
+                                <div style={{ display: "flex" }}>
+                                    <p >Shipping</p>
+                                    <input type="checkbox" style={{ width: "15px", height: "15px", marginLeft: "1rem", marginTop: "3px" }} checked={useUserInfo} onChange={handleCheckboxChange}></input>
+                                    <div>주문자 정보와 동일</div>
+                                </div>
                                 <div>
                                     <label>이름</label>
                                 </div>
                                 <div>
-                                    <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={formData.userName} onChange={handleInputChange} />
+                                    <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={shippingInfo.userName} onChange={handleInputChange} disabled={useUserInfo} />
                                 </div>
                                 <div>
                                     <label>연락처</label>
                                 </div>
                                 <div>
-                                    <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} />
+                                    <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={shippingInfo.phoneNumber} onChange={handleInputChange} disabled={useUserInfo} />
                                 </div>
                                 <div>
                                     <label>주소</label>
                                 </div>
                                 <div>
-                                    {postPopup && <Postcode setFormData={setFormData} formData={formData} ></Postcode>}
+                                    {postPopup && <Postcode setFormData={setShippingInfo} formData={shippingInfo} ></Postcode>}
                                     <div className="postcode">
-                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={formData.address?.postalCode} />
+                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} value={shippingInfo.address?.postalCode} disabled={useUserInfo} />
                                         <div type="button" className="postcode-button" onClick={handleComplete}> 주소찾기</div>
                                     </div>
-                                    <input className="input" type="text" placeholder='주소' value={formData.address?.address1} onChange={handleAddressChange} /><br />
-                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={formData.address?.address2} />
+                                    <input className="input" type="text" placeholder='주소' value={shippingInfo.address?.address1} onChange={handleAddressChange} disabled={useUserInfo} /><br />
+                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' onChange={handleAddressChange} value={shippingInfo.address?.address2} disabled={useUserInfo} />
                                 </div>
                                 <div>
                                     <label>요청사항</label>
