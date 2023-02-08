@@ -80,7 +80,7 @@ function Cart() {
     useEffect(() => {
         const sum = cart.reduce((accum, curr) => accum + curr.price, 0)
         setSubtotal(sum);
-    }, [subtotal])
+    }, [])
 
 
     return (<>
