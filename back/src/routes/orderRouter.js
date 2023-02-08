@@ -8,12 +8,7 @@ const { orderService } = require("../services/orderService");
 orderRouter.post("/order", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-<<<<<<< HEAD
     const { userId, productId, totalPrice, address } = req.body;
-=======
-    const userId = req.currentUserId;
-    const { totalPrice, address, request } = req.body;
->>>>>>> 769462354fa20bbe16162a4a212694d98d24745b
 
     // 주문 db에 추가
     const newOrder = await orderService.addOrder({
