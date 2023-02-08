@@ -94,10 +94,19 @@ function AccountSecurity() {
             currentPassword: currentPassword,
         };
 
+        try {
+            const newData = await Api.patch(`users/${formData._id}`, updatedUser);
+            alert('수정이 완료되었습니다!')
+            console.log(newData);
+            setPopup(!popup);
+        }
+        catch (e) {
+            console.error(e);
+            alert('오류로 업데이트가 되지 않았습니다. 관리자에게 문의해주세요.')
+        }
 
-        const newData = await Api.patch(`users/${formData._id}`, updatedUser);
-        console.log(newData);
 
+        // setPopup(!popup);
     };
 
 
