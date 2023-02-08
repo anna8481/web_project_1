@@ -16,7 +16,7 @@ function Footer () {
                             <a href=""><button>대량구매문의</button></a>
                         </li>
                         <li>
-                            <a href=""><button>입점,제휴문의</button></a>
+                            <a href=""><button>입점/제휴문의</button></a>
                         </li>
                     </ul>
                 </div>
