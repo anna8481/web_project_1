@@ -66,6 +66,7 @@ function Cart() {
         setCart(updatedCart);
         setSelectedItems([]);
         setSelectAll(false);
+        setSubtotal(updatedCart.reduce((accum, curr) => accum + curr.price, 0));
     };
 
     // x 버튼 클릭 시 해당 상품 카트에서 삭제 
@@ -74,6 +75,7 @@ function Cart() {
         updatedCart.splice(index, 1);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
+        setSubtotal(updatedCart.reduce((accum, curr) => accum + curr.price, 0));
     };
 
 
