@@ -8,7 +8,8 @@ const { orderService } = require("../services/orderService");
 orderRouter.post("/order", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-    const { userId, productId, totalPrice, address } = req.body;
+    const userId = req.currentUserId;
+    const { productId, totalPrice, address } = req.body;
 
     // 주문 db에 추가
     const newOrder = await orderService.addOrder({
@@ -25,7 +26,8 @@ orderRouter.post("/order", loginRequired, async (req, res, next) => {
 });
 
 // 사용자) 주문 목록 조회
-orderRouter.get("/orderlist/user",
+orderRouter.get(
+  "/orderlist/user",
   loginRequired,
   async function (req, res, next) {
     try {
@@ -39,7 +41,8 @@ orderRouter.get("/orderlist/user",
 );
 
 // 사용자) 주문 정보 조회
-orderRouter.get("/orders/:orderId",
+orderRouter.get(
+  "/orders/:orderId",
   loginRequired,
   async function (req, res, next) {
     try {
@@ -54,7 +57,8 @@ orderRouter.get("/orders/:orderId",
 );
 
 // 사용자) 배송 시작전 주문 정보 수정
-orderRouter.patch("/orders/:orderId",
+orderRouter.patch(
+  "/orders/:orderId",
   loginRequired,
   async function (req, res, next) {
     try {
@@ -94,7 +98,8 @@ orderRouter.delete(
 );
 
 // 관리자) 전체 주문목록 조회
-orderRouter.get("/admin/orderslist/all",
+orderRouter.get(
+  "/admin/orderslist/all",
   adminOnly,
   async function (req, res, next) {
     try {
@@ -108,7 +113,8 @@ orderRouter.get("/admin/orderslist/all",
 );
 
 // 관리자) 주문 상태 관리
-orderRouter.patch("/admin/orders/:orderId",
+orderRouter.patch(
+  "/admin/orders/:orderId",
   adminOnly,
   async function (req, res, next) {
     try {
@@ -133,7 +139,8 @@ orderRouter.patch("/admin/orders/:orderId",
 );
 
 //관리자) 주문 취소 (사용자의 주문내역 삭제)
-orderRouter.delete("/admin/orders/:orderId",
+orderRouter.delete(
+  "/admin/orders/:orderId",
   adminOnly,
   async function (req, res, next) {
     try {
