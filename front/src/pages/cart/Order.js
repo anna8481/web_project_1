@@ -97,7 +97,9 @@ function Order() {
 
         try {
             const response = await Api.post("order", order);
-
+            localStorage.removeItem("cart");
+            console.log(localStorage)
+            alert('주문이 완료되었습니다!')
             navigate('/order/complete');
 
         } catch (err) {

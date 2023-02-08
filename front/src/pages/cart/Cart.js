@@ -74,7 +74,7 @@ function Cart() {
                 {cart.length !== 0 ?
                     cart.map(item =>
                         (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price} handleDelete={handleRemoveFromCart}></CardProductContainer>)
-                    ) : <p>"장바구니가 비어있습니다."  </p>}
+                    ) : <p>장바구니가 비어있습니다.</p>}
             </div>
             {/* {Array.isArray(cart) && */}
             {cart.length !== 0 &&

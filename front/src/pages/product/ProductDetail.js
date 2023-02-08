@@ -7,24 +7,26 @@ import { DeleteProduct } from './DeleteProduct';
 import { ModifyProduct } from './ModifyProduct';
 
 function ProductDetail() {
+    const currencySymbol = 'KRW'
     const { id } = useParams()
-    const [item, setItem] = useState([]);
+    const [item, setItem] = useState(undefined);
     const navigate = useNavigate();
     const isAdmin = localStorage.getItem("isAdmin")
 
 
     // Modal State
     const [mode, setMode] = useState(undefined);
-    const modeOff = () => {setMode(undefined)};
+    const modeOff = () => { setMode(undefined) };
 
     const init = async () => {
         const res = await Api.get(`products/${id}`);
         const data = await res.data;
-        setItem({ ...data });
+        console.log(typeof data)
+        setItem(data);
 
     };
     useEffect(() => {
-        if(mode === undefined)
+        if (mode === undefined)
             init();
     }, [mode]);
 
@@ -58,34 +60,35 @@ function ProductDetail() {
 
             <Header ></Header>
             <div className="container-center">
-                <div className="tile" >
-                    <img className="product-detail-img" src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt={item.productName}></img>
-                    <div className="product-detail-description">
-                        <div className="product-detail-name" >
-                            {item.productName}
-                        </div>
-                        <div className="product-detail-price" >
-                            {item.price}
-                        </div>
-                        <div style={{ borderBottom: "1px solid black", marginBottom: "2rem" }} > </div>
-                        <div className="product-detail-info" >
-                            {item.productInfo}
-                        </div>
-                        <div style={{ marginTop: "2rem" }} > </div>
+                {(typeof item === "object") &&
+                    <div className="tile" >
+                        <img className="product-detail-img" src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt={item.productName}></img>
+                        <div className="product-detail-description">
+                            <div className="product-detail-name" >
+                                {item.productName}
+                            </div>
+                            <div className="product-detail-price" >
+                                {item.price.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}
+                            </div>
+                            <div style={{ borderBottom: "1px solid black", marginBottom: "2rem" }} > </div>
+                            <div className="product-detail-info" >
+                                {item.productInfo}
+                            </div>
+                            <div style={{ marginTop: "2rem" }} > </div>
 
-                        <button className='purchase-button' style={{ display: "block" }} onClick={handleAddToCart} >Add to Cart</button>
+                            <button className='purchase-button' style={{ display: "block" }} onClick={handleAddToCart} >Add to Cart</button>
 
-                        <div style={{ marginTop: "2rem" }} > </div>
-                        {isAdmin && <>
-                            <button className='edit-button' style={{ display: "inline", marginRight: "1rem" }} onClick = {() => setMode("MODIFY")}>수정</button>
-                            <button className='edit-button' style={{ display: "inline" }} onClick = {() => setMode("DELETE")}>삭제</button>
-                            {mode === "DELETE" && <DeleteProduct modeOff={modeOff} productId={id} />}
-                            {mode === "MODIFY" && <ModifyProduct reload={init} modeOff={modeOff} product={item} />}
-                        </>
-                        }
+                            <div style={{ marginTop: "2rem" }} > </div>
+                            {isAdmin && <>
+                                <button className='edit-button' style={{ display: "inline", marginRight: "1rem" }} onClick={() => setMode("MODIFY")}>수정</button>
+                                <button className='edit-button' style={{ display: "inline" }} onClick={() => setMode("DELETE")}>삭제</button>
+                                {mode === "DELETE" && <DeleteProduct modeOff={modeOff} productId={id} />}
+                                {mode === "MODIFY" && <ModifyProduct reload={init} modeOff={modeOff} product={item} />}
+                            </>
+                            }
 
-                    </div>
-                </div>
+                        </div>
+                    </div>}
             </div>
         </div>
     </>
