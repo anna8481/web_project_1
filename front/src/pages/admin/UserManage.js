@@ -34,7 +34,7 @@ function UserManage() {
                             <option value="basic-user">회원</option>
                         </select>
                     </th>
-                    <th><button id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
+                    <th><button className="edit-button" id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
                 </tr>)
         })
 
@@ -42,8 +42,8 @@ function UserManage() {
     }
 
     const handlePageChange = (currentPage) => {
-        
-        if(page===currentPage)
+
+        if (page === currentPage)
             return;
         setPage(currentPage)
         setRender(true);
@@ -75,24 +75,25 @@ function UserManage() {
         await Api.patch(`admin/users/${e.target.name}`, formdata)
     }
     return (<>
-        <Header title="회원 관리"></Header>
-        <Table striped hover>
-            <thead>
-                <tr>
-                    <th>가입 날짜</th>
-                    <th>이메일</th>
-                    <th>이름</th>
-                    <th>권한</th>
-                    <th>관리</th>
-                </tr>
-            </thead>
-            <tbody>
-                {typeof users === 'object' && userMap(users)}
-            </tbody>
-        </Table>
+        <div className="section">
+            <Header title="회원 관리"></Header>
+            <Table striped hover>
+                <thead>
+                    <tr>
+                        <th>가입 날짜</th>
+                        <th>이메일</th>
+                        <th>이름</th>
+                        <th>권한</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {typeof users === 'object' && userMap(users)}
+                </tbody>
+            </Table>
 
-        {mode === "DELETE" && <DeleteUser setRender={setRender} modeOff={modeOff} userId={userId} />}
-        
+            {mode === "DELETE" && <DeleteUser setRender={setRender} modeOff={modeOff} userId={userId} />}
+
             <Pagination
                 itemClass="page-item"
                 activePage={page}
@@ -104,7 +105,7 @@ function UserManage() {
                 onChange={handlePageChange}
                 hideFirstLastPages
             />
-        
+        </div>
 
 
     </>)
