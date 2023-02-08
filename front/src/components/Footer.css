@@ -1,29 +1,45 @@
 ul {
     list-style: none;
 }
-div.top ul.left li {
+div#footer {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background-color:antiquewhite;
+}
+div#footer_box {
+    width: 1500px;
+    height: 200px;
+    margin: 0 auto;
+}
+div#footer_logo {
     float: left;
+    margin: 15px 0 0 15px;
 }
-div.b {
-    padding: 40px 0 60px 50px;
-    margin: 50px 0 0 0;
-}
-div.containerAddress {
-    background-color: antiquewhite;
-    padding: 40px 0 60px 50px;
-    margin: 50px 0 0 0;
-}
-div.top {
-    padding: 100px 0 60px 50px;
-    margin: 50px 0 0 0;
-}
-div ul.rightSns li {
+div#address {
+    font-size: 15px;
     float: left;
+    margin: 15px 0 0 15px;
 }
-div.a ul.left li a button {
-    border-radius: 5px;
-    margin-left: 10px;
+div#address span {
+    font-size: 15px;
 }
-div.a ul.left li a button:hover {
-    background-color: gainsboro;
+div.agree ul li {
+    float: right;
+}
+div.agree ul li a:hover {
+    margin-left: 15px;
+    color:darkgray;
+}
+div.agree ul li a {
+    margin-left: 15px;
+}
+div.sns ul li a img {
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin-left: 15px;
+    margin-top: 15px;
 }
