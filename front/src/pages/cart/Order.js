@@ -96,9 +96,7 @@ function Order() {
         };
 
         try {
-            const response = await Api.post("order", {
-                order,
-            });
+            const response = await Api.post("order", order);
 
             navigate('/order/complete');
 
