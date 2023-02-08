@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
 import { ROUTE } from '../../utills/route'
 
-function CardProductContainer({ img, productName, price, handleDelete, checked, onChange }) {
+function CardProductContainer({ img, productName, price, handleDelete, checked, onChange, quantity, onIncrease, onDecrease }) {
     const currencySymbol = 'KRW';
     return <>
 
@@ -16,10 +16,10 @@ function CardProductContainer({ img, productName, price, handleDelete, checked, 
                     <img className="productImg" src={img} alt={productName} />
                     <div className="product-name">   {productName} </div>
                 </div>
-                <div className="cart-quantity">
-                    <MDBIcon fas icon="minus-circle" />
-                    <div className="cart-quantity-no">1</div>
-                    <MDBIcon fas icon="plus-circle" />
+                <div className="cart-quantity" >
+                    <MDBIcon fas icon="minus-circle" onClick={onDecrease} />
+                    <div className="cart-quantity-no">{quantity}</div>
+                    <MDBIcon fas icon="plus-circle" onClick={onIncrease} />
                 </div>
                 <div className="product-price">{price.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })} </div>
                 <span className="delete-button">
@@ -37,12 +37,14 @@ function Cart() {
     const location = useLocation();
     const [subtotal, setSubtotal] = useState(0);
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-
+    // const [quantity, setQuantity] = useState(1);
     const [selectedItems, setSelectedItems] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
 
+
     const handleOrder = () => {
-        localStorage.getItem("token") ? navigate('/order') : navigate('/login', { state: { redirectUrl: location.pathname + location.search + location.hash } })
+        localStorage.getItem("token") ? navigate('/order', { state: { cart } }) : navigate('/login', { state: { redirectUrl: location.pathname + location.search + location.hash } })
+        console.log("cart", cart);
     }
 
     //체크 박스 전체 선택
@@ -67,7 +69,7 @@ function Cart() {
         setCart(updatedCart);
         setSelectedItems([]);
         setSelectAll(false);
-        setSubtotal(updatedCart.reduce((accum, curr) => accum + curr.price, 0));
+
     };
 
     // x 버튼 클릭 시 해당 상품 카트에서 삭제 
@@ -76,14 +78,48 @@ function Cart() {
         updatedCart.splice(index, 1);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         setCart(updatedCart);
-        setSubtotal(updatedCart.reduce((accum, curr) => accum + curr.price, 0));
+
     };
+
+    // cart[index].quantity를 add +1
+    const handleIncrease = (index) => {
+        const updatedCart = cart.map((item) => {
+            if (item._id === index) {
+                return {
+                    ...item,
+                    quantity: item.quantity + 1,
+                };
+            }
+            return item;
+        });
+
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setCart(updatedCart);
+
+    }
+
+    const handleDecrease = (index) => {
+        const updatedCart = cart.map((item) => {
+            if (item._id === index) {
+                if (item.quantity === 1) { return item }
+                return {
+                    ...item,
+                    quantity: item.quantity - 1,
+                };
+            }
+            return item;
+        });
+
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        setCart(updatedCart);
+
+    }
 
 
     useEffect(() => {
-        const sum = cart.reduce((accum, curr) => accum + curr.price, 0)
+        const sum = cart.reduce((accum, curr) => accum + curr.price * curr.quantity, 0)
         setSubtotal(sum);
-    }, [])
+    }, [cart])
 
 
     return (<>
@@ -103,10 +139,21 @@ function Cart() {
                 <div style={{ display: "inline", marginLeft: "1rem" }}>전체선택</div>
                 <div style={{ display: "inline", marginLeft: "1rem", cursor: "pointer" }} onClick={handleDelete}>선택삭제</div></p>
             <div className="product-tile ">
-                {cart.length !== 0 ?
+                {cart.length !== 0
+                    ?
                     cart.map(item =>
-                        (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} productName={item.productName} price={item.price} handleDelete={handleRemoveFromCart} checked={selectedItems.includes(item._id)} onChange={() => handleItemSelection(item._id)} ></CardProductContainer>)
-                    ) : <p>장바구니가 비어있습니다.</p>}
+                    (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                        productName={item.productName}
+                        price={item.price * item.quantity}
+                        quantity={item.quantity}
+                        handleDelete={handleRemoveFromCart}
+                        checked={selectedItems.includes(item._id)}
+                        onChange={() => handleItemSelection(item._id)}
+                        onIncrease={() => handleIncrease(item._id)}
+                        onDecrease={() => handleDecrease(item._id)}
+                    ></CardProductContainer>)
+                    )
+                    : <p>장바구니가 비어있습니다.</p>}
             </div>
             {/* {Array.isArray(cart) && */}
             {cart.length !== 0 &&
@@ -114,7 +161,7 @@ function Cart() {
                     <div className="payment-summary " >
                         <div className="payment-header"><h3>결제정보</h3></div>
                         <div className="payment-info" >
-                            <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subtotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
+                            <div className="info"><p>상품 총 금액</p> <p id="productsTotal">{subtotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
                             <div className="info"><p>배송비</p> <p id="deliveryFee">{shippingCost.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
                         </div>
                         <div className="payment-total" ><h2>총 결제금액</h2> <h2 id="Total">{(subtotal + shippingCost).toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</h2> </div>

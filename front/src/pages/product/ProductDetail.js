@@ -45,9 +45,13 @@ function ProductDetail() {
             return;
         }
 
-        localStorage.setItem('cart', JSON.stringify([...currentCart, item]));
+        //local storage에 처음에는 qty 1로 세팅해서 보내줌 (수량 옵션 없으므로)
+        localStorage.setItem('cart', JSON.stringify([...currentCart, { ...item, quantity: 1 }]));
         alert("장바구니에 상품을 추가했습니다.");
+
+        //cart 로 이동하면서 prop으로 상품 정보 (item) 전달
         navigate('/cart', { state: { item } });
+
 
     };
 

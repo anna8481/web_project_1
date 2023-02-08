@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Order.css';
 import Postcode from '../../utills/Postcode'
 import * as Api from "../../utills/api";
 import Header from '../../components/Header'
 
 function Order() {
+
     const currencySymbol = 'KRW';
     const shippingCost = 3000;
+
     const navigate = useNavigate();
+    const location = useLocation();
+
+
+    const cart = location.state.cart
+    let subTotal = 0;
+    cart.forEach((item) => {
+        subTotal += item.price * item.quantity;
+    });
+    const productId = cart.map(item => item._id);
+    const orderTitle = cart.reduce((acc, obj) => acc + obj.productName + '/' + obj.quantity + '개' + '\n', '');
+
+
     const [postPopup, setPostPopup] = useState(false);
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const subTotal = cart.reduce((accum, curr) => accum + curr.price, 0) || 0;
     const [formData, setFormData] = useState(
         {
             userName: "",
@@ -85,7 +97,7 @@ function Order() {
 
         const order = {
             userId: shippingInfo._id,
-            productId: cart[0]._id || "",
+            productId: productId || "[]",
             totalPrice: subTotal + shippingCost,
             address: {
                 address1: shippingInfo.address?.address1 || "",
@@ -94,6 +106,7 @@ function Order() {
                 receiverName: shippingInfo.userName || "",
                 receiverPhoneNumber: shippingInfo.phoneNumber || "",
             },
+            orderTitle: orderTitle || "[]",
         };
 
         try {
@@ -213,6 +226,16 @@ function Order() {
                         <div className="order-summary " >
                             <div className="order-header"><p>결제정보</p></div>
                             <div className="order-info" >
+                                <div className="info">   <p>주문 상품</p> <p id="orderTitle"></p></div>
+
+                                <ul>
+                                    {cart.map((item) => (
+                                        <li key={item._Id} style={{ textAlign: "right" }}>
+                                            {item.productName}/{item.quantity}개
+                                        </li>
+                                    ))}
+                                </ul>
+
                                 <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subTotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
                                 <div className="info"><p>배송비</p> <p id="deliveryFee">{shippingCost.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
                             </div>
