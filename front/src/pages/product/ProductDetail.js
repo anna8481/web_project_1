@@ -3,23 +3,30 @@ import { useParams, useNavigate } from 'react-router-dom'
 import * as Api from "../../utills/api";
 import Header from '../../components/Header'
 import './ProductDetail.css'
-
+import { DeleteProduct } from './DeleteProduct';
+import { ModifyProduct } from './ModifyProduct';
 
 function ProductDetail() {
     const { id } = useParams()
     const [item, setItem] = useState([]);
     const navigate = useNavigate();
+    const isAdmin = localStorage.getItem("isAdmin")
+
+
+    // Modal State
+    const [mode, setMode] = useState(undefined);
+    const modeOff = () => {setMode(undefined)};
 
     const init = async () => {
         const res = await Api.get(`products/${id}`);
         const data = await res.data;
-        console.log("Data:", data)
         setItem({ ...data });
 
     };
     useEffect(() => {
-        init();
-    }, []);
+        if(mode === undefined)
+            init();
+    }, [mode]);
 
 
     const handleAddToCart = () => {
@@ -41,6 +48,7 @@ function ProductDetail() {
         navigate('/cart', { state: { item } });
 
     };
+
 
 
     return (<>
@@ -68,8 +76,14 @@ function ProductDetail() {
                         <button className='purchase-button' style={{ display: "block" }} onClick={handleAddToCart} >Add to Cart</button>
 
                         <div style={{ marginTop: "2rem" }} > </div>
-                        <button className='edit-button' style={{ display: "inline", marginRight: "1rem" }}>수정</button>
-                        <button className='edit-button' style={{ display: "inline" }}>삭제</button>
+                        {isAdmin && <>
+                            <button className='edit-button' style={{ display: "inline", marginRight: "1rem" }} onClick = {() => setMode("MODIFY")}>수정</button>
+                            <button className='edit-button' style={{ display: "inline" }} onClick = {() => setMode("DELETE")}>삭제</button>
+                            {mode === "DELETE" && <DeleteProduct modeOff={modeOff} productId={id} />}
+                            {mode === "MODIFY" && <ModifyProduct reload={init} modeOff={modeOff} product={item} />}
+                        </>
+                        }
+
                     </div>
                 </div>
             </div>
