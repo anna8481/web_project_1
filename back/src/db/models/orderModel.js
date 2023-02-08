@@ -23,6 +23,18 @@ class OrderModel {
     const filter = { _id: orderId };
     const option = { returnOriginal: false };
 
+    const validation = await Order.findOne({ _id: filter });
+
+    if (validation.status === "상품 배송중") {
+      throw new Error("상품 배송 중이므로 정보를 변경할 수 없습니다.");
+    }
+    const updatedOrder = await Order.findOneAndUpdate(filter, update, option);
+    return updatedOrder;
+  }
+  async updateAdmin({ orderId, update }) {
+    const filter = { _id: orderId };
+    const option = { returnOriginal: false };
+
     const updatedOrder = await Order.findOneAndUpdate(filter, update, option);
     return updatedOrder;
   }
@@ -33,11 +45,21 @@ class OrderModel {
   }
 
   async deleteById(orderId) {
+    const validation = await Order.findOne({ _id: orderId });
+
+    if (validation.status === "상품 배송중") {
+      throw new Error("상품 배송 중이므로 주문을 취소할 수 없습니다.");
+    }
+
+    const result = await Order.deleteOne({ _id: orderId });
+    return result;
+  }
+
+  async deleteByIdAdmin(orderId) {
     const result = await Order.deleteOne({ _id: orderId });
     return result;
   }
 }
-
 
 module.exports = OrderModel;
 

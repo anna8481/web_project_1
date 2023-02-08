@@ -38,6 +38,10 @@ const OrderSchema = new mongoose.Schema(
       required: false,
       default: "상품 준비중",
     },
+    orderTitle: {
+      type: String,
+      required: true,
+    },
   },
   {
     collection: "orders",

@@ -9,7 +9,7 @@ orderRouter.post("/order", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { productId, totalPrice, address } = req.body;
+    const { orderTitle, productId, totalPrice, address } = req.body;
 
     // 주문 db에 추가
     const newOrder = await orderService.addOrder({
@@ -17,6 +17,7 @@ orderRouter.post("/order", loginRequired, async (req, res, next) => {
       productId,
       totalPrice,
       address,
+      orderTitle,
     });
 
     res.status(201).json(newOrder);
@@ -64,13 +65,13 @@ orderRouter.patch(
     try {
       // req (request) 에서 데이터 가져오기
       const orderId = req.params.orderId;
-      const address = req.body;
+      const { address } = req.body;
 
       // 없던 값이였으면 update
       // const toUpdate = { ...(address && { address }) };
 
       // 제품 정보 업데이트
-      const updatedOrder = await orderService.setOrder(orderId, address);
+      const updatedOrder = await orderService.setOrder(orderId, { address });
 
       res.status(200).json(updatedOrder);
     } catch (error) {
@@ -124,7 +125,9 @@ orderRouter.patch(
       //const toUpdate = { ...(status && { status })};
 
       // 제품 정보 업데이트
-      const updatedOrder = await orderService.setOrder(orderId, status);
+      const updatedOrder = await orderService.setOrderAdmin(orderId, {
+        status,
+      });
 
       res.status(200).json(updatedOrder);
     } catch (error) {
@@ -140,7 +143,7 @@ orderRouter.delete(
   async function (req, res, next) {
     try {
       const orderId = req.params.orderId;
-      const deleteResult = await orderService.deleteOrderData(orderId);
+      const deleteResult = await orderService.deleteOrderDataAdmin(orderId);
 
       res.status(200).json(deleteResult);
     } catch (error) {
