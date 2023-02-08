@@ -46,9 +46,20 @@ userRouter.post("/login", async function (req, res, next) {
 //관리자) 전체 사용자 불러오기
 userRouter.get("/admin/users", adminOnly, async (req, res, next) => {
   try {
-    const getAllUsersAdmin = await userService.getAllUsersAdmin();
+    //현재 페이지(page 묶음)
+    const page = Number(req.query.page || 1);
+    //페이지 당 게시글 수
+    const perPage = Number(req.query.perPage || 10);
 
-    res.status(200).json(getAllUsersAdmin);
+    //total 전체 게시글 수
+    const total = await userService.getCountDocument({});
+    //
+    const users = await userService.getAllUsersPagination(page, perPage);
+    //총 페이지(한 page묶음 당 보여주는 페이지)
+    //const totalPage = Math.ceil(total / perPage);
+    // const getAllUsersAdmin = await userService.getAllUsersAdmin();
+
+    res.status(200).json({ users, total });
   } catch (error) {
     next(error);
   }
@@ -72,7 +83,7 @@ userRouter.patch("/admin/users/:userId", adminOnly, async (req, res, next) => {
   }
 });
 //관리자) 사용자 정보 삭제
-userRouter.delete("/admin/users/:userId", adminOnly, async (req, res, next) => {
+userRouter.delete("/users/admin/:userId", adminOnly, async (req, res, next) => {
   try {
     const { userId } = req.params;
 
