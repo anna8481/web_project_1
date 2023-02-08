@@ -17,7 +17,7 @@ export function ModifyProduct({ modeOff, product }) {
             }, {})
         setInputs(initialInputs)
     }, [])
-
+    
 
     const handleChange = e => {
         const { name, value } = e.target;
