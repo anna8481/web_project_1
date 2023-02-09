@@ -25,12 +25,12 @@ export function DeleteCategory({ setRender, modeOff, categoryId }) {
             </Modal.Header>
             <Modal.Body>카테고리 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={modeOff}>
+                <button className='edit-button' onClick={modeOff}>
                     아니오
-                </Button>
-                <Button variant="primary" type="submit" onClick={handleCategoryDelete}>
+                </button>
+                <button className='edit-button' type="submit" onClick={handleCategoryDelete}>
                     예
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );

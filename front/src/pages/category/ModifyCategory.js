@@ -158,12 +158,12 @@ export function ModifyCategory({ setRender, modeOff, category }) {
                 </Container>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={modeOff}>
+                <button className='edit-button' onClick={modeOff}>
                     취소
-                </Button>
-                <Button variant="primary" type="submit" onClick={handleModify} >
+                </button>
+                <button className='edit-button' type="submit" onClick={handleModify} >
                     수정
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );

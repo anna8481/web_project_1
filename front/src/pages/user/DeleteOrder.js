@@ -24,12 +24,12 @@ export function DeleteOrder({ setRender, modeOff, orderId }) {
             </Modal.Header>
             <Modal.Body>주문 취소 시 복구할 수 없습니다. 정말로 취소하시겠습니까?</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={modeOff}>
+                <button className='edit-button' onClick={modeOff}>
                     아니오
-                </Button>
-                <Button variant="primary" type="submit" onClick={handleOrderDelete}>
+                </button>
+                <button className='edit-button' type="submit" onClick={handleOrderDelete}>
                     예
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );
