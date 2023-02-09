@@ -55,7 +55,7 @@ export function ModifyOrder({ setRender, modeOff, order }) {
     }
 
     return (
-        <Modal show >
+        <Modal show onHide={modeOff}>
             <Modal.Header closeButton>
                 <Modal.Title>배송지 정보 변경</Modal.Title>
             </Modal.Header>

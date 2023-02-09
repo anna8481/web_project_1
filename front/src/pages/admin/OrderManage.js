@@ -25,7 +25,7 @@ function OrderManage() {
                 <tr key={index} >
                     <th>{item.createdAt.split("T")[0]}</th>
                     <th>{item.orderTitle}</th>
-                    <th>{item.totalPrice}</th>
+                    <th>{item.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</th>
                     <th>
                         <select id={item._id} value={item.status} onChange={handleStatusChange}>
                             <option value="상품 준비중">상품 준비중</option>
@@ -33,7 +33,7 @@ function OrderManage() {
                             <option value="배송완료">배송완료</option>
                         </select>
                     </th>
-                    <th><button className="edit-button" id={item._id} onClick={handleOrderCancel}>취소</button></th>
+                    <th><button className="edit-button" id={item._id} onClick={handleOrderCancel}>삭제</button></th>
                 </tr>)
         })
 
@@ -81,11 +81,11 @@ function OrderManage() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>날짜</th>
+                        <th>주문 일자</th>
                         <th>주문 정보</th>
                         <th>주문 총액</th>
                         <th>배송 상태 관리</th>
-                        <th>취소</th>
+                        <th>주문 삭제</th>
                     </tr>
                 </thead>
                 <tbody>
