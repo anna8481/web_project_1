@@ -4,7 +4,7 @@ import './Login.css'
 import * as Api from "../../utills/api";
 import { ROUTE, ROUTE_ARR } from '../../utills/route';
 import { Link } from 'react-router-dom';
-
+import Header from '../../components/Header';
 function Login() {
     const navigate = useNavigate();
     const location = useLocation();
@@ -55,16 +55,15 @@ function Login() {
 
         <div className='section'>
             <div className="container-center" >
-                <p >로그인</p>
+                <Header></Header>
                 <form onSubmit={handleLogin} className="user-form">
                     <input className="input" value={inputs.email} label='Email' name='email' type='email' placeholder='email' onChange={handleChange} />
                     <input className="input" value={inputs.password} label='Password' name='password' type='password' placeholder='password' onChange={handleChange} />
                     <button className="user-button">로그인</button>
-                    <Link to={ROUTE.FIND_USER_PASSWORD.link} >
-                        <button>비밀번호를 찾아주세요</button>
-                    </Link>
                 </form>
-
+                <Link to={ROUTE.FIND_USER_PASSWORD.link} style={{ textAlign: "center", color: "#999", marginTop: "1rem", textDecoration: "underline" }} >비밀번호 찾기
+                    {/* <p ></p> */}
+                </Link>
             </div>
         </div>
     </>

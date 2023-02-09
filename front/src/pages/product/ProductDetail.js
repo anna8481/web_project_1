@@ -62,7 +62,7 @@ function ProductDetail() {
 
         <div className='section'>
 
-            <Header ></Header>
+            <Header></Header>
             <div className="container-center">
                 {(typeof item === "object") &&
                     <div className="tile" >
