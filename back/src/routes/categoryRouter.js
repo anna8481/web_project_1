@@ -17,27 +17,6 @@ categoryRouter.get("/categorys", async function (req, res, next) {
   }
 });
 
-/* 
-// 🔽심다예 : 예시 사이트에서 해당 api 못찾아서 일단 주석처리
-categoryRouter.get(
-  "/categorys/:categoryId",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      const categoryId = req.params.categoryId;
-      const categoryData = await categoryService.getCategoryDataById(
-        categoryId
-      );
-
-      res.status(200).json(categoryData);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
- */
-
 // 관리자) 카테고리 등록
 categoryRouter.post("/categorys", adminOnly, async (req, res, next) => {
   try {

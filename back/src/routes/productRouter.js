@@ -27,27 +27,10 @@ productRouter.post("/products", adminOnly, async (req, res, next) => {
   }
 });
 
-//🔽 예시 사이트에서 어떤 기능을 위한 api인지 찾지 못했지만, product list 확인을 위해 주석 처리하지 않았습니다.
-// 사용자)전체 상품 보기
-productRouter.get(
-  "/productlist",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      // 전체 제품 목록을 얻음
-      const products = await productService.getProducts();
-
-      res.status(200).json(products);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
 //전체) 카테고리 클릭->관련 상품 출력
 productRouter.get(
   //categoryTitle : categorys 내 title(예시 : 바지, 치마..)
-  "/products/:categoryTitle",
+  "/products/category/:categoryTitle",
   async function (req, res, next) {
     const { categoryTitle } = req.params;
 
@@ -67,7 +50,7 @@ productRouter.get(
 // 전체) product 상세 보기
 productRouter.get("/products/:productId", async function (req, res, next) {
   try {
-    const productId = req.params.productId;
+    const { productId } = req.params;
     const productData = await productService.getProductData(productId);
 
     res.status(200).json(productData);

@@ -105,9 +105,6 @@ orderRouter.patch(
       const orderId = req.params.orderId;
       const { status } = req.body;
 
-      // 없던 값이였으면 update
-      //const toUpdate = { ...(status && { status })};
-
       // 제품 정보 업데이트
       const updatedOrder = await orderService.setOrderAdmin(orderId, {
         status,

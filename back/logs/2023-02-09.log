@@ -43,3 +43,118 @@ MongoParseError: Invalid scheme, expected connection string to start with "mongo
 2023-02-09 20:51:31 [moteam_web_service] error: 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
 2023-02-09 20:52:24 [moteam_web_service] error: 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
 2023-02-09 20:52:52 [moteam_web_service] error: 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+2023-02-09 21:45:47 [moteam_web_service] error: Cannot read properties of null (reading '_id')
+2023-02-09 21:46:14 [moteam_web_service] error: Cannot read properties of null (reading '_id')
+2023-02-09 21:47:27 [moteam_web_service] error: Cannot read properties of null (reading '_id')
+2023-02-09 21:47:53 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 21:50:53 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 21:54:08 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 21:55:13 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 21:58:05 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 21:58:34 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:01:26 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:04:23 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:05:18 [moteam_web_service] error: CastError: Cast to ObjectId failed for value "Plate" (type string) at path "_id" for model "products"
+    at model.Query.exec (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\node_modules\mongoose\lib\query.js:4913:21)
+    at Query.then (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\node_modules\mongoose\lib\query.js:5012:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2023-02-09 22:05:47 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:05:48 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:06:06 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:06:28 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:07:02 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:11:08 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:12:32 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:14:47 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:17:02 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:18:25 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:20:39 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:25:53 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:25:54 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:29:00 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:29:16 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:29:32 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:29:59 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:30:38 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24
+2023-02-09 22:32:41 [moteam_web_service] error: TypeError: Cannot read properties of null (reading '_id')
+    at ProductService.getProductsByCategoryTitle (C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\services\productService.js:37:75)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async C:\Users\82108\OneDrive\바탕 화면\project10\moteam\back\src\routes\productRouter.js:56:24

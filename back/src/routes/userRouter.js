@@ -53,7 +53,7 @@ userRouter.post("/users/help/id", async (req, res, next) => {
 });
 
 //비밀번호 초기화, 메일로 받기
-userRouter.post("/users/currentPassword", async (req, res, next) => {
+userRouter.post("/users/help/password", async (req, res, next) => {
   try {
     const { userEmail } = req.body;
     const foundedEmail = await userService.findEmail(userEmail);
@@ -117,7 +117,7 @@ userRouter.patch("/admin/users/:userId", adminOnly, async (req, res, next) => {
   }
 });
 //관리자) 사용자 정보 삭제
-userRouter.delete("/users/admin/:userId", adminOnly, async (req, res, next) => {
+userRouter.delete("/admin/users/:userId", adminOnly, async (req, res, next) => {
   try {
     const { userId } = req.params;
 
@@ -186,7 +186,26 @@ userRouter.patch(
     }
   }
 );
-//삭제 전 현재 비밀번호 확인
+
+//사용자 삭제
+userRouter.delete(
+  "/users/:userId",
+  loginRequired,
+  async function (req, res, next) {
+    try {
+      // params로부터 id를 가져옴
+      const { userId } = req.params;
+
+      const deleteResult = await userService.deleteUserData(userId);
+
+      res.status(200).json(deleteResult);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+//수정, 삭제 전 현재 비밀번호 확인
 userRouter.post(
   "/users/currentPassword",
   loginRequired,
@@ -200,23 +219,6 @@ userRouter.post(
       const checkResult = await userService.checkUserPassword(userId, password);
 
       res.status(200).json(checkResult);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-//사용자 삭제
-userRouter.delete(
-  "/users/:userId",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      // params로부터 id를 가져옴
-      const { userId } = req.params;
-
-      const deleteResult = await userService.deleteUserData(userId);
-
-      res.status(200).json(deleteResult);
     } catch (error) {
       next(error);
     }

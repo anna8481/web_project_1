@@ -136,7 +136,7 @@ class UserService {
   async setUserPW(userId, randomPW) {
     const newPasswordHash = await bcrypt.hash(randomPW, 10);
 
-    const user = await this.userModel.update({
+    const user = await this.userModel.updatePW({
       userId,
       newPasswordHash,
     });
