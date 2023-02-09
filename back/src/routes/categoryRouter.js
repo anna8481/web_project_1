@@ -6,7 +6,7 @@ const { categoryService } = require("../services/categoryService");
 const categoryRouter = Router();
 
 // 홈 화면
-categoryRouter.get("/categorylist", async function (req, res, next) {
+categoryRouter.get("/categorys", async function (req, res, next) {
   try {
     // 전체 카테고리 목록을 얻음
     const categorys = await categoryService.getCategorys();
@@ -39,7 +39,7 @@ categoryRouter.get(
  */
 
 // 관리자) 카테고리 등록
-categoryRouter.post("/category", adminOnly, async (req, res, next) => {
+categoryRouter.post("/categorys", adminOnly, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const { title, description, imageKey, themeClass } = req.body;

@@ -53,7 +53,7 @@ userRouter.post("/users/help/id", async (req, res, next) => {
 });
 
 //비밀번호 초기화, 메일로 받기
-userRouter.post("/users/help/password", async (req, res, next) => {
+userRouter.post("/users/currentPassword", async (req, res, next) => {
   try {
     const { userEmail } = req.body;
     const foundedEmail = await userService.findEmail(userEmail);
@@ -132,7 +132,7 @@ userRouter.delete("/users/admin/:userId", adminOnly, async (req, res, next) => {
 // 사용자
 
 // 사용자) 로그인한 사용자 정보 불러오기
-userRouter.get("/user", loginRequired, async function (req, res, next) {
+userRouter.get("/users", loginRequired, async function (req, res, next) {
   try {
     const userId = req.currentUserId;
     const currentUserInfo = await userService.getUserData(userId);

@@ -5,7 +5,7 @@ const { loginRequired } = require("../middlewares/loginRequired");
 const { orderService } = require("../services/orderService");
 
 // 사용자) 장바구니 상품 주문
-orderRouter.post("/order", loginRequired, async (req, res, next) => {
+orderRouter.post("/orders", loginRequired, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
@@ -97,27 +97,23 @@ orderRouter.delete(
 );
 
 // 관리자) 전체 주문목록 조회
-orderRouter.get(
-  "/admin/orderslist/all",
-  adminOnly,
-  async function (req, res, next) {
-    try {
-      //현재 페이지(page 묶음)
-      const page = Number(req.query.page || 1);
-      //페이지 당 게시글 수
-      const perPage = Number(req.query.perPage || 10);
+orderRouter.get("/admin/orders", adminOnly, async function (req, res, next) {
+  try {
+    //현재 페이지(page 묶음)
+    const page = Number(req.query.page || 1);
+    //페이지 당 게시글 수
+    const perPage = Number(req.query.perPage || 10);
 
-      //total 전체 게시글 수
-      const total = await orderService.getCountDocument({});
-      //
-      const orders = await orderService.getAllOrdersPagination(page, perPage);
+    //total 전체 게시글 수
+    const total = await orderService.getCountDocument({});
+    //
+    const orders = await orderService.getAllOrdersPagination(page, perPage);
 
-      res.status(200).json({ orders, total });
-    } catch (error) {
-      next(error);
-    }
+    res.status(200).json({ orders, total });
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 // 관리자) 주문 상태 관리
 orderRouter.patch(

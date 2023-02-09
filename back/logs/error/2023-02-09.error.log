@@ -30,3 +30,6 @@ MongoParseError: Invalid scheme, expected connection string to start with "mongo
 2023-02-09 17:10:07 [moteam_web_service] error: failed connection
 MongoParseError: Invalid scheme, expected connection string to start with "mongodb://" or "mongodb+srv://"
 2023-02-09 17:21:47 [moteam_web_service] error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+2023-02-09 20:51:31 [moteam_web_service] error: 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+2023-02-09 20:52:24 [moteam_web_service] error: 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+2023-02-09 20:52:52 [moteam_web_service] error: 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
