@@ -114,9 +114,6 @@ class UserService {
     return users;
   }
 
-  //async getAllUsersAdmin(page, perPage, total, users) {
-  //  const userlist=
-  //}
   // 관리자) 특정 사용자 정보 수정
   async updateUserAdmin(userId, toUpdate) {
     let user = await this.userModel.findById(userId);

@@ -4,6 +4,18 @@ const { OrderSchema } = require("../schemas/orderSchema");
 const Order = model("orders", OrderSchema);
 
 class OrderModel {
+  async findCountDocument() {
+    const countDocument = await Order.countDocuments({});
+    return countDocument;
+  }
+
+  async findAllPagination(page, perPage) {
+    const orders = await Order.find({})
+      .sort({ createdAt: -1 })
+      .skip(perPage * (page - 1))
+      .limit(perPage);
+    return orders;
+  }
   async findById(orderId) {
     const order = await Order.findOne({ _id: orderId });
     return order;

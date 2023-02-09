@@ -23,6 +23,17 @@ class OrderService {
     return orders;
   }
 
+  //관리자) order 전체 카운트 가져오기-pagination
+  async getCountDocument() {
+    const totalPage = await this.orderModel.findCountDocument();
+    return totalPage;
+  }
+  // 관리자) order 정보 가져오기-pagination
+  async getAllOrdersPagination(page, perPage) {
+    const orders = await this.orderModel.findAllPagination(page, perPage);
+    return orders;
+  }
+
   async setOrder(orderId, toUpdate) {
     const updatedOrder = await this.orderModel.update({
       orderId,
