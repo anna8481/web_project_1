@@ -119,6 +119,14 @@ button:hover {
   color: #999
 }
 
+
+
+button:focus {
+  border: 1px solid #999;
+  color: #999
+}
+
+
 .postcode {
   display: flex;
   width: 100%;
