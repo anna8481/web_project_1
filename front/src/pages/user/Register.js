@@ -45,14 +45,18 @@ function Register() {
   };
 
   async function registerUser(formdata) {
-    const newData = await Api.post("register", formdata);
-    console.log(newData);
-    alert("회원가입이 완료되었습니다!");
-    navigate("/login");
+    try {
+      const newData = await Api.post("register", formdata);
+      alert("회원가입이 완료되었습니다!");
+      navigate("/login");
+    } catch (err) {
+      alert(err.response.data.reason)
+    }
+
   }
 
   const handleSubmit = (e) => {
-    console.log(inputs);
+    
     e.preventDefault();
     const validated = validateForm(inputs);
     if (typeof validated === "string") {
