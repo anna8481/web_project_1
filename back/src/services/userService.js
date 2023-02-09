@@ -65,6 +65,15 @@ class UserService {
     return { token, isAdmin };
   }
 
+  async findEmail(userEmail) {
+    const foundedEmail = await this.userModel.findByEmail(userEmail);
+    if (!foundedEmail) {
+      throw new Error("등록되지 않은 이메일입니다.");
+      return;
+    }
+    return foundedEmail;
+  }
+
   //---------------------------------------------
   // 사용자 관련
 
@@ -121,6 +130,17 @@ class UserService {
       throw new Error("해당 id의 사용자를 찾을 수 없습니다.");
     }
     user = await this.userModel.update({ userId, update: toUpdate });
+    return user;
+  }
+
+  async setUserPW(userId, randomPW) {
+    const newPasswordHash = await bcrypt.hash(randomPW, 10);
+
+    const user = await this.userModel.update({
+      userId,
+      newPasswordHash,
+    });
+
     return user;
   }
 

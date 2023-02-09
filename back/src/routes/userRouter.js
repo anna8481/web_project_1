@@ -3,6 +3,7 @@ const userRouter = express.Router();
 const { userService } = require("../services/userService");
 const { loginRequired } = require("../middlewares/loginRequired");
 const { adminOnly } = require("../middlewares/adminOnly");
+const sendMail = require("../utils/sendMail");
 
 //회원가입
 userRouter.post("/register", async (req, res, next) => {
@@ -40,6 +41,44 @@ userRouter.post("/login", async function (req, res, next) {
   }
 });
 
+//계정 찾기 : Email 찾기
+userRouter.post("/users/help/id", async (req, res, next) => {
+  try {
+    const { userEmail } = req.body;
+    const foundedEmail = await userService.findEmail(userEmail);
+
+    res.status(200).json(foundedEmail.email);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//비밀번호 초기화, 메일로 받기
+userRouter.post("/users/help/password", async (req, res, next) => {
+  try {
+    const { userEmail } = req.body;
+    const foundedEmail = await userService.findEmail(userEmail);
+
+    const randomPassword = Math.floor(Math.random() * 10 ** 8)
+      .toString()
+      .padStart(8, "0");
+
+    // 사용자 정보를 업데이트함.
+    const updatedUser = await userService.setUserPW(
+      foundedEmail._id,
+      randomPassword
+    );
+
+    await sendMail(
+      userEmail,
+      "비밀번호 찾기 메일",
+      `변경된 비밀번호는 ${randomPassword}입니다. 다시 로그인해주세요.`
+    );
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
+});
 //-----------------------------------------------------
 // 관리자
 

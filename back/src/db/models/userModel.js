@@ -31,11 +31,15 @@ class UserModel {
     return createdNewUser;
   }
 
-  async update({ userId, update }) {
+  async update({ userId, newPasswordHash }) {
     const filter = { _id: userId };
     const option = { returnOriginal: false };
 
-    const updatedUser = await User.findOneAndUpdate(filter, update, option);
+    const updatedUser = await User.findOneAndUpdate(
+      filter,
+      { password: newPasswordHash },
+      option
+    );
     return updatedUser;
   }
 
