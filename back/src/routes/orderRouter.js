@@ -102,9 +102,17 @@ orderRouter.get(
   adminOnly,
   async function (req, res, next) {
     try {
-      const orders = await orderService.getOrders();
+      //현재 페이지(page 묶음)
+      const page = Number(req.query.page || 1);
+      //페이지 당 게시글 수
+      const perPage = Number(req.query.perPage || 10);
 
-      res.status(200).json(orders);
+      //total 전체 게시글 수
+      const total = await orderService.getCountDocument({});
+      //
+      const orders = await orderService.getAllOrdersPagination(page, perPage);
+
+      res.status(200).json({ orders, total });
     } catch (error) {
       next(error);
     }

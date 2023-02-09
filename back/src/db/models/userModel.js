@@ -9,11 +9,11 @@ class UserModel {
   }
 
   async findAllPagination(page, perPage) {
-    const user = await User.find({})
+    const users = await User.find({})
       .sort({ createdAt: -1 })
       .skip(perPage * (page - 1))
       .limit(perPage);
-    return user;
+    return users;
   }
 
   async findByEmail(email) {

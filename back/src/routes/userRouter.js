@@ -53,11 +53,7 @@ userRouter.get("/admin/users", adminOnly, async (req, res, next) => {
 
     //total 전체 게시글 수
     const total = await userService.getCountDocument({});
-    //
     const users = await userService.getAllUsersPagination(page, perPage);
-    //총 페이지(한 page묶음 당 보여주는 페이지)
-    //const totalPage = Math.ceil(total / perPage);
-    // const getAllUsersAdmin = await userService.getAllUsersAdmin();
 
     res.status(200).json({ users, total });
   } catch (error) {
