@@ -40,7 +40,7 @@ function OrderManage() {
         return userOrders;
     }
     const init = async () => {
-        const res = await Api.get(`admin/orderslist/all/?page=${page}&perPage=${perPage}`)
+        const res = await Api.get(`admin/orders/?page=${page}&perPage=${perPage}`)
         // console.log(res.data)
         setOrders(() => res.data.orders)
         setTotal(() => res.data.total)

@@ -11,7 +11,7 @@ function ProductList() {
 
     ///api/productlist/category/:categoryTitle
     const init = async () => {
-        const res = await Api.get(`productlist/category/${category}`);
+        const res = await Api.get(`products/${category}`);
         const data = await res.data;
         setProducts(data);
     };

@@ -18,7 +18,7 @@ function AccountDelete() {
         const formdata = { password }
 
         try {
-            const res = await Api.post('user/password/check', formdata)
+            const res = await Api.post('users/currentPassword', formdata)
             Api.delete('users', res.data._id)
 
             localStorage.removeItem("token");

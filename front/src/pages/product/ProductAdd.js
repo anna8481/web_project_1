@@ -57,7 +57,7 @@ function ProductAdd() {
 
     async function addProduct(formdata) {
         try {
-            const newData = await Api.post("product", formdata)
+            const newData = await Api.post("products", formdata)
             alert("제품 등록이 완료되었습니다.");
         }
         catch (err) {

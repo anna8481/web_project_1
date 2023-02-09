@@ -16,7 +16,7 @@ function OrderHistory() {
     const modeOff = () => { setMode(undefined) };
 
     const init = async () => {
-        const res = await Api.get('orderlist/user')
+        const res = await Api.get('orders')
         setOrders(() => res.data)
     }
 

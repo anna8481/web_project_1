@@ -8,7 +8,7 @@ function Slider() {
     const [category, setCategory] = useState(undefined);
 
     const init = async () => {
-        const res = await Api.get("categorylist");
+        const res = await Api.get("categorys");
         const data = await res.data;
         setCategory(data);
     };

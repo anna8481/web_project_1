@@ -18,7 +18,7 @@ function CategoryManage() {
 
     // Pageload시 category를 불러옴
     const init = async () => {
-        const res = await Api.get('categorylist')
+        const res = await Api.get('categorys')
         setCategories(() => res.data);
     }
 

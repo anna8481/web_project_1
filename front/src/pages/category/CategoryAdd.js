@@ -39,7 +39,7 @@ function CategoryAdd() {
     async function addCategory(formdata) {
 
         try {
-            const newData = await Api.post("category", formdata)
+            const newData = await Api.post("categorys", formdata)
             alert("category 등록이 완료되었습니다.");
             navigate('category')
 
