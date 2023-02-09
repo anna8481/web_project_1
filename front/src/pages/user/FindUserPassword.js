@@ -56,7 +56,7 @@ function FindUserPassword() {
                     <div>
                         <label>이메일</label>
                     </div>
-                    <input className="input" label='' name='password' type='password' placeholder="비밀번호를 입력하세요" value={userEmail} onChange={handleChange} />
+                    <input className="input" label='' name='password' type='email' placeholder="비밀번호를 입력하세요" value={userEmail} onChange={handleChange} />
                     <button className="user-button" onClick={lostpass} >
                         이메일 전송하기
                     </button>
