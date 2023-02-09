@@ -33,13 +33,25 @@ function AccountSecurity() {
         const fetchData = async () => {
             try {
                 const res = await Api.get('user');
-                setFormData({ ...res.data });
+                const data = res.data;
+                // form에 password는 저장하지 않는다.
+                setFormData(
+                    {
+                        _id: data._id,
+                        userName: data.userName,
+                        phoneNumber: data.phoneNumber || "",
+                        address: {
+                            address1: data.address?.address1 || "",
+                            address2: data.address?.address2 || "",
+                            postalCode: data.address?.postalCode || ""
+                        }
+                    });
+
             } catch (error) {
                 console.log(error)
             }
         };
         fetchData();
-        console.log(formData?.password);
     }, []);
 
 
@@ -48,6 +60,7 @@ function AccountSecurity() {
         const { name, value } = e.target;
         setFormData(prev => (
             { ...prev, [name]: value }));
+
     };
 
 
@@ -83,12 +96,12 @@ function AccountSecurity() {
 
         const updatedUser =
         {
-            username: formData.userName,
+            userName: formData.userName,
             phoneNumber: formData.phoneNumber || "",
             address: {
-                address1: formData.address.address1 || "",
-                address2: formData.address.address2 || "",
-                postalCode: formData.address.postalCode || ""
+                address1: formData.address?.address1 || "",
+                address2: formData.address?.address2 || "",
+                postalCode: formData.address?.postalCode || ""
             },
             currentPassword: currentPassword,
         };
@@ -107,11 +120,10 @@ function AccountSecurity() {
             setPopup(!popup);
         }
         catch (e) {
-            console.error(e);
-            alert('오류로 업데이트가 되지 않았습니다. 관리자에게 문의해주세요.')
+            alert(e.response.data.reason)
         }
 
-        // setPopup(!popup);
+        setPopup(!popup);
     };
 
 
@@ -167,11 +179,11 @@ function AccountSecurity() {
                         <div>
                             <label>비밀번호</label>
                         </div>
-                        <input className="input" label='' disabled={disabled} name="password" type='password' onChange={handleAddressChange} />
+                        <input className="input" label='' disabled={disabled} name="password" type='password' onChange={handleInputChange} />
                         <div>
                             <label>비밀번호 확인</label>
                         </div>
-                        <input className="input" label='' disabled={disabled} name='confirmPassword' type='password' onChange={handleAddressChange} />
+                        <input className="input" label='' disabled={disabled} name='confirmPassword' type='password' onChange={handleInputChange} />
                         <div>
                             <label>주소</label>
                         </div>
