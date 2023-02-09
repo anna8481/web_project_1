@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Api from "../../utills/api";
 import "./Register.css";
+import Header from '../../components/Header';
+
 function Register() {
   const navigate = useNavigate();
   // State 정의
@@ -72,8 +74,8 @@ function Register() {
   return (
     <div className='section'>
       <div className="container-center" >
-
-        <p>회원가입</p>
+        <Header></Header>
+        {/* <p>회원가입</p> */}
         <form onSubmit={handleSubmit} className="user-form">
 
           <input

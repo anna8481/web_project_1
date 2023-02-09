@@ -205,8 +205,8 @@ function CategoryAdd() {
 
                         </InputGroup>
                     </Form.Group>
+                    <button type="submit" className="edit-button" >카테고리 추가하기</button>
 
-                    <Button type="submit" className="button is-primary is-fullwidth" id="addCategoryButton">카테고리 추가하기</Button>
                 </Form>
             </Container>
         </div>

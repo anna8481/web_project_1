@@ -155,7 +155,7 @@ function ProductAdd() {
 
                     </div>
                     <div>
-                        <button type="submit" className="button" id="addCategoryButton">제품 추가하기</button>
+                        <button type="submit" className="button" style={{ marginTop: "1rem" }}id="addCategoryButton">제품 추가하기</button>
                     </div>
                 </form>
             </div>
