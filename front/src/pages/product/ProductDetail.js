@@ -12,7 +12,7 @@ function ProductDetail() {
     const [item, setItem] = useState(undefined);
     const navigate = useNavigate();
     const isAdmin = localStorage.getItem("isAdmin")
-
+    const [render, setRender] = useState(true);
 
     // Modal State
     const [mode, setMode] = useState(undefined);
@@ -21,19 +21,19 @@ function ProductDetail() {
     const init = async () => {
         const res = await Api.get(`products/${id}`);
         const data = await res.data;
-        console.log(typeof data)
         setItem(data);
-
     };
+
     useEffect(() => {
-        if (mode === undefined)
+        if (render) {
             init();
-    }, [mode]);
+            setRender(false);
+        }
+    }, [mode, render]);
 
 
     const handleAddToCart = () => {
         const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
-        console.log("currentCart:", currentCart);
         const existingProductIndex = currentCart.findIndex(
             (cart) => cart._id === item._id
         );
@@ -87,7 +87,7 @@ function ProductDetail() {
                                 <button className='edit-button' style={{ display: "inline", marginRight: "1rem" }} onClick={() => setMode("MODIFY")}>수정</button>
                                 <button className='edit-button' style={{ display: "inline" }} onClick={() => setMode("DELETE")}>삭제</button>
                                 {mode === "DELETE" && <DeleteProduct modeOff={modeOff} productId={id} />}
-                                {mode === "MODIFY" && <ModifyProduct modeOff={modeOff} product={item} />}
+                                {mode === "MODIFY" && <ModifyProduct setRender={setRender} modeOff={modeOff} product={item} />}
                             </>
                             }
 

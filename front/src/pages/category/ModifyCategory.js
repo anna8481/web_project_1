@@ -16,7 +16,6 @@ export function ModifyCategory({ setRender, modeOff, category }) {
                 return obj
             }, {})
         setInputs(initialInputs);
-        console.log(initialInputs)
     }, [])
 
 

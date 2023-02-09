@@ -45,7 +45,7 @@ function Order() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await Api.get('user');
+                const res = await Api.get('users');
                 setFormData({ ...res.data });
             } catch (error) {
                 console.log(error)
@@ -69,7 +69,6 @@ function Order() {
 
 
     const handleAddressChange = (e) => {
-        console.log(e.target.value);
         const { name, value } = e.target;
         setShippingInfo(prev => ({
             ...prev,
@@ -131,7 +130,6 @@ function Order() {
         try {
             const response = await Api.post("orders", order);
             localStorage.removeItem("cart");
-            console.log(localStorage)
             alert('주문이 완료되었습니다!')
             navigate('/order/complete');
 

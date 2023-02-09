@@ -9,9 +9,9 @@ function ProductList() {
     const { category } = useParams()
     const [products, setProducts] = useState(undefined);
 
-    ///api/productlist/category/:categoryTitle
+    /// api /products/:categoryTitle
     const init = async () => {
-        const res = await Api.get(`products/${category}`);
+        const res = await Api.get(`products/category/${category}`);
         const data = await res.data;
         setProducts(data);
     };

@@ -41,7 +41,7 @@ function CategoryAdd() {
         try {
             const newData = await Api.post("categorys", formdata)
             alert("category 등록이 완료되었습니다.");
-            navigate('category')
+            navigate(`/category/manage`)
 
         } catch (err) {
             alert("이미 있는 category 이름입니다.")
@@ -53,7 +53,6 @@ function CategoryAdd() {
     async function addPicture(imgdata) {
         try {
             const res = await axios.post(process.env.REACT_APP_FILE_UPLOAD_URL, imgdata)
-            console.log(res.data.public_id)
             return res.data.public_id;
 
         } catch (err) {

@@ -24,7 +24,6 @@ function AccountSecurity() {
     const [popup, setPopup] = useState(false);
     const toggleShow = (e) => {
         e.preventDefault();
-        console.log('toggle clicked!');
         setPopup(!popup);
     }
 
@@ -32,7 +31,7 @@ function AccountSecurity() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await Api.get('user');
+                const res = await Api.get('users');
                 const data = res.data;
                 // form에 password는 저장하지 않는다.
                 setFormData(
@@ -124,7 +123,6 @@ function AccountSecurity() {
 
 
     const validateForm = ({ userName, password, confirmPassword }) => {
-        console.log(userName, password, confirmPassword);
 
         if (password || confirmPassword) {
             if (password !== confirmPassword) {

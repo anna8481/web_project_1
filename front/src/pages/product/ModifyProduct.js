@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Api from "../../utills/api";
 import { Form, Button, Container, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
 
-export function ModifyProduct({ modeOff, product }) {
-    const navigate = useNavigate();
+export function ModifyProduct({ setRender, modeOff, product }) {
     const [inputs, setInputs] = useState({});
 
     // input initialize
@@ -33,7 +32,7 @@ export function ModifyProduct({ modeOff, product }) {
             const formdata = inputs
             const res = await Api.patch(`products/${product._id}`, formdata);
             alert("제품이 수정되었습니다.");
-            navigate(``);
+            setRender(true);
             modeOff();
 
         }
