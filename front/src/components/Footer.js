@@ -8,15 +8,16 @@ function Footer() {
                 © 2023 Moteam studio
             </div>
 
-            <div className="footer_info_tel" > T 070-4633-2017</div>
+            <div className="footer_info_tel" > Tel 070-4633-2017</div>
             <div className="footer_info_address">
-                Elice 2nd Floor, SeongsuNakNak, Seongsu-dong Seongdong-gu Seoul, Republic of Korea
+                Address Elice 2nd Floor, SeongsuNakNak, Seongsu-dong Seongdong-gu Seoul, Republic of Korea
             </div>
             <div className="footer_info_all">
                 <p className="footer-info-bottom">Contact</p>
                 <p className="footer-info-bottom">QA</p>
                 <p className="footer-info-bottom"> Shiping and Return</p>
-                <p className="footer-info-bottom">Terms of Use Privacy Policy</p>
+                <p className="footer-info-bottom">Terms of Use</p>
+                <p className="footer-info-bottom">Privacy Policy</p>
                 <p className="footer-info-bottom">Instagram</p>
             </div>
         </div>

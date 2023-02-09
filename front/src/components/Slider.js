@@ -46,7 +46,6 @@ function Slider() {
 
         <>
             <div className='section'>
-
                 <div className="category-container" >
                     {Array.isArray(category) && category.map(item => (
                         <Category
