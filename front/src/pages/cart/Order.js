@@ -93,8 +93,8 @@ function Order() {
 
 
     const validateForm = ({ userName, phoneNumber, address }) => {
-        console.log(userName, phoneNumber, address);
-        if (userName === undefined || phoneNumber === undefined || address === undefined || address?.address1 === undefined || address?.address2 === undefined || address?.posta === undefined) {
+        console.log("shippping info", userName, phoneNumber, address);
+        if (userName === undefined || phoneNumber === undefined || address === undefined || address?.address1 === undefined || address?.address2 === undefined || address?.postalCode === undefined) {
             return "배송지 정보를 모두 입력해주세요.";
         }
         if (userName.length === 0 || phoneNumber.length === 0 || address?.address1.length === 0 || address?.address2.length === 0 || address?.postalCode.length === 0) {
