@@ -227,7 +227,7 @@ function AccountSecurity() {
                             </MDBModalBody>
 
                             <MDBModalFooter>
-                                <MDBBtn onClick={handleSubmit} size="lg">수정 완료하기</MDBBtn>
+                                <button className="edit-button" onClick={handleSubmit} >수정 완료하기</button>
                             </MDBModalFooter>
                         </MDBModalContent>
                     </MDBModalDialog>

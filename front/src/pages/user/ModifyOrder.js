@@ -6,7 +6,7 @@ import { Form, Button, Container, Row, Col, InputGroup, FormControl, Modal } fro
 export function ModifyOrder({ setRender, modeOff, order }) {
     const [inputs, setInputs] = useState({});
     const [postPopup, setPostPopup] = useState(undefined);
-    
+
     const handlePopup = (e) => {
         e.preventDefault();
         setPostPopup(true)
@@ -34,7 +34,7 @@ export function ModifyOrder({ setRender, modeOff, order }) {
 
     const onlyNumberInput = e => {
         const { value } = e.target;
-        if(Number(value) == value)
+        if (Number(value) == value)
             return true;
         return false;
     }
@@ -78,7 +78,7 @@ export function ModifyOrder({ setRender, modeOff, order }) {
                             </div>
                             <div>
                                 <input className="input" type="text" name="receiverPhoneNumber" value={inputs.receiverPhoneNumber} onChange={e => {
-                                    if(onlyNumberInput(e)) {
+                                    if (onlyNumberInput(e)) {
                                         handleChange(e);
                                     }
                                 }} />
@@ -94,27 +94,27 @@ export function ModifyOrder({ setRender, modeOff, order }) {
                             <input className="postcode-input" type="text" name="postalCode" value={inputs.postalCode} />
 
                             <div type="button" className="postcode-button"
-                            onClick={handlePopup}> 
-                            주소찾기
+                                onClick={handlePopup}>
+                                주소찾기
                             </div>
                         </div>
                         <div>
                             <input className="input" type="text" name="address1" value={inputs.address1} />
                             <input className="input" type="text" name="address2" value={inputs.address2} onChange={handleChange} />
                         </div>
-                        
+
                     </div>
 
                 }
                 {postPopup && <Postcode setInputs={setInputs} />}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={modeOff}>
+                <button className='edit-button' onClick={modeOff}>
                     취소
-                </Button>
-                <Button variant="primary" type="submit" onClick={handleModify} >
+                </button>
+                <button className='edit-button' variant="primary" type="submit" onClick={handleModify} >
                     수정
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );
