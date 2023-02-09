@@ -92,22 +92,39 @@ function Order() {
     };
 
 
+    const validateForm = ({ userName, phoneNumber, address }) => {
+        console.log(userName, phoneNumber, address);
+        if (userName.length === 0 || phoneNumber.length === 0 || address.address1.length === 0 || address.address2.length === 0 || address.postalCode.length === 0) {
+            return "배송지 정보를 모두 입력해주세요.";
+        }
+        return true;
+    };
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         // "order" 엔드포인트로 post 요청함.
 
+        const validated = validateForm(shippingInfo);
+        if (typeof validated === "string") {
+            alert(validated);
+            return;
+        }
+
+
         const order = {
             userId: shippingInfo._id,
-            productId: productId || "[]",
+            productId: productId,
             totalPrice: subTotal + shippingCost,
             address: {
-                address1: shippingInfo.address?.address1 || "",
-                address2: shippingInfo.address?.address2 || "",
-                postalCode: shippingInfo.address?.postalCode || "",
-                receiverName: shippingInfo.userName || "",
-                receiverPhoneNumber: shippingInfo.phoneNumber || "",
+                address1: shippingInfo.address?.address1,
+                address2: shippingInfo.address?.address2,
+                postalCode: shippingInfo.address?.postalCode,
+                receiverName: shippingInfo.userName,
+                receiverPhoneNumber: shippingInfo.phoneNumber,
             },
-            orderTitle: orderTitle || "[]",
+            orderTitle: orderTitle,
         };
 
         try {
@@ -118,7 +135,7 @@ function Order() {
             navigate('/order/complete');
 
         } catch (err) {
-            alert("배송 정보를 모두 입력해 주세요.")
+            alert(err.response.data.reason);
         }
     };
 
