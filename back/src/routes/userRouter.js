@@ -188,7 +188,7 @@ userRouter.patch(
 );
 //삭제 전 현재 비밀번호 확인
 userRouter.post(
-  "/user/password/check",
+  "/users/currentPassword",
   loginRequired,
   async function (req, res, next) {
     try {

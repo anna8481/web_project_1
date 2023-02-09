@@ -27,35 +27,15 @@ orderRouter.post("/orders", loginRequired, async (req, res, next) => {
 });
 
 // 사용자) 주문 목록 조회
-orderRouter.get(
-  "/orderlist/user",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      const userId = req.currentUserId;
-      const orders = await orderService.getOrdersByUserId(userId);
-      res.status(200).json(orders);
-    } catch (error) {
-      next(error);
-    }
+orderRouter.get("/orders", loginRequired, async function (req, res, next) {
+  try {
+    const userId = req.currentUserId;
+    const orders = await orderService.getOrdersByUserId(userId);
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
   }
-);
-
-// 사용자) 주문 정보 조회
-orderRouter.get(
-  "/orders/:orderId",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      const orderId = req.params.orderId;
-      const orderData = await orderService.getOrderData(orderId);
-
-      res.status(200).json(orderData);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
+});
 
 // 사용자) 배송 시작전 주문 정보 수정
 orderRouter.patch(
