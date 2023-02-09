@@ -94,7 +94,7 @@ function Order() {
 
     const validateForm = ({ userName, phoneNumber, address }) => {
         console.log(userName, phoneNumber, address);
-        if (userName === undefined || phoneNumber === undefined || address === undefined || address?.address1 === undefined || address?.address2 === undefined || address?.postalCode === undefined) {
+        if (userName === undefined || phoneNumber === undefined || address === undefined || address?.address1 === undefined || address?.address2 === undefined || address?.posta === undefined) {
             return "배송지 정보를 모두 입력해주세요.";
         }
         if (userName.length === 0 || phoneNumber.length === 0 || address?.address1.length === 0 || address?.address2.length === 0 || address?.postalCode.length === 0) {
@@ -182,13 +182,13 @@ function Order() {
                                     <label>이름</label>
                                 </div>
                                 <div>
-                                    <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={shippingInfo.userName} onChange={handleInputChange} disabled={useUserInfo} />
+                                    <input className="input" type="text" placeholder='받는 분 이름을 입력해 주세요.' name="userName" value={shippingInfo.userName} onChange={handleInputChange} />
                                 </div>
                                 <div>
                                     <label>연락처</label>
                                 </div>
                                 <div>
-                                    <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={shippingInfo.phoneNumber} onChange={handleInputChange} disabled={useUserInfo} />
+                                    <input className="input" type="text" placeholder='-없이 입력해 주세요.' name="phoneNumber" value={shippingInfo.phoneNumber} onChange={handleInputChange} />
                                 </div>
                                 <div>
                                     <label>주소</label>
@@ -196,11 +196,11 @@ function Order() {
                                 <div>
                                     {postPopup && <Postcode setFormData={setShippingInfo} formData={shippingInfo} ></Postcode>}
                                     <div className="postcode">
-                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} name="postalCode" value={shippingInfo.address?.postalCode} disabled={useUserInfo} />
+                                        <input className="postcode-input" type="text" placeholder='주소찾기를 클릭해주세요.' onChange={handleAddressChange} name="postalCode" value={shippingInfo.address?.postalCode} />
                                         <div type="button" className="postcode-button" onClick={handleComplete}> 주소찾기</div>
                                     </div>
-                                    <input className="input" type="text" placeholder='주소' name="address1" value={shippingInfo.address?.address1} onChange={handleAddressChange} disabled={useUserInfo} /><br />
-                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' name="address2" onChange={handleAddressChange} value={shippingInfo.address?.address2} disabled={useUserInfo} />
+                                    <input className="input" type="text" placeholder='주소' name="address1" value={shippingInfo.address?.address1} onChange={handleAddressChange} /><br />
+                                    <input className="input" type="text" placeholder='상세주소를 입력해주세요.' name="address2" onChange={handleAddressChange} value={shippingInfo.address?.address2} />
                                 </div>
                                 <div>
                                     <label>요청사항</label>

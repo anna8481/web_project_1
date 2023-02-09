@@ -160,12 +160,12 @@ function Cart() {
             {cart.length !== 0 &&
                 <div className="payment-tile">
                     <div className="payment-summary " >
-                        <div className="payment-header"><h3>결제정보</h3></div>
+                        <div className="payment-header">결제정보</div>
                         <div className="payment-info" >
                             <div className="info"><p>상품 총 금액</p> <p id="productsTotal">{subtotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
                             <div className="info"><p>배송비</p> <p id="deliveryFee">{shippingCost.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
                         </div>
-                        <div className="payment-total" ><h2>총 결제금액</h2> <h2 id="Total">{(subtotal + shippingCost).toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</h2> </div>
+                        <div className="payment-total" ><p>총 결제금액</p> <p id="Total">{(subtotal + shippingCost).toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
 
 
                         <div className="purchase" >
