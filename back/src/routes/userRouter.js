@@ -17,7 +17,6 @@ userRouter.post("/register", async (req, res, next) => {
       email,
       password,
     });
-
     res.status(201).json(newUser);
   } catch (error) {
     next(error);
