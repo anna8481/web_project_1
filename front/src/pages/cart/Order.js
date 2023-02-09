@@ -261,7 +261,7 @@ function Order() {
                                 <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subTotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
                                 <div className="info"><p>배송비</p> <p id="deliveryFee">{shippingCost.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
                             </div>
-                            <div className="order-total" ><h2>총 결제금액</h2> <h2>{(subTotal + shippingCost).toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</h2> </div>
+                            <div className="order-total" ><p>총 결제금액</p> <p>{(subTotal + shippingCost).toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>
 
 
                             <div className="purchase" >
