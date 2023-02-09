@@ -8,84 +8,67 @@ import { ModifyCategory } from './ModifyCategory';
 import Header from '../../components/Header'
 
 function CategoryManage() {
-    const [categories, setCategories] = useState("")
-    const [isLoad, setIsLoad] = useState(false);
-    const [theme, setTheme] = useState("");
+    const [categories, setCategories] = useState(undefined)
     const [category, setCategory] = useState(undefined);
+    const [render, setRender] = useState(true);
 
-    // Delete Modal State
-    const [DM, setDM] = useState(false);
-    const DMShow = () => setDM(true);
-    const DMClose = () => setDM(false);
-
-    // Modification Modal State
-    const [MM, setMM] = useState(false);
-    const MMShow = () => setMM(true);
-    const MMClose = () => setMM(false);
+    // Mode 설정
+    const [mode, setMode] = useState(undefined)
+    const modeOff = () => { setMode(undefined) };
 
     // Pageload시 category를 불러옴
     const init = async () => {
-        await Api.get('categorylist').then(
-            res => {
-                setCategories((current) => {
-                    const newCategories = res.data.map((item, index) => {
-                        return (
-                            <div className="message media category-item" key={index}>
-                                <div className="media-left">
-                                    <figure className="image">
-                                        <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt="" />
-                                    </figure>
-                                </div>
-                                <div className="media-content">
-                                    <div>
-                                        <p className="title">{item.title}</p>
-                                        <p className="description">{item.description}</p>
-                                        <button className="edit-button" id={item._id} onClick={e => {
-                                            setCategory(() => {
-                                                const newCategory = res.data.find(item => item._id === e.target.id)
-                                                return newCategory
-                                            })
-                                            MMShow();
-                                        }}>수정</button>
-                                        {'    '}
-                                        <button className="edit-button" style={{ marginRight: "2rem" }} onClick={e => {
-                                            setCategory(() => {
-                                                const newCategory = res.data.find(item => item._id === e.target.id)
-                                                return newCategory
-                                            })
-                                            DMShow();
-                                        }}>삭제</button>
-                                    </div>
-                                </div>
-                            </div>
+        const res = await Api.get('categorylist')
+        setCategories(() => res.data);
+    }
 
-                        )
-                    })
-                    return newCategories
-                })
-            })
+    // Category Mapping
+    const cateMap = (categories) => {
+        const newCategories = categories.map((item, index) => {
+            return (
+                <div className="message media category-item" key={index}>
+                    <div className="media-left">
+                        <figure className="image">
+                            <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt="" />
+                        </figure>
+                    </div>
+                    <div className="media-content">
+                        <div>
+                            <p className="title">{item.title}</p>
+                            <p className="description">{item.description}</p>
+                            <button className="edit-button" name="MODIFY" id={item._id} onClick={handleModeChange}>수정</button>
+                            {'    '}
+                            <button className="edit-button" style={{ marginRight: "2rem" }} name="DELETE" onClick={handleModeChange} id={item._id}>삭제</button>
+                        </div>
+                    </div>
+                </div>
+
+            )
+        })
+        return newCategories
     }
 
     useEffect(() => {
-        init();
-    }, [])
-
-    // useState의 동기처리를 위해 사용
-    useEffect(() => {
-        if (categories.length > 1) {
-            setIsLoad(true);
+        if (render) {
+            init();
+            setRender(false)
         }
-    }, [categories])
+    }, [mode, render])
 
+    const handleModeChange = (e) => {
+        e.preventDefault();
 
+        setCategory(() => categories.find(item => item._id === e.target.id));
+        setMode(e.target.name)
+    }
 
     return (<>
         <div className="section">
             <Header title="카테고리 관리"></Header>
             <div>
-                {isLoad && categories}
-                {DM && <DeleteCategory close={DMClose} categoryId={category._id} />}
-                {MM && <ModifyCategory close={MMClose} category={category} />}
+                {typeof categories === 'object' && cateMap(categories)}
+                {mode === "DELETE" && <DeleteCategory setRender={setRender} modeOff={modeOff} categoryId={category._id} />}
+                {mode === "MODIFY" && <ModifyCategory setRender={setRender} modeOff={modeOff} category={category} />}
             </div>
         </div>
     </>);

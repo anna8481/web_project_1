@@ -10,8 +10,8 @@ function OrderHistory() {
     const [orderId, setOrderId] = useState(undefined);
     const [item, setItem] = useState(undefined);
     const [render, setRender] = useState(true);
+    
     // Modal State
-
     const [mode, setMode] = useState(undefined);
     const modeOff = () => { setMode(undefined) };
 
@@ -21,8 +21,7 @@ function OrderHistory() {
     }
 
     const orderMap = (orders) => {
-        const userOrders = orders.map((item, index) => {
-            
+        const userOrders = orders.map((item, index) => { 
             return (
                 <tr key={index} >
                     <th>{item.createdAt.split("T")[0]}</th>

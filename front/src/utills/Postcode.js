@@ -3,7 +3,7 @@ import DaumPostcode from "react-daum-postcode";
 import './Postcode.css'
 
 
-const Postcode = ({ inputs, setInputs, formData, setFormData }) => {
+const Postcode = ({ setInputs, formData, setFormData }) => {
 
     const handleAddress = (data) => {
         let fullAddress = data.address;

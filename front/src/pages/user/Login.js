@@ -31,6 +31,7 @@ function Login() {
             });
             localStorage.setItem('token', response.data.token);
 
+            // Admin check
             if (response.data.isAdmin) {
                 localStorage.setItem('isAdmin', "admin");
             }
