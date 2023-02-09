@@ -94,7 +94,10 @@ function Order() {
 
     const validateForm = ({ userName, phoneNumber, address }) => {
         console.log(userName, phoneNumber, address);
-        if (userName.length === 0 || phoneNumber.length === 0 || address.address1.length === 0 || address.address2.length === 0 || address.postalCode.length === 0) {
+        if (userName === undefined || phoneNumber === undefined || address === undefined || address?.address1 === undefined || address?.address2 === undefined || address?.postalCode === undefined) {
+            return "배송지 정보를 모두 입력해주세요.";
+        }
+        if (userName.length === 0 || phoneNumber.length === 0 || address?.address1.length === 0 || address?.address2.length === 0 || address?.postalCode.length === 0) {
             return "배송지 정보를 모두 입력해주세요.";
         }
         return true;
@@ -249,7 +252,7 @@ function Order() {
                                 {/* <ul> */}
                                 {cart.map((item, index) => (
                                     //  style={index === 0 ? { display: 'inline', textAlign: "right" } : { textAlign: "right" }}
-                                    <div key={item._Id} style={{ textAlign: 'right' }}>
+                                    <div key={item._id} style={{ textAlign: 'right' }}>
                                         {item.productName} / {item.quantity}개
                                     </div>
                                 ))}

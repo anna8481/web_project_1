@@ -166,7 +166,7 @@ function ProductAdd() {
                         <Form.Control type="number" placeholder="0" autoComplete="on" name="price" onChange={handleChange} />
                     </Form.Group>
 
-                    <Button type="submit" className="button is-primary is-fullwidth" id="addCategoryButton">제품 추가하기</Button>
+                    <button type="submit" className="edit-button" id="addCategoryButton" style={{ marginTop: "1rem" }}>제품 추가하기</button>
                 </Form>
             </div>
         </div>
