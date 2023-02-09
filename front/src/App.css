@@ -7,7 +7,7 @@
   max-width: 90%;
   color: black;
   white-space: pre-line;
-  font-size: 12px;
+
 }
 
 .container {
@@ -15,7 +15,7 @@
   font-family: 'Merriweather', 'Noto Serif KR', serif;
   display: flex;
   flex-direction: column;
-  font-size: 12px;
+
 
 }
 
@@ -26,28 +26,10 @@
   align-items: center;
   margin-bottom: 2rem;
   font-family: 'Merriweather', 'Noto Serif KR', serif;
-  font-size: 12px;
+
 
 }
 
-.Navbar {
-  display: flex;
-}
-
-.Header {
-  border-bottom: 1px solid;
-  border-top: 1px solid;
-  padding: 1.5rem 0;
-  font-size: 1rem;
-  margin-bottom: 2rem;
-}
-
-.tile {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 70%
-}
 
 body,
 input,
@@ -68,6 +50,26 @@ ul {
   color: black;
 }
 
+
+.Navbar {
+  display: flex;
+}
+
+.Header {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  padding: 1.5rem 0;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 70%
+}
+
 input {
   width: 100%;
 }
@@ -80,7 +82,6 @@ input {
   height: 55px;
   margin-bottom: 1rem;
 }
-
 
 .user-form {
   display: flex;
