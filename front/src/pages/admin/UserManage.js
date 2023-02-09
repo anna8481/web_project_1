@@ -95,17 +95,7 @@ function UserManage() {
 
             {mode === "DELETE" && <DeleteUser setRender={setRender} modeOff={modeOff} userId={userId} />}
 
-            <Pagination
-                itemClass="page-item"
-                activePage={page}
-                itemsCountPerPage={perPage}
-                totalItemsCount={total}
-                pageRangeDisplayed={5}
-                prevPageText={"‹"}
-                nextPageText={"›"}
-                onChange={handlePageChange}
-                hideFirstLastPages
-            />
+            
         </div>
 
 

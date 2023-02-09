@@ -87,7 +87,7 @@ function ProductDetail() {
                                 <button className='edit-button' style={{ display: "inline", marginRight: "1rem" }} onClick={() => setMode("MODIFY")}>수정</button>
                                 <button className='edit-button' style={{ display: "inline" }} onClick={() => setMode("DELETE")}>삭제</button>
                                 {mode === "DELETE" && <DeleteProduct modeOff={modeOff} productId={id} />}
-                                {mode === "MODIFY" && <ModifyProduct reload={init} modeOff={modeOff} product={item} />}
+                                {mode === "MODIFY" && <ModifyProduct modeOff={modeOff} product={item} />}
                             </>
                             }
 

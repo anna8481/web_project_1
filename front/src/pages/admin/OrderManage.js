@@ -3,11 +3,18 @@ import React, { useState, useEffect } from "react";
 import { Table } from 'react-bootstrap';
 import Header from '../../components/Header'
 import { DeleteOrder } from "../user/DeleteOrder";
+import Pagination from "react-js-pagination"
 
 function OrderManage() {
     const [orders, setOrders] = useState(undefined);
     const [orderId, setOrderId] = useState(undefined);
     const [render, setRender] = useState(true);
+    const [total, setTotal] = useState(undefined);
+    const [page, setPage] = useState(1);
+
+    // Page 당 10개의 데이터를 불러옴
+    const perPage = 10;
+
     // Modal State  
     const [mode, setMode] = useState(undefined);
     const modeOff = () => { setMode(undefined) };
@@ -33,17 +40,26 @@ function OrderManage() {
         return userOrders;
     }
     const init = async () => {
-        const res = await Api.get('admin/orderslist/all')
-        // console.log(res.data)
-        setOrders(() => res.data)
+        const res = await Api.get(`admin/orderslist/all/?page=${page}&perPage=${perPage}`)
+        console.log(res.data)
+        setOrders(() => res.data.orders)
+        setTotal(() => res.data.total)
     }
 
+    const handlePageChange = (currentPage) => {
+
+        if (page === currentPage)
+            return;
+        setPage(currentPage)
+        setRender(true);
+    };
+
     useEffect(() => {
-        if(render) {
+        if (render) {
             init();
             setRender(false);
         }
-    }, [mode, render]);
+    }, [mode, render, page]);
 
     const handleOrderCancel = (e) => {
         e.preventDefault();
@@ -73,10 +89,24 @@ function OrderManage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {typeof orders ==='object' && orderMap(orders)}
+                    {typeof orders === 'object' && orderMap(orders)}
                 </tbody>
-                {mode === "DELETE" && <DeleteOrder setRender={setRender} modeOff={modeOff} orderId={orderId} />}
             </Table>
+            {mode === "DELETE" && <DeleteOrder setRender={setRender} modeOff={modeOff} orderId={orderId} />}
+
+            <Pagination
+                itemClass="page-item"
+                activePage={page}
+                itemsCountPerPage={perPage}
+                totalItemsCount={total}
+                pageRangeDisplayed={5}
+                prevPageText={"‹"}
+                nextPageText={"›"}
+                onChange={handlePageChange}
+                hideFirstLastPages
+            />
+
+
         </div>
     </>)
 
