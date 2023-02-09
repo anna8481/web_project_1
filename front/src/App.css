@@ -5,6 +5,7 @@
   padding: 1rem;
   max-width: 90%;
   color: black;
+  white-space: pre-line;
   height: 1000px;
 }
 
