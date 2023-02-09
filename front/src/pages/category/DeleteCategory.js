@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Api from "../../utills/api";
 import { Button, Modal } from 'react-bootstrap';
 
-export function DeleteCategory({ setRender, modeOff , categoryId }) {
+export function DeleteCategory({ setRender, modeOff, categoryId }) {
 
     const handleCategoryDelete = async () => {
         try {

@@ -12,15 +12,17 @@ function CategoryManage() {
     const [category, setCategory] = useState(undefined);
     const [render, setRender] = useState(true);
 
-    // Modal State
+    // Mode 설정
     const [mode, setMode] = useState(undefined)
     const modeOff = () => { setMode(undefined) };
 
     // Pageload시 category를 불러옴
     const init = async () => {
         const res = await Api.get('categorylist')
-        setCategories(()=> res.data);
+        setCategories(() => res.data);
     }
+
+    // Category Mapping
     const cateMap = (categories) => {
         const newCategories = categories.map((item, index) => {
             return (
@@ -45,8 +47,9 @@ function CategoryManage() {
         })
         return newCategories
     }
+
     useEffect(() => {
-        if(render) {
+        if (render) {
             init();
             setRender(false)
         }
@@ -55,7 +58,7 @@ function CategoryManage() {
     const handleModeChange = (e) => {
         e.preventDefault();
 
-        setCategory(()=> categories.find(item => item._id === e.target.id));
+        setCategory(() => categories.find(item => item._id === e.target.id));
         setMode(e.target.name)
     }
 

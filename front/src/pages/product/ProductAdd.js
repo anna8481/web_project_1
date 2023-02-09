@@ -60,6 +60,7 @@ function ProductAdd() {
         });
     };
 
+    // product validation
     const validationForm = ({ productName, categoryId, productInfo, price }) => {
         if (productName !== "" && categoryId !== "" && productInfo !== "" && fileData !== "" && price !== "")
             return true;
@@ -83,9 +84,8 @@ function ProductAdd() {
     async function addPicture(imgdata) {
         try {
             const res = await axios.post(process.env.REACT_APP_FILE_UPLOAD_URL, imgdata)
-            console.log(res.data.public_id)
-            return res.data.public_id;
 
+            return res.data.public_id;
         } catch (err) {
             console.log("이미지 업로드 에러 발생", err)
         }
@@ -105,19 +105,13 @@ function ProductAdd() {
         imgdata.append("upload_preset", process.env.REACT_APP_FILE_UPLOAD_PRESET);
 
         const public_id = await addPicture(imgdata);
-        console.log(public_id);
 
-        let formdata = inputs;
-        formdata = { ...inputs, "imageKey": public_id };
-        console.log(formdata)
-
+        const formdata = { ...inputs, "imageKey": public_id };
         await addProduct(formdata)
 
-        e.target.reset();
 
-        setInputs(() => {
-            return initialInputs
-        })
+        e.target.reset();
+        setInputs(() => initialInputs)
     }
 
     return (

@@ -56,7 +56,7 @@ function Register() {
   }
 
   const handleSubmit = (e) => {
-    
+
     e.preventDefault();
     const validated = validateForm(inputs);
     if (typeof validated === "string") {

@@ -6,6 +6,7 @@ import { Form, Button, Container, Row, Col, InputGroup, FormControl, Modal } fro
 export function ModifyCategory({ setRender, modeOff, category }) {
     const [inputs, setInputs] = useState({});
 
+    // input initialize
     useEffect(() => {
         const initialInputs =
             Object.keys(category).reduce((obj, key) => {
