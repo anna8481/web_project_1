@@ -21,7 +21,7 @@ const Router = () => {
           return <Route path={route.path} element={<route.element />} key={index} />
         })}
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter >
   );
 }

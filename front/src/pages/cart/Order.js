@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Order.css';
 import Postcode from '../../utills/Postcode'
 import * as Api from "../../utills/api";
@@ -20,6 +20,7 @@ function Order() {
         subTotal += item.price * item.quantity;
     });
     const productId = cart.map(item => item._id);
+
     const orderTitle = cart.reduce((acc, obj) => acc + obj.productName + '/' + obj.quantity + '개' + '\n', '');
 
 
@@ -226,15 +227,16 @@ function Order() {
                         <div className="order-summary " >
                             <div className="order-header"><p>결제정보</p></div>
                             <div className="order-info" >
-                                <div className="info">   <p>주문 상품</p> <p id="orderTitle"></p></div>
+                                <div className="info" style={{ display: "inline" }}>  주문 상품 </div>
 
-                                <ul>
-                                    {cart.map((item) => (
-                                        <li key={item._Id} style={{ textAlign: "right" }}>
-                                            {item.productName}/{item.quantity}개
-                                        </li>
-                                    ))}
-                                </ul>
+                                {/* <ul> */}
+                                {cart.map((item, index) => (
+                                    //  style={index === 0 ? { display: 'inline', textAlign: "right" } : { textAlign: "right" }}
+                                    <div key={item._Id} style={{ textAlign: 'right' }}>
+                                        {item.productName} / {item.quantity}개
+                                    </div>
+                                ))}
+                                {/* </ul> */}
 
                                 <div className="info">   <p>상품 총 금액</p> <p id="productsTotal">{subTotal.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p></div>
                                 <div className="info"><p>배송비</p> <p id="deliveryFee">{shippingCost.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}</p> </div>

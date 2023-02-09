@@ -72,3 +72,7 @@ ul {
 .logout:hover {
     cursor: pointer;
 }
+
+a:hover {
+    color: #999;
+}
