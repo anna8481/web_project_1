@@ -126,6 +126,7 @@ button:hover {
 .postcode-input {
   flex: 3;
   border: 1px solid black;
+  border-right: 0px;
   line-height: 3.5;
   border-radius: 0;
   height: 55px;
