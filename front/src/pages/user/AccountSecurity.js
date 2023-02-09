@@ -131,7 +131,7 @@ function AccountSecurity() {
     const validateForm = ({ userName, password, confirmPassword }) => {
         console.log(userName, password, confirmPassword);
 
-        if (password) {
+        if (password || confirmPassword) {
             if (password !== confirmPassword) {
                 return "비밀번호가 일치하지 않습니다.";
             }
