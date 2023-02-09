@@ -7,6 +7,7 @@ export function ModifyProduct({ modeOff, product }) {
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
 
+    // input initialize
     useEffect(() => {
         const initialInputs =
             Object.keys(product).reduce((obj, key) => {

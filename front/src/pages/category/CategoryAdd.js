@@ -9,6 +9,7 @@ import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'reac
 
 function CategoryAdd() {
     const [fileData, setFileData] = useState("");
+    const navigate = useNavigate();
 
     const handlefileData = (e) => {
         setFileData(e.target.files[0])
@@ -40,7 +41,7 @@ function CategoryAdd() {
         try {
             const newData = await Api.post("category", formdata)
             alert("category 등록이 완료되었습니다.");
-            console.log(newData.data)
+            navigate('category')
 
         } catch (err) {
             alert("이미 있는 category 이름입니다.")
@@ -56,7 +57,7 @@ function CategoryAdd() {
             return res.data.public_id;
 
         } catch (err) {
-            console.log("이미지 업로드 에러 발생", err)
+            alert("이미지 업로드 에러")
         }
     }
 

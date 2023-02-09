@@ -41,20 +41,18 @@ function UserManage() {
         return newUserList;
     }
 
-    const handlePageChange = (currentPage) => {
-
-        if (page === currentPage)
-            return;
-        setPage(currentPage)
-        setRender(true);
-    };
-
     const init = async () => {
         const res = await Api.get(`admin/users?page=${page}&perPage=${perPage}`)
         // console.log(res)
         setUsers(() => res.data.users)
         setTotal(() => res.data.total)
     }
+    const handlePageChange = (currentPage) => {
+        if (page === currentPage)
+            return;
+        setPage(currentPage)
+        setRender(true);
+    };
 
     useEffect(() => {
         if (render) {

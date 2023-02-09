@@ -1,45 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import * as Api from "../../utills/api";
 import './ProductAdd.css'
-import { Form, Button, Container, InputGroup, FormControl } from 'react-bootstrap';
 import Header from '../../components/Header'
 
 function ProductAdd() {
-    const [categories, setCategories] = useState("")
-    const [isLoad, setIsLoad] = useState(false);
-    const [theme, setTheme] = useState("");
+    const [categories, setCategories] = useState(undefined)
+    const [fileData, setFileData] = useState(undefined);
+    const [inputs, setInputs] = useState(undefined);
 
     // Pageload시 category를 불러옴
     const init = async () => {
-        await Api.get('categorylist').then(
-            res => {
-                setCategories((current) => {
-                    const newCategories = res.data.map((item, index) => {
-                        return <option key={index} value={item._id} className={"notification " + item.themeClass}>{item.title}</option>
-                    })
-                    return newCategories
-                })
-            })
+        const res = await Api.get('categorylist')
+        setCategories(() => res.data)
     }
 
-    useEffect(() => {
-        init();
-    }, [])
-
-    // useState의 동기처리를 위해 사용
-    useEffect(() => {
-        if (categories.length > 1) {
-            setIsLoad(true);
-        }
-    }, [categories])
-
-
-    const [fileData, setFileData] = useState("");
-
-    const handlefileData = (e) => {
-        setFileData(e.target.files[0])
+    const cateMap = (categories) => {
+        const newCategories = categories.map((item, index) => {
+            return <option key={index} value={item._id} className={"notification " + item.themeClass}>{item.title}</option>
+        })
+        return newCategories
     }
 
     const initialInputs = {
@@ -50,7 +30,15 @@ function ProductAdd() {
         price: ""
     }
 
-    const [inputs, setInputs] = useState(initialInputs);
+    const handlefileData = (e) => {
+        setFileData(e.target.files[0])
+    }
+
+    useEffect(() => {
+        init();
+        setInputs(initialInputs)
+    }, [])
+
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -68,16 +56,13 @@ function ProductAdd() {
     }
 
     async function addProduct(formdata) {
-
-        const newData = await Api.post("product", formdata)
-            .then(res => {
-                alert("제품 등록이 완료되었습니다.");
-                console.log(res)
-            })
-            .catch(err => {
-                alert("이미 있는 제품 이름입니다.", err)
-            })
-
+        try {
+            const newData = await Api.post("product", formdata)
+            alert("제품 등록이 완료되었습니다.");
+        }
+        catch (err) {
+            alert("이미 있는 제품 이름입니다.")
+        }
     }
 
     // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
@@ -87,13 +72,13 @@ function ProductAdd() {
 
             return res.data.public_id;
         } catch (err) {
-            console.log("이미지 업로드 에러 발생", err)
+            alert("이미지 업로드 에러")
         }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(inputs)
         const validated = validationForm(inputs)
         if (!validated) {
             alert('제품을 추가하려면 빈 칸이 없어야합니다.')
@@ -109,7 +94,6 @@ function ProductAdd() {
         const formdata = { ...inputs, "imageKey": public_id };
         await addProduct(formdata)
 
-
         e.target.reset();
         setInputs(() => initialInputs)
     }
@@ -118,56 +102,62 @@ function ProductAdd() {
         <div className="section">
             <Header title="제품 등록"></Header>
             <div className="container">
-                <Form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
+                <form className="register-category-form-box" onSubmit={handleSubmit}>
 
-                    <Form.Group controlId="productNameInput">
-                        <Form.Label>제품 이름</Form.Label>
-                        <Form.Control type="text" placeholder="제품 이름을 입력하세요" autoComplete="on" name="productName" onChange=
+                    <div>
+                        <label>제품 이름</label>
+                    </div>
+
+                    <div>
+                        <input className="input" type="text" placeholder="제품 이름을 입력하세요" name="productName" onChange=
                             {handleChange} />
-                    </Form.Group>
+                    </div>
 
-                    <Form.Group controlId="categoryIdInput">
-                        <Form.Label>카테고리</Form.Label>
-                        <Form.Control as="select" name="categoryId" className={theme}
-                            onChange={e => {
-                                handleChange(e)
-                                setTheme(() => {
-                                    return categories.find(item => item.props.value === e.target.value).props.className
-                                })
-                            }
 
-                            }>
-                            <option value="">카테고리를 선택하세요</option>
-                            {isLoad && categories}
-                        </Form.Control>
-                    </Form.Group>
+                    <div>
+                        <label>카테고리</label>
+                    </div>
 
-                    <Form.Group controlId="productInfonInput">
-                        <Form.Label>제품 설명</Form.Label>
-                        <Form.Control rows={5} as="textarea" name='productInfo' autoComplete="on" onChange={handleChange} />
-                    </Form.Group>
+                    <select name="categoryId" onChange={handleChange}>
+                        <option value="">카테고리를 선택하세요</option>
+                        {typeof categories === 'object' && cateMap(categories)}
+                    </select>
 
-                    <Form.Group controlId="imageInput">
-                        <Form.Label>이미지 사진</Form.Label>
-                        <InputGroup className="mb-3">
-                            <FormControl
 
-                                type="file"
-                                name="image-file"
-                                accept=".png, .jpeg, .jpg"
-                                onChange={handlefileData}
-                            />
+                    <div>
+                        <label>제품 설명</label>
+                    </div>
 
-                        </InputGroup>
-                    </Form.Group>
+                    <div>
+                        <textarea
+                            placeholder='제품 설명을 입력하세요'
+                            rows={5} style={{ width: "100%" }} name='productInfo' onChange={handleChange} />
+                    </div>
 
-                    <Form.Group controlId="price">
-                        <Form.Label>가격</Form.Label>
-                        <Form.Control type="number" placeholder="0" autoComplete="on" name="price" onChange={handleChange} />
-                    </Form.Group>
+                    <div>
+                        <label>이미지 사진</label>
+                    </div>
 
-                    <Button type="submit" className="button is-primary is-fullwidth" id="addCategoryButton">제품 추가하기</Button>
-                </Form>
+                    <div>
+                        <input
+                            type="file"
+                            name="image-file"
+                            accept=".png, .jpeg, .jpg"
+                            onChange={handlefileData}
+                        />
+                    </div>
+
+                    <div>
+                        <div>
+                            <label>가격</label>
+                        </div>
+                        <input className="input" type="number" placeholder="0" name="price" onChange={handleChange} />
+
+                    </div>
+                    <div>
+                        <button type="submit" className="button" id="addCategoryButton">제품 추가하기</button>
+                    </div>
+                </form>
             </div>
         </div>
     );
