@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
 import * as Api from "../../utills/api";
 import { ROUTE, ROUTE_ARR } from '../../utills/route';
+import { Link } from 'react-router-dom';
 
 function Login() {
     const navigate = useNavigate();
@@ -59,6 +60,9 @@ function Login() {
                     <input className="input" value={inputs.email} label='Email' name='email' type='email' placeholder='email' onChange={handleChange} />
                     <input className="input" value={inputs.password} label='Password' name='password' type='password' placeholder='password' onChange={handleChange} />
                     <button className="user-button">로그인</button>
+                    <Link to={ROUTE.FIND_USER_PASSWORD.link} >
+                        <button>비밀번호를 찾아주세요</button>
+                    </Link>
                 </form>
 
             </div>

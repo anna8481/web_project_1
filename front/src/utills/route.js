@@ -17,6 +17,7 @@ import CategoryManage from '../pages/category/CategoryManage'
 import OrderHistory from '../pages/user/OrderHistory'
 import OrderManage from '../pages/admin/OrderManage'
 import UserManage from '../pages/admin/UserManage'
+import FindUserPassword from '../pages/user/FindUserPassword'
 
 export const ROUTE = {
     HOME: {
@@ -108,6 +109,11 @@ export const ROUTE = {
         path: "/product/detail/:id",
         link: "/product/detail/:id",
         element: ProductDetail,
+    },
+    FIND_USER_PASSWORD: {
+        path: "/login/finduserpassword",
+        link: "/login/finduserpassword",
+        element: FindUserPassword,
     },
 };
 
