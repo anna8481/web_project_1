@@ -29,8 +29,6 @@ function Login() {
                 email,
                 password,
             });
-            console.log("fromRegister?", location.pathname)
-
             localStorage.setItem('token', response.data.token);
 
             if (response.data.isAdmin) {

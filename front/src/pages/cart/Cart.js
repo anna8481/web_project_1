@@ -123,7 +123,7 @@ function Cart() {
 
 
     return (<>
-        <div className="section"  >
+        <div className="nav-section"  >
             <Header title="Cart" style={{ marginBottom: "0" }}></Header>
         </div >
 
@@ -137,6 +137,7 @@ function Cart() {
             <p className='cart-product-header'>
                 <input type="checkbox" onChange={handleSelectAll} checked={selectAll} className="cart-checkbout" style={{ width: "15px" }}></input>
                 <div style={{ display: "inline", marginLeft: "1rem" }}>전체선택</div>
+                <div style={{ display: "inline", marginLeft: "1rem" }}>|</div>
                 <div style={{ display: "inline", marginLeft: "1rem", cursor: "pointer" }} onClick={handleDelete}>선택삭제</div></p>
             <div className="product-tile ">
                 {cart.length !== 0

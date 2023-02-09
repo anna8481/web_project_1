@@ -18,18 +18,7 @@ import { ROUTE } from '../../utills/route'
 
 function AccountSecurity() {
     const [disabled, setDisabled] = useState(true);
-    const [formData, setFormData] = useState(
-        {
-            userName: "",
-            address: {
-                address1: "",
-                address2: "",
-                postalCode: ""
-            },
-            phoneNumber: "",
-            _id: ""
-        }
-    );
+    const [formData, setFormData] = useState(undefined);
     const [currentPassword, setCurrentPassword] = useState('');
 
     const [popup, setPopup] = useState(false);
@@ -50,6 +39,7 @@ function AccountSecurity() {
             }
         };
         fetchData();
+        console.log(formData?.password);
     }, []);
 
 
@@ -66,6 +56,7 @@ function AccountSecurity() {
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
+            confirmPassword: prev.password,
             address: {
                 ...prev.address,
                 [name]: value
@@ -84,8 +75,14 @@ function AccountSecurity() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // "users/유저id" 엔드포인트로 patch 요청함.
-        const updatedUser = {
+        const validated = validateForm({ ...formData });
+        if (typeof validated === "string") {
+            alert(validated);
+            return;
+        }
+
+        const updatedUser =
+        {
             username: formData.userName,
             phoneNumber: formData.phoneNumber || "",
             address: {
@@ -96,6 +93,13 @@ function AccountSecurity() {
             currentPassword: currentPassword,
         };
 
+        if (formData.password && formData.password === formData.confirmPassword) {
+            updatedUser.password = formData.password;
+        }
+
+        console.log(updatedUser);
+
+        // "users/유저id" 엔드포인트로 patch 요청함.
         try {
             const newData = await Api.patch(`users/${formData._id}`, updatedUser);
             alert('수정이 완료되었습니다!')
@@ -107,7 +111,6 @@ function AccountSecurity() {
             alert('오류로 업데이트가 되지 않았습니다. 관리자에게 문의해주세요.')
         }
 
-
         // setPopup(!popup);
     };
 
@@ -116,18 +119,32 @@ function AccountSecurity() {
     const validateForm = ({ userName, password, confirmPassword }) => {
         console.log(userName, password, confirmPassword);
 
+        if (password) {
+            if (password !== confirmPassword) {
+                return "비밀번호가 일치하지 않습니다.";
+            }
+            if (password.length < 4) {
+                return "비밀번호는 4글자 이상이어야합니다.";
+            }
+        }
         if (userName.length < 2) {
             return "이름은 2글자 이상이어야합니다.";
         }
-        if (password.length < 4) {
-            return "비밀번호는 4글자 이상이어야합니다.";
-        }
-        if (password !== confirmPassword) {
-            return "비밀번호가 일치하지 않습니다.";
-        }
+
         return true;
     };
 
+
+
+    if (!formData) {
+        return (
+            <div className="container-center">
+                <div className='section'>
+                    <div>Loading...</div>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -150,11 +167,11 @@ function AccountSecurity() {
                         <div>
                             <label>비밀번호</label>
                         </div>
-                        <input className="input" label='' name="password" type='text' disabled />
+                        <input className="input" label='' disabled={disabled} name="password" type='password' onChange={handleAddressChange} />
                         <div>
                             <label>비밀번호 확인</label>
                         </div>
-                        <input className="input" label='' name='password' type='text' disabled />
+                        <input className="input" label='' disabled={disabled} name='confirmPassword' type='password' onChange={handleAddressChange} />
                         <div>
                             <label>주소</label>
                         </div>
