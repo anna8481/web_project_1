@@ -1,7 +1,6 @@
 import { Carousel } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
-import { Link } from 'react-router-dom';
 import * as Api from "../utills/api";
 import Category from './Category'
 import Footer from './Footer'
@@ -63,3 +62,5 @@ function Slider() {
     );
 }
 export default Slider;
+
+
