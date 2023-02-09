@@ -56,16 +56,13 @@ function AccountSecurity() {
 
 
     const handleInputChange = e => {
-        console.log(e.target.value);
         const { name, value } = e.target;
         setFormData(prev => (
             { ...prev, [name]: value }));
-
     };
 
 
     const handleAddressChange = (e) => {
-        console.log(e.target);
         const { name, value } = e.target;
         setFormData(prev => ({
             ...prev,
@@ -110,13 +107,11 @@ function AccountSecurity() {
             updatedUser.password = formData.password;
         }
 
-        console.log(updatedUser);
 
         // "users/유저id" 엔드포인트로 patch 요청함.
         try {
             const newData = await Api.patch(`users/${formData._id}`, updatedUser);
             alert('수정이 완료되었습니다!')
-            console.log(newData);
             setPopup(!popup);
         }
         catch (e) {
@@ -166,7 +161,7 @@ function AccountSecurity() {
                     <button className="edit-button"
                         onClick={(e) => {
                             setDisabled((current) => !current)
-                            console.log(disabled)
+
                         }}>수정하기</button>
                     <div style={{ marginBottom: "3rem" }}></div>
                     <form className="user-form" >

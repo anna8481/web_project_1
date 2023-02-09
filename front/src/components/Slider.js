@@ -1,4 +1,3 @@
-import { Carousel } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import './Slider.css';
 import * as Api from "../utills/api";
@@ -12,7 +11,6 @@ function Slider() {
         const res = await Api.get("categorylist");
         const data = await res.data;
         setCategory(data);
-        console.log(data);
     };
     useEffect(() => {
         init();

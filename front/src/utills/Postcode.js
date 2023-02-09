@@ -19,29 +19,24 @@ const Postcode = ({ setInputs, formData, setFormData }) => {
             fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
 
-        console.log(fullAddress)
-        console.log(data.zonecode)
-
-        if(typeof setFormData === 'function')
-        {
+        if (typeof setFormData === 'function') {
             setFormData({
-            ...formData,
-            address: {
-                postalCode: data.zonecode,
-                address1: fullAddress
-            }
-        });
+                ...formData,
+                address: {
+                    postalCode: data.zonecode,
+                    address1: fullAddress
+                }
+            });
         }
 
         // 배송지 정보 변경 Code
-        if(typeof setInputs === 'function')
-        {
+        if (typeof setInputs === 'function') {
             setInputs(prev => ({
-            ...prev,
-            postalCode: data.zonecode,
-            address1: fullAddress
-        }));
-      }
+                ...prev,
+                postalCode: data.zonecode,
+                address1: fullAddress
+            }));
+        }
     }
 
 

@@ -56,12 +56,12 @@ function AccountDelete() {
                     </Modal.Header>
                     <Modal.Body>회원정보 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
+                        <button className='edit-button' onClick={handleClose}>
                             아니오
-                        </Button>
-                        <Button variant="primary" type="submit" onClick={handleSubmit}>
+                        </button>
+                        <button className='edit-button' type="submit" onClick={handleSubmit}>
                             예
-                        </Button>
+                        </button>
                     </Modal.Footer>
                 </Modal>
 

@@ -78,7 +78,7 @@ function ProductAdd() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs)
+        // console.log(inputs)
         const validated = validationForm(inputs)
         if (!validated) {
             alert('제품을 추가하려면 빈 칸이 없어야합니다.')
@@ -155,7 +155,7 @@ function ProductAdd() {
 
                     </div>
                     <div>
-                        <button type="submit" className="button" style={{ marginTop: "1rem" }}id="addCategoryButton">제품 추가하기</button>
+                        <button type="submit" className="edit-button" style={{ marginTop: "1rem" }} id="addCategoryButton">제품 추가하기</button>
                     </div>
                 </form>
             </div>

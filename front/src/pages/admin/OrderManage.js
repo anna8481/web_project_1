@@ -41,7 +41,7 @@ function OrderManage() {
     }
     const init = async () => {
         const res = await Api.get(`admin/orderslist/all/?page=${page}&perPage=${perPage}`)
-        console.log(res.data)
+        // console.log(res.data)
         setOrders(() => res.data.orders)
         setTotal(() => res.data.total)
     }

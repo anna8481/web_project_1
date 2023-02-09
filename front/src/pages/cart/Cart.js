@@ -44,7 +44,6 @@ function Cart() {
 
     const handleOrder = () => {
         localStorage.getItem("token") ? navigate('/order', { state: { cart } }) : navigate('/login', { state: { redirectUrl: location.pathname + location.search + location.hash } })
-        console.log("cart", cart);
     }
 
     //체크 박스 전체 선택
