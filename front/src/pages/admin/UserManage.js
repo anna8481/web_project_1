@@ -29,7 +29,7 @@ function UserManage() {
                     <th>{item.email}</th>
                     <th>{item.userName}</th>
                     <th>
-                        <select defaultValue={item.role} name={item._id} onChange={handleRoleChange}>
+                        <select value={item.role} name={item._id} onChange={handleRoleChange}>
                             <option value="admin">관리자</option>
                             <option value="basic-user">회원</option>
                         </select>
@@ -51,7 +51,7 @@ function UserManage() {
 
     const init = async () => {
         const res = await Api.get(`admin/users?page=${page}&perPage=${perPage}`)
-        console.log(res)
+        // console.log(res)
         setUsers(() => res.data.users)
         setTotal(() => res.data.total)
     }
@@ -73,6 +73,7 @@ function UserManage() {
     const handleRoleChange = async (e) => {
         const formdata = { "role": e.target.value };
         await Api.patch(`admin/users/${e.target.name}`, formdata)
+        setRender(true);
     }
     return (<>
         <div className="section">
