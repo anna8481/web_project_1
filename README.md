@@ -2,10 +2,40 @@
 
 - 개발 기간 : 2023.01.30 ~ 2023.02.11
 - 주제 : 물건을 주문, 판매 및 배송할 수 있는 쇼핑몰 웹사이트 개발 프로젝트
-- api 문서 : 
 - 테스트 페이지 : [바로 가기](http://kdt-ai6-team03.elicecoding.com/)
-   
- <br> 
+## 🔑 API 문서 
+|  공통| kdt-ai6-team03.elicecoding.com		 |  |  |
+|--|--|--|--|
+|사용자|회원가입|POST| /register |
+|| 로그인 |POST| /login |
+|| 계정찾기-email |POST|/users/help/id |
+|| 계정찾기-pw,메일링 |POST| /users/help/password |
+|| 관리자-전체 사용자 정보 조회 |GET| /admin/users?page=1&perPage=10 |
+|| 관리자-사용자 정보 수정 |PATCH| /admin/users/:userId |
+|| 관리자-사용자 정보 삭제 |DELETE| /admin/users/:userId |
+|| 사용자-사용자 정보 조회 |GET| /users |
+|| 사용자-사용자 정보 수정 |PATCH| /users/:userId |
+|| 사용자-사용자 정보 삭제 |DELETE| /users/:userId |
+|| 삭제 전 현재 비밀번호 확인 |POST| /users/currentPassword |
+|상품|관리자-상품 등록|POST| /products |
+|| 관리자-상품 수정 |PATCH|/products/:productId |
+|| 관리자-상품 삭제 |DELETE|/products/:productId |
+|| 상품 상세 정보 |GET|/products/:productId |
+|| 카테고리 클릭->관련 상품 출력 |GET|/products/category/:categoryTitle |
+|주문|사용자-주문하기|POST| /orders |
+|| 사용자-주문 목록 조회 |GET| /orders |
+|| 사용자-주문 정보 수정 |PATCH|/orders/:orderId |
+|| 사용자-주문 정보 삭제 |DELETE| /orders/:orderId |
+|| 관리자-전체 주문목록 조회 |GET| /admin/orders?page=1&perPage=10 |
+|| 관리자-주문 상태 관리 |PATCH|/admin/orders/:orderId |
+|| 관리자-주문 삭제 |DELETE| /admin/orders/:orderId |
+|카테고리 |(홈)카테고리 목록 조회|GET|/categorys |
+|| 관리자-카테고리 등록 |POST|/categorys |
+|| 관리자-카테고리 수정 |PATCH|/categorys/:categoryId |
+|| 관리자-카테고리 삭제 |DELETE|/categorys/:categoryId |
+
+
+ <br>
 
 ## 👪 팀원
 |  포지션|이름  |
@@ -81,13 +111,16 @@
 <br> 
 
 ## ✨ 디자인
+**핸드메이드 도자기 쇼핑몰**
 
+< 디자인: 미니멀 / 단정함 > 
+
+- 컬러: black  /white / grey
+
+- 폰트: Merriweather
 
 
 <br>
----
-
-
 
 ## 🔍 테스트 방법
 
