@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import { MDBIcon, } from 'mdb-react-ui-kit';
 import { ROUTE } from '../../utills/route'
 
-function CardProductContainer({ img, productName, price, handleDelete, checked, onChange, quantity, onIncrease, onDecrease }) {
+function CardProductContainer({ img, productId, productName, price, handleDelete, checked, onChange, quantity, onIncrease, onDecrease }) {
     const currencySymbol = 'KRW';
     return <>
 
@@ -13,8 +13,10 @@ function CardProductContainer({ img, productName, price, handleDelete, checked, 
             <div className="cart-product-info">
                 <div className="cart-img-name">
                     <input type="checkbox" checked={checked} onChange={onChange} className="cart-checkbout" style={{ width: "15px", marginRight: "1rem" }}></input>
-                    <img className="productImg" src={img} alt={productName} />
-                    <div className="product-name">   {productName} </div>
+                    <Link to={`/product/detail/${productId}`}>
+                        <img className="productImg" src={img} alt={productName} /></Link>
+                    <div className="product-name"> <Link to={`/product/detail/${productId}`}>
+                        {productName} </Link></div>
                 </div>
                 <div className="cart-quantity" >
                     <MDBIcon fas icon="minus-circle" onClick={onDecrease} />
@@ -143,6 +145,7 @@ function Cart() {
                     ?
                     cart.map(item =>
                     (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                        productId={item._id}
                         productName={item.productName}
                         price={item.price * item.quantity}
                         quantity={item.quantity}
