@@ -13,6 +13,10 @@
 
 }
 
+.cart-checkbout:checked {
+    background-color: #000;
+}
+
 
 .payment-summary {
     display: flex;

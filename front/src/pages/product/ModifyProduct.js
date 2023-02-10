@@ -17,7 +17,7 @@ export function ModifyProduct({ setRender, modeOff, product }) {
             }, {})
         setInputs(initialInputs)
     }, [])
-    
+
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -78,12 +78,12 @@ export function ModifyProduct({ setRender, modeOff, product }) {
                 }
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={modeOff}>
+                <button className='edit-button' variant="secondary" onClick={modeOff}>
                     취소
-                </Button>
-                <Button variant="primary" type="submit" onClick={handleModify} >
+                </button>
+                <button className='edit-button' variant="primary" type="submit" onClick={handleModify} >
                     수정
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as Api from "../../utills/api";
 import { Button, Modal } from 'react-bootstrap';
 
-export function DeleteProduct({modeOff, productId}) {
+export function DeleteProduct({ modeOff, productId }) {
     const navigate = useNavigate();
 
     const handleProductDelete = async () => {
@@ -26,12 +26,12 @@ export function DeleteProduct({modeOff, productId}) {
             </Modal.Header>
             <Modal.Body>제품 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={modeOff}>
+                <button className='edit-button' variant="secondary" onClick={modeOff}>
                     아니오
-                </Button>
-                <Button variant="primary" onClick={handleProductDelete}>
+                </button>
+                <button className='edit-button' variant="primary" onClick={handleProductDelete}>
                     예
-                </Button>
+                </button>
             </Modal.Footer>
         </Modal>
     );
