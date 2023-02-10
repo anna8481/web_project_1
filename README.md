@@ -38,10 +38,10 @@
 ### Back-End
 
 <div>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
-<img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
-<img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"/>
-<img src="https://img.shields.io/badge/mongoDB-47A248?style=flat-square&logo=mongoDB&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=plastic&logo=Node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/Express-000000?style=plastic&logo=express&logoColor=white"/>
+<img src="https://img.shields.io/badge/mongoDB-47A248?style=plastic&logo=mongoDB&logoColor=white"/>
 </div>
 
 <br> 
