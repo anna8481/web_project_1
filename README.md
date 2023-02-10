@@ -59,7 +59,6 @@
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=plastic&logo=CSS3&logoColor=white"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=JavaScript&logoColor=white"/>
 <img src="https://img.shields.io/badge/BootStrap-7952B3?style=plastic&logo=BootStrap&logoColor=white"/>
-<img src="https://img.shields.io/badge/Node.js-339933?style=plastic&logo=Node.js&logoColor=white"/>
 <img src="https://img.shields.io/badge/React-61DAFB?style=plastic&logo=React&logoColor=white"/>
 </div>
 
@@ -68,7 +67,6 @@
 ### Back-End
 
 <div>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logo=JavaScript&logoColor=white"/>
 <img src="https://img.shields.io/badge/Node.js-339933?style=plastic&logo=Node.js&logoColor=white"/>
 <img src="https://img.shields.io/badge/Express-000000?style=plastic&logo=express&logoColor=white"/>
 <img src="https://img.shields.io/badge/mongoDB-47A248?style=plastic&logo=mongoDB&logoColor=white"/>
