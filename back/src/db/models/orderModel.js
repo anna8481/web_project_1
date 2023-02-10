@@ -22,7 +22,7 @@ class OrderModel {
   }
 
   async findAllByUserId(userId) {
-    const orders = await Order.find({ userId });
+    const orders = await Order.find({ userId }).sort({ createdAt: -1 });
     return orders;
   }
 
