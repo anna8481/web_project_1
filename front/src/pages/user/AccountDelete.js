@@ -22,6 +22,7 @@ function AccountDelete() {
             Api.delete('users', res.data._id)
 
             localStorage.removeItem("token");
+            localStorage.removeItem("cart");
             alert("계정정보가 안전하게 삭제되었습니다.")
             navigate('/');
 
