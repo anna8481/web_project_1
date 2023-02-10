@@ -6,7 +6,7 @@ function errorHandler(error, req, res, next) {
   // 터미널에 노란색으로 출력됨.
   logger.error(error.stack);
 
-  res.status(400).json({ message: error.message });
+  res.status(400).json({ reason: error.message });
 }
 
 module.exports = { errorHandler };
