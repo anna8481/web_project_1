@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Postcode from '../../utills/Postcode';
 import * as Api from "../../utills/api";
-import { Form, Button, Container, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 export function ModifyOrder({ setRender, modeOff, order }) {
     const [inputs, setInputs] = useState({});

@@ -33,7 +33,7 @@ function OrderManage() {
                             <option value="배송완료">배송완료</option>
                         </select>
                     </th>
-                    <th><button className="edit-button" id={item._id} onClick={handleOrderCancel}>삭제</button></th>
+                    <th><button className="manage-button" id={item._id} onClick={handleOrderCancel}>삭제</button></th>
                 </tr>)
         })
 

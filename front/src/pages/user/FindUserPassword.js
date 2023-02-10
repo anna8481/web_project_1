@@ -1,8 +1,6 @@
 import * as Api from "../../utills/api";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom';
-import { ROUTE } from '../../utills/route';
 import Header from '../../components/Header'
 
 function FindUserPassword() {

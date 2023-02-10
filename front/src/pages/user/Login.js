@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
 import * as Api from "../../utills/api";
-import { ROUTE, ROUTE_ARR } from '../../utills/route';
+import { ROUTE } from '../../utills/route';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 function Login() {

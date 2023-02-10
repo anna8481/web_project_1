@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import * as Api from "../../utills/api";
-import './ProductAdd.css'
 import Header from '../../components/Header'
 
 function ProductAdd() {
@@ -124,7 +123,7 @@ function ProductAdd() {
                     </select>
 
 
-                    <div>
+                    <div style={{ marginTop: "1rem" }}>
                         <label>제품 설명</label>
                     </div>
 
@@ -148,7 +147,7 @@ function ProductAdd() {
                     </div>
 
                     <div>
-                        <div>
+                        <div style={{ marginTop: "1rem" }}>
                             <label>가격</label>
                         </div>
                         <input className="input" type="number" placeholder="0" name="price" onChange={handleChange} />

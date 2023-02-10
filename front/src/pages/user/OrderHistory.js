@@ -1,6 +1,6 @@
 import * as Api from "../../utills/api";
 import React, { useState, useEffect } from "react";
-import { Form, Button, Container, InputGroup, FormControl, Row, Col, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import Header from '../../components/Header'
 import { DeleteOrder } from "./DeleteOrder";
 import { ModifyOrder } from "./ModifyOrder";
@@ -10,7 +10,7 @@ function OrderHistory() {
     const [orderId, setOrderId] = useState(undefined);
     const [item, setItem] = useState(undefined);
     const [render, setRender] = useState(true);
-    
+
     // Modal State
     const [mode, setMode] = useState(undefined);
     const modeOff = () => { setMode(undefined) };
@@ -21,14 +21,14 @@ function OrderHistory() {
     }
 
     const orderMap = (orders) => {
-        const userOrders = orders.map((item, index) => { 
+        const userOrders = orders.map((item, index) => {
             return (
                 <tr key={index} >
                     <th>{item.createdAt.split("T")[0]}</th>
                     <th>{`${item.orderTitle}`}</th>
                     <th>{item.status}</th>
-                    <th><button className="edit-button" id={item._id} hidden={item.status !== "상품 준비중"} onClick={handleOrderModify}>변경</button></th>
-                    <th><button className="edit-button" hidden={item.status !== "상품 준비중"} id={item._id} onClick={handleOrderCancel}>취소</button></th>
+                    <th><button className="manage-button" id={item._id} hidden={item.status !== "상품 준비중"} onClick={handleOrderModify}>변경</button></th>
+                    <th><button className="manage-button" hidden={item.status !== "상품 준비중"} id={item._id} onClick={handleOrderCancel}>취소</button></th>
                 </tr>)
         })
 
@@ -72,7 +72,7 @@ function OrderHistory() {
                     {typeof orders === 'object' && orderMap(orders)}
                 </tbody>
                 {mode === "DELETE" && <DeleteOrder setRender={setRender} modeOff={modeOff} orderId={orderId} />}
-                {mode === "MODIFY" && <ModifyOrder setRender={setRender}modeOff={modeOff} order={item} />}
+                {mode === "MODIFY" && <ModifyOrder setRender={setRender} modeOff={modeOff} order={item} />}
             </Table>
         </div>
     </>)

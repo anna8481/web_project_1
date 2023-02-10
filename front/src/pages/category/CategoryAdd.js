@@ -4,9 +4,6 @@ import * as Api from "../../utills/api";
 import axios from 'axios'
 import Header from '../../components/Header'
 
-import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
-
-
 function CategoryAdd() {
     const [fileData, setFileData] = useState("");
     const navigate = useNavigate();
@@ -85,21 +82,18 @@ function CategoryAdd() {
     return (
         <div className="section">
             <Header title="카테고리 추가"></Header>
-            <Container className="register-category-form-container">
-                <Form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
-                    <Form.Group controlId="titleInput">
-                        <Form.Label>카테고리 이름</Form.Label>
-                        <Form.Control type="text" placeholder="Men Clothes" autoComplete="on" name="title" onChange={handleChange} />
-                    </Form.Group>
+            <div className="container">
+                <form className="register-category-form-box" id="registerCategoryForm" onSubmit={handleSubmit}>
 
-                    <Form.Group controlId="descriptionInput">
-                        <Form.Label>카테고리 설명</Form.Label>
-                        <Form.Control type="text" name='description' placeholder="센세이셔널한 봄, 여름 코디" autoComplete="on" onChange={handleChange} />
-                    </Form.Group>
+                    <label>카테고리 이름</label>
+                    <input className='input' type="text" placeholder="Men Clothes" autoComplete="on" name="title" onChange={handleChange} />
 
-                    <Form.Group controlId="themeClassInput">
-                        <Form.Label>카테고리 테마</Form.Label>
-                        <Form.Control as="select" className={"notification " + inputs.themeClass} name="themeClass" onChange={handleChange}>
+                    <label>카테고리 설명</label>
+                    <input className='input' type="text" name='description' placeholder="센세이셔널한 봄, 여름 코디" autoComplete="on" onChange={handleChange} />
+
+                    <div >
+                        <label style={{ marginRight: "3px" }}>카테고리 테마</label>
+                        <select as="select" className={"notification " + inputs.themeClass} name="themeClass" onChange={handleChange}>
                             <option value="">테마를 선택해 주세요.</option>
 
                             <option
@@ -188,27 +182,25 @@ function CategoryAdd() {
                             >
                                 red
                             </option>
-                        </Form.Control>
-                    </Form.Group>
+                        </select>
+                    </div>
 
-                    <Form.Group controlId="imageInput">
-                        <Form.Label>카테고리 사진</Form.Label>
-                        <InputGroup className="mb-3">
-                            <FormControl
 
-                                type="file"
-                                name="image-file"
-                                accept=".png, .jpeg, .jpg"
-                                onChange={handlefileData}
-                            />
+                    <label style={{ marginTop: "1rem" }}>카테고리 사진</label>
 
-                        </InputGroup>
-                    </Form.Group>
+                    <input
+                        type="file"
+                        name="image-file"
+                        accept=".png, .jpeg, .jpg"
+                        onChange={handlefileData}
+                    />
+                    <div style={{ marginTop: "2rem" }}></div>
+
                     <button type="submit" className="edit-button" >카테고리 추가하기</button>
 
-                </Form>
-            </Container>
-        </div>
+                </form>
+            </div >
+        </div >
     );
 }
 

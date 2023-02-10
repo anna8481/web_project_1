@@ -34,7 +34,7 @@ function UserManage() {
                             <option value="basic-user">회원</option>
                         </select>
                     </th>
-                    <th><button className="edit-button" id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
+                    <th><button className="manage-button" id={item._id} onClick={handleUserDelete}>계정 삭제</button></th>
                 </tr>)
         })
 

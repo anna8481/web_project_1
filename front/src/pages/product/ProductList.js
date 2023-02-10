@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import * as Api from "../../utills/api";
 import Product from '../../components/Product'
 import Header from '../../components/Header'

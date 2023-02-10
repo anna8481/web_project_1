@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as Api from "../../utills/api";
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 export function DeleteOrder({ setRender, modeOff, orderId }) {
 
