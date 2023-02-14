@@ -29,7 +29,7 @@ function ProductList() {
                         itemId={item._id}
                         title={item.productName}
                         price={item.price.toLocaleString('en-US', { style: 'currency', currency: currencySymbol })}
-                        img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                        img={process.env.REACT_APP_FILE_RES_URL + item.imageKey + ".png"}
                         productInfo={item.productInfo}>
                     </Product>))}
             </div>

@@ -29,7 +29,7 @@ function CategoryManage() {
                 <div className="message media category-item" key={index}>
                     <div className="media-left">
                         <figure className="image">
-                            <img src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt="" />
+                            <img src={process.env.REACT_APP_FILE_RES_URL + '/' + item.imageKey + ".png"} alt="" />
                         </figure>
                     </div>
                     <div className="media-content">

@@ -41,6 +41,7 @@ function CategoryAdd() {
             navigate(`/category/manage`)
 
         } catch (err) {
+            console.log(err.response.data.reason)
             alert("이미 있는 category 이름입니다.")
         }
 
