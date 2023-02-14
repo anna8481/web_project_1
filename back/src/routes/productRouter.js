@@ -5,10 +5,11 @@ const { loginRequired } = require("../middlewares/loginRequired");
 const { productService } = require("../services/productService");
 
 //관리자)상품 등록
-productRouter.post("/product", adminOnly, async (req, res, next) => {
+productRouter.post("/products", adminOnly, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
-    const { productName, categoryId, productInfo, imageKey, price } = req.body;
+    const { productName, categoryId, productInfo, imageKey, price, quantity } =
+      req.body;
 
     // 위 데이터를 제품 db에 추가하기
     const newProduct = await productService.addProduct({
@@ -16,6 +17,7 @@ productRouter.post("/product", adminOnly, async (req, res, next) => {
       categoryId,
       productInfo,
       imageKey,
+      quantity,
       price,
     });
 
@@ -25,27 +27,10 @@ productRouter.post("/product", adminOnly, async (req, res, next) => {
   }
 });
 
-//🔽 예시 사이트에서 어떤 기능을 위한 api인지 찾지 못했지만, product list 확인을 위해 주석 처리하지 않았습니다.
-// 사용자)전체 상품 보기
-productRouter.get(
-  "/productlist",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      // 전체 제품 목록을 얻음
-      const products = await productService.getProducts();
-
-      res.status(200).json(products);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
 //전체) 카테고리 클릭->관련 상품 출력
 productRouter.get(
   //categoryTitle : categorys 내 title(예시 : 바지, 치마..)
-  "/productlist/category/:categoryTitle",
+  "/products/category/:categoryTitle",
   async function (req, res, next) {
     const { categoryTitle } = req.params;
 
@@ -65,7 +50,7 @@ productRouter.get(
 // 전체) product 상세 보기
 productRouter.get("/products/:productId", async function (req, res, next) {
   try {
-    const productId = req.params.productId;
+    const { productId } = req.params;
     const productData = await productService.getProductData(productId);
 
     res.status(200).json(productData);
@@ -83,8 +68,14 @@ productRouter.patch(
       // req (request) 에서 데이터 가져오기
       const productId = req.params.productId;
 
-      const { productName, categoryId, productInfo, imageKey, price } =
-        req.body;
+      const {
+        productName,
+        categoryId,
+        productInfo,
+        imageKey,
+        price,
+        quantity,
+      } = req.body;
 
       // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해
       // 보내주었다면, 업데이트용 객체에 삽입함.
@@ -92,6 +83,7 @@ productRouter.patch(
         ...(productName && { productName }),
         ...(categoryId && { categoryId }),
         ...(productInfo && { productInfo }),
+        ...(quantity && { quantity }),
         ...(imageKey && { imageKey }),
         ...(price && { price }),
       };

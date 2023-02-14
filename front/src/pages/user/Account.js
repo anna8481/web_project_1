@@ -9,7 +9,6 @@ const Account = () => {
     return (<section className="section">
         <Header title="Account"></Header>
         <div className="container">
-
             <Link to={ROUTE.ACCOUNT_ORDERS.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Order History</p>
@@ -24,19 +23,19 @@ const Account = () => {
                 </div>
             </Link>
 
-            <Link to={ROUTE.PRODUCT_ADD.link}>
+            {/* <Link to={ROUTE.PRODUCT_ADD.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Add Product</p>
                         <p className="sub-name">제품 판매</p></button>
                 </div>
-            </Link>
+            </Link> */}
 
-            <Link to={ROUTE.ACCOUNT_SIGNOUT.link}>
+            {/* <Link to={ROUTE.ACCOUNT_SIGNOUT.link}>
                 <div className="account_button_container" >
                     <button className="account_button" ><p className="main-name">Delete Account</p>
                         <p className="sub-name">회원 탈퇴</p></button>
                 </div>
-            </Link>
+            </Link> */}
 
 
         </div>

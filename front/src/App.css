@@ -2,20 +2,56 @@
   margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 3rem;
   padding: 1rem;
   max-width: 90%;
+  color: black;
+  white-space: pre-line;
 }
 
 .container {
   margin-bottom: 2rem;
   font-family: 'Merriweather', 'Noto Serif KR', serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .container-center {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin-bottom: 2rem;
   font-family: 'Merriweather', 'Noto Serif KR', serif;
+}
+
+
+body,
+input,
+button {
+  font-family: 'Merriweather', 'Noto Serif KR', serif;
+  color: black;
+  font-size: 12px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #000;
+}
+
+.table {
+  font-size: 12px;
+}
+
+
+a,
+ul {
+  text-decoration: none;
+  margin: 0;
+  color: black;
+}
+
+a:hover {
+  color: #999
 }
 
 
@@ -23,65 +59,51 @@
   display: flex;
 }
 
-a,
-ul {
-  text-decoration: none;
-  margin: 0
+.Header {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  padding: 1.5rem 0;
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-.title {
-  color: #000;
-  font-weight: 600;
-  font-size: 2rem;
+.tile {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 70%
 }
-
-.account-header {
-  max-width: 90%;
-  margin-top: 50px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 1rem;
-  border-bottom: #ddd 1px solid;
-
-}
-
-body,
-input,
-button {
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
-}
-
-
-.a {
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
-}
-
 
 input {
-  width: 100%
+  width: 100%;
 }
+
+.input {
+  border: 1px solid black;
+  line-height: 3.5;
+  border-radius: 0;
+  height: 55px;
+  margin-bottom: 1rem;
+}
+
+
+.input:focus {
+  border: 2px solid black;
+
+}
+
 
 .user-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 350px;
+  align-items: flex-start;
+  width: 400px;
   margin: 0;
   padding: 0;
 }
-
-.account-form {
-  display: flex;
-  flex-direction: column;
-  flex-direction: flex-end;
-  width: 350px;
-  margin: 0;
-  padding: 0;
-}
-
 
 .user-button {
-  width: 350px;
+  width: 400px;
   background-color: #fff;
   border: 1px solid black;
   line-height: 3.5;
@@ -91,10 +113,22 @@ input {
 }
 
 .edit-button {
+  background-color: #fff;
+  border: 1px solid black;
+  display: inline;
+  margin-right: "1rem";
+  text-align: center;
+}
 
-  margin-bottom: 3rem;
-  flex-direction: flex-end;
-
+.manage-button {
+  background-color: #fff;
+  border: 1px solid rgb(118, 118, 118);
+  border-radius: 4px;
+  display: inline;
+  margin-right: "1rem";
+  text-align: center;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 button {
@@ -106,28 +140,38 @@ button:hover {
   color: #999
 }
 
+
+button:focus {
+  border: 1px solid #999;
+  color: #999
+}
+
+li:hover {
+  color: #999
+}
+
 .postcode {
   display: flex;
+  width: 100%;
+}
+
+.postcode-input {
+  flex: 3;
+  border: 1px solid black;
+  border-right: 0px;
+  line-height: 3.5;
+  border-radius: 0;
+  height: 55px;
+  margin-bottom: 1rem;
 }
 
 
 .postcode-button {
-  /* flex: 1; */
-  width: 30%;
+  flex: 1;
   border: 1px solid black;
   line-height: 3.5;
   border-radius: 0;
-  height: 45px;
+  height: 55px;
   margin-bottom: 1rem;
-  width: 100%;
   text-align: center;
-}
-
-.postcode-input {
-  width: 70%;
-  border: 1px solid black;
-  line-height: 3.5;
-  border-radius: 0;
-  height: 45px;
-  margin-bottom: 1rem;
 }

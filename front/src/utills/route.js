@@ -1,3 +1,4 @@
+
 import Login from '../pages/user/Login'
 import Register from '../pages/user/Register'
 import AccountSercurity from '../pages/user/AccountSecurity'
@@ -7,11 +8,16 @@ import Slider from '../components/Slider'
 import CategoryAdd from '../pages/category/CategoryAdd'
 import ProductAdd from '../pages/product/ProductAdd'
 import ProductList from '../pages/product/ProductList';
+import ProductDetail from '../pages/product/ProductDetail';
 import Cart from '../pages/cart/Cart'
 import Order from '../pages/cart/Order'
 import OrderComplete from '../pages/cart/OrderComplete'
 import Admin from '../pages/admin/Admin'
 import CategoryManage from '../pages/category/CategoryManage'
+import OrderHistory from '../pages/user/OrderHistory'
+import OrderManage from '../pages/admin/OrderManage'
+import UserManage from '../pages/admin/UserManage'
+import FindUserPassword from '../pages/user/FindUserPassword'
 
 export const ROUTE = {
     HOME: {
@@ -42,7 +48,7 @@ export const ROUTE = {
     ACCOUNT_ORDERS: {
         path: "/account/orders",
         link: "/account/orders",
-        element: Account,
+        element: OrderHistory,
     },
     MYACCOUNT: {
         path: "/account/security",
@@ -57,12 +63,12 @@ export const ROUTE = {
     ADMIN_ORDERS: {
         path: "/admin/orders",
         link: "/admin/orders",
-        element: Admin,
+        element: OrderManage,
     },
     ADMIN_USERS: {
         path: "/admin/users",
         link: "/admin/users",
-        element: Admin,
+        element: UserManage,
     },
     CART: {
         path: "/cart",
@@ -95,11 +101,20 @@ export const ROUTE = {
         element: ProductAdd,
     },
     PRODUCT_LIST: {
-        path: "/product/list",
-        link: "/product/list",
+        path: "/product/list/:category",
+        link: "/product/list/:category",
         element: ProductList,
     },
-    
+    PRODUCT_DETAIL: {
+        path: "/product/detail/:id",
+        link: "/product/detail/:id",
+        element: ProductDetail,
+    },
+    FIND_USER_PASSWORD: {
+        path: "/login/finduserpassword",
+        link: "/login/finduserpassword",
+        element: FindUserPassword,
+    },
 };
 
 

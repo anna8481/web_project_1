@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Api from "../../utills/api";
 import "./Register.css";
-
-import {
-  MDBContainer,
-  MDBInput,
-  MDBBtn,
-} from "mdb-react-ui-kit";
+import Header from '../../components/Header';
 
 function Register() {
   const navigate = useNavigate();
@@ -18,7 +13,7 @@ function Register() {
     password: "",
     passwordConfirm: "",
   });
-  const [formError, setFormError] = useState("");
+  // const [formError, setFormError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,14 +47,18 @@ function Register() {
   };
 
   async function registerUser(formdata) {
-    const newData = await Api.post("register", formdata);
-    console.log(newData);
-    alert("회원가입이 완료되었습니다!");
-    navigate("/login");
+    try {
+      const newData = await Api.post("register", formdata);
+      alert("회원가입이 완료되었습니다!");
+      navigate("/login");
+    } catch (err) {
+      alert(err.response.data.reason)
+    }
+
   }
 
   const handleSubmit = (e) => {
-    console.log(inputs);
+
     e.preventDefault();
     const validated = validateForm(inputs);
     if (typeof validated === "string") {
@@ -75,50 +74,54 @@ function Register() {
   return (
     <div className='section'>
       <div className="container-center" >
-        <div className="tile">
-          <form onSubmit={handleSubmit} className="user-form">
-            <p>회원가입</p>
-            <input
-              className="input"
-              value={inputs.userName}
-              label="이름"
-              name="userName"
-              type="text"
-              onChange={handleChange}
-            />
+        <Header></Header>
+        {/* <p>회원가입</p> */}
+        <form onSubmit={handleSubmit} className="user-form">
 
-            <input
-              className="input"
-              value={inputs.email}
-              label="Email"
-              name="email"
-              type="email"
-              onChange={handleChange}
-            />
+          <input
+            className="input"
+            value={inputs.userName}
+            label="이름"
+            placeholder='Name'
+            name="userName"
+            type="text"
+            onChange={handleChange}
+          />
 
-            <input
-              className="input"
-              value={inputs.password}
-              label="비밀번호"
-              name="password"
-              type="password"
-              onChange={handleChange}
-            />
+          <input
+            className="input"
+            value={inputs.email}
+            label="Email"
+            name="email"
+            placeholder='Email'
+            type="email"
+            onChange={handleChange}
+          />
 
-            <input
-              className="input"
-              value={inputs.passwordConfirm}
-              label="비밀번호확인"
-              name="passwordConfirm"
-              type="password"
-              onChange={handleChange}
-            />
+          <input
+            className="input"
+            value={inputs.password}
+            label="비밀번호"
+            placeholder='Password'
+            name="password"
+            type="password"
+            onChange={handleChange}
+          />
 
-            <button className="user-button">회원가입</button>
+          <input
+            className="input"
+            value={inputs.passwordConfirm}
+            label="비밀번호확인"
+            placeholder='Password Check'
+            name="passwordConfirm"
+            type="password"
+            onChange={handleChange}
+          />
+          <button className="user-button">회원가입</button>
 
-          </form>
-        </div>
+        </form>
       </div>
+
     </div>
   );
 }
