@@ -66,7 +66,7 @@ function ProductDetail() {
             <div className="container-center">
                 {(typeof item === "object") &&
                     <div className="tile" >
-                        <img className="product-detail-img" src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"} alt={item.productName}></img>
+                        <img className="product-detail-img" src={process.env.REACT_APP_FILE_RES_URL + '/' + item.imageKey + ".png"} alt={item.productName}></img>
                         <div className="product-detail-description">
                             <div className="product-detail-name" >
                                 {item.productName}

@@ -144,7 +144,7 @@ function Cart() {
                 {cart.length !== 0
                     ?
                     cart.map(item =>
-                    (<CardProductContainer key={item._id} img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                    (<CardProductContainer key={item._id} img={process.env.REACT_APP_FILE_RES_URL + '/' + item.imageKey + ".png"}
                         productId={item._id}
                         productName={item.productName}
                         price={item.price * item.quantity}
