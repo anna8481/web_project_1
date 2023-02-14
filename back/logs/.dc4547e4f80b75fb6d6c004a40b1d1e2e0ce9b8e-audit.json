@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/.dc4547e4f80b75fb6d6c004a40b1d1e2e0ce9b8e-audit.json",
+    "files": [
+        {
+            "date": 1676345137678,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-14.log",
+            "hash": "5fa4fc311022aba8f1e60f8a32efc1871122032dd46bbac322672c05bd56a36c"
+        }
+    ],
+    "hashType": "sha256"
+}

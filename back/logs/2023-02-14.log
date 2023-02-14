@@ -1,0 +1,18 @@
+2023-02-14 14:26:37 [moteam_web_service] error: failed connection
+MongoAPIError: URI must include hostname, domain name, and tld
+2023-02-14 14:31:05 [moteam_web_service] error: failed connection
+MongoServerError: bad auth : authentication failed
+2023-02-14 14:44:02 [moteam_web_service] error: Error: 해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.
+    at UserService.getUserToken (/Users/anna/Desktop/web/1st_project/web_project_1/back/src/services/userService.js:41:13)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async /Users/anna/Desktop/web/1st_project/web_project_1/back/src/routes/userRouter.js:35:25
+2023-02-14 14:56:43 [moteam_web_service] error: ValidationError: categorys validation failed: imageKey: Path `imageKey` is required.
+    at model.Document.invalidate (/Users/anna/Desktop/web/1st_project/web_project_1/back/node_modules/mongoose/lib/document.js:3125:32)
+    at /Users/anna/Desktop/web/1st_project/web_project_1/back/node_modules/mongoose/lib/document.js:2913:17
+    at /Users/anna/Desktop/web/1st_project/web_project_1/back/node_modules/mongoose/lib/schematype.js:1349:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
+2023-02-14 15:01:23 [moteam_web_service] error: ValidationError: categorys validation failed: imageKey: Path `imageKey` is required.
+    at model.Document.invalidate (/Users/anna/Desktop/web/1st_project/web_project_1/back/node_modules/mongoose/lib/document.js:3125:32)
+    at /Users/anna/Desktop/web/1st_project/web_project_1/back/node_modules/mongoose/lib/document.js:2913:17
+    at /Users/anna/Desktop/web/1st_project/web_project_1/back/node_modules/mongoose/lib/schematype.js:1349:9
+    at processTicksAndRejections (node:internal/process/task_queues:78:11)
