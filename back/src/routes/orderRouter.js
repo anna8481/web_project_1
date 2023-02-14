@@ -5,6 +5,7 @@ const { loginRequired } = require("../middlewares/loginRequired");
 const { orderService } = require("../services/orderService");
 
 // 사용자) 장바구니 상품 주문
+
 orderRouter.post("/orders", loginRequired, async (req, res, next) => {
 
   try {
@@ -26,6 +27,7 @@ orderRouter.post("/orders", loginRequired, async (req, res, next) => {
     next(error);
   }
 });
+
 
 // 사용자) 주문 목록 조회
 orderRouter.get("/orders", loginRequired, async function (req, res, next) {
@@ -106,7 +108,7 @@ orderRouter.patch(
       // req (request) 에서 데이터 가져오기
       const orderId = req.params.orderId;
       const { status } = req.body;
-
+      
       const updatedOrder = await orderService.setOrderAdmin(orderId, {
         status,
       });
@@ -117,9 +119,8 @@ orderRouter.patch(
     }
   }
 );
-
-
 //관리자) 주문 취소 (사용자의 주문내역 삭제)
+
 
 orderRouter.delete(
   "/admin/orders/:orderId",
