@@ -6,7 +6,7 @@ const { categoryService } = require("../services/categoryService");
 const categoryRouter = Router();
 
 // 홈 화면
-categoryRouter.get("/categorylist", async function (req, res, next) {
+categoryRouter.get("/categorys", async function (req, res, next) {
   try {
     // 전체 카테고리 목록을 얻음
     const categorys = await categoryService.getCategorys();
@@ -17,29 +17,8 @@ categoryRouter.get("/categorylist", async function (req, res, next) {
   }
 });
 
-/* 
-// 🔽심다예 : 예시 사이트에서 해당 api 못찾아서 일단 주석처리
-categoryRouter.get(
-  "/categorys/:categoryId",
-  loginRequired,
-  async function (req, res, next) {
-    try {
-      const categoryId = req.params.categoryId;
-      const categoryData = await categoryService.getCategoryDataById(
-        categoryId
-      );
-
-      res.status(200).json(categoryData);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
- */
-
 // 관리자) 카테고리 등록
-categoryRouter.post("/category", adminOnly, async (req, res, next) => {
+categoryRouter.post("/categorys", adminOnly, async (req, res, next) => {
   try {
     // req (request) 에서 데이터 가져오기
     const { title, description, imageKey, themeClass } = req.body;

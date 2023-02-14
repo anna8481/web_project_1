@@ -1,4 +1,3 @@
-import "./Header.css"
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom'
 import { ROUTE } from '../utills/route'

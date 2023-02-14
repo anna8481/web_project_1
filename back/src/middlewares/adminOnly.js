@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const logger = require("../utils/logger");
 
 function adminOnly(req, res, next) {
   // request 헤더로부터 authorization bearer 토큰을 받음.
@@ -7,7 +8,6 @@ function adminOnly(req, res, next) {
   // 이 토큰은 jwt 토큰 문자열이거나, 혹은 "null" 문자열이거나, undefined임.
   // 토큰이 "null" 일 경우, login_required 가 필요한 서비스 사용을 제한함.
   if (!userToken || userToken === "null") {
-    console.log("서비스 사용 요청이 있습니다.하지만, Authorization 토큰: 없음");
     res.status(401).json({
       result: "forbidden-approach",
       reason: "로그인한 유저만 사용할 수 있는 서비스입니다.",
@@ -24,7 +24,7 @@ function adminOnly(req, res, next) {
     const role = jwtDecoded.role;
 
     if (role !== "admin") {
-      console.log("서비스 사용 요청이 있습니다.하지만, 관리자 토큰이 아님.");
+      logger.error("관리자 모드 요청이 있었으나 관리자 토큰이 아닙니다.");
 
       res.status(403).json({
         result: "forbidden-approach",

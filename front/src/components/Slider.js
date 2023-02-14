@@ -1,59 +1,64 @@
-import { Carousel } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Slider.css';
-import { Link } from 'react-router-dom';
+import * as Api from "../utills/api";
+import Category from './Category'
+import Footer from './Footer'
 
 function Slider() {
+    const [category, setCategory] = useState(undefined);
 
-    const [index, setIndex] = useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
+    const init = async () => {
+        const res = await Api.get("categorys");
+        const data = await res.data;
+        setCategory(data);
     };
+    useEffect(() => {
+        init();
+    }, []);
+
+    // const [index, setIndex] = useState(0);
+
+    // const handleSelect = (selectedIndex, e) => {
+    //     setIndex(selectedIndex);
+    // };
 
     return (
-        <div className='main-slider'>
-            <Carousel activeIndex={index} onSelect={handleSelect}>
-                <Carousel.Item>
-                    <Link to="/jeans" >
-                        <h3>청바지</h3>
-                        <p>산뜻한 느낌의 데님 바지</p>
-                        <img className="d-block w-100 "
-                            src="https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5015%2F2012%2F09%2F07%2Fsm500201209070829189050_59_20120907083530.jpg&type=sc960_832"
-                            alt="First slide"
-                        />
-                    </Link>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div className="slider-img">
-                        <Link to="/tshirts" >
-                            <h3>긴팔 티셔츠</h3>
-                            <p>스마일 긴팔 티셔츠</p>
-                            <img
-                                className="d-block w-100"
-                                src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20211222_206%2F1640158948466Ia2JE_JPEG%2FD94A.jpg&type=sc960_832"
-                                alt="Second slide"
-                            />
-                        </Link>
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <Link to="/tshirts" >
-                        <h3>자켓</h3>
-                        <p>
-                            화려한 자켓
-                        </p>
-                        <img className="d-block w-100 "
+        // <div className='main-slider' style={{ display: 'block', width: 1000, padding: 100 }}>
+        //     <Carousel activeIndex={index} onSelect={handleSelect}>
+        //         {Array.isArray(category) && category.map(item => (
+        //             <Carousel.Item interval={1500}>
+        //                 <Link to={`/product/list/${item.title}`} >
+        //                     <div>
+        //                         <h3>{item.title}</h3>
+        //                         <p>{item.description}</p>
+        //                         <img className="slider-img"
+        //                             src={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+        //                             alt="카테고리 이미지" />
+        //                     </div>
+        //                 </Link>
+        //             </Carousel.Item>
+        //         ))}
+        //     </Carousel>
+        // </div>
 
-                            src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMzBfNTUg%2FMDAxNjE3MDc4MzIzMTY1.rxEHaBzy-JiI8YY_UJkzm6L7yJlnPc0jDYTBwCisVFkg.64hDgwxt0A1ktm7ZKducPM3IJ_Q1zwwn_DdnWaM0GAQg.JPEG.loveu1013%2F160265417966069300_407793257.jpg&type=sc960_832"
-                            alt="Third slide"
-                        />
-                    </Link>
+        <>
+            <div className='section'>
+                <div className="category-container" >
+                    {Array.isArray(category) && category.map(item => (
+                        <Category
+                            key={item._id}
+                            itemId={item._id}
+                            title={item.title}
+                            img={"https://res.cloudinary.com/moteam/image/upload/" + item.imageKey + ".png"}
+                        >
+                        </Category>))}
+                </div>
 
-                </Carousel.Item>
-            </Carousel>
-        </div>
+            </div>
+            <Footer></Footer>
+        </>
     );
 }
-
 export default Slider;
+
+

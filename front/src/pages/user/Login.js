@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
-import {
-    MDBContainer,
-    MDBInput,
-    MDBBtn,
-}
-    from 'mdb-react-ui-kit';
+import { useNavigate, useLocation } from 'react-router-dom'
 import './Login.css'
 import * as Api from "../../utills/api";
-
+import { ROUTE } from '../../utills/route';
+import { Link } from 'react-router-dom';
+import Header from '../../components/Header';
 function Login() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [inputs, setInputs] = useState({
         email: '',
         password: ''
@@ -33,10 +30,22 @@ function Login() {
                 email,
                 password,
             });
-
             localStorage.setItem('token', response.data.token);
-            navigate('/');
-            console.log(response)
+
+            // Admin check
+            if (response.data.isAdmin) {
+                localStorage.setItem('isAdmin', "admin");
+            }
+
+            if (location.state?.redirectUrl) {
+                navigate(location.state.redirectUrl)
+            }
+            else {
+                navigate(ROUTE.HOME.link);
+            }
+
+
+            // console.log(response)
         } catch (err) {
             alert("이메일 또는 비밀번호가 일치하지 않습니다.")
         }
@@ -46,14 +55,15 @@ function Login() {
 
         <div className='section'>
             <div className="container-center" >
-                {/* <div className="user-tile"> */}
+                <Header></Header>
                 <form onSubmit={handleLogin} className="user-form">
-                    <p >로그인</p>
-                    <input className="input" value={inputs.email} label='Email' name='email' type='email' onChange={handleChange} />
-                    <input className="input" value={inputs.password} label='Password' name='password' type='password' onChange={handleChange} />
+                    <input className="input" value={inputs.email} label='Email' name='email' type='email' placeholder='email' onChange={handleChange} />
+                    <input className="input" value={inputs.password} label='Password' name='password' type='password' placeholder='password' onChange={handleChange} />
                     <button className="user-button">로그인</button>
                 </form>
-                {/* </div> */}
+                <Link to={ROUTE.FIND_USER_PASSWORD.link} style={{ textAlign: "center", color: "#999", marginTop: "1rem", textDecoration: "underline" }} >비밀번호 찾기
+                    {/* <p ></p> */}
+                </Link>
             </div>
         </div>
     </>
