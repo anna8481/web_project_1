@@ -27,7 +27,6 @@ orderRouter.post("/orders", loginRequired, async (req, res, next) => {
   }
 });
 
-
 // 사용자) 주문 목록 조회
 orderRouter.get("/orders", loginRequired, async function (req, res, next) {
   try {
@@ -108,7 +107,6 @@ orderRouter.patch(
       const orderId = req.params.orderId;
       const { status } = req.body;
 
-      // 제품 정보 업데이트
       const updatedOrder = await orderService.setOrderAdmin(orderId, {
         status,
       });
