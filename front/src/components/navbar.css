@@ -1,3 +1,11 @@
+.nav-section {
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 1rem;
+    max-width: 90%;
+}
+
 .navigation {
     height: 60px;
     width: 100%;
@@ -7,11 +15,12 @@
     background-color: #fff;
     margin-top: 2rem;
     justify-content: space-between;
-    font-family: 'Merriweather', 'Noto Serif KR', serif;
     margin: auto;
 }
 
-
+.navigation:hover {
+    color: #999;
+}
 
 .navigation-brand {
     display: flex;
@@ -23,10 +32,7 @@
 .brand-name {
     /* margin-left: 1rem; */
     text-decoration: none;
-    font-size: 2rem;
-    color: #000;
-
-
+    font-size: 1.5rem;
 }
 
 .navigation-menu {
@@ -46,19 +52,12 @@
 }
 
 .navigation-menu li a {
-
     text-decoration: none;
     display: block;
     width: 100%;
-    color: #000;
     margin: 0
 }
 
-a,
-ul {
-    text-decoration: none;
-    margin: 0
-}
 
 .logout:hover {
     cursor: pointer;

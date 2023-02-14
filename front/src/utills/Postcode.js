@@ -3,7 +3,7 @@ import DaumPostcode from "react-daum-postcode";
 import './Postcode.css'
 
 
-const Postcode = ({ formData, setFormData }) => {
+const Postcode = ({ setInputs, formData, setFormData }) => {
 
     const handleAddress = (data) => {
         let fullAddress = data.address;
@@ -19,17 +19,24 @@ const Postcode = ({ formData, setFormData }) => {
             fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
         }
 
-        console.log(fullAddress)
-        console.log(data.zonecode)
+        if (typeof setFormData === 'function') {
+            setFormData({
+                ...formData,
+                address: {
+                    postalCode: data.zonecode,
+                    address1: fullAddress
+                }
+            });
+        }
 
-        setFormData({
-            ...formData,
-            address: {
+        // 배송지 정보 변경 Code
+        if (typeof setInputs === 'function') {
+            setInputs(prev => ({
+                ...prev,
                 postalCode: data.zonecode,
                 address1: fullAddress
-            }
-        });
-
+            }));
+        }
     }
 
 

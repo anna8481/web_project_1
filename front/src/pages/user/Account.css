@@ -1,14 +1,8 @@
-.card-container {
+/* .card-container {
     display: flex;
     max-width: 90%;
     flex-direction: row;
-}
-
-.edit-button {
-    display: flex;
-    justify-content: flex-end;
-    max-width: 80%;
-}
+} */
 
 
 .accountCard {
@@ -25,16 +19,15 @@
 }
 
 .main-name {
-    font-size: 20px;
+    font-size: 14px;
     margin: 0;
 }
 
 .sub-name {
-    font-size: 13px;
+    font-size: 12px;
     margin: 0;
     color: #999;
 }
-
 
 .account_button_container {
     display: flex;

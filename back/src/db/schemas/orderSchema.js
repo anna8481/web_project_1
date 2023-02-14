@@ -7,6 +7,13 @@ const OrderSchema = new mongoose.Schema(
       ref: "users",
       required: true,
     },
+    productId: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "products",
+        required: true,
+      },
+    ],
     totalPrice: {
       type: Number,
       required: true,
@@ -20,6 +27,9 @@ const OrderSchema = new mongoose.Schema(
           receiverName: String,
           receiverPhoneNumber: String,
         },
+        {
+          _id: false,
+        }
       ),
       required: true,
     },
@@ -27,6 +37,10 @@ const OrderSchema = new mongoose.Schema(
       type: String,
       required: false,
       default: "상품 준비중",
+    },
+    orderTitle: {
+      type: String,
+      required: true,
     },
   },
   {

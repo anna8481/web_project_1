@@ -65,6 +65,15 @@ class UserService {
     return { token, isAdmin };
   }
 
+  async findEmail(userEmail) {
+    const foundedEmail = await this.userModel.findByEmail(userEmail);
+    if (!foundedEmail) {
+      throw new Error("등록되지 않은 이메일입니다.");
+      return;
+    }
+    return foundedEmail;
+  }
+
   //---------------------------------------------
   // 사용자 관련
 
@@ -99,6 +108,38 @@ class UserService {
     if (!user) {
       throw new Error("가입 내역이 없습니다. 다시 한 번 확인해 주세요.");
     }
+
+    return user;
+  }
+
+  //관리자) 사용자 정보 page 전체 카운트 가져오기-pagination
+  async getCountDocument() {
+    const totalPage = await this.userModel.findCountDocument();
+    return totalPage;
+  }
+  // 관리자) 사용자 정보 가져오기-pagination
+  async getAllUsersPagination(page, perPage) {
+    const users = await this.userModel.findAllPagination(page, perPage);
+    return users;
+  }
+
+  // 관리자) 특정 사용자 정보 수정
+  async updateUserAdmin(userId, toUpdate) {
+    let user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new Error("해당 id의 사용자를 찾을 수 없습니다.");
+    }
+    user = await this.userModel.update({ userId, update: toUpdate });
+    return user;
+  }
+
+  async setUserPW(userId, randomPW) {
+    const newPasswordHash = await bcrypt.hash(randomPW, 10);
+
+    const user = await this.userModel.updatePW({
+      userId,
+      newPasswordHash,
+    });
 
     return user;
   }
