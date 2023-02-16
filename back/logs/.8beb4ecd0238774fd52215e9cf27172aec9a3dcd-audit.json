@@ -14,6 +14,11 @@
             "date": 1676461035257,
             "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-15.exception.log",
             "hash": "d254bdecc0478184035d670324f69cbedeeeadc53a53aaa6f8f09eb108dd8e71"
+        },
+        {
+            "date": 1676506276655,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-16.exception.log",
+            "hash": "1d40e1eed27ea6f6c6aeea7bd82070273bc0b28fcbaf95062ea5effa44d2ab12"
         }
     ],
     "hashType": "sha256"
