@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar'
+import MainNavigation from './components/Navigation/MainNavigation'
 import { ROUTE_ARR } from './utills/route'
 
 import {
@@ -20,9 +20,9 @@ function App() {
   return (
 
     <div className="App">
-      <div className="app-container">
+      
         <BrowserRouter>
-          <Navbar ></Navbar>
+        <MainNavigation></MainNavigation>
           <Routes>
             {ROUTE_ARR.map((route, index) => {
               return <Route path={route.path} element={<route.element />} key={index} />
@@ -30,7 +30,7 @@ function App() {
           </Routes>
         </BrowserRouter >
       </div>
-    </div>
+    
   );
 }
 

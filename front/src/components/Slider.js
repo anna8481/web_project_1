@@ -3,6 +3,9 @@ import './Slider.css';
 import * as Api from "../utills/api";
 import Category from './Category'
 import Footer from './Footer'
+import MainNavigation  from './Navigation/MainNavigation';
+
+
 
 function Slider() {
     const [category, setCategory] = useState(undefined);

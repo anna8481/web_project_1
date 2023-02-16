@@ -1,32 +1,22 @@
-import "./navbar.css"
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom'
-import { ROUTE } from '../utills/route'
+import { Link ,useNavigate} from 'react-router-dom';
+import { ROUTE } from '../../utills/route'
+import './NavLinks.css';
+
+const NavLinks = props => {
+
+  const navigate = useNavigate();
+  const logout = (e) => {
+      //저장했던 JWT 토큰을 삭제함.
+      localStorage.removeItem("token");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("cart");
+      navigate("/");
+  };
 
 
-export default function Navbar() {
-    const navigate = useNavigate();
-    const logout = (e) => {
-        //저장했던 JWT 토큰을 삭제함.
-        localStorage.removeItem("token");
-        localStorage.removeItem("isAdmin");
-        localStorage.removeItem("cart");
-        navigate("/");
-    };
 
-
-
-    return (
-        <div className="nav-section">
-            <nav className="navigation">
-                <div className="navigation-brand">
-                    <Link to={ROUTE.HOME.link} >
-                        <div className="brand-name" >Moteam</div></Link>
-
-                </div>
-                <div
-                    className="navigation-menu">
-                    <ul>
+  return <ul className="nav-links">
                         {localStorage.getItem("isAdmin") &&
                             <li>
                                 <Link to={ROUTE.ADMIN.link} >페이지관리</Link>
@@ -51,11 +41,7 @@ export default function Navbar() {
                         <li>
                             <Link to={ROUTE.CART.link} >장바구니</Link>
                         </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    );
+  </ul>
+};
 
-
-}
+export default NavLinks;

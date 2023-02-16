@@ -3,15 +3,13 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 3rem;
-  padding: 1rem;
-  max-width: 90%;
+  padding: 1rem 5rem 0 5rem;
   color: black;
   white-space: pre-line;
 }
 
 .container {
   margin-bottom: 2rem;
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
   display: flex;
   flex-direction: column;
 }
@@ -22,14 +20,12 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
 }
 
 
 body,
 input,
 button {
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
   color: black;
   font-size: 12px;
 }
@@ -38,8 +34,8 @@ input[type="checkbox"]:checked {
   background-color: #000;
 }
 
-.table {
-  font-size: 12px;
+th {
+  font-weight: 100;
 }
 
 

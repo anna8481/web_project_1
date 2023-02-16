@@ -124,17 +124,15 @@ function Cart() {
 
 
     return (<>
-        <div className="nav-section"  >
+        <div className="section"  >
             <Header title="Cart" style={{ marginBottom: "0" }}></Header>
-        </div >
+
 
         {/*
 1. {Array.isArray(cart)  cart 가 undefined가 아니고
 2.  장바구니.leng !==0 일때 렌더
 3. 장바구니.leng ===0 일때는 이거
 */ }
-
-        <div className="section" style={{ marginTop: "0" }}>
             <p className='cart-product-header'>
                 <input type="checkbox" onChange={handleSelectAll} checked={selectAll} className="cart-checkbout" style={{ width: "15px" }}></input>
                 <div style={{ display: "inline", marginLeft: "1rem" }}>전체선택</div>
@@ -157,7 +155,7 @@ function Cart() {
                     ></CardProductContainer>)
                     )
                     : <p>장바구니가 비어있습니다.</p>}
-            </div>
+     
             {/* {Array.isArray(cart) && */}
             {cart.length !== 0 &&
                 <div className="payment-tile">
@@ -178,6 +176,7 @@ function Cart() {
                             </Link> </p>
                     </div>
                 </div>}
+        </div>
         </div>
     </>
     )
