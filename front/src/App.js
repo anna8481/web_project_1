@@ -3,7 +3,14 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from 'react';
 import './App.css';
-import Router from './utills/Router'
+import Navbar from './components/Navbar'
+import { ROUTE_ARR } from './utills/route'
+
+import {
+  Routes,
+  BrowserRouter,
+  Route,
+} from 'react-router-dom';
 
 
 
@@ -14,7 +21,14 @@ function App() {
 
     <div className="App">
       <div className="app-container">
-        <Router />
+        <BrowserRouter>
+          <Navbar ></Navbar>
+          <Routes>
+            {ROUTE_ARR.map((route, index) => {
+              return <Route path={route.path} element={<route.element />} key={index} />
+            })}
+          </Routes>
+        </BrowserRouter >
       </div>
     </div>
   );
