@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-    MDBBtn,
-    MDBInput,
-    MDBModal,
-    MDBModalDialog,
-    MDBModalContent,
-    MDBModalHeader,
-    MDBModalTitle,
-    MDBModalBody,
-    MDBModalFooter,
-}
-    from 'mdb-react-ui-kit';
+import { Modal } from 'react-bootstrap';
 import * as Api from "../../utills/api";
 import Postcode from '../../utills/Postcode'
 import { Link } from 'react-router-dom';
@@ -109,7 +98,7 @@ function AccountSecurity() {
 
         // "users/유저id" 엔드포인트로 patch 요청함.
         try {
-            const newData = await Api.patch(`users/${formData._id}`, updatedUser);
+            await Api.patch(`users/${formData._id}`, updatedUser);
             alert('수정이 완료되었습니다!')
             setPopup(!popup);
         }
@@ -208,23 +197,18 @@ function AccountSecurity() {
                     </form>
                 </div>
 
-                <MDBModal show={popup} tabIndex='-1' >
-                    <MDBModalDialog>
-                        <MDBModalContent>
-                            <MDBModalHeader>
-                                <MDBModalTitle>현재 비밀번호를 입력하세요</MDBModalTitle>
-                                <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
-                            </MDBModalHeader>
-                            <MDBModalBody>
-                                <MDBInput name='currentPassword' type='password' onChange={e => setCurrentPassword(e.target.value)} />
-                            </MDBModalBody>
 
-                            <MDBModalFooter>
-                                <button className="edit-button" onClick={handleSubmit} >수정 완료하기</button>
-                            </MDBModalFooter>
-                        </MDBModalContent>
-                    </MDBModalDialog>
-                </MDBModal>
+
+                <Modal show={popup} >
+                    <Modal.Header closeButton>
+                        <Modal.Title>현재 비밀번호를 입력하세요</Modal.Title>
+                    </Modal.Header>
+                    {/* <Modal.Body>제품 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body> */}
+                    <input name='currentPassword' type='password' onChange={e => setCurrentPassword(e.target.value)} />
+                    <Modal.Footer>
+                        <button className="edit-button" onClick={handleSubmit} >수정 완료하기</button>
+                    </Modal.Footer>
+                </Modal>
 
             </div >
         </>

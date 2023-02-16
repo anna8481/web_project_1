@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as Api from "../../utills/api";
-import axios from 'axios'
-import { Form, Button, Container, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
 import './CategoryManage.css'
 import { DeleteCategory } from './DeleteCategory';
 import { ModifyCategory } from './ModifyCategory';
