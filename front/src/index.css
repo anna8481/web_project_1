@@ -1,6 +1,12 @@
 body {
-  margin-top: 8rem;
+  margin-top: 4rem;
   font-family: "Merriweather", "Noto Serif KR", sans-serif;
+}
+
+@media (min-width: 768px) {
+  body {
+    margin-top: 8rem;
+  }
 }
 
 html {
