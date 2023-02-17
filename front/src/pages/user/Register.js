@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Api from "../../utills/api";
-import "./Register.css";
-import Header from '../../components/Header';
+import "./User.css";
+import Title from "../../components/Title";
 
 function Register() {
   const navigate = useNavigate();
@@ -52,13 +52,11 @@ function Register() {
       alert("회원가입이 완료되었습니다!");
       navigate("/login");
     } catch (err) {
-      alert(err.response.data.reason)
+      alert(err.response.data.reason);
     }
-
   }
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
     const validated = validateForm(inputs);
     if (typeof validated === "string") {
@@ -72,17 +70,16 @@ function Register() {
   };
 
   return (
-    <div className='section'>
-      <div className="container-center" >
-        <Header></Header>
+    <div className="section">
+      <div className="container-center">
+        <Title></Title>
         {/* <p>회원가입</p> */}
         <form onSubmit={handleSubmit} className="user-form">
-
           <input
             className="input"
             value={inputs.userName}
             label="이름"
-            placeholder='Name'
+            placeholder="Name"
             name="userName"
             type="text"
             onChange={handleChange}
@@ -93,7 +90,7 @@ function Register() {
             value={inputs.email}
             label="Email"
             name="email"
-            placeholder='Email'
+            placeholder="Email"
             type="email"
             onChange={handleChange}
           />
@@ -102,7 +99,7 @@ function Register() {
             className="input"
             value={inputs.password}
             label="비밀번호"
-            placeholder='Password'
+            placeholder="Password"
             name="password"
             type="password"
             onChange={handleChange}
@@ -112,16 +109,14 @@ function Register() {
             className="input"
             value={inputs.passwordConfirm}
             label="비밀번호확인"
-            placeholder='Password Check'
+            placeholder="Password Check"
             name="passwordConfirm"
             type="password"
             onChange={handleChange}
           />
           <button className="user-button">회원가입</button>
-
         </form>
       </div>
-
     </div>
   );
 }

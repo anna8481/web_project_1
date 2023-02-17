@@ -5,8 +5,8 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .nav-links li {
@@ -16,7 +16,6 @@
 .nav-links a {
   border: 1px solid transparent;
   text-decoration: none;
-  padding-left: 0.5rem;
 }
 
 .nav-links a:hover,
@@ -42,6 +41,8 @@
 @media (min-width: 768px) {
   .nav-links {
     flex-direction: row;
+    justify-content: center;
+    padding-left: 0.5rem;
   }
 
   .nav-links li {
@@ -57,10 +58,9 @@
     color: black;
     background: transparent;
   }
-  
+
   .nav-links button:hover,
   .nav-links button:active {
     color: #999;
   }
 }
-

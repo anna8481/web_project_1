@@ -1,4 +1,8 @@
 body {
-  margin-top: 6rem;
-  font-family:    'Merriweather', 'Noto Serif KR',   sans-serif;
+  margin-top: 8rem;
+  font-family: "Merriweather", "Noto Serif KR", sans-serif;
+}
+
+html {
+  font-size: 0.75rem;
 }

@@ -5,11 +5,11 @@
   align-items: center;
   position: fixed;
   top: 0;
-  /* left: 0; */
+  left: 0;
   background-color: white;
-  padding: 4rem  5rem 2rem 5rem;
   margin: auto;
   z-index: 15;
+  padding: 1rem;
 }
 
 main {
@@ -19,6 +19,12 @@ main {
 @media (min-width: 768px) {
   .main-header {
     justify-content: space-between;
-    z-index: 10;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-header {
+    justify-content: space-between;
+    padding: 4rem 5rem 2rem 5rem;
   }
 }

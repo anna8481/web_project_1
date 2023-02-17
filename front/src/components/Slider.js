@@ -1,43 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import './Slider.css';
+import React, { useState, useEffect } from "react";
 import * as Api from "../utills/api";
-import Category from './Category'
-import Footer from './Footer'
-import MainNavigation  from './Navigation/MainNavigation';
-
-
+import Category from "./Category";
+import Footer from "./Footer";
 
 function Slider() {
-    const [category, setCategory] = useState(undefined);
+  const [category, setCategory] = useState(undefined);
 
-    const init = async () => {
-        const res = await Api.get("categorys");
-        const data = await res.data;
-        setCategory(data);
-    };
-    useEffect(() => {
-        init();
-    }, []);
+  const init = async () => {
+    const res = await Api.get("categorys");
+    const data = await res.data;
+    setCategory(data);
+  };
+  useEffect(() => {
+    init();
+  }, []);
 
-    return (
-        <>
-            <div className='section'>
-                <div className="category-container" >
-                    {Array.isArray(category) && category.map(item => (
-                        <Category
-                            key={item._id}
-                            itemId={item._id}
-                            title={item.title}
-                            img={process.env.REACT_APP_FILE_RES_URL + '/' + item.imageKey + ".jpg"}
-                        >
-                        </Category>))}
-                </div>
-
-            </div>
-            <Footer></Footer>
-        </>
-    );
+  return (
+    <>
+      <div className="section">
+        <div className="category-container">
+          {Array.isArray(category) &&
+            category.map((item) => (
+              <Category
+                key={item._id}
+                itemId={item._id}
+                title={item.title}
+                img={
+                  process.env.REACT_APP_FILE_RES_URL +
+                  "/" +
+                  item.imageKey +
+                  ".jpg"
+                }
+              ></Category>
+            ))}
+        </div>
+      </div>
+      <Footer></Footer>
+    </>
+  );
 }
 export default Slider;
-
-

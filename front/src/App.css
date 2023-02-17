@@ -1,11 +1,12 @@
+/* layouts */
+
 .section {
-  margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 3rem;
-  padding: 1rem 5rem 0 5rem;
   color: black;
   white-space: pre-line;
+  padding: 0 1rem;
 }
 
 .container {
@@ -22,13 +23,13 @@
   margin-bottom: 2rem;
 }
 
-
 body,
 input,
 button {
   color: black;
-  font-size: 12px;
 }
+
+/* contents */
 
 input[type="checkbox"]:checked {
   background-color: #000;
@@ -38,7 +39,6 @@ th {
   font-weight: 100;
 }
 
-
 a,
 ul {
   text-decoration: none;
@@ -47,27 +47,14 @@ ul {
 }
 
 a:hover {
-  color: #999
-}
-
-
-.Navbar {
-  display: flex;
-}
-
-.Header {
-  border-bottom: 1px solid;
-  border-top: 1px solid;
-  padding: 1.5rem 0;
-  font-size: 1rem;
-  margin-bottom: 2rem;
+  color: #999;
 }
 
 .tile {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 70%
+  width: 70%;
 }
 
 input {
@@ -82,30 +69,8 @@ input {
   margin-bottom: 1rem;
 }
 
-
 .input:focus {
   border: 2px solid black;
-
-}
-
-
-.user-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 400px;
-  margin: 0;
-  padding: 0;
-}
-
-.user-button {
-  width: 400px;
-  background-color: #fff;
-  border: 1px solid black;
-  line-height: 3.5;
-  padding: 0;
-  flex-direction: flex-end;
-  margin: auto;
 }
 
 .edit-button {
@@ -133,17 +98,16 @@ button {
 
 button:hover {
   border: 1px solid #999;
-  color: #999
+  color: #999;
 }
-
 
 button:focus {
   border: 1px solid #999;
-  color: #999
+  color: #999;
 }
 
 li:hover {
-  color: #999
+  color: #999;
 }
 
 .postcode {
@@ -161,7 +125,6 @@ li:hover {
   margin-bottom: 1rem;
 }
 
-
 .postcode-button {
   flex: 1;
   border: 1px solid black;
@@ -170,4 +133,10 @@ li:hover {
   height: 55px;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 1rem 5rem 0 5rem;
+  }
 }

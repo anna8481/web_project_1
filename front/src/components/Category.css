@@ -1,25 +1,30 @@
 .category-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-
 .category-card {
-    display: flex;
-    justify-content: center;
-    width: 40%;
-    margin: 3rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 3rem;
 }
 
 .category-image-container {
-    display: flex;
-    overflow: hidden;
-    height: 600px;
+  display: flex;
+  overflow: hidden;
+  height: 70vh;
 }
 
 .category-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .category-card {
+    width: 40%;
+  }
 }
