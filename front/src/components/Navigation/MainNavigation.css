@@ -44,8 +44,8 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: transparent;
-  z-index: 5;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 10;
 }
 
 @media (min-width: 768px) {

@@ -1,48 +1,31 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ROUTE } from "../../utills/route";
+import React, { useState, useEffect } from "react";
+import * as Api from "../../utills/api";
+import { Link } from "react-router-dom";
 import "./NavLinks.css";
 
 const NavLinks = (props) => {
-  const navigate = useNavigate();
-  const logout = (e) => {
-    //저장했던 JWT 토큰을 삭제함.
-    localStorage.removeItem("token");
-    localStorage.removeItem("isAdmin");
-    localStorage.removeItem("cart");
-    navigate("/");
-  };
+  const [category, setCategory] = useState(undefined);
+  useEffect(() => {
+    const init = async () => {
+      const res = await Api.get("categorys");
+      const data = await res.data;
+      setCategory(data);
+      console.log(category);
+    };
 
+    init();
+  }, [category]);
   return (
     <ul className="nav-links">
-      {localStorage.getItem("isAdmin") && (
-        <li>
-          <Link to={ROUTE.ADMIN.link}>관리자</Link>
-        </li>
-      )}
-      {localStorage.getItem("token") && (
-        <li>
-          <Link to={ROUTE.ACCOUNT.link}>마이페이지</Link>
-        </li>
-      )}
-      {localStorage.getItem("token") ? (
-        <li>
-          <div className="logout" onClick={logout}>
-            로그아웃
-          </div>
-        </li>
-      ) : (
-        <>
-          <li>
-            <Link to={ROUTE.REGISTER.link}>회원가입</Link>
-          </li>
-          <li>
-            <Link to={ROUTE.LOGIN.link}>로그인</Link>
-          </li>
-        </>
-      )}
-      <li className="nav-links-cart">
-        <Link to={ROUTE.CART.link}>장바구니</Link>
+      <li>
+        <Link to={"/login"}>Contact</Link>
+      </li>
+      <li>
+        Shop
+        <ul>
+          {Array.isArray(category) &&
+            category.map((item) => <li key={item._id}>{item.title}</li>)}
+        </ul>
       </li>
     </ul>
   );

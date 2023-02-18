@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import * as Api from "../../utills/api";
 import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
+import NavLinksUser from "./NavLinksUser";
 import SideDrawer from "./SideDrawer";
+import "./NavLinks.css";
 import "./MainNavigation.css";
 
 const MainNavigation = (props) => {
-  const [category, setCategory] = useState(undefined);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawer = () => {
@@ -17,23 +17,13 @@ const MainNavigation = (props) => {
     setDrawerIsOpen(false);
   };
 
-  useEffect(() => {
-    const init = async () => {
-      const res = await Api.get("categorys");
-      const data = await res.data;
-      setCategory(data);
-      console.log(category);
-    };
-
-    init();
-  }, [category]);
-
   return (
     <React.Fragment>
       {drawerIsOpen && <div className="backdrop" onClick={closeDrawer}></div>}
       {drawerIsOpen && (
         <SideDrawer>
           <nav className="main-navigation__drawer-nav">
+            <NavLinksUser />
             <NavLinks />
           </nav>
         </SideDrawer>
@@ -46,25 +36,14 @@ const MainNavigation = (props) => {
           <span />
         </button>
         <nav className="main-navigation__header-nav">
-          <ul className="nav-links">
-            <li>
-              <Link to={"/login"}>Contact</Link>
-            </li>
-            <li>
-              Shop
-              <ul>
-                {Array.isArray(category) &&
-                  category.map((item) => <li key={item._id}>{item.title}</li>)}
-              </ul>
-            </li>
-          </ul>
+          <NavLinks />
         </nav>
 
         <h1 className="main-navigation__title">
           <Link to="/">Moteam</Link>
         </h1>
         <nav className="main-navigation__header-nav">
-          <NavLinks />
+          <NavLinksUser />
         </nav>
       </MainHeader>
     </React.Fragment>

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ROUTE } from "../../utills/route";
 import "./NavLinksUser.css";
 
-const NavLinks = (props) => {
+const NavLinksUser = (props) => {
   const navigate = useNavigate();
   const logout = (e) => {
     //저장했던 JWT 토큰을 삭제함.
@@ -41,11 +41,11 @@ const NavLinks = (props) => {
           </li>
         </>
       )}
-      <li>
+      <li className="nav-links-user-cart">
         <Link to={ROUTE.CART.link}>장바구니</Link>
       </li>
     </ul>
   );
 };
 
-export default NavLinks;
+export default NavLinksUser;
