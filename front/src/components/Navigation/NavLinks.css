@@ -11,6 +11,7 @@
 
 .nav-links li {
   margin: 1rem;
+  cursor: pointer;
 }
 
 .nav-links a {
@@ -24,18 +25,27 @@
   color: #999;
 }
 
-.nav-links button {
-  cursor: pointer;
-  color: #999;
+.nav-links-cart {
+  display: none;
 }
 
-.nav-links button:focus {
-  outline: none;
+/* shop */
+.nav-links li ul {
+  display: none;
+  list-style: none;
+  position: fixed;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-links button:hover,
-.nav-links button:active {
-  color: #999;
+.nav-links li ul li {
+  margin-top: 0.5rem;
+}
+
+.nav-links li:hover > ul {
+  display: initial;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {
@@ -49,18 +59,7 @@
     margin: 0 0.5rem;
   }
 
-  .nav-links a {
-    text-decoration: none;
-  }
-
-  .nav-links button {
-    border: 1px solid black;
-    color: black;
-    background: transparent;
-  }
-
-  .nav-links button:hover,
-  .nav-links button:active {
-    color: #999;
+  .nav-links-cart {
+    display: initial;
   }
 }

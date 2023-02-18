@@ -23,6 +23,10 @@
 .main-navigation__title a {
   text-decoration: none;
   font-size: 1.8rem;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .main-navigation__header-nav {
@@ -34,6 +38,16 @@
   z-index: 5;
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  z-index: 5;
+}
+
 @media (min-width: 768px) {
   .main-navigation__menu-btn {
     display: none;
@@ -41,5 +55,9 @@
 
   .main-navigation__header-nav {
     display: block;
+  }
+
+  .main-navigation__title a {
+    top: 50%;
   }
 }

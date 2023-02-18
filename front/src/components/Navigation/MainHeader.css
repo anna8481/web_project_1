@@ -8,18 +8,12 @@
   left: 0;
   background-color: white;
   margin: auto;
-  z-index: 15;
+  z-index: 5;
   padding: 1rem;
 }
 
 main {
   margin-top: 5rem;
-}
-
-@media (min-width: 768px) {
-  .main-header {
-    justify-content: space-between;
-  }
 }
 
 @media (min-width: 768px) {

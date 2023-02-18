@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTE } from "../../utills/route";
-import "./NavLinks.css";
+import "./NavLinksUser.css";
 
 const NavLinks = (props) => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const NavLinks = (props) => {
   };
 
   return (
-    <ul className="nav-links">
+    <ul className="nav-links-user">
       {localStorage.getItem("isAdmin") && (
         <li>
           <Link to={ROUTE.ADMIN.link}>관리자</Link>
@@ -41,7 +41,7 @@ const NavLinks = (props) => {
           </li>
         </>
       )}
-      <li className="nav-links-cart">
+      <li>
         <Link to={ROUTE.CART.link}>장바구니</Link>
       </li>
     </ul>
