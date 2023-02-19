@@ -34,9 +34,8 @@ th {
 
 .tile {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 70%;
+  flex-direction: column;
+  width: 100%;
 }
 
 .input {
@@ -76,7 +75,7 @@ th {
   flex: 3;
   border: var(--border);
   border-right: 0px;
-  line-height: 3.5;
+  /* line-height: 3.5; */
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
@@ -85,7 +84,6 @@ th {
 .postcode-button {
   flex: 1;
   border: var(--border);
-  line-height: 3.5;
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
@@ -95,5 +93,11 @@ th {
 @media (min-width: 768px) {
   .section {
     padding: 1rem 5rem 0 5rem;
+  }
+
+  .tile {
+    flex-direction: row;
+    justify-content: center;
+    width: 70%;
   }
 }

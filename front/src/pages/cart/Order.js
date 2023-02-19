@@ -231,19 +231,17 @@ function Order() {
                     <input
                       className="postcode-input"
                       type="text"
-                      placeholder="주소찾기를 클릭해주세요."
+                      placeholder="우편번호"
                       onChange={handleAddressChange}
                       name="postalCode"
                       value={shippingInfo.address?.postalCode}
                     />
-                    <div
-                      type="button"
+                    <button
                       className="postcode-button"
                       onClick={handleComplete}
                     >
-                      {" "}
                       주소찾기
-                    </div>
+                    </button>
                   </div>
                   <input
                     className="input"

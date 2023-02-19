@@ -171,13 +171,14 @@ function AccountSecurity() {
               <input
                 className="postcode-input"
                 label="우편번호"
+                placeholder="우편번호"
                 name="postalCode"
                 type="text"
                 onChange={handleAddressChange}
                 value={formData.address?.postalCode}
               />
               <button className="postcode-button" onClick={handleComplete}>
-                우편번호
+                주소찾기
               </button>
             </div>
             {postPopup && (
@@ -190,6 +191,7 @@ function AccountSecurity() {
             <input
               className="input"
               label="주소"
+              placeholder="주소"
               name="address1"
               type="text"
               onChange={handleAddressChange}
@@ -199,6 +201,7 @@ function AccountSecurity() {
             <input
               className="input"
               label="상세주소"
+              placeholder="상세주소를 입력해주세요."
               name="address2"
               type="text"
               onChange={handleAddressChange}

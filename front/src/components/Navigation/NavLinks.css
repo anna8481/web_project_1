@@ -5,7 +5,7 @@
 }
 
 .nav-links li {
-  margin: 1rem;
+  margin: 2rem 1rem 0 2rem;
   cursor: pointer;
 }
 
@@ -30,6 +30,7 @@
 
   .nav-links li {
     margin: 0 1rem 0 0;
+    padding: 1rem 0 0 1rem;
   }
 
   .nav-links li ul {

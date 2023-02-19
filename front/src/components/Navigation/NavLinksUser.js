@@ -28,10 +28,8 @@ const NavLinksUser = (props) => {
         </li>
       )}
       {localStorage.getItem("token") ? (
-        <li>
-          <div className="logout" onClick={logout}>
-            로그아웃
-          </div>
+        <li className="logout" onClick={logout}>
+          로그아웃
         </li>
       ) : (
         <>

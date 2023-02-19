@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Cart.css";
 import Title from "../../components/Title";
-import { MDBIcon } from "mdb-react-ui-kit";
 import { ROUTE } from "../../utills/route";
+import { ReactComponent as AddIcon } from "../../icons/add.svg";
+import { ReactComponent as RemoveIcon } from "../../icons/remove.svg";
+import { ReactComponent as CloseIcon } from "../../icons/close.svg";
 
 function CardProductContainer({
   img,
@@ -20,39 +22,36 @@ function CardProductContainer({
   const currencySymbol = "KRW";
   return (
     <>
-      <div className="cart-product-container">
-        <div className="cart-product-info">
-          <div className="cart-img-name">
-            <input
-              type="checkbox"
-              checked={checked}
-              onChange={onChange}
-              className="cart-checkbout"
-              style={{ width: "15px", marginRight: "1rem" }}
-            ></input>
-            <Link to={`/product/detail/${productId}`}>
-              <img className="productImg" src={img} alt={productName} />
-            </Link>
-            <div className="product-name">
-              {" "}
-              <Link to={`/product/detail/${productId}`}>{productName} </Link>
-            </div>
+      <div className="cart-product-info">
+        <div className="cart-img-name">
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={onChange}
+            className="cart-checkbout"
+            style={{ width: "15px", marginRight: "1rem" }}
+          ></input>
+          <Link to={`/product/detail/${productId}`}>
+            <img className="cart-product-img" src={img} alt={productName} />
+          </Link>
+          <div className="cart-product-name">
+            <Link to={`/product/detail/${productId}`}>{productName} </Link>
           </div>
-          <div className="cart-quantity">
-            <MDBIcon fas icon="minus-circle" onClick={onDecrease} />
-            <div className="cart-quantity-no">{quantity}</div>
-            <MDBIcon fas icon="plus-circle" onClick={onIncrease} />
-          </div>
-          <div className="product-price">
-            {price.toLocaleString("en-US", {
-              style: "currency",
-              currency: currencySymbol,
-            })}{" "}
-          </div>
-          <span className="delete-button">
-            <MDBIcon fas icon="times" onClick={handleDelete} />
-          </span>
         </div>
+        <div className="cart-quantity">
+          <RemoveIcon onClick={onDecrease} />
+          <div className="cart-quantity-no">{quantity}</div>
+          <AddIcon onClick={onIncrease} />
+        </div>
+        <div className="cart-product-price">
+          {price.toLocaleString("en-US", {
+            style: "currency",
+            currency: currencySymbol,
+          })}{" "}
+        </div>
+        <span className="delete-button">
+          <CloseIcon onClick={handleDelete} />
+        </span>
       </div>
     </>
   );
@@ -184,7 +183,7 @@ function Cart() {
             선택삭제
           </div>
         </p>
-        <div className="product-tile ">
+        <div className="cart-product-tile">
           {cart.length !== 0 ? (
             cart.map((item) => (
               <CardProductContainer
@@ -209,61 +208,60 @@ function Cart() {
           ) : (
             <p>장바구니가 비어있습니다.</p>
           )}
-
-          {/* {Array.isArray(cart) && */}
-          {cart.length !== 0 && (
-            <div className="payment-tile">
-              <div className="payment-summary ">
-                <div className="payment-header">결제정보</div>
-                <div className="payment-info">
-                  <div className="info">
-                    <p>상품 총 금액</p>{" "}
-                    <p id="productsTotal">
-                      {subtotal.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: currencySymbol,
-                      })}
-                    </p>
-                  </div>
-                  <div className="info">
-                    <p>배송비</p>{" "}
-                    <p id="deliveryFee">
-                      {shippingCost.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: currencySymbol,
-                      })}
-                    </p>{" "}
-                  </div>
+        </div>
+        {/* {Array.isArray(cart) && */}
+        {cart.length !== 0 && (
+          <div className="payment-tile">
+            <div className="payment-summary ">
+              <div className="payment-header">결제정보</div>
+              <div className="payment-info">
+                <div className="info">
+                  <p>상품 총 금액</p>{" "}
+                  <p id="productsTotal">
+                    {subtotal.toLocaleString("en-US", {
+                      style: "currency",
+                      currency: currencySymbol,
+                    })}
+                  </p>
                 </div>
-                <div className="payment-total">
-                  <p>총 결제금액</p>{" "}
-                  <p id="Total">
-                    {(subtotal + shippingCost).toLocaleString("en-US", {
+                <div className="info">
+                  <p>배송비</p>{" "}
+                  <p id="deliveryFee">
+                    {shippingCost.toLocaleString("en-US", {
                       style: "currency",
                       currency: currencySymbol,
                     })}
                   </p>{" "}
                 </div>
-
-                <div className="purchase">
-                  <button className="purchase-button" onClick={handleOrder}>
-                    구매하기
-                  </button>
-                </div>
-                <p
-                  style={{
-                    textAlign: "center",
-                    marginTop: "1rem",
-                    textDecoration: "underline",
-                    display: "inline",
-                  }}
-                >
-                  <Link to={ROUTE.HOME.link}>Back home</Link>{" "}
-                </p>
               </div>
+              <div className="payment-total">
+                <p>총 결제금액</p>{" "}
+                <p id="Total">
+                  {(subtotal + shippingCost).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: currencySymbol,
+                  })}
+                </p>{" "}
+              </div>
+
+              <div className="purchase">
+                <button className="purchase-button" onClick={handleOrder}>
+                  구매하기
+                </button>
+              </div>
+              <p
+                style={{
+                  textAlign: "center",
+                  marginTop: "1rem",
+                  textDecoration: "underline",
+                  display: "inline",
+                }}
+              >
+                <Link to={ROUTE.HOME.link}>Back home</Link>{" "}
+              </p>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </>
   );
