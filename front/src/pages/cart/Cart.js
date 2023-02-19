@@ -23,7 +23,7 @@ function CardProductContainer({
   return (
     <>
       <div className="cart-product-info">
-        <div className="cart-img-name">
+        <div className="cart-img">
           <input
             type="checkbox"
             checked={checked}
@@ -34,9 +34,9 @@ function CardProductContainer({
           <Link to={`/product/detail/${productId}`}>
             <img className="cart-product-img" src={img} alt={productName} />
           </Link>
-          <div className="cart-product-name">
-            <Link to={`/product/detail/${productId}`}>{productName} </Link>
-          </div>
+        </div>
+        <div className="cart-product-name">
+          <Link to={`/product/detail/${productId}`}>{productName} </Link>
         </div>
         <div className="cart-quantity">
           <RemoveIcon onClick={onDecrease} />
@@ -183,35 +183,35 @@ function Cart() {
             선택삭제
           </div>
         </p>
-        <div className="cart-product-tile">
-          {cart.length !== 0 ? (
-            cart.map((item) => (
-              <CardProductContainer
-                key={item._id}
-                img={
-                  process.env.REACT_APP_FILE_RES_URL +
-                  "/" +
-                  item.imageKey +
-                  ".png"
-                }
-                productId={item._id}
-                productName={item.productName}
-                price={item.price * item.quantity}
-                quantity={item.quantity}
-                handleDelete={handleRemoveFromCart}
-                checked={selectedItems.includes(item._id)}
-                onChange={() => handleItemSelection(item._id)}
-                onIncrease={() => handleIncrease(item._id)}
-                onDecrease={() => handleDecrease(item._id)}
-              ></CardProductContainer>
-            ))
-          ) : (
-            <p>장바구니가 비어있습니다.</p>
-          )}
-        </div>
+
+        {cart.length !== 0 ? (
+          cart.map((item) => (
+            <CardProductContainer
+              key={item._id}
+              img={
+                process.env.REACT_APP_FILE_RES_URL +
+                "/" +
+                item.imageKey +
+                ".png"
+              }
+              productId={item._id}
+              productName={item.productName}
+              price={item.price * item.quantity}
+              quantity={item.quantity}
+              handleDelete={handleRemoveFromCart}
+              checked={selectedItems.includes(item._id)}
+              onChange={() => handleItemSelection(item._id)}
+              onIncrease={() => handleIncrease(item._id)}
+              onDecrease={() => handleDecrease(item._id)}
+            ></CardProductContainer>
+          ))
+        ) : (
+          <p>장바구니가 비어있습니다.</p>
+        )}
+
         {/* {Array.isArray(cart) && */}
         {cart.length !== 0 && (
-          <div className="payment-tile">
+          <div className="cart-payment-tile">
             <div className="payment-summary ">
               <div className="payment-header">결제정보</div>
               <div className="payment-info">
