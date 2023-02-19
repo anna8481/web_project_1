@@ -4,7 +4,6 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 3rem;
-  color: black;
   white-space: pre-line;
   padding: 0 1rem;
 }
@@ -23,31 +22,14 @@
   margin-bottom: 2rem;
 }
 
-body,
-input,
-button {
-  color: black;
-}
-
 /* contents */
 
-input[type="checkbox"]:checked {
+/* input[type="checkbox"]:checked {
   background-color: #000;
-}
+} */
 
 th {
   font-weight: 100;
-}
-
-a,
-ul {
-  text-decoration: none;
-  margin: 0;
-  color: black;
-}
-
-a:hover {
-  color: #999;
 }
 
 .tile {
@@ -57,32 +39,25 @@ a:hover {
   width: 70%;
 }
 
-input {
-  width: 100%;
-}
-
 .input {
-  border: 1px solid black;
+  border: var(--border);
   line-height: 3.5;
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
-}
-
-.input:focus {
-  border: 2px solid black;
+  width: 100%;
 }
 
 .edit-button {
-  background-color: #fff;
-  border: 1px solid black;
+  background-color: var(--bg);
+  border: var(--border);
   display: inline;
   margin-right: "1rem";
   text-align: center;
 }
 
 .manage-button {
-  background-color: #fff;
+  background-color: var(--bg);
   border: 1px solid rgb(118, 118, 118);
   border-radius: 4px;
   display: inline;
@@ -92,24 +67,6 @@ input {
   padding-bottom: 0;
 }
 
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  border: 1px solid #999;
-  color: #999;
-}
-
-button:focus {
-  border: 1px solid #999;
-  color: #999;
-}
-
-li:hover {
-  color: #999;
-}
-
 .postcode {
   display: flex;
   width: 100%;
@@ -117,7 +74,7 @@ li:hover {
 
 .postcode-input {
   flex: 3;
-  border: 1px solid black;
+  border: var(--border);
   border-right: 0px;
   line-height: 3.5;
   border-radius: 0;
@@ -127,7 +84,7 @@ li:hover {
 
 .postcode-button {
   flex: 1;
-  border: 1px solid black;
+  border: var(--border);
   line-height: 3.5;
   border-radius: 0;
   height: 55px;

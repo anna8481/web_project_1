@@ -227,10 +227,10 @@ function AccountSecurity() {
         </div>
 
         <Modal show={popup}>
-          <Modal.Header closeButton>
-            <Modal.Title>현재 비밀번호를 입력하세요</Modal.Title>
+          <Modal.Header closeButton onClick={toggleShow}>
+            <Modal.Title>정보 수정하기</Modal.Title>
           </Modal.Header>
-          {/* <Modal.Body>제품 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body> */}
+          <Modal.Body>현재 비밀번호를 입력하세요</Modal.Body>
           <input
             name="currentPassword"
             type="password"

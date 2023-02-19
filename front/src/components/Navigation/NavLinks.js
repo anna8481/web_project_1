@@ -18,14 +18,22 @@ const NavLinks = (props) => {
   return (
     <ul className="nav-links">
       <li>
-        <Link to={"/login"}>Contact</Link>
-      </li>
-      <li>
         Shop
         <ul>
           {Array.isArray(category) &&
-            category.map((item) => <li key={item._id}>{item.title}</li>)}
+            category.map((item) => (
+              <Link to={`/product/list/${item.title}`}>
+                <li key={item._id} onClick={props.onClickClose}>
+                  {item.title}
+                </li>
+              </Link>
+            ))}
         </ul>
+      </li>
+      <li>
+        <Link to={"/login"} onClick={props.onClickClose}>
+          Contact
+        </Link>
       </li>
     </ul>
   );

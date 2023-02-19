@@ -20,14 +20,13 @@ const MainNavigation = (props) => {
   return (
     <React.Fragment>
       {drawerIsOpen && <div className="backdrop" onClick={closeDrawer}></div>}
-      {drawerIsOpen && (
-        <SideDrawer>
-          <nav className="main-navigation__drawer-nav">
-            <NavLinksUser />
-            <NavLinks />
-          </nav>
-        </SideDrawer>
-      )}
+
+      <SideDrawer show={drawerIsOpen}>
+        <nav className="main-navigation__drawer-nav">
+          <NavLinksUser onClickClose={closeDrawer} />
+          <NavLinks onClickClose={closeDrawer} />
+        </nav>
+      </SideDrawer>
 
       <MainHeader>
         <button className="main-navigation__menu-btn" onClick={openDrawer}>
@@ -51,41 +50,3 @@ const MainNavigation = (props) => {
 };
 
 export default MainNavigation;
-
-/*
-function Slider() {
-  const [category, setCategory] = useState(undefined);
-
-  const init = async () => {
-    const res = await Api.get("categorys");
-    const data = await res.data;
-    setCategory(data);
-  };
-  useEffect(() => {
-    init();
-  }, []);
-
-  return (
-    <>
-      <div className="section">
-        <div className="category-container">
-          {Array.isArray(category) &&
-            category.map((item) => (
-              <Category
-                key={item._id}
-                itemId={item._id}
-                title={item.title}
-                img={
-                  process.env.REACT_APP_FILE_RES_URL +
-                  "/" +
-                  item.imageKey +
-                  ".jpg"
-                }
-              ></Category>
-            ))}
-        </div>
-      </div>
-      <Footer></Footer>
-    </>
-  );
-}*/

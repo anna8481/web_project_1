@@ -3,7 +3,7 @@ import * as Api from "../utills/api";
 import Category from "./Category";
 import Footer from "./Footer";
 
-function Slider() {
+function Main() {
   const [category, setCategory] = useState(undefined);
 
   const init = async () => {
@@ -39,4 +39,4 @@ function Slider() {
     </>
   );
 }
-export default Slider;
+export default Main;

@@ -20,13 +20,13 @@ function ProductDetail() {
     setMode(undefined);
   };
 
-  const init = async () => {
-    const res = await Api.get(`products/${id}`);
-    const data = await res.data;
-    setItem(data);
-  };
-
   useEffect(() => {
+    const init = async () => {
+      const res = await Api.get(`products/${id}`);
+      const data = await res.data;
+      setItem(data);
+    };
+
     if (render) {
       init();
       setRender(false);

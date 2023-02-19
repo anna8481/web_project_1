@@ -10,14 +10,16 @@ function ProductList() {
   const [products, setProducts] = useState(undefined);
 
   /// api /products/:categoryTitle
-  const init = async () => {
-    const res = await Api.get(`products/category/${category}`);
-    const data = await res.data;
-    setProducts(data);
-  };
+
   useEffect(() => {
+    const init = async () => {
+      const res = await Api.get(`products/category/${category}`);
+      const data = await res.data;
+      setProducts(data);
+    };
+
     init();
-  }, []);
+  }, [category, products]);
 
   return (
     <>
