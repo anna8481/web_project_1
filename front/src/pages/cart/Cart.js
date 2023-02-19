@@ -35,13 +35,15 @@ function CardProductContainer({
             <img className="cart-product-img" src={img} alt={productName} />
           </Link>
         </div>
-        <div className="cart-product-name">
-          <Link to={`/product/detail/${productId}`}>{productName} </Link>
-        </div>
-        <div className="cart-quantity">
-          <RemoveIcon onClick={onDecrease} />
-          <div className="cart-quantity-no">{quantity}</div>
-          <AddIcon onClick={onIncrease} />
+        <div className="cart-product-name-quantity">
+          <div className="cart-product-name">
+            <Link to={`/product/detail/${productId}`}>{productName} </Link>
+          </div>
+          <div className="cart-quantity">
+            <RemoveIcon onClick={onDecrease} />
+            <div className="cart-quantity-no">{quantity}</div>
+            <AddIcon onClick={onIncrease} />
+          </div>
         </div>
         <div className="cart-product-price">
           {price.toLocaleString("en-US", {
