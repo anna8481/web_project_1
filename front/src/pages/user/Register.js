@@ -73,7 +73,6 @@ function Register() {
     <div className="section">
       <div className="container-center">
         <Title></Title>
-        {/* <p>회원가입</p> */}
         <form onSubmit={handleSubmit} className="user-form">
           <input
             className="input"
