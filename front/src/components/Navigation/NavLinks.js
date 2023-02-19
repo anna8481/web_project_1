@@ -10,11 +10,10 @@ const NavLinks = (props) => {
       const res = await Api.get("categorys");
       const data = await res.data;
       setCategory(data);
-      console.log(category);
     };
-
     init();
-  }, [category]);
+  }, []);
+
   return (
     <ul className="nav-links">
       <li>

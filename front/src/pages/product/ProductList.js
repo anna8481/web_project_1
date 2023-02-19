@@ -17,9 +17,8 @@ function ProductList() {
       const data = await res.data;
       setProducts(data);
     };
-
     init();
-  }, [category, products]);
+  }, []);
 
   return (
     <>

@@ -30,7 +30,11 @@
 
   .nav-links li {
     margin: 0 1rem 0 0;
-    padding: 1rem 0 0 1rem;
+    padding: 0;
+  }
+
+  .nav-links li ul li {
+    margin-left: 1rem;
   }
 
   .nav-links li ul {
