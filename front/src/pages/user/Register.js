@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Api from "../../utills/api";
 import "./User.css";
 import Title from "../../components/Title";
 
 function Register() {
-  const inputRef = useRef();
   const navigate = useNavigate();
   // State 정의
   const [inputs, setInputs] = useState({
@@ -70,17 +69,12 @@ function Register() {
     registerUser(formdata);
   };
 
-  useEffect(() => {
-    inputRef.current.focus();
-  });
-
   return (
     <div className="section">
       <div className="container-center">
         <Title></Title>
         <form onSubmit={handleSubmit} className="user-form">
           <input
-            ref={inputRef}
             className="input"
             value={inputs.userName}
             label="이름"
