@@ -22,6 +22,15 @@ function ProductList() {
     init();
   }, [category]);
 
+  if (!products) {
+    return (
+      <div className="container-center">
+        <div className="section">
+          <div>Loading...</div>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="section">
