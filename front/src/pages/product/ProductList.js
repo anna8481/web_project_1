@@ -10,6 +10,8 @@ function ProductList() {
   const [products, setProducts] = useState(undefined);
 
   /// api /products/:categoryTitle
+  //category가 변경될 때 마다 product list 리렌더링 되야함. 지금은 안됨 -> products를 useRef 사용해야하나?
+  //왜 nav bar에서 선택시에만 그러지? main page에서 리다이렉트될때는 잘 업데이트 되는데 뭔차이지
 
   useEffect(() => {
     const init = async () => {
@@ -18,7 +20,7 @@ function ProductList() {
       setProducts(data);
     };
     init();
-  }, []);
+  }, [category]);
 
   return (
     <>
