@@ -18,6 +18,7 @@
 
 .nav-links li ul li {
   margin-top: 1rem;
+  background-color: var(--bg);
 }
 
 @media (min-width: 768px) {

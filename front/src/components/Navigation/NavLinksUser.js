@@ -22,7 +22,7 @@ const NavLinksUser = (props) => {
       )}
       {localStorage.getItem("token") && (
         <li>
-          <Link to={ROUTE.ACCOUNT.link} onClick={props.onClickClose}>
+          <Link to={ROUTE.ACCOUNT.link} onClick={props.onClickNav}>
             마이페이지
           </Link>
         </li>
@@ -34,10 +34,12 @@ const NavLinksUser = (props) => {
       ) : (
         <>
           <li>
-            <Link to={ROUTE.REGISTER.link}>회원가입</Link>
+            <Link to={ROUTE.REGISTER.link} onClick={props.onClickNav}>
+              회원가입
+            </Link>
           </li>
           <li>
-            <Link to={ROUTE.LOGIN.link} onClick={props.onClickClose}>
+            <Link to={ROUTE.LOGIN.link} onClick={props.onClickNav}>
               로그인
             </Link>
           </li>
