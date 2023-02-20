@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import * as Api from "../utills/api";
 import Category from "./Category";
 import Footer from "./Footer";

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./User.css";
 import * as Api from "../../utills/api";
 import { ROUTE } from "../../utills/route";
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
+
 function Login() {
+  const inputRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
   const [inputs, setInputs] = useState({
@@ -49,6 +51,10 @@ function Login() {
     }
   };
 
+  useEffect(() => {
+    inputRef.current.focus();
+  });
+
   return (
     <>
       <div className="section">
@@ -56,6 +62,7 @@ function Login() {
           <Title></Title>
           <form onSubmit={handleLogin} className="user-form">
             <input
+              ref={inputRef}
               className="input"
               value={inputs.email}
               label="Email"
