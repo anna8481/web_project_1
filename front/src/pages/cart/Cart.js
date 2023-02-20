@@ -211,7 +211,6 @@ function Cart() {
           <p>장바구니가 비어있습니다.</p>
         )}
 
-        {/* {Array.isArray(cart) && */}
         {cart.length !== 0 && (
           <div className="cart-payment-tile">
             <div className="payment-summary ">
