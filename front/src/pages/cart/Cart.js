@@ -42,7 +42,9 @@ function CardProductContainer({
           </div>
           <div className="cart-quantity">
             <RemoveIcon onClick={onDecrease} />
+
             <div className="cart-quantity-no">{quantity}</div>
+
             <AddIcon onClick={onIncrease} />
           </div>
         </div>
@@ -260,7 +262,7 @@ function Cart() {
                   display: "inline",
                 }}
               >
-                <Link to={ROUTE.HOME.link}>Back home</Link>{" "}
+                <Link to={ROUTE.HOME.link}>Back home</Link>
               </p>
             </div>
           </div>

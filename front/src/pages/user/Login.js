@@ -34,18 +34,11 @@ function Login() {
         password,
       });
       auth.login(response.data.token, response.data.isAdmin);
-      // Admin check
-      // if (response.data.isAdmin) {
-      //   localStorage.setItem("isAdmin", "admin");
-      //   auth.isAdmin(response.data.isAdmin)
-      // }
       if (location.state?.redirectUrl) {
         navigate(location.state.redirectUrl);
       } else {
         navigate(ROUTE.HOME.link);
       }
-
-      // console.log(response)
     } catch (err) {
       alert("이메일 또는 비밀번호가 일치하지 않습니다.");
     }
