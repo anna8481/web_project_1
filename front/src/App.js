@@ -65,14 +65,14 @@ function App() {
                 />
               );
             })}
-            <Route
+            {/* <Route
               path="*"
               element={
                 <section className="container-center">
                   없는 경로 입니다.
                 </section>
               }
-            />
+            /> */}
           </Routes>
         </AuthContext.Provider>
       </BrowserRouter>

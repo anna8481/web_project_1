@@ -26,11 +26,9 @@ const NavLinks = (props) => {
         <ul>
           {Array.isArray(category) &&
             category.map((item) => (
-              <Link to={`/product/list/${item.title}`}>
-                <li key={item._id} onClick={props.onClickNav}>
-                  {item.title}
-                </li>
-              </Link>
+              <li key={item._id} onClick={props.onClickNav}>
+                <Link to={`/product/list/${item.title}`}>{item.title}</Link>
+              </li>
             ))}
         </ul>
       </li>
