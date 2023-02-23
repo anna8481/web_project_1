@@ -52,6 +52,7 @@ function Register() {
       alert("회원가입이 완료되었습니다!");
       navigate("/login");
     } catch (err) {
+      console.log(err);
       alert(err.response.data.reason);
     }
   }

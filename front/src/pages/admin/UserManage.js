@@ -56,10 +56,14 @@ function UserManage() {
   };
 
   const init = async () => {
-    const res = await Api.get(`admin/users?page=${page}&perPage=${perPage}`);
-    // console.log(res)
-    setUsers(() => res.data.users);
-    setTotal(() => res.data.total);
+    try {
+      const res = await Api.get(`admin/users?page=${page}&perPage=${perPage}`);
+      // console.log(res)
+      setUsers(() => res.data.users);
+      setTotal(() => res.data.total);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const handlePageChange = (currentPage) => {
     if (page === currentPage) return;

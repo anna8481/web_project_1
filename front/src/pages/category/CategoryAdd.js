@@ -44,8 +44,8 @@ function CategoryAdd() {
       alert("category 등록이 완료되었습니다.");
       navigate(`/category/manage`);
     } catch (err) {
-      console.log(err.response.data.reason);
-      alert("이미 있는 category 이름입니다.");
+      console.log(err);
+      alert(err.response.data.reason);
     }
   }
 

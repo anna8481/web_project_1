@@ -32,11 +32,6 @@ a {
   text-decoration: none;
 }
 
-li:hover,
-a:hover {
-  color: var(--text-sub-color);
-}
-
 button {
   cursor: pointer;
 }

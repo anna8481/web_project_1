@@ -72,7 +72,7 @@ function ProductAdd() {
       const newData = await Api.post("products", formdata);
       alert("제품 등록이 완료되었습니다.");
     } catch (err) {
-      alert("이미 있는 제품 이름입니다.");
+      alert(err.response.data.reason);
     }
   }
 
