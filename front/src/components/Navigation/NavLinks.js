@@ -16,12 +16,12 @@ const NavLinks = (props) => {
 
   return (
     <ul className="nav-links">
-      <li>
+      <li key="contact">
         <Link to={"/login"} onClick={props.onClickNav}>
           Contact
         </Link>
       </li>
-      <li>
+      <li key="shop">
         Shop
         <ul>
           {Array.isArray(category) &&

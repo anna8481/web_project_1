@@ -1,39 +1,81 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import "./App.css";
 import MainNavigation from "./components/Navigation/MainNavigation";
 import { ROUTE_ARR } from "./utills/route";
-import { AuthContext } from "./utills/Auth";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthContext } from "./utills/AuthContext";
+import ProtectedRoute from "./utills/ProtectedUserRoute";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const login = useCallback(() => {
-    setIsLoggedIn(true);
+  // const navigate = useNavigate();
+  const [token, setToken] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const login = useCallback((token, isAdmin) => {
+    setToken(token);
+    setIsAdmin(isAdmin);
+    localStorage.setItem("token", token);
+    localStorage.setItem("isAdmin", isAdmin);
   }, []);
+
   const logout = useCallback(() => {
-    setIsLoggedIn(false);
+    setToken(null);
+    setIsAdmin(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
+    localStorage.removeItem("cart");
   }, []);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("token");
+    if (storedData) {
+      login(storedData);
+    }
+  }, [login]);
 
   return (
     <div className="App">
-      <AuthContext.Provider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <AuthContext.Provider
+          value={{
+            isLoggedIn: !!token,
+            token: token,
+            isAdmin: isAdmin,
+            login: login,
+            logout: logout,
+          }}
+        >
           <MainNavigation></MainNavigation>
           <Routes>
             {ROUTE_ARR.map((route, index) => {
               return (
                 <Route
                   path={route.path}
-                  element={<route.element />}
+                  element={
+                    route.protected ? (
+                      <ProtectedRoute>
+                        <route.element />
+                      </ProtectedRoute>
+                    ) : (
+                      <route.element />
+                    )
+                  }
                   key={index}
                 />
               );
             })}
+            <Route
+              path="*"
+              element={
+                <section className="container-center">
+                  없는 경로 입니다.
+                </section>
+              }
+            />
           </Routes>
-        </BrowserRouter>
-      </AuthContext.Provider>
+        </AuthContext.Provider>
+      </BrowserRouter>
     </div>
   );
 }

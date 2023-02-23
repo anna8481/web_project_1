@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./User.css";
 import * as Api from "../../utills/api";
 import { ROUTE } from "../../utills/route";
 import { Link } from "react-router-dom";
 import Title from "../../components/Title";
+import { AuthContext } from "../../utills/AuthContext";
 
 function Login() {
+  const auth = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [inputs, setInputs] = useState({
@@ -31,13 +33,12 @@ function Login() {
         email,
         password,
       });
-      localStorage.setItem("token", response.data.token);
-
+      auth.login(response.data.token, response.data.isAdmin);
       // Admin check
-      if (response.data.isAdmin) {
-        localStorage.setItem("isAdmin", "admin");
-      }
-
+      // if (response.data.isAdmin) {
+      //   localStorage.setItem("isAdmin", "admin");
+      //   auth.isAdmin(response.data.isAdmin)
+      // }
       if (location.state?.redirectUrl) {
         navigate(location.state.redirectUrl);
       } else {

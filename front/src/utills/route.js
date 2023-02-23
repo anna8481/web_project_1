@@ -17,6 +17,7 @@ import OrderHistory from "../pages/user/OrderHistory";
 import OrderManage from "../pages/admin/OrderManage";
 import UserManage from "../pages/admin/UserManage";
 import FindUserPassword from "../pages/user/FindUserPassword";
+// import ProtectedRoute from "./ProtectedUserRoute";
 
 export const ROUTE = {
   HOME: {
@@ -38,36 +39,43 @@ export const ROUTE = {
     path: "/account",
     link: "/account",
     element: Account,
+    protected: "user",
   },
   ACCOUNT_SIGNOUT: {
     path: "/account/signout",
     link: "/account/signout",
     element: AccountDelete,
+    protected: "user",
   },
   ACCOUNT_ORDERS: {
     path: "/account/orders",
     link: "/account/orders",
     element: OrderHistory,
+    protected: "user",
   },
   MYACCOUNT: {
     path: "/account/security",
     link: "/account/security",
     element: AccountSercurity,
+    protected: "user",
   },
   ADMIN: {
     path: "/admin",
     link: "/admin",
     element: Admin,
+    protected: "admin",
   },
   ADMIN_ORDERS: {
     path: "/admin/orders",
     link: "/admin/orders",
     element: OrderManage,
+    protected: "admin",
   },
   ADMIN_USERS: {
     path: "/admin/users",
     link: "/admin/users",
     element: UserManage,
+    protected: "admin",
   },
   CART: {
     path: "/cart",
@@ -78,26 +86,31 @@ export const ROUTE = {
     path: "/order",
     link: "/order",
     element: Order,
+    protected: "user",
   },
   ORDER_COMPLETE: {
     path: "/order/complete",
     link: "/order/complete",
     element: OrderComplete,
+    protected: "user",
   },
   CATEGORY_ADD: {
     path: "/category/add",
     link: "/category/add",
     element: CategoryAdd,
+    protected: "admin",
   },
   CATEGORY_MANAGE: {
     path: "/category/manage",
     link: "/category/manage",
     element: CategoryManage,
+    protected: "admin",
   },
   PRODUCT_ADD: {
     path: "/product/add",
     link: "/product/add",
     element: ProductAdd,
+    protected: "admin",
   },
   PRODUCT_LIST: {
     path: "/product/list/:category",
@@ -113,6 +126,7 @@ export const ROUTE = {
     path: "/login/finduserpassword",
     link: "/login/finduserpassword",
     element: FindUserPassword,
+    protected: "user",
   },
 };
 

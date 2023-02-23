@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as Api from "../../utills/api";
 import Title from "../../components/Title";
 import "./ProductDetail.css";
 import { DeleteProduct } from "./DeleteProduct";
 import { ModifyProduct } from "./ModifyProduct";
+import { AuthContext } from "../../utills/AuthContext";
 
 function ProductDetail() {
   const currencySymbol = "KRW";
+  const auth = useContext(AuthContext);
   const { id } = useParams();
   const [item, setItem] = useState(undefined);
   const navigate = useNavigate();
-  const isAdmin = localStorage.getItem("isAdmin");
+  const isAdmin = auth.isAdmin;
   const [render, setRender] = useState(true);
 
   // Modal State

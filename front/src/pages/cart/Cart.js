@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Cart.css";
 import Title from "../../components/Title";
@@ -6,6 +6,7 @@ import { ROUTE } from "../../utills/route";
 import { ReactComponent as AddIcon } from "../../icons/add.svg";
 import { ReactComponent as RemoveIcon } from "../../icons/remove.svg";
 import { ReactComponent as CloseIcon } from "../../icons/close.svg";
+import { AuthContext } from "../../utills/AuthContext";
 
 function CardProductContainer({
   img,
@@ -71,11 +72,12 @@ function Cart() {
   // const [quantity, setQuantity] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
+  const auth = useContext(AuthContext);
 
   const handleOrder = () => {
-    localStorage.getItem("token")
-      ? navigate("/order", { state: { cart } })
-      : navigate("/login", {
+    auth.isLoggedIn
+      ? navigate(ROUTE.ORDER.link, { state: { cart } })
+      : navigate(ROUTE.LOGIN.link, {
           state: {
             redirectUrl: location.pathname + location.search + location.hash,
           },

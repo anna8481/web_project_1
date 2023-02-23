@@ -1,34 +1,28 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ROUTE } from "../../utills/route";
 import "./NavLinksUser.css";
+import { AuthContext } from "../../utills/AuthContext";
 
 const NavLinksUser = (props) => {
-  const navigate = useNavigate();
-  const logout = (e) => {
-    //저장했던 JWT 토큰을 삭제함.
-    localStorage.removeItem("token");
-    localStorage.removeItem("isAdmin");
-    localStorage.removeItem("cart");
-    navigate("/");
-  };
+  const auth = useContext(AuthContext);
 
   return (
     <ul className="nav-links-user">
-      {localStorage.getItem("isAdmin") && (
+      {auth.isAdmin && (
         <li>
           <Link to={ROUTE.ADMIN.link}>관리자</Link>
         </li>
       )}
-      {localStorage.getItem("token") && (
+      {auth.isLoggedIn && (
         <li>
           <Link to={ROUTE.ACCOUNT.link} onClick={props.onClickNav}>
             마이페이지
           </Link>
         </li>
       )}
-      {localStorage.getItem("token") ? (
-        <li className="logout" onClick={logout}>
+      {auth.isLoggedIn ? (
+        <li className="logout" onClick={auth.logout}>
           로그아웃
         </li>
       ) : (
