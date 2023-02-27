@@ -6,13 +6,13 @@ import { DeleteOrder } from "./DeleteOrder";
 import { ModifyOrder } from "./ModifyOrder";
 
 function OrderHistory() {
-  const [orders, setOrders] = useState(undefined);
-  const [orderId, setOrderId] = useState(undefined);
-  const [item, setItem] = useState(undefined);
+  const [orders, setOrders] = useState();
+  const [orderId, setOrderId] = useState();
+  const [item, setItem] = useState();
   const [render, setRender] = useState(true);
 
   // Modal State
-  const [mode, setMode] = useState(undefined);
+  const [mode, setMode] = useState();
   const modeOff = () => {
     setMode(undefined);
   };
@@ -92,11 +92,7 @@ function OrderHistory() {
           </thead>
           <tbody>{typeof orders === "object" && orderMap(orders)}</tbody>
           {mode === "DELETE" && (
-            <DeleteOrder
-              setRender={setRender}
-              modeOff={modeOff}
-              orderId={orderId}
-            />
+            <DeleteOrder setRender={setRender} modeOff={modeOff} orderId={orderId} />
           )}
           {mode === "MODIFY" && (
             <ModifyOrder setRender={setRender} modeOff={modeOff} order={item} />

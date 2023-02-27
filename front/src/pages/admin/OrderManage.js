@@ -27,26 +27,16 @@ function OrderManage() {
         <tr key={index}>
           <th>{item.createdAt.split("T")[0]}</th>
           <th>{item.orderTitle}</th>
+          <th>{item.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</th>
           <th>
-            {item.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
-          </th>
-          <th>
-            <select
-              id={item._id}
-              value={item.status}
-              onChange={handleStatusChange}
-            >
+            <select id={item._id} value={item.status} onChange={handleStatusChange}>
               <option value="상품 준비중">상품 준비중</option>
               <option value="상품 배송중">상품 배송중</option>
               <option value="배송완료">배송완료</option>
             </select>
           </th>
           <th>
-            <button
-              className="manage-button"
-              id={item._id}
-              onClick={handleOrderCancel}
-            >
+            <button className="manage-button" id={item._id} onClick={handleOrderCancel}>
               삭제
             </button>
           </th>
@@ -56,12 +46,6 @@ function OrderManage() {
 
     return userOrders;
   };
-  const init = async () => {
-    const res = await Api.get(`admin/orders/?page=${page}&perPage=${perPage}`);
-    // console.log(res.data)
-    setOrders(() => res.data.orders);
-    setTotal(() => res.data.total);
-  };
 
   const handlePageChange = (currentPage) => {
     if (page === currentPage) return;
@@ -70,6 +54,17 @@ function OrderManage() {
   };
 
   useEffect(() => {
+    const init = async () => {
+      try {
+        const res = await Api.get(`admin/orders/?page=${page}&perPage=${perPage}`);
+        // console.log(res.data)
+        setOrders(() => res.data.orders);
+        setTotal(() => res.data.total);
+      } catch (err) {
+        alert(err.response.data.reason);
+      }
+    };
+
     if (render) {
       init();
       setRender(false);
@@ -107,11 +102,7 @@ function OrderManage() {
           <tbody>{typeof orders === "object" && orderMap(orders)}</tbody>
         </Table>
         {mode === "DELETE" && (
-          <DeleteOrder
-            setRender={setRender}
-            modeOff={modeOff}
-            orderId={orderId}
-          />
+          <DeleteOrder setRender={setRender} modeOff={modeOff} orderId={orderId} />
         )}
 
         <Pagination

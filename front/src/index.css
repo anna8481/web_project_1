@@ -47,6 +47,13 @@ button {
   color: var(--text-color);
 }
 
+li:hover,
+a:hover,
+a:active,
+a.active {
+  color: var(--text-sub-color);
+}
+
 .slide-in-left-enter {
   transform: translateX(-100%);
 }
@@ -66,13 +73,4 @@ button {
   transform: translateX(-100%);
   opacity: 0;
   transition: all 300ms;
-}
-
-@media (min-width: 768px) {
-  li:hover,
-  a:hover,
-  a:active,
-  a.active {
-    color: var(--text-sub-color);
-  }
 }

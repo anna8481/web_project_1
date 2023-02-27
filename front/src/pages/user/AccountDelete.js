@@ -23,7 +23,6 @@ function AccountDelete() {
     try {
       const res = await Api.post("users/currentPassword", formdata);
       Api.delete("users", res.data._id);
-
       localStorage.removeItem("token");
       localStorage.removeItem("cart");
       alert("계정정보가 안전하게 삭제되었습니다.");
@@ -67,18 +66,12 @@ function AccountDelete() {
             <Modal.Header closeButton>
               <Modal.Title>계정 삭제</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              회원정보 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?
-            </Modal.Body>
+            <Modal.Body>회원정보 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</Modal.Body>
             <Modal.Footer>
               <button className="edit-button" onClick={handleClose}>
                 아니오
               </button>
-              <button
-                className="edit-button"
-                type="submit"
-                onClick={handleSubmit}
-              >
+              <button className="edit-button" type="submit" onClick={handleSubmit}>
                 예
               </button>
             </Modal.Footer>

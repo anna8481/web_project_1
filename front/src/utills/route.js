@@ -131,3 +131,21 @@ export const ROUTE = {
 };
 
 export const ROUTE_ARR = Object.values(ROUTE);
+
+/* {ROUTE_ARR.map((route, index) => {
+              return (
+                <Route
+                  path={route.path}
+                  element={
+                    route.protected ? (
+                      <RequireAuth>
+                        <route.element />
+                      </RequireAuth>
+                    ) : (
+                      <route.element />
+                    )
+                  }
+                  key={index}
+                />
+              );
+            })} */

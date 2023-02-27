@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import "./User.css";
 import * as Api from "../../utills/api";
 import { ROUTE } from "../../utills/route";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Title from "../../components/Title";
 import { AuthContext } from "../../utills/AuthContext";
 
@@ -33,14 +32,15 @@ function Login() {
         email,
         password,
       });
+
       auth.login(response.data.token, response.data.isAdmin);
       if (location.state?.redirectUrl) {
         navigate(location.state.redirectUrl);
       } else {
-        navigate(ROUTE.HOME.link);
+        navigate("/");
       }
     } catch (err) {
-      alert("이메일 또는 비밀번호가 일치하지 않습니다.");
+      alert(err.response.data.reason);
     }
   };
 

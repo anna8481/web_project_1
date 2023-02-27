@@ -8,10 +8,10 @@ import Title from "../../components/Title";
 import "./AccountSecurity.css";
 
 function AccountSecurity() {
-  const [formData, setFormData] = useState(undefined);
-  const [currentPassword, setCurrentPassword] = useState("");
-
+  const [formData, setFormData] = useState();
+  const [currentPassword, setCurrentPassword] = useState();
   const [popup, setPopup] = useState(false);
+
   const toggleShow = (e) => {
     e.preventDefault();
     setPopup(!popup);
@@ -33,8 +33,8 @@ function AccountSecurity() {
             postalCode: data.address?.postalCode || "",
           },
         });
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        alert(err.response.data.reason);
       }
     };
     fetchData();
@@ -49,7 +49,6 @@ function AccountSecurity() {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      confirmPassword: prev.password,
       address: {
         ...prev.address,
         [name]: value,
@@ -92,8 +91,8 @@ function AccountSecurity() {
       await Api.patch(`users/${formData._id}`, updatedUser);
       alert("수정이 완료되었습니다!");
       setPopup(!popup);
-    } catch (e) {
-      alert(e.response.data.reason);
+    } catch (err) {
+      alert(err.response.data.reason);
     }
 
     setPopup(!popup);
@@ -181,12 +180,7 @@ function AccountSecurity() {
                 주소찾기
               </button>
             </div>
-            {postPopup && (
-              <Postcode
-                setFormData={setFormData}
-                formData={formData}
-              ></Postcode>
-            )}
+            {postPopup && <Postcode setFormData={setFormData} formData={formData}></Postcode>}
 
             <input
               className="input"

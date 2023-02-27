@@ -17,11 +17,7 @@ function ProductAdd() {
   const cateMap = (categories) => {
     const newCategories = categories.map((item, index) => {
       return (
-        <option
-          key={index}
-          value={item._id}
-          className={"notification " + item.themeClass}
-        >
+        <option key={index} value={item._id} className={"notification " + item.themeClass}>
           {item.title}
         </option>
       );
@@ -29,13 +25,13 @@ function ProductAdd() {
     return newCategories;
   };
 
-  const initialInputs = {
-    productName: "",
-    categoryId: "",
-    productInfo: "",
-    imageKey: "",
-    price: "",
-  };
+  // const initialInputs = {
+  //   productName: "",
+  //   categoryId: "",
+  //   productInfo: "",
+  //   imageKey: "",
+  //   price: "",
+  // };
 
   const handlefileData = (e) => {
     setFileData(e.target.files[0]);
@@ -43,7 +39,7 @@ function ProductAdd() {
 
   useEffect(() => {
     init();
-    setInputs(initialInputs);
+    // setInputs(initialInputs);
   }, []);
 
   const handleChange = (e) => {
@@ -79,10 +75,7 @@ function ProductAdd() {
   // 클라우디너리에 image를 저장하고 imageKey를 formdata에 저장
   async function addPicture(imgdata) {
     try {
-      const res = await axios.post(
-        process.env.REACT_APP_FILE_UPLOAD_URL,
-        imgdata
-      );
+      const res = await axios.post(process.env.REACT_APP_FILE_UPLOAD_URL, imgdata);
 
       return res.data.public_id;
     } catch (err) {
@@ -109,7 +102,7 @@ function ProductAdd() {
     await addProduct(formdata);
 
     e.target.reset();
-    setInputs(() => initialInputs);
+    setInputs(undefined);
   };
 
   return (
