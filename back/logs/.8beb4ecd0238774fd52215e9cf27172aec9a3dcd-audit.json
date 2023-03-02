@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/.8beb4ecd0238774fd52215e9cf27172aec9a3dcd-audit.json",
+    "files": [
+        {
+            "date": 1676345137679,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-14.exception.log",
+            "hash": "32b8193dc0db8ee6ee9e35a2367d74cbf95ada0e24db29c36d614e2312a36b39"
+        },
+        {
+            "date": 1676461035257,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-15.exception.log",
+            "hash": "d254bdecc0478184035d670324f69cbedeeeadc53a53aaa6f8f09eb108dd8e71"
+        },
+        {
+            "date": 1676506276655,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-16.exception.log",
+            "hash": "1d40e1eed27ea6f6c6aeea7bd82070273bc0b28fcbaf95062ea5effa44d2ab12"
+        }
+    ],
+    "hashType": "sha256"
+}

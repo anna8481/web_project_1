@@ -9,7 +9,10 @@ const orderRouter = require("./routes/orderRouter");
 const { errorHandler } = require("./middlewares/errorHandler");
 //const { errorLogger } = require("./middlewares/errorLogger");
 
-app.use(cors()); //CORS 방지
+app.use(
+    cors() //{ origin: "https://moteam.netlify.app", credentials: true }
+
+); //CORS 방지
 
 app.use(express.urlencoded({ extended: false })); // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
 app.use(express.json()); // Content-Type: application/json 형태의 데이터를 인식하고 핸들링할 수 있게 함.

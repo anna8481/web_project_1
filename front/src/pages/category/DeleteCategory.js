@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import * as Api from "../../utills/api";
-import { Button, Modal } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 
 export function DeleteCategory({ setRender, modeOff, categoryId }) {
 

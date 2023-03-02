@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as Api from "../../utills/api";
-import { Form, Button, Container, Row, Col, InputGroup, FormControl, Modal } from 'react-bootstrap';
+import { Form, Container, Modal } from 'react-bootstrap';
 
 export function ModifyCategory({ setRender, modeOff, category }) {
     const [inputs, setInputs] = useState({});

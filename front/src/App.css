@@ -1,17 +1,15 @@
+/* layouts */
+
 .section {
-  margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 3rem;
-  padding: 1rem;
-  max-width: 90%;
-  color: black;
   white-space: pre-line;
+  padding: 0 1.5rem;
 }
 
 .container {
   margin-bottom: 2rem;
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
   display: flex;
   flex-direction: column;
 }
@@ -22,106 +20,43 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
 }
 
+/* contents */
 
-body,
-input,
-button {
-  font-family: 'Merriweather', 'Noto Serif KR', serif;
-  color: black;
-  font-size: 12px;
-}
-
-input[type="checkbox"]:checked {
+/* input[type="checkbox"]:checked {
   background-color: #000;
-}
+} */
 
-.table {
-  font-size: 12px;
-}
-
-
-a,
-ul {
-  text-decoration: none;
-  margin: 0;
-  color: black;
-}
-
-a:hover {
-  color: #999
-}
-
-
-.Navbar {
-  display: flex;
-}
-
-.Header {
-  border-bottom: 1px solid;
-  border-top: 1px solid;
-  padding: 1.5rem 0;
-  font-size: 1rem;
-  margin-bottom: 2rem;
+th {
+  font-weight: 100;
 }
 
 .tile {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 70%
-}
-
-input {
+  flex-direction: column;
   width: 100%;
 }
 
 .input {
-  border: 1px solid black;
+  border: var(--border);
   line-height: 3.5;
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
-}
-
-
-.input:focus {
-  border: 2px solid black;
-
-}
-
-
-.user-form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 400px;
-  margin: 0;
-  padding: 0;
-}
-
-.user-button {
-  width: 400px;
-  background-color: #fff;
-  border: 1px solid black;
-  line-height: 3.5;
-  padding: 0;
-  flex-direction: flex-end;
-  margin: auto;
+  width: 100%;
 }
 
 .edit-button {
-  background-color: #fff;
-  border: 1px solid black;
+  background-color: var(--bg);
+  border: var(--border);
   display: inline;
   margin-right: "1rem";
   text-align: center;
 }
 
 .manage-button {
-  background-color: #fff;
+  background-color: var(--bg);
   border: 1px solid rgb(118, 118, 118);
   border-radius: 4px;
   display: inline;
@@ -131,25 +66,6 @@ input {
   padding-bottom: 0;
 }
 
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  border: 1px solid #999;
-  color: #999
-}
-
-
-button:focus {
-  border: 1px solid #999;
-  color: #999
-}
-
-li:hover {
-  color: #999
-}
-
 .postcode {
   display: flex;
   width: 100%;
@@ -157,21 +73,31 @@ li:hover {
 
 .postcode-input {
   flex: 3;
-  border: 1px solid black;
+  border: var(--border);
   border-right: 0px;
-  line-height: 3.5;
+  /* line-height: 3.5; */
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
 }
 
-
 .postcode-button {
   flex: 1;
-  border: 1px solid black;
-  line-height: 3.5;
+  border: var(--border);
   border-radius: 0;
   height: 55px;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 1rem 5rem 0 5rem;
+  }
+
+  .tile {
+    flex-direction: row;
+    justify-content: center;
+    width: 70%;
+  }
 }

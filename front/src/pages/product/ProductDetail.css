@@ -1,30 +1,23 @@
-.product-detail-img {
-    width: 50%
-}
-
-
-.product-detail-description {
-    padding-left: 3rem;
-    width: 50%
-}
-
-
 .product-detail-name {
-    font-size: 14px;
-    margin-bottom: 1rem;
-
+  font-size: 14px;
+  margin: 1rem 0;
 }
-
 
 .product-detail-info {
-
-    margin-bottom: 1rem;
-
+  margin-bottom: 1rem;
 }
 
-
 .product-detail-price {
-    font-size: 12px;
-    margin-bottom: 1rem;
+  font-size: 12px;
+  margin-bottom: 1rem;
+}
 
+@media (min-width: 768px) {
+  .product-detail-description {
+    padding-left: 3rem;
+    width: 50%;
+  }
+  .product-detail-img {
+    width: 50%;
+  }
 }

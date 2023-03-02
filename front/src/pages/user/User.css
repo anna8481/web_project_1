@@ -1,0 +1,18 @@
+.user-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  max-width: 400px;
+}
+
+.user-button {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid black;
+  line-height: 3.5;
+  padding: 0;
+  margin: auto;
+}
