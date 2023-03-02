@@ -41,7 +41,7 @@ const MainNavigation = (props) => {
         </nav>
 
         <h1 className="main-navigation__title">
-          <Link to="/">obud</Link>
+          <Link to="/">Moteam</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinksUser />
