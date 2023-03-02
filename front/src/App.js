@@ -50,9 +50,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("token");
-    if (storedData) {
-      login(storedData);
+    const storedTokenData = localStorage.getItem("token");
+    const storedAdminData = localStorage.getItem("isAdmin") || false;
+    console.log(storedTokenData, storedAdminData);
+    if (storedTokenData) {
+      login(storedTokenData, storedAdminData);
     }
   }, [login]);
 

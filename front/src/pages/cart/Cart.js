@@ -68,9 +68,7 @@ function Cart() {
   const navigate = useNavigate();
   const location = useLocation();
   const [subtotal, setSubtotal] = useState(0);
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || []
-  );
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
   // const [quantity, setQuantity] = useState(1);
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
@@ -103,9 +101,7 @@ function Cart() {
 
   // 선택 삭제
   const handleDelete = () => {
-    const updatedCart = cart.filter(
-      (item) => !selectedItems.includes(item._id)
-    );
+    const updatedCart = cart.filter((item) => !selectedItems.includes(item._id));
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
     setSelectedItems([]);
@@ -155,10 +151,7 @@ function Cart() {
   };
 
   useEffect(() => {
-    const sum = cart.reduce(
-      (accum, curr) => accum + curr.price * curr.quantity,
-      0
-    );
+    const sum = cart.reduce((accum, curr) => accum + curr.price * curr.quantity, 0);
     setSubtotal(sum);
   }, [cart]);
 
@@ -172,7 +165,7 @@ function Cart() {
 2.  장바구니.leng !==0 일때 렌더
 3. 장바구니.leng ===0 일때는 이거
 */}
-        <p className="cart-product-header">
+        <div className="cart-product-header">
           <input
             type="checkbox"
             onChange={handleSelectAll}
@@ -188,18 +181,13 @@ function Cart() {
           >
             선택삭제
           </div>
-        </p>
+        </div>
 
         {cart.length !== 0 ? (
           cart.map((item) => (
             <CardProductContainer
               key={item._id}
-              img={
-                process.env.REACT_APP_FILE_RES_URL +
-                "/" +
-                item.imageKey +
-                ".png"
-              }
+              img={process.env.REACT_APP_FILE_RES_URL + "/" + item.imageKey + ".png"}
               productId={item._id}
               productName={item.productName}
               price={item.price * item.quantity}
@@ -221,7 +209,7 @@ function Cart() {
               <div className="payment-header">결제정보</div>
               <div className="payment-info">
                 <div className="info">
-                  <p>상품 총 금액</p>{" "}
+                  <p>상품 총 금액</p>
                   <p id="productsTotal">
                     {subtotal.toLocaleString("en-US", {
                       style: "currency",
@@ -230,17 +218,17 @@ function Cart() {
                   </p>
                 </div>
                 <div className="info">
-                  <p>배송비</p>{" "}
+                  <p>배송비</p>
                   <p id="deliveryFee">
                     {shippingCost.toLocaleString("en-US", {
                       style: "currency",
                       currency: currencySymbol,
                     })}
-                  </p>{" "}
+                  </p>
                 </div>
               </div>
               <div className="payment-total">
-                <p>총 결제금액</p>{" "}
+                <p>총 결제금액</p>
                 <p id="Total">
                   {(subtotal + shippingCost).toLocaleString("en-US", {
                     style: "currency",
