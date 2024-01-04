@@ -1,10 +1,10 @@
-import * as Api from "../../utills/api";
-import React, { useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
-import Header from "../../components/Title";
-import { DeleteUser } from "./DeleteUser";
-import Pagination from "react-js-pagination";
-import "./UserManage.css";
+import * as Api from '../../utills/api';
+import React, { useState, useEffect } from 'react';
+import { Table } from 'react-bootstrap';
+import Header from '../../components/Title';
+import { DeleteUser } from './DeleteUser';
+import Pagination from 'react-js-pagination';
+import './UserManage.css';
 
 function UserManage() {
   const [users, setUsers] = useState(undefined);
@@ -26,7 +26,7 @@ function UserManage() {
     const newUserList = users.map((item, index) => {
       return (
         <tr key={index}>
-          <th>{item.createdAt.split("T")[0]}</th>
+          <th>{item.createdAt.split('T')[0]}</th>
           <th>{item.email}</th>
           <th>{item.userName}</th>
           <th>
@@ -35,13 +35,13 @@ function UserManage() {
               name={item._id}
               onChange={handleRoleChange}
             >
-              <option value="admin">관리자</option>
-              <option value="basic-user">회원</option>
+              <option value='admin'>관리자</option>
+              <option value='basic-user'>회원</option>
             </select>
           </th>
           <th>
             <button
-              className="manage-button"
+              className='manage-button'
               id={item._id}
               onClick={handleUserDelete}
             >
@@ -76,13 +76,14 @@ function UserManage() {
       init();
       setRender(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, render, page]);
 
   const handleUserDelete = (e) => {
     e.preventDefault();
 
     setUserId(() => e.target.id);
-    setMode("DELETE");
+    setMode('DELETE');
   };
 
   const handleRoleChange = async (e) => {
@@ -92,8 +93,8 @@ function UserManage() {
   };
   return (
     <>
-      <div className="section">
-        <Header title="회원 관리"></Header>
+      <div className='section'>
+        <Header title='회원 관리'></Header>
         <Table striped hover>
           <thead>
             <tr>
@@ -104,21 +105,21 @@ function UserManage() {
               <th>관리</th>
             </tr>
           </thead>
-          <tbody>{typeof users === "object" && userMap(users)}</tbody>
+          <tbody>{typeof users === 'object' && userMap(users)}</tbody>
         </Table>
 
-        {mode === "DELETE" && (
+        {mode === 'DELETE' && (
           <DeleteUser setRender={setRender} modeOff={modeOff} userId={userId} />
         )}
 
         <Pagination
-          itemClass="page-item"
+          itemClass='page-item'
           activePage={page}
           itemsCountPerPage={perPage}
           totalItemsCount={total}
           pageRangeDisplayed={5}
-          prevPageText={"‹"}
-          nextPageText={"›"}
+          prevPageText={'‹'}
+          nextPageText={'›'}
           onChange={handlePageChange}
           hideFirstLastPages
         />

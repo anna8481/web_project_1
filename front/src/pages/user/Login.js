@@ -48,7 +48,7 @@ function Login() {
     <>
       <div className="section">
         <div className="container-center">
-          <Title></Title>
+        <Title></Title>
           <form onSubmit={handleLogin} className="user-form">
             <input
               className="input"

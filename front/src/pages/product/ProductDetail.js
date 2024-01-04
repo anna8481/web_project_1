@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import * as Api from "../../utills/api";
-import Title from "../../components/Title";
-import "./ProductDetail.css";
-import { DeleteProduct } from "./DeleteProduct";
-import { ModifyProduct } from "./ModifyProduct";
-import { AuthContext } from "../../utills/AuthContext";
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import * as Api from '../../utills/api';
+import Title from '../../components/Title';
+import './ProductDetail.css';
+import { DeleteProduct } from './DeleteProduct';
+import { ModifyProduct } from './ModifyProduct';
+import { AuthContext } from '../../utills/AuthContext';
 
 function ProductDetail() {
-  const currencySymbol = "KRW";
+  const currencySymbol = 'KRW';
   const auth = useContext(AuthContext);
   const { id } = useParams();
   const [item, setItem] = useState(undefined);
@@ -33,99 +33,100 @@ function ProductDetail() {
       init();
       setRender(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode, render]);
 
   const handleAddToCart = () => {
-    const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProductIndex = currentCart.findIndex(
       (cart) => cart._id === item._id
     );
 
     if (existingProductIndex !== -1) {
       // 이미 존재하면 alert, 카트로 가기
-      alert("장바구니에 이미 상품이 존재합니다.");
-      navigate("/cart");
+      alert('장바구니에 이미 상품이 존재합니다.');
+      navigate('/cart');
       return;
     }
 
     //local storage에 처음에는 qty 1로 세팅해서 보내줌 (수량 옵션 없으므로)
     localStorage.setItem(
-      "cart",
+      'cart',
       JSON.stringify([...currentCart, { ...item, quantity: 1 }])
     );
-    alert("장바구니에 상품을 추가했습니다.");
+    alert('장바구니에 상품을 추가했습니다.');
 
     //cart 로 이동하면서 prop으로 상품 정보 (item) 전달
-    navigate("/cart", { state: { item } });
+    navigate('/cart', { state: { item } });
   };
 
   return (
     <>
       {/* <h1>{id}</h1> */}
 
-      <div className="section">
+      <div className='section'>
         <Title></Title>
-        <div className="container-center">
-          {typeof item === "object" && (
-            <div className="tile">
+        <div className='container-center'>
+          {typeof item === 'object' && (
+            <div className='tile'>
               <img
-                className="product-detail-img"
+                className='product-detail-img'
                 src={
                   process.env.REACT_APP_FILE_RES_URL +
-                  "/" +
+                  '/' +
                   item.imageKey +
-                  ".png"
+                  '.png'
                 }
                 alt={item.productName}
               ></img>
-              <div className="product-detail-description">
-                <div className="product-detail-name">{item.productName}</div>
-                <div className="product-detail-price">
-                  {item.price.toLocaleString("en-US", {
-                    style: "currency",
+              <div className='product-detail-description'>
+                <div className='product-detail-name'>{item.productName}</div>
+                <div className='product-detail-price'>
+                  {item.price.toLocaleString('en-US', {
+                    style: 'currency',
                     currency: currencySymbol,
                   })}
                 </div>
                 <div
                   style={{
-                    borderBottom: "1px solid black",
-                    marginBottom: "2rem",
+                    borderBottom: '1px solid black',
+                    marginBottom: '2rem',
                   }}
                 >
-                  {" "}
+                  {' '}
                 </div>
-                <div className="product-detail-info">{item.productInfo}</div>
-                <div style={{ marginTop: "2rem" }}> </div>
+                <div className='product-detail-info'>{item.productInfo}</div>
+                <div style={{ marginTop: '2rem' }}> </div>
 
                 <button
-                  className="purchase-button"
-                  style={{ display: "block" }}
+                  className='purchase-button'
+                  style={{ display: 'block' }}
                   onClick={handleAddToCart}
                 >
                   Add to Cart
                 </button>
 
-                <div style={{ marginTop: "2rem" }}> </div>
+                <div style={{ marginTop: '2rem' }}> </div>
                 {isAdmin && (
                   <>
                     <button
-                      className="edit-button"
-                      style={{ display: "inline", marginRight: "1rem" }}
-                      onClick={() => setMode("MODIFY")}
+                      className='edit-button'
+                      style={{ display: 'inline', marginRight: '1rem' }}
+                      onClick={() => setMode('MODIFY')}
                     >
                       수정
                     </button>
                     <button
-                      className="edit-button"
-                      style={{ display: "inline" }}
-                      onClick={() => setMode("DELETE")}
+                      className='edit-button'
+                      style={{ display: 'inline' }}
+                      onClick={() => setMode('DELETE')}
                     >
                       삭제
                     </button>
-                    {mode === "DELETE" && (
+                    {mode === 'DELETE' && (
                       <DeleteProduct modeOff={modeOff} productId={id} />
                     )}
-                    {mode === "MODIFY" && (
+                    {mode === 'MODIFY' && (
                       <ModifyProduct
                         setRender={setRender}
                         modeOff={modeOff}

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import * as Api from "../../utills/api";
-import { Modal } from "react-bootstrap";
+import React, { useState, useEffect } from 'react';
+import * as Api from '../../utills/api';
+import { Modal } from 'react-bootstrap';
 
 export function ModifyProduct({ setRender, modeOff, product }) {
   const [inputs, setInputs] = useState({});
@@ -9,12 +8,13 @@ export function ModifyProduct({ setRender, modeOff, product }) {
   // input initialize
   useEffect(() => {
     const initialInputs = Object.keys(product).reduce((obj, key) => {
-      if (key === "productName" || key === "productInfo" || key === "price") {
+      if (key === 'productName' || key === 'productInfo' || key === 'price') {
         obj[key] = product[key];
       }
       return obj;
     }, {});
     setInputs(initialInputs);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (e) => {
@@ -28,8 +28,8 @@ export function ModifyProduct({ setRender, modeOff, product }) {
   const handleModify = async () => {
     try {
       const formdata = inputs;
-      const res = await Api.patch(`products/${product._id}`, formdata);
-      alert("제품이 수정되었습니다.");
+      await Api.patch(`products/${product._id}`, formdata);
+      alert('제품이 수정되었습니다.');
       setRender(true);
       modeOff();
     } catch (err) {
@@ -44,7 +44,7 @@ export function ModifyProduct({ setRender, modeOff, product }) {
         <Modal.Title>제품 수정</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {typeof inputs === "object" && (
+        {typeof inputs === 'object' && (
           <div>
             <form onSubmit={handleModify}>
               <div>
@@ -52,9 +52,9 @@ export function ModifyProduct({ setRender, modeOff, product }) {
               </div>
               <div>
                 <input
-                  className="input"
-                  type="text"
-                  name="productName"
+                  className='input'
+                  type='text'
+                  name='productName'
                   defaultValue={inputs.productName}
                   onChange={handleChange}
                 />
@@ -64,12 +64,12 @@ export function ModifyProduct({ setRender, modeOff, product }) {
               </div>
               <div>
                 <textarea
-                  className="input"
+                  className='input'
                   style={{
-                    width: "100%",
-                    height: "100px",
+                    width: '100%',
+                    height: '100px',
                   }}
-                  name="productInfo"
+                  name='productInfo'
                   defaultValue={inputs.productInfo}
                   onChange={handleChange}
                 />
@@ -79,9 +79,9 @@ export function ModifyProduct({ setRender, modeOff, product }) {
               </div>
               <div>
                 <input
-                  className="input"
-                  type="number"
-                  name="price"
+                  className='input'
+                  type='number'
+                  name='price'
                   defaultValue={inputs.price}
                   onChange={handleChange}
                 />
@@ -91,13 +91,13 @@ export function ModifyProduct({ setRender, modeOff, product }) {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <button className="edit-button" variant="secondary" onClick={modeOff}>
+        <button className='edit-button' variant='secondary' onClick={modeOff}>
           취소
         </button>
         <button
-          className="edit-button"
-          variant="primary"
-          type="submit"
+          className='edit-button'
+          variant='primary'
+          type='submit'
           onClick={handleModify}
         >
           수정

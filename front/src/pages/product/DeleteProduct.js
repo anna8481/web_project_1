@@ -1,19 +1,19 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import * as Api from "../../utills/api";
-import { Modal } from "react-bootstrap";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as Api from '../../utills/api';
+import { Modal } from 'react-bootstrap';
 
 export function DeleteProduct({ modeOff, productId }) {
   const navigate = useNavigate();
 
   const handleProductDelete = async () => {
     try {
-      const res = await Api.delete("products", productId);
-      alert("등록된 제품이 삭제되었습니다.");
+      await Api.delete('products', productId);
+      alert('등록된 제품이 삭제되었습니다.');
       navigate(-1);
       modeOff();
     } catch (err) {
-      alert("접근 권한이 없습니다.");
+      alert('접근 권한이 없습니다.');
       modeOff();
     }
   };
@@ -27,12 +27,12 @@ export function DeleteProduct({ modeOff, productId }) {
         제품 삭제 시 복구할 수 없습니다. 정말로 삭제하시겠습니까?
       </Modal.Body>
       <Modal.Footer>
-        <button className="edit-button" variant="secondary" onClick={modeOff}>
+        <button className='edit-button' variant='secondary' onClick={modeOff}>
           아니오
         </button>
         <button
-          className="edit-button"
-          variant="primary"
+          className='edit-button'
+          variant='primary'
           onClick={handleProductDelete}
         >
           예
