@@ -19,6 +19,36 @@
             "date": 1676506276654,
             "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2023-02-16.error.log",
             "hash": "a6382c089690aa8d661bafa63c6ab37a3f64b90c4821e7088f4fa78a535cf3b3"
+        },
+        {
+            "date": 1677146874421,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2023-02-23.error.log",
+            "hash": "2fd45966ab7c81abe3464b04605059c4d06831cc628805a73d35de59415e281f"
+        },
+        {
+            "date": 1677214179522,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2023-02-24.error.log",
+            "hash": "a1e70e3b87b6adb518f421bd9e770a27564efda5a5629026111b1c7d98257d9a"
+        },
+        {
+            "date": 1677456198350,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2023-02-27.error.log",
+            "hash": "ffcb36de5747fcb8d1eba8e4009a9403315e141a0ab1a5b502623048c0c83c9b"
+        },
+        {
+            "date": 1677718147232,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2023-03-02.error.log",
+            "hash": "54bcdeb0af1da8b1ac39201091e978ed464076133c1a6491544ce0f48948b9f6"
+        },
+        {
+            "date": 1689077899922,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2023-07-11.error.log",
+            "hash": "0174b73615d1062a14a9d91f7436c0e002d00f565721d0041c8584d9134e4487"
+        },
+        {
+            "date": 1704329110565,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/error/2024-01-04.error.log",
+            "hash": "0b852e4505562f4465c5c17fd92ffa39054675034b45b0087b3c922b4917740b"
         }
     ],
     "hashType": "sha256"

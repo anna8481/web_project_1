@@ -19,6 +19,36 @@
             "date": 1676506276653,
             "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-16.log",
             "hash": "b48ee84c76da1a11c74c001136ad2dc171510f92ec7a12c05b427fb19ef58511"
+        },
+        {
+            "date": 1677146874420,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-23.log",
+            "hash": "190d7e679c5a0f5c8c188ba03fd99024ea940958f72e9bbecdf35a9be662f0b2"
+        },
+        {
+            "date": 1677214179521,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-24.log",
+            "hash": "aadea77ab64bfa27afded4ec44ad00b677ff180c3bb0d3769f0cded19c0eb179"
+        },
+        {
+            "date": 1677456198348,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-02-27.log",
+            "hash": "9d2bec49abfec9610a0b3d33f9bce32e3cd2673e0918b85d2b100a8030f1bed7"
+        },
+        {
+            "date": 1677718147230,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-03-02.log",
+            "hash": "ac6f222da0a362caa1a85eec291435247fbdeb4d1421f26b5c5c9041e5f99523"
+        },
+        {
+            "date": 1689077899920,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2023-07-11.log",
+            "hash": "96b20288e2c2fcfe45ee9c809de287cbb05a04f94b2cd9fa6221eacd24b4d6fd"
+        },
+        {
+            "date": 1704329110563,
+            "name": "/Users/anna/Desktop/web/1st_project/web_project_1/back/logs/2024-01-04.log",
+            "hash": "aa5e183a0c4755e9d5ddac3bcf7e1450244e21fa383d092f9615e955117816be"
         }
     ],
     "hashType": "sha256"
